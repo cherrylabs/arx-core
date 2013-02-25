@@ -1,0 +1,378 @@
+/**
+ * LESS File - /arxmin.less
+ */
+
+@import '../lib/bootstrap.less';
+@import '../lib/font-awesome.less';
+
+@import 'variables.less';
+@import 'layouts.less';
+@import 'breadcrumbs.less';
+
+// Cabaret
+
+body {
+    background: @bodyBackground url(../img/blackorchid.png) repeat 0 0;
+}
+
+a {
+    [class^="icon-"],
+    [class*=" icon-"] {}
+
+    &:hover {
+        .transition(color ease-out 300ms);
+    }
+}
+
+.ui {
+    display: none;
+
+    a {
+        i {
+            color: @grayLight;
+        }
+
+        &:hover {
+            text-decoration: none;
+
+            i {
+                color: white;
+            }
+        }
+    }
+} // .ui
+
+.notif {
+    background-color: @red;
+    .border-radius(2px);
+    color: white;
+    display: inline-block;
+    font-size: 8px;
+    height: 12px;
+    line-height: 12px;
+    position: relative;
+    text-align: center;
+    top: -1px;
+    width: 12px;
+
+    &.hide {
+        display: none;
+    }
+}
+
+#menu {
+    .navbar-inner {
+        padding: 0 10px;
+        
+        .brand {
+            color: white;
+            margin-left: 0;
+            overflow: hidden;
+            padding: 10px 10px 10px 0;
+            width: 185px;
+        }
+
+        .nav {
+            li {
+                a {
+                    color: lighten(@grayLight, 30%);
+
+                    .notif {
+                        // border: 1px solid white;
+                        background-color: white;
+                        color: @red;
+                    }
+
+                    &:hover {
+                        color: white;
+                    }
+                }
+
+                &:active, &.active {
+                    background: transparent;
+
+                    a {
+                        background: transparent;
+                        .box-shadow(none);
+                        color: white;
+                    }
+                }
+            }
+        }
+    }
+
+    z-index: 99;
+} // #menu
+
+#sidebar, #application {
+    bottom: 0;
+    position: fixed;
+    top: 41px;
+}
+
+#sidebar {
+    left: 0;
+    .transition(left ease-in 300ms);
+    width: 210px;
+    z-index: 98;
+
+    .ui {
+        display: none;
+        position: absolute;
+        right: 5px;
+        top: 0;
+
+        a {
+            color: @grayLight;
+        }
+    }
+
+    a {
+        &.toggle {
+            background: @bodyBackground url(../img/blackorchid.png) repeat 0 0;
+            display: none;
+            height: 30px;
+            line-height: 30px;
+            position: absolute;
+            right: -30px;
+            text-align: center;
+            top: 0;
+            width: 30px;
+
+            i {
+                color: @grayLight;
+
+                &.icon-arrow-right {
+                    display: none;
+                }
+            }
+
+            &:hover {
+                text-decoration: none;
+
+                i {
+                    color: white;
+                }
+            }
+        }
+
+        &:hover {
+            color: white;
+        }
+    }
+
+    .nav {
+        height: 100%;
+        margin: 0;
+        min-height: 24px;
+
+        li {
+            line-height: 30px;
+            position: relative;
+
+            > a {
+                color: @grayLight;
+                padding: 0 5px;
+
+                &:hover {
+                    background-color: black;
+                    color: @clientLight;
+                }
+
+                &:active, &.active {
+                    color: white;
+
+                    &:hover {
+                        color: white;
+                    }
+                }
+            }
+
+            &:hover {
+                > a {
+                    color: @clientLight;
+                }
+
+                > .ui {
+                    display: block;
+                }
+            }
+
+            &:active, &.active {
+                background-color: darken(@clientDark, 10%);
+
+                > a {
+                    color: white;
+                }
+            }
+
+
+            &.add {
+                display: none;
+                height: 20px;
+                line-height: 20px;
+                text-align: center;
+
+                a {
+                    background: @grayDarker;
+                    border: 1px solid @grayDark;
+                    color: @grayDark;
+                    display: block;
+                    padding: 5px;
+                    .transition(border-color ease-out 300ms);
+
+                    &:hover {
+                        border-color: @clientMiddle;
+                        color: @clientMiddle;
+                    }
+                }
+            }
+            
+        }
+    }
+
+    .accordion {
+        margin: 0;
+
+        .accordion-group {
+            border: 0;
+            .border-radius(0);
+            margin: 0;
+
+            .accordion-heading {
+                .accordion-toggle {
+                    border-bottom: 1px solid @clientDark;
+                    color: white;
+                    padding: 0 5px;
+
+                    &:hover {
+                        background: black;
+                        color: white;
+                        text-decoration: none;
+                    }
+
+                    &.collapsed {
+                        border: 0;
+                        color: @grayLight;
+
+                        &:hover {
+                            color: @clientLight;
+                        }
+                    }
+                }
+
+                .ui {
+                    color: @grayLight;
+                    display: block;
+                }
+
+                &:hover {
+                    > .ui {
+                        color: white;
+                        display: block;
+                    }
+                }
+            }
+            .accordion-body {
+                background: @grayDarker;
+
+                .accordion-inner {
+                    border: 0;
+                    padding: 0;
+
+                    .nav {
+                        margin: 0;
+
+                        li {
+                            line-height: 26px;
+
+                            a {
+                                font-size: 0.9em;
+
+                                [class^="icon-"],
+                                [class*=" icon-"] {
+                                    font-size: 0.9em;
+                                }
+                            }
+                        }
+                    }
+                }
+
+                &.in {
+                    overflow: visible;
+                }
+            }
+        }
+    }
+
+    &:hover {
+        a {
+            &.toggle {
+                background-color: black;
+                display: block;
+            }
+        }
+
+
+        .nav {
+            li {
+                &.add {
+                    display: block;
+                }
+            }
+        }
+    }
+
+    &.closed {
+        left: -210px;
+
+        a {
+            &.toggle {
+                display: block;
+                .opacity(0);
+                .transition(opacity ease-out 200ms);
+
+                i {
+                    &.icon-arrow-left {
+                        display: none;
+                    }
+
+                    &.icon-arrow-right {
+                        display: inline-block;
+                    }
+                }
+
+                &:hover {
+                    .opacity(100);
+                }
+            }
+        }
+    }
+} // #sidebar
+
+#application {
+    left: 210px;
+    right: 0;
+    .transition(left ease-in 300ms);
+    z-index: 97;
+
+    &.full {
+        left: 0;
+    }
+} // #application
+
+
+// Application specific
+.application {
+    background-color: @gray;
+
+    .breadcrumb {}
+
+    #sidebar {
+        top: 30px;
+    }
+
+    #application {
+        top: 30px;
+    }
+}

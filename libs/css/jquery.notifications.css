@@ -1,0 +1,45 @@
+/* .notifications
+ * ----------------------------------------------------------------------------- */
+.notification-wrapper{
+	position: fixed;
+	right: 20px;
+	top: 20px;
+	width: 300px;
+	z-index: 9999;
+}
+	.notification{
+		cursor: pointer;
+		margin: 5px;
+		padding: 10px;
+		position: relative;
+		zoom: 1;
+	}
+	.notification:before, .notification:after{
+		content: '';
+		display: table;
+	}
+	.notification:after{
+		clear: both;
+	}
+	.notification:hover{
+		opacity: 0.8!important;
+	}
+		.notification .close{
+			right: -4px;
+			top: -10px;
+		}
+		.notification-title{
+			font-size: 1.1em;
+			font-weight: bold;
+		}
+		.notification-img{
+			display: block;
+			float: left;
+			margin-right: 10px;
+		}
+			.notification-img a, .notification-img img{
+				display: block;
+			}
+		.notification a{
+			color: #fff;
+		}
