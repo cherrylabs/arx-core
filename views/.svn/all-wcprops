@@ -1,0 +1,101 @@
+K 25
+svn:wc:ra_dav:version-url
+V 29
+/svn/pde/!svn/ver/2/arx/views
+END
+table.tpl
+K 25
+svn:wc:ra_dav:version-url
+V 40
+/svn/pde/!svn/ver/32/arx/views/table.tpl
+END
+header.tpl
+K 25
+svn:wc:ra_dav:version-url
+V 40
+/svn/pde/!svn/ver/2/arx/views/header.tpl
+END
+html5.tpl
+K 25
+svn:wc:ra_dav:version-url
+V 39
+/svn/pde/!svn/ver/2/arx/views/html5.tpl
+END
+tabs.tpl
+K 25
+svn:wc:ra_dav:version-url
+V 39
+/svn/pde/!svn/ver/32/arx/views/tabs.tpl
+END
+dropdown.tpl
+K 25
+svn:wc:ra_dav:version-url
+V 43
+/svn/pde/!svn/ver/32/arx/views/dropdown.tpl
+END
+modal.tpl
+K 25
+svn:wc:ra_dav:version-url
+V 39
+/svn/pde/!svn/ver/2/arx/views/modal.tpl
+END
+config.php
+K 25
+svn:wc:ra_dav:version-url
+V 40
+/svn/pde/!svn/ver/2/arx/views/config.php
+END
+footer.tpl
+K 25
+svn:wc:ra_dav:version-url
+V 40
+/svn/pde/!svn/ver/2/arx/views/footer.tpl
+END
+panel.tpl
+K 25
+svn:wc:ra_dav:version-url
+V 39
+/svn/pde/!svn/ver/2/arx/views/panel.tpl
+END
+head.tpl
+K 25
+svn:wc:ra_dav:version-url
+V 38
+/svn/pde/!svn/ver/2/arx/views/head.tpl
+END
+form.tpl
+K 25
+svn:wc:ra_dav:version-url
+V 39
+/svn/pde/!svn/ver/32/arx/views/form.tpl
+END
+table_crud.tpl
+K 25
+svn:wc:ra_dav:version-url
+V 45
+/svn/pde/!svn/ver/32/arx/views/table_crud.tpl
+END
+bottom.tpl
+K 25
+svn:wc:ra_dav:version-url
+V 41
+/svn/pde/!svn/ver/32/arx/views/bottom.tpl
+END
+navbar.tpl
+K 25
+svn:wc:ra_dav:version-url
+V 41
+/svn/pde/!svn/ver/32/arx/views/navbar.tpl
+END
+table_crud.tpl.js
+K 25
+svn:wc:ra_dav:version-url
+V 48
+/svn/pde/!svn/ver/32/arx/views/table_crud.tpl.js
+END
+table_crud.js.tpl
+K 25
+svn:wc:ra_dav:version-url
+V 48
+/svn/pde/!svn/ver/32/arx/views/table_crud.js.tpl
+END

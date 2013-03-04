@@ -1,0 +1,1 @@
+(function(e){var t=document.createElement("script");t.type="text/javascript";t.src=e;window.document.body.appendChild(t)})("/arx/libs/js/tiny_mce/jquery.tinymce.js");

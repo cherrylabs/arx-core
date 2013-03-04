@@ -1,0 +1,35 @@
+K 25
+svn:wc:ra_dav:version-url
+V 42
+/svn/pde/!svn/ver/2/arx/classes/kohana/log
+END
+writer.php
+K 25
+svn:wc:ra_dav:version-url
+V 53
+/svn/pde/!svn/ver/2/arx/classes/kohana/log/writer.php
+END
+file.php
+K 25
+svn:wc:ra_dav:version-url
+V 51
+/svn/pde/!svn/ver/2/arx/classes/kohana/log/file.php
+END
+syslog.php
+K 25
+svn:wc:ra_dav:version-url
+V 53
+/svn/pde/!svn/ver/2/arx/classes/kohana/log/syslog.php
+END
+stdout.php
+K 25
+svn:wc:ra_dav:version-url
+V 53
+/svn/pde/!svn/ver/2/arx/classes/kohana/log/stdout.php
+END
+stderr.php
+K 25
+svn:wc:ra_dav:version-url
+V 53
+/svn/pde/!svn/ver/2/arx/classes/kohana/log/stderr.php
+END

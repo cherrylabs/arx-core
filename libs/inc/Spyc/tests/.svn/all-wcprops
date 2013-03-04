@@ -1,0 +1,47 @@
+K 25
+svn:wc:ra_dav:version-url
+V 43
+/svn/pde/!svn/ver/4/arx/libs/inc/Spyc/tests
+END
+ParseTest.php
+K 25
+svn:wc:ra_dav:version-url
+V 57
+/svn/pde/!svn/ver/4/arx/libs/inc/Spyc/tests/ParseTest.php
+END
+quotes.yaml
+K 25
+svn:wc:ra_dav:version-url
+V 55
+/svn/pde/!svn/ver/4/arx/libs/inc/Spyc/tests/quotes.yaml
+END
+indent_1.yaml
+K 25
+svn:wc:ra_dav:version-url
+V 57
+/svn/pde/!svn/ver/4/arx/libs/inc/Spyc/tests/indent_1.yaml
+END
+IndentTest.php
+K 25
+svn:wc:ra_dav:version-url
+V 58
+/svn/pde/!svn/ver/4/arx/libs/inc/Spyc/tests/IndentTest.php
+END
+DumpTest.php
+K 25
+svn:wc:ra_dav:version-url
+V 56
+/svn/pde/!svn/ver/4/arx/libs/inc/Spyc/tests/DumpTest.php
+END
+failing1.yaml
+K 25
+svn:wc:ra_dav:version-url
+V 57
+/svn/pde/!svn/ver/4/arx/libs/inc/Spyc/tests/failing1.yaml
+END
+RoundTripTest.php
+K 25
+svn:wc:ra_dav:version-url
+V 61
+/svn/pde/!svn/ver/4/arx/libs/inc/Spyc/tests/RoundTripTest.php
+END

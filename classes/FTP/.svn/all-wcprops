@@ -1,0 +1,29 @@
+K 25
+svn:wc:ra_dav:version-url
+V 35
+/svn/pde/!svn/ver/2/arx/classes/FTP
+END
+license.txt
+K 25
+svn:wc:ra_dav:version-url
+V 47
+/svn/pde/!svn/ver/2/arx/classes/FTP/license.txt
+END
+example.php
+K 25
+svn:wc:ra_dav:version-url
+V 47
+/svn/pde/!svn/ver/2/arx/classes/FTP/example.php
+END
+ftp.class.php
+K 25
+svn:wc:ra_dav:version-url
+V 49
+/svn/pde/!svn/ver/2/arx/classes/FTP/ftp.class.php
+END
+readme.txt
+K 25
+svn:wc:ra_dav:version-url
+V 46
+/svn/pde/!svn/ver/2/arx/classes/FTP/readme.txt
+END

@@ -1,0 +1,31 @@
+/**
+ * LESS File - /breadcrumbs.less
+ */
+
+.breadcrumb {
+    background-color: @grayDark;
+    .border-radius(0);
+    margin-bottom: 0;
+    padding: 5px 6px;
+
+    li {
+        text-shadow: none;
+
+        &.first {
+            i {
+                margin-right: 5px;
+            }
+        }
+
+        a {
+            color: white;
+        }
+    }
+
+    .divider {}
+
+    .active {
+        color: @gray;
+    }
+}
+
