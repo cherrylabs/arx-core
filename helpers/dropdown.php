@@ -2,6 +2,9 @@
 /**
  * h_dropdown - Generate a Twitter Bootstrap Dropdown
  *
+ * @use
+ * $this->h_dropdown(array $menu[, string $trigger[, bool $output]]);
+ * 
  * @author Stéphan Zych <stephan@cherrypulp.com>
  * @link http://www.cherrylabs.net
  * @copyright Copyright &copy; 2010-2012 cherrylabs.net
@@ -10,6 +13,7 @@
  * @since 1.0
  */
 
+// @example
 // echo $this->h_dropdown(array(
 //     array(
 //         'name' => 'First menu',
@@ -24,23 +28,25 @@
 //     array(
 //         'name' => 'Second with sub',
 //         'children' => array(
-//             array(),
-//             array(),
+//             array(
+//                  'name' => 'First sub',
+//                  'href' => '#'
+//             )
 //         )
 //     )
 // ), 'My dropdown');
 
+// @return
 // <div class="dropdown">
-//      <a class="dropdown-toggle" data-toggle="dropdown" href="#">Dropdown trigger</a>
+//      <a class="dropdown-toggle" data-toggle="dropdown" href="#">My dropdown <b class="caret"></b></a>
 //      
 //      <ul class="dropdown-menu" role="menu" aria-labelledby="dLabel">
-//            ...
-//          <li><a href="#">Another action</a></li>
+//          <li><a class="active" href="http://domain.tld" data-test="some value">First menu</a></li>
 //          <li class="dropdown-submenu">
-//              <a href="#">More options <b class="caret"></b></a>
+//              <a href="#">Second with sub</a>
 //              
 //              <ul class="dropdown-menu">
-//                ...
+//                  <li><a href="#">First sub</a></li>
 //              </ul>
 //          </li>
 //      </ul>
