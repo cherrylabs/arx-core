@@ -1,7 +1,6 @@
 <?php
-
 /**
- * ARX
+ * ARX The refexive kit.
  * PHP File - /arx/core.php
  *
  * @description     Core File
@@ -15,24 +14,24 @@
 // - Arx -> clean accessors
 // `requireaConfig` will be use in app, so maybe we have to put in into app interface
 
-require_once dirname( __FILE__ ). '/config.php';
+require_once dirname( __FILE__ ).'/config.php';
 
 // Minimum classes requirements:
-require_once DIR_CLASSES . DS . 'utils.php';
-require_once DIR_CLASSES . DS . 'singleton.php';
-require_once DIR_CLASSES . DS . 'kohana.php';
-require_once DIR_CLASSES . DS . 'config.php';
-require_once DIR_CLASSES . DS . 'i18n.php';
-require_once DIR_CLASSES . DS . 'html.php';
-require_once DIR_CLASSES . DS . 'load.php';
-require_once DIR_CLASSES . DS . 'hook.php';
-require_once DIR_CLASSES . DS . 'filemanager.php';
-require_once DIR_CLASSES . DS . 'debug.php';
+require_once DIR_CLASSES.DS.'utils.php';
+require_once DIR_CLASSES.DS.'singleton.php';
+require_once DIR_CLASSES.DS.'kohana.php';
+require_once DIR_CLASSES.DS.'config.php';
+require_once DIR_CLASSES.DS.'i18n.php';
+require_once DIR_CLASSES.DS.'html.php';
+require_once DIR_CLASSES.DS.'load.php';
+require_once DIR_CLASSES.DS.'hook.php';
+require_once DIR_CLASSES.DS.'filemanager.php';
+require_once DIR_CLASSES.DS.'debug.php';
 
-require DIR_ROOT . DS .'vendor/autoload.php';
+require DIR_ROOT.DS.'vendor/autoload.php';
 
 /**
- *
+ * Arx
  *
  * @class           Arx
  * @description     Core class
@@ -42,10 +41,12 @@ require DIR_ROOT . DS .'vendor/autoload.php';
  *  or
  *      $app = new Arx('{orm: redbean}');
  */
+
 class Arx extends c_singleton {
     
     const VERSION = '1.0';
     const CODENAME = 'Lupa';
+
 
     // --- Magic methods
 
@@ -64,6 +65,7 @@ class Arx extends c_singleton {
 
         $this->_oTpl->error = array();
     } // __construct
+
 
     public function __call( $sName, $mArgs ) {
         switch ( true ) {
@@ -119,132 +121,129 @@ class Arx extends c_singleton {
 
     } // __call
 
+
     public function __get( $sName ) {
         switch ( $sName ) {
             // Router
-        case 'route':
-            return $this->_oRoute;
-            break;
+            case 'route':
+                return $this->_oRoute;
 
-        case 'global':
-        case 'globals':
-            return $GLOBALS;
-            break;
+            case 'global':
+            case 'globals':
+                return $GLOBALS;
 
             // tpl
-        case 'tpls':
-        case 'tpl':
-            return $this->_oTpl;
-            break;
+            case 'tpls':
+            case 'tpl':
+                return $this->_oTpl;
 
             // Database
-        case 'db':
-            return $this->_oDB;
-            break;
+            case 'db':
+                return $this->_oDB;
 
             // Config
-        case 'config':
-            return $this->_oConfig;
-            break;
+            case 'config':
+                return $this->_oConfig;
 
             // Cache
-        case 'cache':
-            //return $this->_oCache;
-            break;
+            case 'cache':
+                //return $this->_oCache;
+                break;
 
-        default:
-            return $this->_oTpl->{$sName};
+            default:
+                return $this->_oTpl->{$sName};
         }
     } // __get
 
+
     public function __set( $sName, $mValue ) {
         switch ( $sName ) {
-        case 'error':
-            $this->_oTpl->error = $mValue;
-            break;
+            case 'error':
+                $this->_oTpl->error = $mValue;
+                break;
 
-        default:
-            $this->_oTpl->{$sName} = $mValue;
+            default:
+                $this->_oTpl->{$sName} = $mValue;
         }
     } // __set
 
+
     function inject_once( $mFiles = null ) {
-        if ( empty( $mFiles ) ) {
-            dd::notice( 'empty file' );
+        if (empty($mFiles)) {
+            dd::notice('empty file');
         }
 
         $sFilename = str_replace(
-            array( 'kohana_', 'classes_', 'c_', 'adapters_', 'a_', 'ctrl_', 'm_' )
-            , array( CLASSES.DS.'kohana'.DS, CLASSES.DS, CLASSES.DS, ADAPTERS.DS, ADAPTERS.DS, CTRL.DS, MODELS.DS.'m_' )
-            , $mFiles
+            array('kohana_', 'classes_', 'c_', 'adapters_', 'a_', 'ctrl_', 'm_'),
+            array(CLASSES.DS.'kohana'.DS, CLASSES.DS, CLASSES.DS, ADAPTERS.DS, ADAPTERS.DS, CTRL.DS, MODELS.DS.'m_'),
+            $mFiles
         ).EXT_PHP;
 
-        switch ( true ) {
+        switch (true) {
             //This function
-        case ( is_file( $sFilename ) ):
-            include_once $sFilename;
-            break;
+            case (is_file($sFilename)):
+                include_once $sFilename;
+                break;
 
-        case ( is_file( DIR_ROOT . DS . $sFilename ) ):
-            include_once DIR_ROOT . DS . $sFilename;
-            break;
+            case (is_file(DIR_ROOT.DS.$sFilename)):
+                include_once DIR_ROOT.DS.$sFilename;
+                break;
 
-        case ( is_file( DIR_ARX . DS . $sFilename ) ):
-            include_once DIR_ARX . DS . $sFilename;
-            break;
+            case (is_file(DIR_ARX.DS.$sFilename)):
+                include_once DIR_ARX.DS.$sFilename;
+                break;
 
-        default:
-            include_once $mFiles;
+            default:
+                include_once $mFiles;
         }
     } // inject_once
+
 
     function injects_once( $mArray ) {
         try {
             $aFiles = u::toArray( $mArray );
 
-            if ( is_array( $aFiles ) ) {
-                foreach ( $aFiles as $file ) {
-                    self::inject_once( $file );
+            if (is_array($aFiles)) {
+                foreach ($aFiles as $file) {
+                    self::inject_once($file);
                 }
             } else {
-                self::inject_once( $mArray );
+                self::inject_once($mArray);
             }
-        } catch ( Exception $e ) {
-            die( $e );
+        } catch (Exception $e) {
+            die($e);
         }
     } // injects_once
 
+
     public static function needs() {
-
         $aArgs = func_get_args();
-
         $aRes = array();
-
         $aErr = array();
 
-        foreach ( $aArgs as $key => $value ) {
-
-            //Check if a constant is defined (in UPPERCASE)
-            if ( strtoupper( $value ) == $value && defined( $value ) ) {
-                $aRes[] = constant( $value );
-            } elseif ( isset( $_GLOBALS['aConfig'][$value] ) ) {
+        foreach ($aArgs as $key => $value) {
+            // Check if a constant is defined (in UPPERCASE)
+            if (strtoupper($value) == $value && defined($value)) {
+                $aRes[] = constant($value);
+            } elseif (isset($_GLOBALS['aConfig'][$value])) {
                 $aRes[] = $_GLOBALS['aConfig'][$value];
             } else {
                 $aErr[] = $value;
             }
         }
 
-        if ( count( $aErr ) ) {
-            dd::warning( implode( ',', $aErr ) . _i( ' needs to be defined in aConfig.php' ) );
-        }
-        else {
+        if (count($aErr)) {
+            dd::warning(implode(',', $aErr)._i(' needs to be defined in aConfig.php'));
+        } else {
             return $aRes;
         }
-    }
+    } // needs
+
 
     public static function uses( $mFiles ) {
-        self::injects_once( $mFiles );
+        self::injects_once($mFiles);
     } // uses
+
 
     /**
      * requireaConfig
@@ -266,19 +265,19 @@ class Arx extends c_singleton {
         }
     } // requireaConfig
 
+
     /**
      * Require Composer little script
      * @param  [type] $mValues [description]
      * @return [type]          [description]
      */
     public static function requireComposer($name, $version, $opts = array()) {
-        
         #1 get composer json
         $oComposer = file_get_contents(DIR_ROOT.DS.'composer.json');
 
         predie($oComposer);
-
     } // requireaConfig
+
 
     // --- Private memebers
 
@@ -292,7 +291,8 @@ class Arx extends c_singleton {
 
 } // class::arx
 
-/*----- AUTOLOAD REGISTER -----*/
+
+// --- AUTOLOAD REGISTER
 
 function arx_autoload( $className ) {
     $className = strtolower( $className );
