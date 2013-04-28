@@ -63,6 +63,8 @@ class h_dropdown {
             return '';
         }
 
+        $bOutput = false;
+
         switch ($iArgs) {
             case 2:
                 list($aMenu, $sTrigger) = $aArgs;
@@ -143,7 +145,6 @@ class h_dropdown {
         }
         
         return $output;
-
     } // __construct
 
-} // class:h_dropdown
+} // helper:h_dropdown
