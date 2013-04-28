@@ -64,7 +64,7 @@
 //          <th>Id</th>
 //          <th>Lastname</th>
 //          <th>Firstname</th>
-//          <th>Action</th>
+//          <th class="action">Action</th>
 //      </tr>
 //  </thead>
 
