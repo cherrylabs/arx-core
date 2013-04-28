@@ -62,8 +62,8 @@
 //  <thead>
 //      <tr>
 //          <th>Id</th>
-//          <th>Lastname</th>
-//          <th>Firstname</th>
+//          <th>Last name</th>
+//          <th>First name</th>
 //          <th class="action">Action</th>
 //      </tr>
 //  </thead>
