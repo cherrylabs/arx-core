@@ -15,84 +15,84 @@
 
 // @example
 // echo $this->h_table(array(
-// 	array(
-// 		'id' => 0,
-// 		'lastname' => 'Doe',
-// 		'firstname' => 'John'
-// 	),
-// 	array(
-// 		'id' => 1,
-// 		'lastname' => 'Doe',
-// 		'firstname' => 'Jean',
-// 		'attr' => array(
-// 			'class' => 'success'
-// 		)
-// 	)
+//  array(
+//      'id' => 0,
+//      'lastname' => 'Doe',
+//      'firstname' => 'John'
+//  ),
+//  array(
+//      'id' => 1,
+//      'lastname' => 'Doe',
+//      'firstname' => 'Jean',
+//      'attr' => array(
+//          'class' => 'success'
+//      )
+//  )
 // ), array(
-// 	'caption' => 'A simple table',
-// 	'thead' => array(
-// 		'id' => array(
-// 			'name' => 'Id'
-// 		),
-// 		'lastname' => array(
-// 			'name' => 'Last name'
-// 		),
-// 		'firstname' => array(
-// 			'name' => 'First name'
-// 		),
-// 		'action' => array(
-// 			'name' => 'Action',
-// 			'attr' => array(
-// 				'class' => 'action'
-// 			)
-// 		)
-// 	),
-// 	'attr' => array(
-// 		'class' => 'table table-condensed table-hover table-bordered',
-// 		'data' => array(
-// 			'test' => 'some value'
-// 		)
-// 	),
+//  'caption' => 'A simple table',
+//  'thead' => array(
+//      'id' => array(
+//          'name' => 'Id'
+//      ),
+//      'lastname' => array(
+//          'name' => 'Last name'
+//      ),
+//      'firstname' => array(
+//          'name' => 'First name'
+//      ),
+//      'action' => array(
+//          'name' => 'Action',
+//          'attr' => array(
+//              'class' => 'action'
+//          )
+//      )
+//  ),
+//  'attr' => array(
+//      'class' => 'table table-condensed table-hover table-bordered',
+//      'data' => array(
+//          'test' => 'some value'
+//      )
+//  ),
 // ));
 
 // @return
 // <table class="table table-condensed table-hover table-bordered" data-test="some value">
-// 	<caption>A simple table</caption>
-	
-// 	<thead>
-// 		<tr>
-// 			<th>Id</th>
-// 			<th>Lastname</th>
-// 			<th>Firstname</th>
-// 			<th>Action</th>
-// 		</tr>
-// 	</thead>
+//  <caption>A simple table</caption>
+    
+//  <thead>
+//      <tr>
+//          <th>Id</th>
+//          <th>Lastname</th>
+//          <th>Firstname</th>
+//          <th>Action</th>
+//      </tr>
+//  </thead>
 
-// 	<tbody>
-// 		<tr>
-// 			<td>0</td>
-// 			<td>Doe</td>
-// 			<td>John</td>
-// 			<td class="action"></td>
-// 		</tr>
-// 		<tr class="success">
-// 			<td>1</td>
-// 			<td>Doe</td>
-// 			<td>Jean</td>
-// 			<td class="action"></td>
-// 		</tr>
-// 	</tbody>
+//  <tbody>
+//      <tr>
+//          <td>0</td>
+//          <td>Doe</td>
+//          <td>John</td>
+//          <td class="action"></td>
+//      </tr>
+//      <tr class="success">
+//          <td>1</td>
+//          <td>Doe</td>
+//          <td>Jean</td>
+//          <td class="action"></td>
+//      </tr>
+//  </tbody>
 // </table>
 
 
 class h_table {
 
-	public function __construct() {
-		$iArgs = func_num_args();
+    public function __construct() {
+        $iArgs = func_num_args();
         $aArgs = func_get_args();
 
         if ($iArgs < 1 || empty($aArgs[0])) {
-        	return '';
+            return '';
         }
 
         $bOutput = false;
@@ -119,79 +119,79 @@ class h_table {
         $output = '<table';
 
         if (isset($aFormat) && !empty($aFormat['attr'])) {
-        	$output .= ' '.HTML::attributes($aFormat['attr']);
+            $output .= ' '.HTML::attributes($aFormat['attr']);
         }
 
         $output .= '>';
 
         if (isset($aFormat) && isset($aFormat['caption'])) {
-        	$output .= '<caption>'.$aFormat['caption'].'</caption>';
+            $output .= '<caption>'.$aFormat['caption'].'</caption>';
         }
 
         $output .= '<thead><tr>';
 
         if (isset($aFormat) && isset($aFormat['thead'])) {
-	        foreach ($aFormat['thead'] as $key => $head) {
-	        	$output .= '<td';
+            foreach ($aFormat['thead'] as $key => $head) {
+                $output .= '<td';
 
-	        	if (isset($head['attr'])) {
-	        		$output .= ' '.HTML::attributes($head['attr']);
-	        	}
+                if (isset($head['attr'])) {
+                    $output .= ' '.HTML::attributes($head['attr']);
+                }
 
-	        	$output .= '>'.$head['name'].'</td>';
-	        }
-	    } else {
-	    	foreach ($aData as $key => $head) {
-	    		$output .= '<td>'.$key.'</td>';
-	    	}
-	    }
+                $output .= '>'.$head['name'].'</td>';
+            }
+        } else {
+            foreach ($aData as $key => $head) {
+                $output .= '<td>'.$key.'</td>';
+            }
+        }
 
         $output .= '</tr></thead>';
 
         $output .= '<tbody>';
 
         foreach ($aData as $key => $row) {
-        	$output .= '<tr';
+            $output .= '<tr';
 
-        	if (isset($row['attr'])) {
-        		$output .= ' '.HTML::attributes($row['attr']);
-        	}
+            if (isset($row['attr'])) {
+                $output .= ' '.HTML::attributes($row['attr']);
+            }
 
-        	$output .= '>';
+            $output .= '>';
 
-        	if (isset($aFormat) && isset($aFormat['thead'])) {
-	        	foreach ($aFormat['thead'] as $k => $format) {
-	        		if ($k !== 'attr') {
-	        			$output .= '<td';
+            if (isset($aFormat) && isset($aFormat['thead'])) {
+                foreach ($aFormat['thead'] as $k => $format) {
+                    if ($k !== 'attr') {
+                        $output .= '<td';
 
-	        			if (isset($format['attr'])) {
-		        			$output .= ' '.HTML::attributes($aFormat['thead'][$k]['attr']);
-		        		}
+                        if (isset($format['attr'])) {
+                            $output .= ' '.HTML::attributes($aFormat['thead'][$k]['attr']);
+                        }
 
-		        		$output .= '>';
+                        $output .= '>';
 
-		        		if (isset($row[$k])) {
-		        			$output .= $row[$k];
-		        		}
+                        if (isset($row[$k])) {
+                            $output .= $row[$k];
+                        }
 
-		        		$output .= '</td>';
-	        		}
-	        	}
-	        } else {
-	        	foreach ($row as $k => $data) {
-	        		if ($k !== 'attr') {
-		        		$output .= '<td';
+                        $output .= '</td>';
+                    }
+                }
+            } else {
+                foreach ($row as $k => $data) {
+                    if ($k !== 'attr') {
+                        $output .= '<td';
 
-		        		if (isset($aFormat) && isset($aFormat['thead']) && isset($aFormat['thead'][$k]) && isset($aFormat['thead'][$k]['attr'])) {
-		        			$output .= ' '.HTML::attributes($aFormat['thead'][$k]['attr']);
-		        		}
+                        if (isset($aFormat) && isset($aFormat['thead']) && isset($aFormat['thead'][$k]) && isset($aFormat['thead'][$k]['attr'])) {
+                            $output .= ' '.HTML::attributes($aFormat['thead'][$k]['attr']);
+                        }
 
-		        		$output .= '>'.$data.'</td>';
-		        	}
-	        	}
-	        }
+                        $output .= '>'.$data.'</td>';
+                    }
+                }
+            }
 
-        	$output .= '</tr>';
+            $output .= '</tr>';
         }
 
         $output .= '</tbody></table>';
@@ -201,7 +201,7 @@ class h_table {
         }
         
         return $output;
-	} // __construct
+    } // __construct
 
 } // helper:h_table
 
