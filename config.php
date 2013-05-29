@@ -6,25 +6,25 @@
 
 // --- Before `aConfig.php` inclusion
 
-if (!empty($_SERVER['HTTPS']) && $_SERVER['HTTPS'] !== 'off' || $_SERVER['SERVER_PORT'] == 443) {
+if (!empty($_SERVER['HTTPS']) && $_SERVER['HTTPS'] !== 'off' || getenv('SERVER_PORT') == 443 ) {
   define( 'IS_HTTPS', true);
 }
 
 define('HTTP', 'http'.(defined('IS_HTTPS') ? 's' : '').'://');
 
-define('ROOT_DIR', $_SERVER['DOCUMENT_ROOT']);
+define('ROOT_DIR', getenv('DOCUMENT_ROOT'));
 
-define('ROOT_URL', HTTP.$_SERVER['HTTP_HOST'].str_replace($_SERVER['DOCUMENT_ROOT'], '', dirname(dirname(__FILE__))));
+define('ROOT_URL', HTTP.getenv('HTTP_HOST').str_replace(getenv('DOCUMENT_ROOT'), '', dirname(dirname(__FILE__))));
 
-define('FILE_DIR', str_replace('//', '/' , $_SERVER['DOCUMENT_ROOT'].$_SERVER['REQUEST_URI']));
-define('FILE_URL', ROOT_URL.$_SERVER['REQUEST_URI']);
+define('FILE_DIR', str_replace('//', '/' , getenv('DOCUMENT_ROOT').getenv('REQUEST_URI')));
+
+define('FILE_URL', ROOT_URL.getenv('REQUEST_URI'));
 
 define('DS', '/');
 
 define('PHP', '.php');
 define('CTL', '.php');
 define('TPL', '.tpl');
-
 
 // --- Prefix
 

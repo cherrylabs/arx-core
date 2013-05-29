@@ -7,7 +7,7 @@
  * @description     Core File
  * @package         arx
  * @author          Daniel Sum, Stéphan Zych
- * @version         0.9
+ * @version         1.0
  */
 
 require_once dirname( __FILE__ ).DIRECTORY_SEPARATOR.'config.php';
@@ -21,7 +21,9 @@ require_once dirname( __FILE__ ).DIRECTORY_SEPARATOR.'classes'.DIRECTORY_SEPARAT
 require_once dirname( __FILE__ ).DIRECTORY_SEPARATOR.'classes'.DIRECTORY_SEPARATOR.'hook.php';
 require_once dirname( __FILE__ ).DIRECTORY_SEPARATOR.'classes'.DIRECTORY_SEPARATOR.'filemanager.php';
 
-require_once ROOT_DIR.DS.'vendor/autoload.php';
+require_once dirname(dirname(dirname(dirname(__FILE__)))).DIRECTORY_SEPARATOR.'vendor/autoload.php';
+
+use Arx\Core\classes\Config;
 
 /**
  * Arx
@@ -45,13 +47,12 @@ class Arx extends c_singleton {
 
     public function __construct() {
 
-        $config = Arx\Core\classes\Config::load('default');
+        $config = Config::load();
 
-        predie($config);
+        Kint::dump($GLOBALS, $_SERVER);
 
-        $this->_oTpl = new $this->_aConfig['system']['tpl']();
-        $this->_oRoute = new $this->_aConfig['system']['route']();
-
+        $this->_oTpl = new $config['system']['view']();
+        $this->_oRoute = new $config['system']['route']();
         $this->_oTpl->error = array();
     } // __construct
 
@@ -283,40 +284,37 @@ class Arx extends c_singleton {
 
 // --- AUTOLOAD REGISTER
 
-function arx_autoload( $className ) {
-    $className = strtolower( $className );
+if(! function_exists('arx_autoload')){
 
-    $path = dirname( __FILE__ ) . DS . str_replace(
-        array( 'kohana_', 'classes_', 'c_', 'adapters_', 'a_', 'ctrl_', 'helpers_', 'h_' )
-        , array( CLASSES.DS.'kohana'.DS, CLASSES.DS, CLASSES.DS, ADAPTERS.DS, ADAPTERS.DS, CTRL.DS, HELPERS.DS, HELPERS.DS)
-        , strtolower( $className ) ) . PHP;
+    function arx_autoload( $className ) {
 
-    switch ( true ) {
-        case is_file( $path ):
-            include_once $path;
-            break;
+        $className = strtolower( $className );
 
-        case is_file( DIR_CTRL . DS. $className . PHP ):
-            include_once DIR_CTRL . DS. $className . PHP;
-            break;
+        $path = dirname( __FILE__ ) . DS . str_replace(
+                array( 'kohana_', 'classes_', 'c_', 'adapters_', 'a_', 'ctrl_', 'helpers_', 'h_' )
+                , array( CLASSES.DS.'kohana'.DS, CLASSES.DS, CLASSES.DS, ADAPTERS.DS, ADAPTERS.DS, CTRL.DS, HELPERS.DS, HELPERS.DS)
+                , strtolower( $className ) ) . PHP;
 
-        case is_file( DIR_ADAPTERS . DS. $className . PHP ):
-            include_once DIR_ADAPTERS . DS. $className . PHP;
-            break;
+        switch ( true ) {
+            case is_file( $path ):
+                include_once $path;
+                break;
 
-        case is_file( ARX_CLASSES . DS. $className . PHP ):
-            include_once ARX_CLASSES . DS. $className . PHP;
-            break;
+            case is_file( ARX_CLASSES . DS. $className . PHP ):
+                include_once ARX_CLASSES . DS. $className . PHP;
+                break;
 
-        case is_file( ARX_CLASSES . DS. 'kohana' .DS. strtolower( $className ). PHP ):
-            include_once ARX_CLASSES . DS. $className . PHP;
-            break;
-        case is_file( ARX_HELPERS . DS. $className . PHP ):
-            include_once ARX_HELPERS . DS. $className . PHP;
-            break;
-    }
+            case is_file( ARX_CLASSES . DS. 'kohana' .DS. strtolower( $className ). PHP ):
+                include_once ARX_CLASSES . DS. $className . PHP;
+                break;
+            case is_file( ARX_HELPERS . DS. $className . PHP ):
+                include_once ARX_HELPERS . DS. $className . PHP;
+                break;
+        }
 
-} // arx_autoload
+    } // arx_autoload
+
+}
 
 //if class is not found => call this function
 spl_autoload_register( 'arx_autoload' );
