@@ -1,25 +1,7 @@
-<?php
+<?php namespace Arx\Core\classes;
 
-/**
- *
- */
-class c_config extends c_singleton
-{
+class Config {
     private $_aDatas = array();
-
-    public function __construct()
-    {
-        global $cfg;
-
-        $this->apply( $cfg );
-    } // __construct
-
-    public function apply( $aValues )
-    {
-        $this->_aDatas = array_merge( $this->_aDatas, $aValues );
-
-        return $this->_aDatas;
-    } // apply
 
     public function __get( $sName )
     {
@@ -31,7 +13,7 @@ class c_config extends c_singleton
 
     public function __set( $sName, $mValue )
     {
-            $this->_aDatas[ $sName ] = $mValue;
+        $this->_aDatas[ $sName ] = $mValue;
     } // __set
 
     public function __isset( $sName )
@@ -44,4 +26,21 @@ class c_config extends c_singleton
         unset($this->_aDatas[ $sName ]);
     } // __unset
 
-} // class::Config
+    public function apply( $aValues )
+    {
+        $this->_aDatas = array_merge( $this->_aDatas, $aValues );
+
+        return $this->_aDatas;
+    } // apply
+
+    public static function load( $sPath )
+    {
+        if(is_file($sPath)){
+            return include $sPath;
+        } else{
+
+        }
+
+    }
+
+}

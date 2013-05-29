@@ -10,7 +10,7 @@ class c_manifest
             $this->{$key} = $value;
         }
 
-        $this->filepath = str_replace(array(DIR_ROOT,'manifest'.EXT_PHP), '', $_SERVER['SCRIPT_FILENAME']);
+        $this->filepath = str_replace(array(ROOT_DIR,'manifest'.PHP), '', $_SERVER['SCRIPT_FILENAME']);
     }
 
     public function __set($key, $value)

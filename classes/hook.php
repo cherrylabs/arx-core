@@ -178,24 +178,9 @@ class c_hook
          * @author Daniel Sum
          * @version 0.1
          * @package arx
-         * @comments :
     */
-    public static function preload($c = null)
-    {
+    public static function preload($c = null){
 
-        $c = u::toarray($c);
-
-        $aInc = $GLOBALS['hooked_apps'] = c_fm::findrIn(DIR_APPS . DS, array('pattern' => '*/inc/*.load.php'));
-
-        $aInc = $GLOBALS['hooked_apps'] = c_fm::findrIn(DIR_APPS . DS, array('pattern' => '*/autoload.php'));
-
-        if($aInc)	c_load::loadPHP($aInc);
-
-        $GLOBALS['hooked_css'] = c_fm::findrIn(DIR_APPS . DS, array('pattern' => '*/'.CSS.'/*.load.css'));
-
-        $GLOBALS['hooked_js'] = c_fm::findrIn(DIR_APPS . DS, array('pattern' => '*/'.JS.'/*.load.js'));
-
-        return true;
     }
 
     /**
@@ -205,13 +190,12 @@ class c_hook
          * @package arx
          * @comments : TODO
     */
-    public static function postload($c = null)
-    {
+    public static function postload($c = null){
         return true;
     }
 
 }
 
 if (!isset($arx_hook)) {
-    $GLOBALS['arx_hook'] = new c_hook();
+    $GLOBALS[ARX_HOOK] = new c_hook();
 }

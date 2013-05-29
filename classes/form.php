@@ -1,8 +1,8 @@
 <?php defined('SYSPATH') or die('No direct script access.');
 
-require_once DIR_CLASSES . DS . 'kohana.php';
-require_once DIR_CLASSES . DS . 'html.php';
-require_once DIR_CLASSES . DS . 'kohana/form.php';
+require_once ARX_CLASSES . DS . 'kohana.php';
+require_once ARX_CLASSES . DS . 'html.php';
+require_once ARX_CLASSES . DS . 'kohana/form.php';
 
 class form extends Kohana_Form {}
 

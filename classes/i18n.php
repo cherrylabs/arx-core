@@ -20,11 +20,11 @@
  * @license    http://kohanaframework.org/license
  */
 
-include_once DIR_CLASSES.DS.'i18n'.DS.'streams'.EXT_PHP;
-include_once DIR_CLASSES.DS.'i18n'.DS.'translations'.EXT_PHP;
-include_once DIR_CLASSES.DS.'i18n'.DS.'po'.EXT_PHP;
-include_once DIR_CLASSES.DS.'i18n'.DS.'mo'.EXT_PHP;
-include_once DIR_CLASSES.DS.'i18n'.DS.'entry'.EXT_PHP;
+include_once ARX_CLASSES.DS.'i18n'.DS.'streams'.PHP;
+include_once ARX_CLASSES.DS.'i18n'.DS.'translations'.PHP;
+include_once ARX_CLASSES.DS.'i18n'.DS.'po'.PHP;
+include_once ARX_CLASSES.DS.'i18n'.DS.'mo'.PHP;
+include_once ARX_CLASSES.DS.'i18n'.DS.'entry'.PHP;
 
 class i18n
 {
@@ -108,7 +108,7 @@ class i18n
         // New translation table
         $table = array();
 
-        if ($files = c_fm::find(DIR_ROOT . DS . I18N, $lang.'.*')) {
+        if ($files = c_fm::find(ROOT_DIR . DS . I18N, $lang.'.*')) {
             $t = array();
             foreach ($files as $key=>$file) {
                 switch (true) {
@@ -120,7 +120,7 @@ class i18n
                         // Merge the language strings into the sub table
                         $t = array_merge($t, self::loadMo($file));
                     break;
-                    case preg_match('/'.EXT_PHP.'/',  $file):
+                    case preg_match('/'.PHP.'/',  $file):
                         $a = Kohana::load($file);
                         $t = array_merge($t, $a);
                     break;

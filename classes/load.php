@@ -9,8 +9,8 @@
  * @package arx
  * @since 1.0
  */
-require_once DIR_CLASSES . DS . 'filemanager.php';
-require_once DIR_CLASSES . DS . 'utils.php';
+require_once ARX_CLASSES . DS . 'filemanager.php';
+require_once ARX_CLASSES . DS . 'utils.php';
 
 class c_load
 {

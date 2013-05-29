@@ -345,7 +345,7 @@ class c_fileExplorer
                     $info["type"]		= "dir";
                     $info["path"]		= $dir;
                     $info["fullpath"]	= $dir . $file;
-                    $info["urlpath"]	= str_replace(DIR_ROOT, URL_ROOT, $info["fullpath"]);
+                    $info["urlpath"]	= str_replace(ROOT_DIR, ROOT_URL, $info["fullpath"]);
                     $info["name"]	= str_replace($dir, '', $info["fullpath"]);
                     $list[] = $info;
                 }
@@ -357,7 +357,7 @@ class c_fileExplorer
                     $info["path"]		= $dir;
                     $info["filename"]	= $file;
                     $info["fullpath"]	= $dir . $file;
-                    $info["urlpath"]	= str_replace(DIR_ROOT, URL_ROOT, $info["fullpath"]);
+                    $info["urlpath"]	= str_replace(ROOT_DIR, ROOT_URL, $info["fullpath"]);
                     $info["name"]	= str_replace('.'.$extension, '', $file);
                     $list[] = $info;
                 }

@@ -1,4 +1,5 @@
 <?php
+
 /**
  * ARX The refexive kit.
  * PHP File - /arx/core.php
@@ -9,26 +10,18 @@
  * @version         0.9
  */
 
-// @todo:
-// - delete public members -> use accessor !
-// - Arx -> clean accessors
-// `requireaConfig` will be use in app, so maybe we have to put in into app interface
-
-require_once dirname( __FILE__ ).'/config.php';
+require_once dirname( __FILE__ ).DIRECTORY_SEPARATOR.'config.php';
 
 // Minimum classes requirements:
-require_once DIR_CLASSES.DS.'utils.php';
-require_once DIR_CLASSES.DS.'singleton.php';
-require_once DIR_CLASSES.DS.'kohana.php';
-require_once DIR_CLASSES.DS.'config.php';
-require_once DIR_CLASSES.DS.'i18n.php';
-require_once DIR_CLASSES.DS.'html.php';
-require_once DIR_CLASSES.DS.'load.php';
-require_once DIR_CLASSES.DS.'hook.php';
-require_once DIR_CLASSES.DS.'filemanager.php';
-require_once DIR_CLASSES.DS.'debug.php';
+require_once dirname( __FILE__ ).DIRECTORY_SEPARATOR.'classes'.DIRECTORY_SEPARATOR.'utils.php';
 
-require DIR_ROOT.DS.'vendor/autoload.php';
+require_once dirname( __FILE__ ).DIRECTORY_SEPARATOR.'classes'.DIRECTORY_SEPARATOR.'singleton.php';
+require_once dirname( __FILE__ ).DIRECTORY_SEPARATOR.'classes'.DIRECTORY_SEPARATOR.'config.php';
+require_once dirname( __FILE__ ).DIRECTORY_SEPARATOR.'classes'.DIRECTORY_SEPARATOR.'load.php';
+require_once dirname( __FILE__ ).DIRECTORY_SEPARATOR.'classes'.DIRECTORY_SEPARATOR.'hook.php';
+require_once dirname( __FILE__ ).DIRECTORY_SEPARATOR.'classes'.DIRECTORY_SEPARATOR.'filemanager.php';
+
+require_once ROOT_DIR.DS.'vendor/autoload.php';
 
 /**
  * Arx
@@ -50,15 +43,11 @@ class Arx extends c_singleton {
 
     // --- Magic methods
 
-    public function __construct( $mConfig = array() ) {
+    public function __construct() {
 
-        global $aConfig;
+        $config = Arx\Core\classes\Config::load('default');
 
-        $mConfig = u::toArray( $mConfig );
-
-        $this->_aConfig = array_merge( $aConfig, $mConfig );
-
-        arx::uses( $this->_aConfig['system'] );
+        predie($config);
 
         $this->_oTpl = new $this->_aConfig['system']['tpl']();
         $this->_oRoute = new $this->_aConfig['system']['route']();
@@ -177,7 +166,7 @@ class Arx extends c_singleton {
             array('kohana_', 'classes_', 'c_', 'adapters_', 'a_', 'ctrl_', 'm_'),
             array(CLASSES.DS.'kohana'.DS, CLASSES.DS, CLASSES.DS, ADAPTERS.DS, ADAPTERS.DS, CTRL.DS, MODELS.DS.'m_'),
             $mFiles
-        ).EXT_PHP;
+        ).PHP;
 
         switch (true) {
             //This function
@@ -185,12 +174,12 @@ class Arx extends c_singleton {
                 include_once $sFilename;
                 break;
 
-            case (is_file(DIR_ROOT.DS.$sFilename)):
-                include_once DIR_ROOT.DS.$sFilename;
+            case (is_file(ROOT_DIR.DS.$sFilename)):
+                include_once ROOT_DIR.DS.$sFilename;
                 break;
 
-            case (is_file(DIR_ARX.DS.$sFilename)):
-                include_once DIR_ARX.DS.$sFilename;
+            case (is_file(ARX_DIR.DS.$sFilename)):
+                include_once ARX_DIR.DS.$sFilename;
                 break;
 
             default:
@@ -273,7 +262,7 @@ class Arx extends c_singleton {
      */
     public static function requireComposer($name, $version, $opts = array()) {
         #1 get composer json
-        $oComposer = file_get_contents(DIR_ROOT.DS.'composer.json');
+        $oComposer = file_get_contents(ROOT_DIR.DS.'composer.json');
 
         predie($oComposer);
     } // requireaConfig
@@ -300,30 +289,30 @@ function arx_autoload( $className ) {
     $path = dirname( __FILE__ ) . DS . str_replace(
         array( 'kohana_', 'classes_', 'c_', 'adapters_', 'a_', 'ctrl_', 'helpers_', 'h_' )
         , array( CLASSES.DS.'kohana'.DS, CLASSES.DS, CLASSES.DS, ADAPTERS.DS, ADAPTERS.DS, CTRL.DS, HELPERS.DS, HELPERS.DS)
-        , strtolower( $className ) ) . EXT_PHP;
+        , strtolower( $className ) ) . PHP;
 
     switch ( true ) {
         case is_file( $path ):
             include_once $path;
             break;
 
-        case is_file( DIR_CTRL . DS. $className . EXT_PHP ):
-            include_once DIR_CTRL . DS. $className . EXT_PHP;
+        case is_file( DIR_CTRL . DS. $className . PHP ):
+            include_once DIR_CTRL . DS. $className . PHP;
             break;
 
-        case is_file( DIR_ADAPTERS . DS. $className . EXT_PHP ):
-            include_once DIR_ADAPTERS . DS. $className . EXT_PHP;
+        case is_file( DIR_ADAPTERS . DS. $className . PHP ):
+            include_once DIR_ADAPTERS . DS. $className . PHP;
             break;
 
-        case is_file( DIR_CLASSES . DS. $className . EXT_PHP ):
-            include_once DIR_CLASSES . DS. $className . EXT_PHP;
+        case is_file( ARX_CLASSES . DS. $className . PHP ):
+            include_once ARX_CLASSES . DS. $className . PHP;
             break;
 
-        case is_file( DIR_CLASSES . DS. 'kohana' .DS. strtolower( $className ). EXT_PHP ):
-            include_once DIR_CLASSES . DS. $className . EXT_PHP;
+        case is_file( ARX_CLASSES . DS. 'kohana' .DS. strtolower( $className ). PHP ):
+            include_once ARX_CLASSES . DS. $className . PHP;
             break;
-        case is_file( DIR_HELPERS . DS. $className . EXT_PHP ):
-            include_once DIR_HELPERS . DS. $className . EXT_PHP;
+        case is_file( ARX_HELPERS . DS. $className . PHP ):
+            include_once ARX_HELPERS . DS. $className . PHP;
             break;
     }
 

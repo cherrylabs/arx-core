@@ -11,9 +11,9 @@ abstract class u
     public function __call($name, $arguments)
     {
         switch (true) {
-            case is_file(DIR_CLASSES . 'utils' . DS . $name . EXT_PHP):
+            case is_file(ARX_CLASSES . 'utils' . DS . $name . PHP):
 
-                require_once(DIR_CLASSES . 'utils' . DS . $name . EXT_PHP);
+                require_once(ARX_CLASSES . 'utils' . DS . $name . PHP);
 
                 try {
                     return call_user_func_array($name, $arg);
@@ -465,16 +465,16 @@ abstract class u
 
     public static function getURLFile($file)
     {
-        return str_replace(DIR_ROOT, URL_ROOT, $file);
+        return str_replace(ROOT_DIR, ROOT_URL, $file);
     }
 
     public static function getURLPath($file = null)
     {
         if (is_file($file)) {
-            return str_replace(DIR_ROOT, URL_ROOT, dirname($file));
+            return str_replace(ROOT_DIR, ROOT_URL, dirname($file));
         } elseif(is_dir($file))
 
-            return str_replace(DIR_ROOT, URL_ROOT, $file);
+            return str_replace(ROOT_DIR, ROOT_URL, $file);
 
         return $_SERVER['HTTP_HOST'].str_replace('index.php', '', $_SERVER['SCRIPT_NAME']);
     }
@@ -490,10 +490,10 @@ abstract class u
         if(!preg_match('/http/i', $file))
         {
             if (is_file($file)) {
-                return str_replace(array(DIR_ROOT, DS), array(URL_ROOT, "/"), $file);
+                return str_replace(array(ROOT_DIR, DS), array(ROOT_URL, "/"), $file);
             } elseif(is_dir($file))
             {
-                return str_replace(array(DIR_ROOT, DS), array(URL_ROOT, "/"), $file);
+                return str_replace(array(ROOT_DIR, DS), array(ROOT_URL, "/"), $file);
             }
 
 

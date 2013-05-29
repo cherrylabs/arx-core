@@ -2,7 +2,7 @@
 /**
  * DEBUG CLASS
  */
-require_once ARX_INC.DS.'FirePHPCore'.DS.'fb'.EXT_PHP;
+require_once ARX_INC.DS.'FirePHPCore'.DS.'fb'.PHP;
 
 if(LEVEL_ENV > 1)   FB::setEnabled(false);
 
