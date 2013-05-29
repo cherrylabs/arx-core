@@ -23,4 +23,4 @@
                     					        
 ```
 
-We apologize, /\rx is in total restructuration and development.
+We apologize, /\rx still in progress for a first alpha release please wait at the end of June.
