@@ -37,7 +37,8 @@
     "autoload": {
         "psr-0": {
             "Arx": "/"
-        }
+        },
+        "files" : ["core.php"]
     },
     "minimum-stability": "dev",
 
