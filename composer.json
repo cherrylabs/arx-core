@@ -1,7 +1,6 @@
 {
     "name": "arx/core",
     "description": "Arx functionnality as a core",
-    "keywords": ['arx'],
     "homepage": "http://arx.xxx",
     "license": "MIT",
     "require": {
