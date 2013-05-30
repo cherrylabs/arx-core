@@ -1,3 +1,11 @@
-<?php namespace Arx\classes;
+<?php namespace Arx;
 
-class View extends Kohana_View {}
+class View {
+    public function __construct(){
+
+    }
+}
+
+class c_view extends View{
+
+};

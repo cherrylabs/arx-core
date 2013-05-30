@@ -1,4 +1,4 @@
-<?php namespace Arx\Core\classes;
+<?php namespace Arx;
 
 class c_route {
   

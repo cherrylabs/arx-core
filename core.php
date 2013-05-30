@@ -49,8 +49,6 @@ class Arx extends c_singleton {
 
         $config = Config::load();
 
-        Kint::dump($GLOBALS, $_SERVER);
-
         $this->_oTpl = new $config['system']['view']();
         $this->_oRoute = new $config['system']['route']();
         $this->_oTpl->error = array();
@@ -288,28 +286,20 @@ if(! function_exists('arx_autoload')){
 
     function arx_autoload( $className ) {
 
-        $className = strtolower( $className );
+        $aAlias = array(
+            "c_" => "/classes/",
+            "a_" => "/adapters/",
+            "i_" => "/interfaces/",
+            "h_" => "/helpers/",
+            "Arx\\" => ARX_DIR
+        );
 
-        $path = dirname( __FILE__ ) . DS . str_replace(
-                array( 'kohana_', 'classes_', 'c_', 'adapters_', 'a_', 'ctrl_', 'helpers_', 'h_' )
-                , array( CLASSES.DS.'kohana'.DS, CLASSES.DS, CLASSES.DS, ADAPTERS.DS, ADAPTERS.DS, CTRL.DS, HELPERS.DS, HELPERS.DS)
-                , strtolower( $className ) ) . PHP;
+        $classPath = u::strAReplace($aAlias, $className).PHP;
 
-        switch ( true ) {
-            case is_file( $path ):
-                include_once $path;
-                break;
-
-            case is_file( ARX_CLASSES . DS. $className . PHP ):
-                include_once ARX_CLASSES . DS. $className . PHP;
-                break;
-
-            case is_file( ARX_CLASSES . DS. 'kohana' .DS. strtolower( $className ). PHP ):
-                include_once ARX_CLASSES . DS. $className . PHP;
-                break;
-            case is_file( ARX_HELPERS . DS. $className . PHP ):
-                include_once ARX_HELPERS . DS. $className . PHP;
-                break;
+        try {
+            include  $classPath;
+        } catch (Exception $e) {
+            predie($test);
         }
 
     } // arx_autoload

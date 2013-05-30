@@ -5,8 +5,7 @@
 
 if(!defined('ARX_STARTTIME')){ define('ARX_STARTTIME', microtime(true)); }
 
-abstract class u
-{
+abstract class u{
 
     public function __call($name, $arguments)
     {
@@ -1169,6 +1168,10 @@ abstract class u
         return strtr($haystack, $aCleaned);
     }
 
+    public static function strAReplace(array $array, $str){
+        return str_replace(array_keys($array), array_values($array), $str);
+    }
+
     public static function smrtr($haystack, $aMatch, $aDelimiter = array("{","}"))
     {
         return u::strtr($haystack, $aMatch, $aDelimiter);
@@ -1188,6 +1191,8 @@ abstract class u
 
         return $hex;
     }
+
+
 
     /**
      * Suckplode : add a value to a string seperated by a separator
@@ -1293,13 +1298,11 @@ abstract class u
 
 /*----- Alias functions (shortcut) -----*/
 
-/**
- * [pre description]
- * @return [type] [description]
- */
-function pre()
-{
-    call_user_func_array(array('u','pre'), func_get_args());
+if(! function_exists('pre')){
+    function pre()
+    {
+        call_user_func_array(array('u','pre'), func_get_args());
+    }
 }
 
 /**
