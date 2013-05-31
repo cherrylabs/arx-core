@@ -24,6 +24,7 @@ if(is_file(ROOT_DIR.DS.'app/config/app.php')){
     $config['system']['route'] = 'Arx\c_route';
     $config['system']['view'] = 'Arx\c_view';
     $config['system']['auth'] = 'Arx\c_auth';
+    $config['system']['db'] = 'Arx\a_db';
 
     return $config;
 

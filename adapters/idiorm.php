@@ -1,4 +1,4 @@
-<?php
+<?php namespace Arx;
 /**
  * An Orm über class !
  * @author Daniel Sum
