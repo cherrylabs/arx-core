@@ -1,5 +1,5 @@
 <?php namespace Arx;
 
-class c_route extends  {
+class c_route{
 
 }
