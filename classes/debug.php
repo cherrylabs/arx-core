@@ -1,12 +1,12 @@
-<?php defined('SYSPATH') or die('No direct script access.');
+<?php namespace Arx;
+
 /**
  * DEBUG CLASS
  */
-require_once ARX_INC.DS.'FirePHPCore'.DS.'fb'.PHP;
 
-if(LEVEL_ENV > 1)   FB::setEnabled(false);
+use \Symfony\Component\Debug\Debug;
 
-class c_debug extends FB
+class c_debug extends Debug
 {
     public $_output;
 
@@ -53,6 +53,9 @@ class c_debug extends FB
 
     }
 
-}
+    public static function info($msg)
+    {
+        $GLOBALS['c_debug']['info'] = $msg;
+    }
 
-class dd extends c_debug{}
+}

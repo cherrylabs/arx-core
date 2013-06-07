@@ -1,10 +1,8 @@
-<?php namespace Arx\Core\classes;
+<?php namespace Arx;
 
-use Illuminate\Support\Facades\Config as ExtendedConfig;
+class c_config extends \c_singleton{
 
-class Config extends ExtendedConfig {
-
-    private $_aDatas = array();
+    private $_aData = array();
 
     public function __get( $sName )
     {
@@ -40,15 +38,22 @@ class Config extends ExtendedConfig {
     {
 
         if(!$sPath){
-            return include ARX_DIR.DS.'config'.DS.'default.php';
+            $data = include ARX_DIR.DS.'config'.DS.'default.php';
         }
 
         if(is_file($sPath)){
-            return include $sPath;
-        } else {
-
+            $data = include $sPath;
         }
 
+        return $data;
+
+    }
+
+    public static function get($sName){
+
+        $config = self::getInstance();
+
+        return $GLOBALS['arxConfig'][$sName];
     }
 
 }

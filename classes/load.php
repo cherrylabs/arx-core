@@ -1,4 +1,4 @@
-<?php
+<?php namespace Arx;
 /**
  * c_load class
  *
@@ -11,6 +11,10 @@
  */
 require_once ARX_CLASSES . DS . 'filemanager.php';
 require_once ARX_CLASSES . DS . 'utils.php';
+
+use \Symfony\Component\Finder\Finder;
+use Symfony\Component\Filesystem\Filesystem;
+use Symfony\Component\Filesystem\Exception\IOException;
 
 class c_load
 {
@@ -142,6 +146,7 @@ class c_load
      */
     public static function loadCSS($sFiles = 'all' , $mContext = array())
     {
+
         $sCSS = null;
 
         $mContext = u::toArray($mContext);
@@ -159,7 +164,7 @@ class c_load
             $root = $mContext['root'];
         } else {
         //else load from default CSS repository
-            $root = DIR_CSS;
+            $root = ARX_CSS;
         }
 
         if (!is_array($sFiles)) {
@@ -170,7 +175,6 @@ class c_load
         $mContext['exclude'][] = '.not.';
 
         foreach ($sFiles as $key=>$sFp) {
-            $sFp = u::getUrlFile($sFp);
 
             if (!in_array(str_replace(CSS.DS,'',$sFp), $mContext['exclude'])) {
 

@@ -1,5 +1,8 @@
 <?php
 
+use Symfony\Component\Filesystem\Filesystem;
+use Symfony\Component\Filesystem\Exception\IOException;
+
 if(is_file(ROOT_DIR.DS.'app/config/app.php')){
 
     require ROOT_DIR.'/bootstrap/autoload.php';
@@ -20,11 +23,11 @@ if(is_file(ROOT_DIR.DS.'app/config/app.php')){
 
     $config = include ROOT_DIR.DS.'app/config/app.php';
 
-    $config['system']['type'] = 'arx';
+    $config['system']['app'] = 'Arx\c_app';
     $config['system']['route'] = 'Arx\c_route';
-    $config['system']['view'] = 'Arx\c_view';
+    $config['system']['template'] = 'Arx\c_template';
     $config['system']['auth'] = 'Arx\c_auth';
-    $config['system']['db'] = 'Arx\a_db';
+    $config['system']['db'] = 'Arx\c_db';
 
     return $config;
 
@@ -32,9 +35,9 @@ if(is_file(ROOT_DIR.DS.'app/config/app.php')){
 
     $config = array();
 
-    $config['system']['type'] = 'arx';
+    $config['system']['app'] = 'Arx\c_app';
     $config['system']['route'] = 'Arx\c_route';
-    $config['system']['view'] = 'Arx\c_view';
+    $config['system']['template'] = 'Arx\c_template';
     $config['system']['auth'] = 'Arx\c_auth';
     $config['system']['db'] = 'Arx\a_db';
 

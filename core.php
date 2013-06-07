@@ -10,20 +10,19 @@
  * @version         1.0
  */
 
-require_once dirname( __FILE__ ).DIRECTORY_SEPARATOR.'config.php';
+require_once dirname(__FILE__) . DIRECTORY_SEPARATOR . 'config.php';
 
 // Minimum classes requirements:
-require_once dirname( __FILE__ ).DIRECTORY_SEPARATOR.'classes'.DIRECTORY_SEPARATOR.'utils.php';
+require_once dirname(__FILE__) . DIRECTORY_SEPARATOR . 'classes' . DIRECTORY_SEPARATOR . 'utils.php';
+require_once dirname(__FILE__) . DIRECTORY_SEPARATOR . 'classes' . DIRECTORY_SEPARATOR . 'singleton.php';
+require_once dirname(__FILE__) . DIRECTORY_SEPARATOR . 'classes' . DIRECTORY_SEPARATOR . 'config.php';
+require_once dirname(__FILE__) . DIRECTORY_SEPARATOR . 'classes' . DIRECTORY_SEPARATOR . 'load.php';
+require_once dirname(__FILE__) . DIRECTORY_SEPARATOR . 'classes' . DIRECTORY_SEPARATOR . 'hook.php';
+require_once dirname(__FILE__) . DIRECTORY_SEPARATOR . 'classes' . DIRECTORY_SEPARATOR . 'filemanager.php';
 
-require_once dirname( __FILE__ ).DIRECTORY_SEPARATOR.'classes'.DIRECTORY_SEPARATOR.'singleton.php';
-require_once dirname( __FILE__ ).DIRECTORY_SEPARATOR.'classes'.DIRECTORY_SEPARATOR.'config.php';
-require_once dirname( __FILE__ ).DIRECTORY_SEPARATOR.'classes'.DIRECTORY_SEPARATOR.'load.php';
-require_once dirname( __FILE__ ).DIRECTORY_SEPARATOR.'classes'.DIRECTORY_SEPARATOR.'hook.php';
-require_once dirname( __FILE__ ).DIRECTORY_SEPARATOR.'classes'.DIRECTORY_SEPARATOR.'filemanager.php';
+require_once dirname(dirname(dirname(dirname(__FILE__)))) . DIRECTORY_SEPARATOR . 'vendor/autoload.php';
 
-require_once dirname(dirname(dirname(dirname(__FILE__)))).DIRECTORY_SEPARATOR.'vendor/autoload.php';
-
-use Arx\Core\classes\Config;
+use Arx\c_config as Config;
 
 /**
  * Arx
@@ -37,69 +36,82 @@ use Arx\Core\classes\Config;
  *      $app = new Arx('{orm: redbean}');
  */
 
-class Arx extends c_singleton {
-    
+class Arx extends c_singleton
+{
+
     const VERSION = '1.0';
     const CODENAME = 'Lupa';
 
 
-    // --- Magic methods
+    // --- Private members
 
-    public function __construct() {
+    public $_oApp;
+    private $_oHook;
+    private $_oLoad;
+    private $_oRoute;
+    private $_oTpl;
+    private $_oOrm;
+    private $_oInstance;
 
-        $config = Config::load();
+    private $_aConfig = array();
+    public $_aAliases = array();
 
-        $this->_oTpl = new $config['system']['view']();
+
+    /**
+     * Magic constructor by default load default config
+     */
+    public function __construct()
+    {
+
+        $aArgs = func_get_args();
+        $iArgs = func_num_args();
+
+        if (isset($aArgs[0])) {
+            if (isset($aArgs[1]) && $aArgs[1] == true) {
+                $config = Config::load();
+            } else {
+                $config = array_merge($aArgs[0], Config::load());
+            }
+        } else {
+            $config = Config::load();
+        }
+
+        $this->_oApp = new $config['system']['app'];
+        $this->_oTpl = new $config['system']['template']();
         $this->_oRoute = new $config['system']['route']();
         $this->_oTpl->error = array();
     } // __construct
 
-
-    public function __call( $sName, $mArgs ) {
-        switch ( true ) {
+    /**
+     * Magic call resolver check if method in each class defined by this order : app, tpl, route, aliases
+     * @param $sName
+     * @param $mArgs
+     * @return object
+     */
+    public function __call($sName, $mArgs)
+    {
+        switch (true) {
             // Router
-            case preg_match("/map|post|render|run/i", $sName):
-                return $this->_oRoute->{$sName}( $mArgs );
+            case method_exists($this->_oApp, $sName):
+                return call_user_func_array(array($this->_oApp, $sName), $mArgs);
                 break;
 
-            // tpl
-            case preg_match("/fetch|edisplay/i", $sName):
-                if ( isset( $mArgs[1] ) && is_array( $mArgs[1] ) ) {
-                    foreach ( $mArgs[1] as $k => $v ) {
-                        $this->_oTpl->{$k} = $v;
-                    }
-                }
-                return $this->_oTpl->{$sName}( $mArgs[0] );
+            case method_exists($this->_oTpl, $sName):
+                return call_user_func_array(array($this->_oTpl, $sName), $mArgs);
                 break;
 
-            case preg_match("/display/i", $sName):
-
-                if ( is_array( $mArgs ) && isset( $mArgs[1] ) ) {
-                    foreach ( $mArgs[1] as $k => $v ) {
-                        $this->_oTpl->{$k} = $v;
-                    }
-                }
-
-                return $this->_oTpl->{$sName}( $mArgs[0] );
-                break;
-
-            // Load
-            case preg_match("/load/i", $sName):
-                $this->_oLoad->{$sName}( $mArgs[0], $mArgs[1] );
-                break;
-            // Load
-            case preg_match("/load/i", $sName):
-                $this->_oLoad->{$sName}( $mArgs[0], $mArgs[1] );
+            case method_exists($this->_oRoute, $sName):
+                return call_user_func_array(array($this->_oRoute, $sName), $mArgs);
                 break;
 
             default:
-                
+
                 $this->uses($sName);
 
-                if(class_exists($sName)){
-                    $object =  new ReflectionClass($sName);
-                    
-                    if(!empty($mArgs)){
+                if (class_exists($sName)) {
+                    $object = new ReflectionClass($sName);
+
+                    if (!empty($mArgs)) {
                         return $object->newInstanceArgs($mArgs);
                     }
                     return $object->newInstance();
@@ -110,8 +122,9 @@ class Arx extends c_singleton {
     } // __call
 
 
-    public function __get( $sName ) {
-        switch ( $sName ) {
+    public function __get($sName)
+    {
+        switch ($sName) {
             // Router
             case 'route':
                 return $this->_oRoute;
@@ -144,8 +157,9 @@ class Arx extends c_singleton {
     } // __get
 
 
-    public function __set( $sName, $mValue ) {
-        switch ( $sName ) {
+    public function __set($sName, $mValue)
+    {
+        switch ($sName) {
             case 'error':
                 $this->_oTpl->error = $mValue;
                 break;
@@ -156,16 +170,17 @@ class Arx extends c_singleton {
     } // __set
 
 
-    function inject_once( $mFiles = null ) {
+    public static function inject_once($mFiles = null)
+    {
         if (empty($mFiles)) {
             dd::notice('empty file');
         }
 
         $sFilename = str_replace(
-            array('kohana_', 'classes_', 'c_', 'adapters_', 'a_', 'ctrl_', 'm_'),
-            array(CLASSES.DS.'kohana'.DS, CLASSES.DS, CLASSES.DS, ADAPTERS.DS, ADAPTERS.DS, CTRL.DS, MODELS.DS.'m_'),
-            $mFiles
-        ).PHP;
+                array('kohana_', 'classes_', 'c_', 'adapters_', 'a_', 'ctrl_', 'm_'),
+                array(CLASSES . DS . 'kohana' . DS, CLASSES . DS, CLASSES . DS, ADAPTERS . DS, ADAPTERS . DS, CTRL . DS, MODELS . DS . 'm_'),
+                $mFiles
+            ) . PHP;
 
         switch (true) {
             //This function
@@ -173,12 +188,12 @@ class Arx extends c_singleton {
                 include_once $sFilename;
                 break;
 
-            case (is_file(ROOT_DIR.DS.$sFilename)):
-                include_once ROOT_DIR.DS.$sFilename;
+            case (is_file(ROOT_DIR . DS . $sFilename)):
+                include_once ROOT_DIR . DS . $sFilename;
                 break;
 
-            case (is_file(ARX_DIR.DS.$sFilename)):
-                include_once ARX_DIR.DS.$sFilename;
+            case (is_file(ARX_DIR . DS . $sFilename)):
+                include_once ARX_DIR . DS . $sFilename;
                 break;
 
             default:
@@ -187,9 +202,10 @@ class Arx extends c_singleton {
     } // inject_once
 
 
-    function injects_once( $mArray ) {
+    public static function injects_once($mArray)
+    {
         try {
-            $aFiles = u::toArray( $mArray );
+            $aFiles = u::toArray($mArray);
 
             if (is_array($aFiles)) {
                 foreach ($aFiles as $file) {
@@ -204,7 +220,8 @@ class Arx extends c_singleton {
     } // injects_once
 
 
-    public static function needs() {
+    public static function needs()
+    {
         $aArgs = func_get_args();
         $aRes = array();
         $aErr = array();
@@ -221,14 +238,15 @@ class Arx extends c_singleton {
         }
 
         if (count($aErr)) {
-            dd::warning(implode(',', $aErr)._i(' needs to be defined in aConfig.php'));
+
         } else {
             return $aRes;
         }
     } // needs
 
 
-    public static function uses( $mFiles ) {
+    public static function uses($mFiles)
+    {
         self::injects_once($mFiles);
     } // uses
 
@@ -237,19 +255,20 @@ class Arx extends c_singleton {
      * requireaConfig
      * force a class to check if a global config is defined
      */
-    public static function requireConfig( $mValues ) {
-        $aValues = u::toarray( $mValues );
+    public static function requireConfig($mValues)
+    {
+        $aValues = u::toarray($mValues);
 
         $aUndefinedVars = array();
 
-        foreach ( $aValues as $key=>$value ) {
-            if ( !isset( $GLOBALS[$key] ) ) {
+        foreach ($aValues as $key => $value) {
+            if (!isset($GLOBALS[$key])) {
                 $aUndefinedVars[] = $key;
             }
         }
 
-        if ( !empty( $aUndefinedVars ) ) {
-            c_debug::warning( 'Missing configuration' , $aUndefinedVars );
+        if (!empty($aUndefinedVars)) {
+            c_debug::warning('Missing configuration', $aUndefinedVars);
         }
     } // requireaConfig
 
@@ -259,32 +278,23 @@ class Arx extends c_singleton {
      * @param  [type] $mValues [description]
      * @return [type]          [description]
      */
-    public static function requireComposer($name, $version, $opts = array()) {
+    public static function requireComposer($name, $version, $opts = array())
+    {
         #1 get composer json
-        $oComposer = file_get_contents(ROOT_DIR.DS.'composer.json');
+        $oComposer = file_get_contents(ROOT_DIR . DS . 'composer.json');
 
         predie($oComposer);
-    } // requireaConfig
-
-
-    // --- Private memebers
-
-    private $_aConfig = array();
-    private $_oHook;
-    private $_oLoad;
-    private $_oRoute;
-    private $_oTpl;
-    private $_oOrm;
-    private $_oInstance;
+    }
 
 } // class::arx
 
 
 // --- AUTOLOAD REGISTER
 
-if(! function_exists('arx_autoload')){
+if (!function_exists('arx_autoload')) {
 
-    function arx_autoload( $className ) {
+    function arx_autoload($className)
+    {
 
         $aAlias = array(
             "c_" => "/classes/",
@@ -294,12 +304,10 @@ if(! function_exists('arx_autoload')){
             "Arx\\" => ARX_DIR
         );
 
-        $classPath = u::strAReplace($aAlias, $className).PHP;
+        $classPath = u::strAReplace($aAlias, $className) . PHP;
 
-        try {
-            include  $classPath;
-        } catch (Exception $e) {
-            predie($test);
+        if (is_file($classPath)) {
+            include $classPath;
         }
 
     } // arx_autoload
@@ -307,8 +315,8 @@ if(! function_exists('arx_autoload')){
 }
 
 //if class is not found => call this function
-spl_autoload_register( 'arx_autoload' );
+spl_autoload_register('arx_autoload');
 
 // Application Hook looks for every additionnal scripts to load in apps (by default load all appFiles
 // in DIR_APPS . APPS /inc/xxx.load.php, /css/xxx.load.css, /js/xxx.load.php)
-c_hook::preload();
+\Arx\c_hook::preload();
