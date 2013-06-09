@@ -1,4 +1,4 @@
-<?php
+<?php namespace Arx;
 /**
      * URL REWRITING ROUTER
      * @author Daniel Sum
@@ -60,8 +60,6 @@ class a_slim extends \Slim\Slim
     {
       //echo self::generateTemplateMarkup('404 Page Not Found', '<p>The page you are looking for could not be found. Check the address bar to ensure your URL is spelled correctly. If all else fails, you can visit our home page at the link below.</p><a href="' . $this->request->getRootUri() . '/">Visit the Home Page</a>');
     }
-
-    public function map
 
      /**
      * Handle errors

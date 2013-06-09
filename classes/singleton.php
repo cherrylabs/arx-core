@@ -1,4 +1,4 @@
-<?php
+<?php namespace Arx;
 
 class c_singleton
 {
@@ -23,3 +23,5 @@ class c_singleton
     protected function __construct() {} // __construct
 
 } // class::Singleton
+
+class_alias('\Arx\c_singleton', 'c_singleton');

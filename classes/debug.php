@@ -58,4 +58,8 @@ class c_debug extends Debug
         $GLOBALS['c_debug']['info'] = $msg;
     }
 
+    public static function warning($msg){
+        trigger_error($msg, 'WARNING');
+    }
+
 }

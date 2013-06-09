@@ -1,7 +1,7 @@
-<?php
+<?php namespace Arx;
 /**
  * Helpers PHP
- * @author Stéphan Zych
+ * @author Stephan Zych
  * @version 0.1
  * @package
  * @description :

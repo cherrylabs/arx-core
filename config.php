@@ -3,28 +3,42 @@
  * Minimal config file for the Arx Core
  */
 
+@include_once(getenv('DOCUMENT_ROOT') . DIRECTORY_SEPARATOR . 'aConfig.php');
+
+
 
 // --- Before `aConfig.php` inclusion
 
-if (!empty($_SERVER['HTTPS']) && $_SERVER['HTTPS'] !== 'off' || getenv('SERVER_PORT') == 443) {
+if (!defined('IS_HTTPS') && !empty($_SERVER['HTTPS']) && $_SERVER['HTTPS'] !== 'off' || getenv('SERVER_PORT') == 443) {
     define('IS_HTTPS', true);
 }
 
-define('HTTP', 'http' . (defined('IS_HTTPS') ? 's' : '') . '://');
+if (!defined('HTTP'))
+    define('HTTP', 'http' . (defined('IS_HTTPS') ? 's' : '') . '://');
 
-define('ROOT_DIR', getenv('DOCUMENT_ROOT'));
+if (!defined('ROOT_DIR'))
+    define('ROOT_DIR', getenv('DOCUMENT_ROOT'));
 
-define('ROOT_URL', HTTP . getenv('HTTP_HOST') . str_replace(getenv('DOCUMENT_ROOT'), '', dirname(dirname(__FILE__))));
+if (!defined('ROOT_URL'))
+    define('ROOT_URL', HTTP . getenv('HTTP_HOST') . str_replace(getenv('DOCUMENT_ROOT'), '', dirname(dirname(__FILE__))));
 
-define('FILE_DIR', str_replace('//', '/', getenv('DOCUMENT_ROOT') . getenv('REQUEST_URI')));
+if (!defined('FILE_DIR'))
+    define('FILE_DIR', str_replace('//', '/', getenv('DOCUMENT_ROOT') . getenv('REQUEST_URI')));
 
-define('FILE_URL', ROOT_URL . getenv('REQUEST_URI'));
+if (!defined('FILE_URL'))
+    define('FILE_URL', ROOT_URL . getenv('REQUEST_URI'));
 
-define('DS', '/');
+if (!defined('DS'))
+    define('DS', '/');
 
-define('PHP', '.php');
-define('CTL', '.php');
-define('TPL', '.tpl');
+if (!defined('PHP'))
+    define('PHP', '.php');
+
+if (!defined('CTL'))
+    define('CTL', '.php');
+
+if (!defined('TPL'))
+    define('TPL', '.tpl');
 
 // --- Prefix
 
@@ -53,9 +67,10 @@ define('ADAPTERS', 'adapters');
 define('VENDOR', 'vendor');
 define('HELPERS', 'helpers');
 
-define('ARX_DIR', dirname(__FILE__));
+if(!defined('ARX_DIR'))
+    define('ARX_DIR', dirname(__FILE__));
 
-if (!defined('SYSPATH'))
+if(!defined('SYSPATH'))
     define('SYSPATH', dirname(__FILE__));
 
 define('ARX_CLASSES', ARX_DIR . DS . CLASSES);
@@ -69,10 +84,3 @@ define('ARX_JS', ROOT_URL . DS . ARX . DS . LIBS . DS . JS);
 //  --- Default arx shorcut
 define('ARX_HOOK', 'arx_hook');
 define('ZE_DEBUG', 'ZE_DEBUG');
-
-
-// --- Setting ArxConfig Globals
-
-$GLOBALS['arxConfig'] = array(
-    'lang' => 'en'
-);

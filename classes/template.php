@@ -73,6 +73,8 @@ class c_template{
         'escape'        => array('htmlspecialchars'),
     );
 
+    public $content = "";
+
 
     // -----------------------------------------------------------------
     //
@@ -116,7 +118,7 @@ class c_template{
         } else {
             // no directories set, use the
             // default directory only
-            $this->setPath('resource', null);
+            $this->setPath('resource', ARX_DIR.DS.HELPERS);
         }
 
         // set the error reporting text
@@ -178,38 +180,59 @@ class c_template{
      *
      */
 
-    public function __call($func, $args)
+    public function __call($func, $args = null)
     {
+
         $plugin = $this->plugin($func);
 
+        if(!$plugin){
+            \arx::inject_once($func);
+
+            if(class_exists('\Arx\\'.$func)){
+                $object = new \ReflectionClass('\Arx\\'.$func);
+
+                if (!empty($args)) {
+                    return $object->newInstanceArgs($args);
+                }
+                $result = $object->newInstance();
+
+                return $result;
+            } else {
+
+            }
+        }
+
         if ($this->isError($plugin)) {
-            return $plugin;
+
+            return new $plugin();
         }
 
         // try to avoid the very-slow call_user_func_array()
         // for plugins with very few parameters.  thanks to
         // Andreas Korthaus for profiling the code to find
         // the slowdown.
-        switch (count($args)) {
+        if(class_exists($plugin)){
+            switch (count($args)) {
 
-            case 0:
-                return $plugin->$func();
+                case 0:
+                    return $plugin->$func();
 
-            case 1:
-                return $plugin->$func($args[0]);
-                break;
+                case 1:
+                    return $plugin->$func($args[0]);
+                    break;
 
-            case 2:
-                return $plugin->$func($args[0], $args[1]);
-                break;
+                case 2:
+                    return $plugin->$func($args[0], $args[1]);
+                    break;
 
-            case 3:
-                return $plugin->$func($args[0], $args[1], $args[2]);
-                break;
+                case 3:
+                    return $plugin->$func($args[0], $args[1], $args[2]);
+                    break;
 
-            default:
-                return call_user_func_array(array($plugin, $func), $args);
-                break;
+                default:
+                    return call_user_func_array(array($plugin, $func), $args);
+                    break;
+            }
         }
     }
 
@@ -249,7 +272,15 @@ class c_template{
         return '@package_version@';
     }
 
+#C
+    public function content($data, $override = false){
 
+        if($override){
+            $this->content = $data;
+        } else {
+            $this->content .= $data;
+        }
+    }
     /**
      *
      * Returns an internal plugin object; creates it as needed.
@@ -1309,9 +1340,6 @@ class c_template{
             include_once dirname(__FILE__) . '/template/Error.php';
         }
 
-        // return it
-        $err = new c_template_Error($config);
-        return $err;
     }
 
 

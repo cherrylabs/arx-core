@@ -18,5 +18,6 @@ interface i_helper
 {
     public static function help()
     {
+
     }
 }

@@ -263,6 +263,19 @@ abstract class u {
         }
     } // arrayToObject
 
+    public static function array_key_exists_r($needle, $haystack)
+    {
+        $result = array_key_exists($needle, $haystack);
+        if ($result) return $result;
+        foreach ($haystack as $v) {
+            if (is_array($v)) {
+                $result = array_key_exists_r($needle, $v);
+            }
+            if ($result) return $result;
+        }
+        return $result;
+    }
+
 #B :
     public static function bbcode_to_html($s) {
         $b = array('[br]', '[h1]', '[/h1]', '[b]', '[/b]', '[strong]', '[/strong]', '[i]', '[/i]', '[em]', '[/em]', '&apos;', '&lt;', '&gt;', '&quot;');
@@ -665,6 +678,11 @@ abstract class u {
     } // is_multi_array
 
     public static function issetOr($sValue, $defaultValue = null){
+
+        if (($sValue = strstr($sValue, '$')) !== false) {
+            $sValue = substr($sValue, 1);
+        }
+
         if(isset(${$sValue})){
             return $sValue;
         } else {
@@ -1387,28 +1405,10 @@ abstract class u {
 
 /*----- Alias functions (shortcut) -----*/
 
-/**
- * [pre description]
- * @return [type] [description]
- */
-function pre() {
-    call_user_func_array(array('u','pre'), func_get_args());
-} // pre
-
-/**
- * predie
- * @return [type] [description]
- */
-function predie() {
-    call_user_func_array(array('u','predie'), func_get_args());
-} // predie
-
-/**
- * [k description]
- * @return [type] [description]
- */
-function k() {
-    call_user_func_array(array('u','k'), func_get_args());
-} // k
-
 class_alias('\Arx\u', 'u');
+
+u::alias('predie', 'u::predie');
+
+u::alias('pre', 'u::pre');
+
+u::alias('k', 'u::k');

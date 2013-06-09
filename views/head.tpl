@@ -5,7 +5,6 @@
 <?php
 \arx\c_hook::add('css', array(
 	'//netdna.bootstrapcdn.com/twitter-bootstrap/2.3.2/css/bootstrap-combined.min.css',
-	'/etdnbootstrapcdn.com/font-awesome/3.1.1/css/font-awesome.min.css'
 ));
 
 echo \arx\c_hook::output('css');

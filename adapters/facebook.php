@@ -7,8 +7,6 @@
  * @comments :
  */
 
-require_once DIR_VENDOR.'/Facebook/facebook.php';
-
 // define what config need to be implemented in a-config.php
 arx::require_config(array('ZE_FACEBOOK' => array('APPID', 'APPSECRET')));
 

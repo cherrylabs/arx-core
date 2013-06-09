@@ -23,6 +23,7 @@ require_once dirname(__FILE__) . DIRECTORY_SEPARATOR . 'classes' . DIRECTORY_SEP
 require_once dirname(dirname(dirname(dirname(__FILE__)))) . DIRECTORY_SEPARATOR . 'vendor/autoload.php';
 
 use Arx\c_config as Config;
+use Arx\c_singleton;
 
 /**
  * Arx
@@ -105,7 +106,6 @@ class Arx extends c_singleton
                 break;
 
             default:
-
                 $this->uses($sName);
 
                 if (class_exists($sName)) {
@@ -134,7 +134,6 @@ class Arx extends c_singleton
                 return $GLOBALS;
 
             // tpl
-            case 'tpls':
             case 'tpl':
                 return $this->_oTpl;
 
@@ -148,7 +147,7 @@ class Arx extends c_singleton
 
             // Cache
             case 'cache':
-                //return $this->_oCache;
+                return $this->_oCache;
                 break;
 
             default:
@@ -173,32 +172,27 @@ class Arx extends c_singleton
     public static function inject_once($mFiles = null)
     {
         if (empty($mFiles)) {
-            dd::notice('empty file');
+            \Arx\c_debug::notice('empty file');
         }
 
-        $sFilename = str_replace(
-                array('kohana_', 'classes_', 'c_', 'adapters_', 'a_', 'ctrl_', 'm_'),
-                array(CLASSES . DS . 'kohana' . DS, CLASSES . DS, CLASSES . DS, ADAPTERS . DS, ADAPTERS . DS, CTRL . DS, MODELS . DS . 'm_'),
-                $mFiles
-            ) . PHP;
+        $aAlias = array(
+            "c_" => "/classes/",
+            "a_" => "/adapters/",
+            "i_" => "/interfaces/",
+            "h_" => "/helpers/",
+            "Arx\\" => ARX_DIR
+        );
 
-        switch (true) {
-            //This function
-            case (is_file($sFilename)):
-                include_once $sFilename;
-                break;
+        $classPath = u::strAReplace($aAlias, $mFiles) . PHP;
 
-            case (is_file(ROOT_DIR . DS . $sFilename)):
-                include_once ROOT_DIR . DS . $sFilename;
-                break;
-
-            case (is_file(ARX_DIR . DS . $sFilename)):
-                include_once ARX_DIR . DS . $sFilename;
-                break;
-
-            default:
-                include_once $mFiles;
+        if(is_file($mFiles)){
+            return include_once $mFiles;
+        } elseif (is_file($classPath)) {
+            return include_once $classPath;
+        } elseif (is_file(ARX_DIR.DS.$classPath)) {
+            return include_once ARX_DIR.DS.$classPath;
         }
+
     } // inject_once
 
 
@@ -215,7 +209,7 @@ class Arx extends c_singleton
                 self::inject_once($mArray);
             }
         } catch (Exception $e) {
-            die($e);
+            Arx\c_debug::warning($e);
         }
     } // injects_once
 
@@ -286,6 +280,17 @@ class Arx extends c_singleton
         predie($oComposer);
     }
 
+    public function load($sName, $mArgs = null){
+        $object = new ReflectionClass($sName);
+
+        if (!empty($mArgs)) {
+            return $object->newInstanceArgs($mArgs);
+        }
+        $this->$sName = $object->newInstance();
+
+        return $this->sName;
+    }
+
 } // class::arx
 
 
@@ -307,7 +312,7 @@ if (!function_exists('arx_autoload')) {
         $classPath = u::strAReplace($aAlias, $className) . PHP;
 
         if (is_file($classPath)) {
-            include $classPath;
+            include_once $classPath;
         }
 
     } // arx_autoload
@@ -320,3 +325,6 @@ spl_autoload_register('arx_autoload');
 // Application Hook looks for every additionnal scripts to load in apps (by default load all appFiles
 // in DIR_APPS . APPS /inc/xxx.load.php, /css/xxx.load.css, /js/xxx.load.php)
 \Arx\c_hook::preload();
+
+//Load the aliases in one file
+include_once dirname(__FILE__).DS.'aliases.php';
