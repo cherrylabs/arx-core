@@ -8,5 +8,7 @@
  */
 
 class Test extends PHPUnit_Framework_TestCase {
-
+    function testTest(){
+        $this->assertSame(1,1, "Is the same");
+    }
 }
