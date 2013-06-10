@@ -1,11 +1,12 @@
 <?php
 
 $aClassAliases = array(
-
+    'arx\\arx' => '\Arx',
+    'c_hook' => '\arx\c_hook'
 );
 
-foreach ($aClassAliases as $original  => $alias) {
-    class_alias($original, $alias);
+foreach ($aClassAliases as $aliasName  => $class) {
+    class_alias($class, $aliasName);
 }
 
 

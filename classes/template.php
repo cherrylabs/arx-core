@@ -1026,6 +1026,7 @@ class c_template{
             $this->{$key} = $value;
         }
         echo $this->getOutput($tpl);
+        die('<!-- rendered in : ' . u::benchIt() .' sec-->');
     }
 
     /**
@@ -1158,9 +1159,6 @@ class c_template{
                 break;
 
             default:
-
-                predie(ARX_VIEWS.DS.$tpl.TPL);
-
                 trigger_error("$tpl is not found");
                 break;
         }

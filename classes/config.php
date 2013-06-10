@@ -48,9 +48,14 @@ class c_config extends c_singleton {
         if(!$sPath){
             $sPath = $t->sDefault;
 
-            $data = include ARX_DIR.DS.'config'.DS.'default.php';
+            $data = include_once ARX_DIR.DS.'config'.DS.'default.php';
+
+            if(!is_array($data)){
+                $data = array();
+            }
 
             if(isset($GLOBALS['arxConfig'])){
+
                 $data = array_merge($GLOBALS['arxConfig'], $data);
             }
 

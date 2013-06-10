@@ -14,7 +14,6 @@
     * @todo
 */
 
-require_once dirname(dirname(__FILE__)).DS.'core.php';
 require_once dirname(__FILE__).DS.'filemanager.php';
 
 class c_hook

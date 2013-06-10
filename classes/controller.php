@@ -1,7 +1,14 @@
-<?php defined('SYSPATH') or die('No direct script access.');
+<?php namespace Arx;
 
-class c_controller extends Arx
+class c_controller extends \Arx
 {
+
+    public function __get($name){
+        if($name == ('t')){
+            return self::getInstance();
+        }
+    }
+
 	public function __construct( $mConfig = array() ){
 		
 		parent::__construct($mConfig);
@@ -93,4 +100,8 @@ class c_controller extends Arx
 	public function response( $mix ){
 		$this->tpl->response = $array;
 	}
+
+    public function ts(){
+        return self::getInstance();
+    }
 }

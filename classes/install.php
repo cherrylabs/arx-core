@@ -1,4 +1,4 @@
-<?php
+<?php namespace Arx;
 /**
     * Install class
     * @file
@@ -18,6 +18,10 @@ class c_install
 {
     public function __construct()
     {
+
+    }
+
+    public function setup($file = null){
 
     }
 

@@ -5,6 +5,12 @@ use Symfony\Component\Filesystem\Exception\IOException;
 
 $config = array();
 
+if(is_file(ROOT_DIR.DS.'arxConfig.php')){
+
+} else {
+
+}
+
 $config['system']['app'] = 'Arx\c_app';
 $config['system']['route'] = 'Arx\c_route';
 $config['system']['template'] = 'Arx\c_template';

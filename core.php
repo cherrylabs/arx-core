@@ -77,7 +77,7 @@ class Arx extends c_singleton
             $config = Config::load();
         }
 
-        $this->_oApp = new $config['system']['app'];
+        $this->_oApp = new $config['system']['app']();
         $this->_oTpl = new $config['system']['template']();
         $this->_oRoute = new $config['system']['route']();
         $this->_oTpl->error = array();
@@ -302,10 +302,12 @@ if (!function_exists('arx_autoload')) {
     {
 
         $aAlias = array(
+            "ctrl_" => "/controllers/",
             "c_" => "/classes/",
             "a_" => "/adapters/",
             "i_" => "/interfaces/",
             "h_" => "/helpers/",
+            "m_" => "/models/",
             "Arx\\" => ARX_DIR
         );
 

@@ -59,7 +59,7 @@ class c_debug extends Debug
     }
 
     public static function warning($msg){
-        trigger_error($msg, 'WARNING');
+        trigger_error($msg, E_USER_ERROR);
     }
 
 }

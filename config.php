@@ -3,7 +3,7 @@
  * Minimal config file for the Arx Core
  */
 
-@include_once(getenv('DOCUMENT_ROOT') . DIRECTORY_SEPARATOR . 'aConfig.php');
+@include_once(getenv('DOCUMENT_ROOT') . DIRECTORY_SEPARATOR . 'arxConfig.php');
 
 
 
@@ -19,8 +19,9 @@ if (!defined('HTTP'))
 if (!defined('ROOT_DIR'))
     define('ROOT_DIR', getenv('DOCUMENT_ROOT'));
 
-if (!defined('ROOT_URL'))
+if (!defined('ROOT_URL')){
     define('ROOT_URL', HTTP . getenv('HTTP_HOST') . str_replace(getenv('DOCUMENT_ROOT'), '', dirname(dirname(__FILE__))));
+}
 
 if (!defined('FILE_DIR'))
     define('FILE_DIR', str_replace('//', '/', getenv('DOCUMENT_ROOT') . getenv('REQUEST_URI')));

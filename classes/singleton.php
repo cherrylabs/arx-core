@@ -4,7 +4,7 @@ class c_singleton
 {
     private static $_aInstances = array();
 
-    final public static function getInstance()
+    public static function getInstance()
     {
         $sClass = get_called_class();
 
@@ -15,7 +15,7 @@ class c_singleton
         return self::$_aInstances[ $sClass ];
     } // getInstance
 
-    final public function __clone()
+    public function __clone()
     {
         throw new Exception( "Cloning is not authorized." );
     } // __clone
