@@ -1,5 +1,7 @@
 <?php namespace Arx;
 
+use \Symfony\Component\Finder\Finder;
+
 class ctrl_install extends \Arx\c_controller{
 
     var $name;
@@ -15,6 +17,10 @@ class ctrl_install extends \Arx\c_controller{
     public function setup($schema = null){
 
         $t = self::getInstance();
+
+        $object = new c_finder();
+
+        predie($object->app->config->scan());
 
         $t->display('install');
 

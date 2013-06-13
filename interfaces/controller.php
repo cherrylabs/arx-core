@@ -16,7 +16,6 @@
 
 interface i_controller
 {
-    public static function help()
-    {
-    }
+    public static function _init(){}
+    public static function help(){}
 }

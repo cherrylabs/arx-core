@@ -1,4 +1,4 @@
-<?php
+<?php namespace Arx;
 /**
     * File explorer Class
     * @file
@@ -14,7 +14,7 @@
     * @todo
 */
 
-class c_fileExplorer
+class c_finder
 {
 
     private $_path = "";
@@ -44,7 +44,7 @@ class c_fileExplorer
     {
         $file = $this->_path.DS.$file;
 
-        return new m_fileExplorer($file);
+        return new self($file);
 
     }
 
@@ -52,7 +52,7 @@ class c_fileExplorer
     {
         $file = $this->_path.DS.$file;
 
-        return new m_fileExplorer($file);
+        return new self($file);
 
     }
 

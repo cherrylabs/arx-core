@@ -104,6 +104,39 @@ class Arx extends c_singleton
                 break;
 
             default:
+
+                $this->uses($sName);
+
+                if (class_exists($sName)) {
+                    $object = new ReflectionClass($sName);
+
+                    if (!empty($mArgs)) {
+                        return $object->newInstanceArgs($mArgs);
+                    }
+                    return $object->newInstance();
+                }
+                break;
+        }
+
+    } // __call
+
+    public static function __callStatic($sName, $mArgs)
+    {
+        switch (true) {
+            // Router
+            case method_exists($this->_oApp, $sName):
+                return call_user_func_array(array($this->_oApp, $sName), $mArgs);
+                break;
+
+            case method_exists($this->_oTpl, $sName):
+                return call_user_func_array(array($this->_oTpl, $sName), $mArgs);
+                break;
+
+            case method_exists($this->_oRoute, $sName):
+                return call_user_func_array(array($this->_oRoute, $sName), $mArgs);
+                break;
+
+            default:
                 $this->uses($sName);
 
                 if (class_exists($sName)) {
@@ -184,6 +217,7 @@ class Arx extends c_singleton
         $classPath = u::strAReplace($aAlias, $mFiles) . PHP;
 
         if(is_file($mFiles)){
+            k();
             return include_once $mFiles;
         } elseif (is_file($classPath)) {
             return include_once $classPath;
@@ -197,7 +231,6 @@ class Arx extends c_singleton
     public static function injects_once($mArray)
     {
         try {
-            $aFiles = u::toArray($mArray);
 
             if (is_array($aFiles)) {
                 foreach ($aFiles as $file) {

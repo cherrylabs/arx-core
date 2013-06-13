@@ -3,17 +3,21 @@
 class c_controller extends \Arx
 {
 
+    public function __construct( $mConfig = array() ){
+
+        parent::__construct($mConfig);
+
+        self::_init();
+
+    }
+
+    public function _init(){}
+
     public function __get($name){
         if($name == ('t')){
             return self::getInstance();
         }
     }
-
-	public function __construct( $mConfig = array() ){
-		
-		parent::__construct($mConfig);
-
-	}
 
 
 	public function ajax(){

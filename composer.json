@@ -20,5 +20,12 @@
         "files" : ["core.php"]
     },
 
+    "repositories": [
+        {
+            "type": "composer",
+            "url": "https://packages.zendframework.com/"
+        }
+    ],
+
     "minimum-stability": "dev"
 }
