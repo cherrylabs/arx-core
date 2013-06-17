@@ -307,7 +307,7 @@ class c_finder
      * @param  bool  $recursive
      * @return array
      */
-    public function scan($c = true, &$list=array(), $exclude_extension = array(), $exclude_file=array(), $exclude_dir=array(),   $dir="")
+    public function scan($c = true, &$list=array(), $exclude_extension = array(), $exclude_file=array(), $exclude_dir=array(), $dir="")
     {
         if (is_array($c)) {
             foreach ($c as $key=>$item) {

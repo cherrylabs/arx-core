@@ -416,7 +416,7 @@ abstract class u {
 
 #E :
 
-    public static function ecom($c='', $type = 'html') {
+    public static function ecom($c = '', $type = 'html') {
         echo '<!-- '.$c.' -->';
     } // ecom
 

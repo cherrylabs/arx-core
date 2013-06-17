@@ -20,12 +20,11 @@
 return array(
 
     'project' => array(
-        'title' => {arx},
-        'licence' => 'Cherrypulp',
-        'url' => 'http://www.aquascope.be',
+        'title' => '{{title}}',
+        'licence' => '{{licence}}',
+        'url' => '{{YOUR URL}}',
         'authors' => array(
-            "Daniel Sum" => 'daniel@cherrypulp.com',
-            "Stephan Zych" => 'stephan@cherrypulp.com',
+            "{{YOUR NAME}}" => '{{YOUR EMAIL}}'
         ),
     ),
 
@@ -39,29 +38,29 @@ return array(
 
     // Database
     'database' => array(
-        'driver' => 'mysql', // mysql | sqlite
-        'database' => 'aquascop', // database name || database filepath
-        'username' => 'aquascop',
-        'password' => 'nQcqgvGj',
-        'host' => '2host.it',
-        'charset' => 'utf8',
+        'driver' => '{{sqlite}}', // mysql | sqlite
+        'database' => '{{database}}', // database name || database filepath
+        'username' => '{{username}}',
+        'password' => '{{password}}',
+        'host' => '{{host}}',
+        'charset' => '{{utf8}}',
         'prefix' => '',
     ),
 
     // Site
     'langs' => array(
-        'fr' => 'French'
+        'en' => '{{English}}'
     ),
 
     // Mail
     'mail' => array(
-        'ssl' => true,
-        'type' => 'smtp', //smtp|default
-        'port' => 25,
-        'host' => 'in.mailjet.com',
-        'login' => '3424a1003485e64aca37251a200bdfce',
-        'password' => 'a743e52303b6ae20920b728eb156a8bd',
-        'email' => 'aquascope@in.mailjet.com',
-        'name' => 'Aquascope'
+        'ssl' => false,
+        'type' => '', //smtp|default
+        'port' => '',
+        'host' => '',
+        'login' => '',
+        'password' => '',
+        'email' => '',
+        'name' => ''
     )
 );

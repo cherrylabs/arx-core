@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+<!DOCTYPE html ng-app>
 <!--[if IEMobile 7]><html class="iem7" lang="fr" dir="ltr"><![endif]-->
 <!--[if lt IE 7]><html class="ie6" lang="fr" dir="ltr"><![endif]-->
 <!--[if (IE 7)&(!IEMobile)]><html class="ie7" lang="fr" dir="ltr"><![endif]-->
@@ -17,9 +17,7 @@
 			<?= $this->fetch('sidebar'); ?>
 		</div>
 
-		<div class="span6">
-
-		</div>
+		<pre class="span6"><?= $this->template ?></pre>
 		
 	</div>
 

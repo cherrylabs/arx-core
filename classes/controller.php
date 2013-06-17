@@ -1,17 +1,18 @@
 <?php namespace Arx;
 
-class c_controller extends \Arx
+class c_controller extends \Arx implements i_controller
 {
 
     public function __construct( $mConfig = array() ){
 
         parent::__construct($mConfig);
 
-        self::_init();
-
+        $this->_init();
     }
 
     public function _init(){}
+
+    public function _help(){}
 
     public function __get($name){
         if($name == ('t')){

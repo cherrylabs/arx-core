@@ -308,7 +308,6 @@ class Arx extends c_singleton
         #1 get composer json
         $oComposer = file_get_contents(ROOT_DIR . DS . 'composer.json');
 
-        predie($oComposer);
     }
 
     public function load($sName, $mArgs = null){

@@ -1,4 +1,4 @@
-<?php
+<?php namespace Arx;
 /**
     * Interface class
     * @file
@@ -16,6 +16,6 @@
 
 interface i_controller
 {
-    public static function _init(){}
-    public static function help(){}
+    public function _init();
+    public function _help();
 }

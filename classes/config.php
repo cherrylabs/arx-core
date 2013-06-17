@@ -59,8 +59,6 @@ class c_config extends c_singleton {
                 $data = array_merge($GLOBALS['arxConfig'], $data);
             }
 
-            $t->_aData['ze_env'] = ZE_ENV;
-
         } elseif(is_file($sPath)){
             $data = include $sPath;
         }
@@ -102,8 +100,6 @@ class c_config extends c_singleton {
         $iPart = count($aPart);
 
         $data = $object->data();
-
-        $env = $data['ze_env'];
 
         if(!empty( $data[$env]) ){
             $aData = array_merge( $data[$object->sDefault], $data[$env]);

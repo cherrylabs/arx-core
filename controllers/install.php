@@ -6,23 +6,27 @@ class ctrl_install extends \Arx\c_controller{
 
     var $name;
 
+    protected $schemasDir = 'schemas/';
+
     public function _init(){
-        $this->display('install');
+
     }
 
     public function ioc(){
 
     }
 
-    public function setup($schema = null){
+    public function setup($source = 'arxConfig.php', $destination = null){
 
         $t = self::getInstance();
 
-        $object = new c_finder();
+        $oFinder = new c_finder(ROOT_DIR);
 
-        predie($object->app->config->scan());
+        $t->aMenu = $oFinder->app->config->scan();
 
-        $t->display('install');
+        $template = file_get_contents(htmlspecialchars(dirname(dirname(__FILE__)).DS.$t->schemasDir.$source));
+
+        $t->display('install', array('template' => $template));
 
     }
 
