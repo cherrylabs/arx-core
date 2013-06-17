@@ -1,6 +1,6 @@
 {
     "name": "arx/core",
-    "description": "Arx functionnalities as a librairy",
+    "description": "Arx as a library",
     "homepage": "http://arx.xxx",
     "license": "MIT",
     "require": {

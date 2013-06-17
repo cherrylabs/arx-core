@@ -280,7 +280,7 @@ if (!function_exists('arx_autoload')) {
         } elseif (is_file(ARX_DIR . $classPath)) {
             include_once ARX_DIR . $classPath;
         } else {
-            trigger_error($classPath);
+            //trigger_error($classPath);
         }
 
     } // arx_autoload
