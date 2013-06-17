@@ -11,7 +11,8 @@
         "j4mie/idiorm" : "*",
         "mustache/mustache" : "*",
         "slim/slim" : "*",
-        "slim/extras" : "*"
+        "slim/extras" : "*",
+        "phpunit/phpunit": "3.7.*"
     },
     "autoload": {
         "psr-0": {

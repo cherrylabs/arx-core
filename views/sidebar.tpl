@@ -6,7 +6,7 @@
         can.control('#sidebar', aSidebar);
     </script>
     <?php
-        $this->a_mustache();
+
     ?>
 </ul>
 <script id="sidebar">

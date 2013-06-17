@@ -11,16 +11,16 @@ class c_app extends \Slim\Slim
 
         return array(
             // Application
-            'mode' => 'development',
+            'mode' => arxConfig('mode'),
             // Debugging
-            'debug' => true,
+            'debug' => arxConfig('debug'),
             // Logging
             'log.writer' => null,
             'log.level' => \Slim\Log::DEBUG,
             'log.enabled' => true,
             // View
             'templates.path' => ARX_DIR.DS.VIEWS.DS,
-            'view' => '\Arx\c_template',
+            'view' => '\Arx\c_view',
             // Cookies
             'cookies.lifetime' => '20 minutes',
             'cookies.path' => '/',
@@ -28,7 +28,7 @@ class c_app extends \Slim\Slim
             'cookies.secure' => false,
             'cookies.httponly' => false,
             // Encryption
-            'cookies.secret_key' => '',
+            'cookies.secret_key' => arxConfig('saltkey'),
             'cookies.cipher' => MCRYPT_RIJNDAEL_256,
             'cookies.cipher_mode' => MCRYPT_MODE_CBC,
             // HTTP

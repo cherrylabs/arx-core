@@ -1,5 +1,7 @@
 <?php namespace Arx;
 
+use PDO;
+
 /**
  *
  * Idiorm
@@ -208,7 +210,7 @@ class c_db implements \ArrayAccess
      * @param string $connection_name Which connection to use
      * @return ORM
      */
-    public static function for_table($table_name, $connection_name = self::DEFAULT_CONNECTION)
+    public static function table($table_name, $connection_name = self::DEFAULT_CONNECTION)
     {
         self::_setup_db($connection_name);
         return new self($table_name, array(), $connection_name);
@@ -463,7 +465,7 @@ class c_db implements \ArrayAccess
      * "Private" constructor; shouldn't be called directly.
      * Use the ORM::for_table factory method instead.
      */
-    protected function __construct($table_name, $data = array(), $connection_name = self::DEFAULT_CONNECTION)
+    public function __construct($table_name, $data = array(), $connection_name = self::DEFAULT_CONNECTION)
     {
         $this->_table_name = $table_name;
         $this->_data = $data;
@@ -1991,7 +1993,7 @@ class IdiormString
             \z                          # Anchor to end of string.
             /sx';
         if (!preg_match($re_valid, $this->subject)) {
-            throw new IdiormStringException("Subject string is not valid in the replace_outside_quotes context.");
+            throw new Exception("Subject string is not valid in the replace_outside_quotes context.");
         }
         $re_parse = '/
             # Match one chunk of a valid string having embedded quoted substrings.
@@ -2026,7 +2028,7 @@ class IdiormString
  * A result set class for working with collections of model instances
  * @author Simon Holywell <treffynnon@php.net>
  */
-class IdiormResultSet implements Countable, IteratorAggregate, ArrayAccess, Serializable
+class IdiormResultSet implements \Countable, \IteratorAggregate, \ArrayAccess, \Serializable
 {
     /**
      * The current result set as an array
@@ -2163,11 +2165,4 @@ class IdiormResultSet implements Countable, IteratorAggregate, ArrayAccess, Seri
         }
         return $this;
     }
-}
-
-/**
- * A placeholder for exceptions eminating from the IdiormString class
- */
-class IdiormStringException extends Exception
-{
 }

@@ -21,7 +21,6 @@
 include_once dirname(__FILE__) . '/template/Error.php';
 include_once dirname(__FILE__) . '/template/Exception.php';
 include_once dirname(__FILE__) . '/template/Filter.php';
-include_once dirname(__FILE__) . '/template/Plugin.php';
 
 
 /**
@@ -45,7 +44,7 @@ include_once dirname(__FILE__) . '/template/Plugin.php';
  *
  */
 
-class c_template{
+class c_template extends \Slim\View {
 
     /**
      *
@@ -163,79 +162,6 @@ class c_template{
             $this->addFilters($config['filters']);
         }
     }
-
-
-    /**
-     *
-     * Executes a main plugin method with arbitrary parameters.
-     *
-     * @access public
-     *
-     * @param string $func The plugin method name.
-     *
-     * @param array $args The parameters passed to the method.
-     *
-     * @return mixed The plugin output, or a template_Error with an
-     * ERR_PLUGIN code if it can't find the plugin.
-     *
-     */
-
-    public function __call($func, $args = null)
-    {
-
-        $plugin = $this->plugin($func);
-
-        if(!$plugin){
-            \arx::inject_once($func);
-
-            if(class_exists('\Arx\\'.$func)){
-                $object = new \ReflectionClass('\Arx\\'.$func);
-
-                if (!empty($args)) {
-                    return $object->newInstanceArgs($args);
-                }
-                $result = $object->newInstance();
-
-                return $result;
-            } else {
-
-            }
-        }
-
-        if ($this->isError($plugin)) {
-
-            return new $plugin();
-        }
-
-        // try to avoid the very-slow call_user_func_array()
-        // for plugins with very few parameters.  thanks to
-        // Andreas Korthaus for profiling the code to find
-        // the slowdown.
-        if(class_exists($plugin)){
-            switch (count($args)) {
-
-                case 0:
-                    return $plugin->$func();
-
-                case 1:
-                    return $plugin->$func($args[0]);
-                    break;
-
-                case 2:
-                    return $plugin->$func($args[0], $args[1]);
-                    break;
-
-                case 3:
-                    return $plugin->$func($args[0], $args[1], $args[2]);
-                    break;
-
-                default:
-                    return call_user_func_array(array($plugin, $func), $args);
-                    break;
-            }
-        }
-    }
-
 
     /**
      *

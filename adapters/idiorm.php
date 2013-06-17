@@ -8,18 +8,18 @@
  */
 
 if (ZE_DBTYPE == 'sqlite') {
-    ORM::configure(ZE_DBTYPE.':'.ZE_DBNAME);
-    ORM::configure('driver_options', array(PDO::MYSQL_ATTR_INIT_COMMAND => 'SET NAMES '.ZE_DBCHARSET));
+    \ORM::configure(ZE_DBTYPE.':'.ZE_DBNAME);
+    \ORM::configure('driver_options', array(\PDO::MYSQL_ATTR_INIT_COMMAND => 'SET NAMES '.ZE_DBCHARSET));
 } else {
-    ORM::configure(ZE_DBTYPE.':host='.ZE_DBHOST.';dbname='.ZE_DBNAME);
-    ORM::configure('username', ZE_DBUSER);
-    ORM::configure('password', ZE_DBPASSWORD);
-    ORM::configure('driver_options', array(PDO::MYSQL_ATTR_INIT_COMMAND => 'SET NAMES '.ZE_DBCHARSET));
+    \ORM::configure(ZE_DBTYPE.':host='.ZE_DBHOST.';dbname='.ZE_DBNAME);
+    \ORM::configure('username', ZE_DBUSER);
+    \ORM::configure('password', ZE_DBPASSWORD);
+    \ORM::configure('driver_options', array(\PDO::MYSQL_ATTR_INIT_COMMAND => 'SET NAMES '.ZE_DBCHARSET));
 }
 
 if (!class_exists('a_db')) {
 
-    class a_db extends ORM {
+    class a_idiorm extends \ORM {
 
         public function __construct() {} // __construct
 
@@ -43,17 +43,17 @@ if (!class_exists('a_db')) {
                 case ($nbArgs == 1):
                     list($sTablename, $mConditions) = $aArgs;
 
-                    return ORM::for_table($sTablename)->where($mConditions)->find_one();
+                    return \ORM::for_table($sTablename)->where($mConditions)->find_one();
 
                 case ($nbArgs == 2):
                     list($sTablename, $mConditions) = $aArgs;
 
-                    return ORM::for_table($sTablename)->where($mConditions)->find_one();
+                    return \ORM::for_table($sTablename)->where($mConditions)->find_one();
 
                 case ($nbArgs == 3):
                     list($sTablename, $mConditions, $aCleanVars) = $aArgs;
 
-                    return ORM::for_table($sTablename)->where($mConditions, $aCleanVars)->find_one();
+                    return \ORM::for_table($sTablename)->where($mConditions, $aCleanVars)->find_one();
             }
 
             return false;
@@ -67,22 +67,22 @@ if (!class_exists('a_db')) {
                 case ($nbArgs == 0):
                     list($sTablename, $mConditions) = $aArgs;
 
-                    return ORM::for_table($sTablename)->find_all();
+                    return \ORM::for_table($sTablename)->find_all();
 
                 case ($nbArgs == 1):
                     list($sTablename, $mConditions) = $aArgs;
 
-                    return ORM::for_table($sTablename)->where($mConditions)->find_one();
+                    return \ORM::for_table($sTablename)->where($mConditions)->find_one();
 
                 case ($nbArgs == 2):
                     list($sTablename, $mConditions) = $aArgs;
 
-                    return ORM::for_table($sTablename)->where($mConditions)->find_one();
+                    return \ORM::for_table($sTablename)->where($mConditions)->find_one();
 
                 case ($nbArgs == 3):
                     list($sTablename, $mConditions, $aCleanVars) = $aArgs;
 
-                    return ORM::for_table($sTablename)->where($mConditions, $aCleanVars)->find_one();
+                    return \ORM::for_table($sTablename)->where($mConditions, $aCleanVars)->find_one();
             }
 
             return false;
@@ -100,7 +100,7 @@ if (!class_exists('a_db')) {
 
             $query .= explode($aSets);
 
-            return ORM::for_table($table)->raw_query($query, $aClean);
+            return \ORM::for_table($table)->raw_query($query, $aClean);
         } // _update
 
     } // adapter:a_db

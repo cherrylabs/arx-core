@@ -77,8 +77,9 @@ class Arx extends c_singleton
 
         $this->_oApp = new $config['system']['app']();
         $this->_oTpl = new $config['system']['template']();
-        $this->_oRoute = new $config['system']['route']();
         $this->_oTpl->error = array();
+        $this->_oRoute = new $config['system']['route']();
+        $this->_oDb = $config['system']['db'];
     } // __construct
 
     /**
@@ -105,53 +106,21 @@ class Arx extends c_singleton
 
             default:
 
-                $this->uses($sName);
+                if (class_exists( '\\Arx\\'.$sName)) {
 
-                if (class_exists($sName)) {
-                    $object = new ReflectionClass($sName);
-
-                    if (!empty($mArgs)) {
-                        return $object->newInstanceArgs($mArgs);
-                    }
-                    return $object->newInstance();
-                }
-                break;
-        }
-
-    } // __call
-
-    public static function __callStatic($sName, $mArgs)
-    {
-        switch (true) {
-            // Router
-            case method_exists($this->_oApp, $sName):
-                return call_user_func_array(array($this->_oApp, $sName), $mArgs);
-                break;
-
-            case method_exists($this->_oTpl, $sName):
-                return call_user_func_array(array($this->_oTpl, $sName), $mArgs);
-                break;
-
-            case method_exists($this->_oRoute, $sName):
-                return call_user_func_array(array($this->_oRoute, $sName), $mArgs);
-                break;
-
-            default:
-                $this->uses($sName);
-
-                if (class_exists($sName)) {
-                    $object = new ReflectionClass($sName);
+                    $object = new ReflectionClass('\\Arx\\'.$sName);
 
                     if (!empty($mArgs)) {
                         return $object->newInstanceArgs($mArgs);
                     }
                     return $object->newInstance();
+                } else {
+                    trigger_error('class or method not exist');
                 }
                 break;
         }
 
     } // __call
-
 
     public function __get($sName)
     {
@@ -202,48 +171,8 @@ class Arx extends c_singleton
 
     public static function inject_once($mFiles = null)
     {
-        if (empty($mFiles)) {
-            \Arx\c_debug::notice('empty file');
-        }
-
-        $aAlias = array(
-            "c_" => "/classes/",
-            "a_" => "/adapters/",
-            "i_" => "/interfaces/",
-            "h_" => "/helpers/",
-            "Arx\\" => ARX_DIR
-        );
-
-        $classPath = u::strAReplace($aAlias, $mFiles) . PHP;
-
-        if(is_file($mFiles)){
-            k();
-            return include_once $mFiles;
-        } elseif (is_file($classPath)) {
-            return include_once $classPath;
-        } elseif (is_file(ARX_DIR.DS.$classPath)) {
-            return include_once ARX_DIR.DS.$classPath;
-        }
-
+        arx_autoload($mFiles);
     } // inject_once
-
-
-    public static function injects_once($mArray)
-    {
-        try {
-
-            if (is_array($aFiles)) {
-                foreach ($aFiles as $file) {
-                    self::inject_once($file);
-                }
-            } else {
-                self::inject_once($mArray);
-            }
-        } catch (Exception $e) {
-            Arx\c_debug::warning($e);
-        }
-    } // injects_once
-
 
     public static function needs()
     {
@@ -272,7 +201,9 @@ class Arx extends c_singleton
 
     public static function uses($mFiles)
     {
-        self::injects_once($mFiles);
+        foreach((array) $mFiles as $key=>$value){
+            arx_autoload($value);
+        }
     } // uses
 
 
@@ -310,7 +241,8 @@ class Arx extends c_singleton
 
     }
 
-    public function load($sName, $mArgs = null){
+    public function load($sName, $mArgs = null)
+    {
         $object = new ReflectionClass($sName);
 
         if (!empty($mArgs)) {
@@ -345,6 +277,10 @@ if (!function_exists('arx_autoload')) {
 
         if (is_file($classPath)) {
             include_once $classPath;
+        } elseif (is_file(ARX_DIR . $classPath)) {
+            include_once ARX_DIR . $classPath;
+        } else {
+            trigger_error($classPath);
         }
 
     } // arx_autoload
@@ -359,4 +295,4 @@ spl_autoload_register('arx_autoload');
 \Arx\c_hook::preload();
 
 //Load the aliases in one file
-include_once dirname(__FILE__).DS.'aliases.php';
+include_once dirname(__FILE__) . DS . 'aliases.php';
