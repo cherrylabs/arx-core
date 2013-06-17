@@ -6,7 +6,6 @@
     "require": {
         "php": ">=5.3.0",
         "laravel/framework" : "*",
-        "silex/silex" : "*",
         "raveren/kint" : "*",
         "j4mie/idiorm" : "*",
         "mustache/mustache" : "*",
