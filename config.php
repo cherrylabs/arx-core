@@ -3,10 +3,6 @@
  * Minimal config file for the Arx Core
  */
 
-@include_once(getenv('DOCUMENT_ROOT') . DIRECTORY_SEPARATOR . 'arxConfig.php');
-
-
-
 // --- Before `aConfig.php` inclusion
 
 if (!defined('IS_HTTPS') && !empty($_SERVER['HTTPS']) && $_SERVER['HTTPS'] !== 'off' || getenv('SERVER_PORT') == 443) {

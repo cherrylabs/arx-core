@@ -8,12 +8,11 @@ class c_app extends \Slim\Slim
      */
     public static function getDefaultSettings()
     {
-
         return array(
             // Application
-            'mode' => arxConfig('mode'),
+            'mode' => 'development',
             // Debugging
-            'debug' => arxConfig('debug'),
+            'debug' => true,
             // Logging
             'log.writer' => null,
             'log.level' => \Slim\Log::DEBUG,
@@ -28,7 +27,7 @@ class c_app extends \Slim\Slim
             'cookies.secure' => false,
             'cookies.httponly' => false,
             // Encryption
-            'cookies.secret_key' => arxConfig('saltkey'),
+            'cookies.secret_key' => "CHANGE_ME",
             'cookies.cipher' => MCRYPT_RIJNDAEL_256,
             'cookies.cipher_mode' => MCRYPT_MODE_CBC,
             // HTTP

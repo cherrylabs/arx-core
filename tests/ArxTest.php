@@ -1,4 +1,4 @@
-<?php namespace Arx;
+<?php
 /**
  * Created by JetBrains PhpStorm.
  * User: danielsum
@@ -8,6 +8,7 @@
  */
 
 require_once __DIR__ . '/../vendor/autoload.php';
+require_once __DIR__ . '/../core.php';
 
 class ArxTest extends \PHPUnit_Framework_TestCase
 {

@@ -101,7 +101,11 @@ class c_config extends c_singleton {
 
         $data = $object->data();
 
-        if(!empty( $data[$env]) ){
+        if(!isset($env)){
+            $env = "default";
+        }
+
+        if(isset($data[$env]) ){
             $aData = array_merge( $data[$object->sDefault], $data[$env]);
         } else {
             $aData = $data[$object->sDefault];
