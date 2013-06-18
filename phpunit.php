@@ -67,8 +67,8 @@ $arxConfig = array(
 
     // Site
     'langs' => array(
-        'en' => 'English',
-        'fr' => 'Français'
+        array('en' => 'English'),
+        array('fr' => 'Français')
     ),
 
     // Mail
@@ -96,7 +96,7 @@ ini_set('log_errors', 1);
 =            CONSTANT CONFIG            =
 =======================================*/
 
-define('ZE_LANG', $arxConfig['langs'][0]); // default language
+define('ZE_LANG', 'en'); // default language
 define('ZE_LANGS', json_encode($arxConfig['langs']));
 
 define('ZE_SALT', 'hp[2d`I2+Z>[5l]@)q`.vc^X[DUcPIH8gY07#R}DL)L+NjwJ(1q0%C/!C)lpjc,T'); // https://api.wordpress.org/secret-key/1.1/salt/
@@ -118,5 +118,9 @@ return $arxConfig;
 | the PHP date and date-time functions throughout the application.
 |
 */
+
+//Setting $_SERVER
+
+$_SERVER['REQUEST_METHOD'] = "GET";
 
 date_default_timezone_set('UTC');
