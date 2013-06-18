@@ -43,4 +43,8 @@ class c_app extends \Slim\Slim
         return $t->mapRoute($args)->via(\Slim\Http\Request::METHOD_GET, \Slim\Http\Request::METHOD_HEAD, \Slim\Http\Request::METHOD_OPTIONS);
     }
 
+    public function notFound( $callable = null ) {
+
+    }
+
 }

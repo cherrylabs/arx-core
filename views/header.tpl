@@ -14,7 +14,7 @@
             <a class="brand" href="#"><?= \Arx\c_config::get('app.name') ?></a>
             <div class="nav-collapse collapse">
                 <ul class="nav">
-                <?= $this->a_mustache()->render('{{#test}}<li><a href="#">{{.}}</a></li>{{/test}}', array('test' => array('Home', 'About') )); ?>
+                    {#}
                 </ul>
             </div><!--/.nav-collapse -->
         </div>

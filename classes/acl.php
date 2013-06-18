@@ -1,4 +1,5 @@
-<?php
+<?php namespace Arx;
+
 /**
  * ACL arx class
  * @file

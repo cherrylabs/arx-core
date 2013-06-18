@@ -91,13 +91,14 @@ class Arx extends c_singleton
     public function __call($sName, $mArgs)
     {
         switch (true) {
-            // Router
-            case method_exists($this->_oApp, $sName):
-                return call_user_func_array(array($this->_oApp, $sName), $mArgs);
-                break;
 
             case method_exists($this->_oTpl, $sName):
                 return call_user_func_array(array($this->_oTpl, $sName), $mArgs);
+                break;
+
+            // Router
+            case method_exists($this->_oApp, $sName):
+                return call_user_func_array(array($this->_oApp, $sName), $mArgs);
                 break;
 
             case method_exists($this->_oRoute, $sName):
@@ -115,7 +116,7 @@ class Arx extends c_singleton
                     }
                     return $object->newInstance();
                 } else {
-                    trigger_error('class or method not exist');
+                    //trigger_error('class or method not exist');
                 }
                 break;
         }
