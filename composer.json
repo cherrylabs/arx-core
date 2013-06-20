@@ -15,9 +15,12 @@
     },
     "autoload": {
         "psr-0": {
-            "Arx": "/"
+            "Arx": "/modules/arx/core/src/"
         },
-        "files" : ["core.php"]
+        "autoload": {
+            "classmap": ["/modules/arx/vendor"]
+        },
+        "files" : ["/modules/arx/core/src/core.php"]
     },
 
     "repositories": [

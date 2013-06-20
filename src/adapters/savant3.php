@@ -14,7 +14,7 @@
     * @todo
 */
 
-require_once DIR_VENDOR . DS . 'Savant3' . DS . 'Savant3.php' ;
+require_once DIR_VENDOR . DS . 'Savant3' . DS . 'savant3.php';
 
 class a_savant3 extends Savant3
 {
