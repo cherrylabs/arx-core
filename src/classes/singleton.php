@@ -2,7 +2,7 @@
 /**
  * ARX The refexive kit.
  *
- * PHP File - /classes/singleton.php
+ * PHP File - /classes/Singleton.php
  *
  * @package         arx
  */
