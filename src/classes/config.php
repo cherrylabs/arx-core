@@ -2,7 +2,7 @@
 /**
  * ARX The refexive kit.
  *
- * PHP File - /classes/config.php
+ * PHP File - /classes/Config.php
  *
  * @package         arx
  * @author          Daniel Sum, Stéphan Zych
@@ -40,9 +40,10 @@ class Config extends Singleton
      * Load single or multiple file configuration.
      *
      * @param   string      $sPath      Array of path or string
+     * @param   string      $sNamespace String used as reference (ex. Config::get('namespace.paths.classes'))
      * @return  void
      */
-    public static function load($sPath) {} // load
+    public static function load($sPath, $sNamespace = null) {} // load
 
 
     /**
