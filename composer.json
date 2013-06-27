@@ -5,7 +5,6 @@
     "license": "MIT",
     "require": {
         "php": ">=5.3.0",
-        "laravel/framework" : "*",
         "raveren/kint" : "*",
         "j4mie/idiorm" : "*",
         "mustache/mustache" : "*",
@@ -15,12 +14,12 @@
     },
     "autoload": {
         "psr-0": {
-            "Arx": "/modules/arx/core/src/"
+            "Arx": "src/"
         },
         "autoload": {
-            "classmap": ["/modules/arx/vendor"]
+            "classmap": ["vendor"]
         },
-        "files" : ["/modules/arx/core/src/core.php"]
+        "files" : ["src/core.php"]
     },
 
     "repositories": [

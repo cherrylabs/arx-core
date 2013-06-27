@@ -1,19 +1,29 @@
-<?php namespace Arx;
+<?php namespace Arx\classes;
+
+include_once __DIR__ . '/object.php';
 
 use Symfony\Component\Finder\Finder;
 
-class c_config extends c_singleton {
+class Config extends Container {
 
     public $_aData = array();
+    public $_clonable = false;
+    public $_path = './config';
 
     private static $sDefault = 'default';
+
+    public function __construct( $path = null ){
+        if($path){
+            die($path);
+        }
+    }
 
     public function __get( $sName )
     {
         if (array_key_exists( $sName, $this->_aData ))
             return $this->_aData[ $sName ];
-
-        return null;
+        else
+            return new Object();
     } // __get
 
     public function __set( $sName, $mValue )
@@ -65,8 +75,6 @@ class c_config extends c_singleton {
 
         if(!empty($data)){
 
-            $t->set($sPath, $data);
-
             return $data;
         }
 
@@ -74,9 +82,31 @@ class c_config extends c_singleton {
 
     }
 
-    public static function set($sName, $data){
+    public static function set($sName = array(), $data, $persistent = false){
+
         $object = self::getInstance();
-        $object->_aData[$sName] = $data;
+
+        switch (count($aArgs)) {
+            case 1:
+                $object->{$aArgs[0]} = $data;
+                break;
+            case 2:
+                $object->{$aArgs[0]}->{$aArgs[1]} = $data;
+                break;
+            case 3:
+                $object->_aData[$aArgs[0]][$aArgs[1]][$aArgs[2]] = $data;
+                break;
+            case 4:
+                $object->_aData[$aArgs[0]][$aArgs[1]][$aArgs[2]][$aArgs[3]] = $data;
+                break;
+            case 5:
+                $object->_aData[$aArgs[0]][$aArgs[1]][$aArgs[2]][$aArgs[3]][$aArgs[4]] = $data;
+                break;
+
+            default:
+                $object->_aData[$sName] = $data;
+                break;
+        }
     }
 
     public static function data(){
@@ -92,7 +122,7 @@ class c_config extends c_singleton {
     public static function get($name, $default = null){
         $object = self::getInstance();
 
-        if(!$object->isLoaded){
+        /*if(!$object->isLoaded){
             $object->load();
         }
 
@@ -123,8 +153,10 @@ class c_config extends c_singleton {
             return $aData[$aPart[0]][$aPart[1]][$aPart[2]][$aPart[3]][$aPart[4]];
         } else {
             return false;
-        }
+        }*/
 
     }
 
 }
+
+class_alias('Arx\\classes\Config', 'c_config');

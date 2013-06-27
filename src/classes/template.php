@@ -18,9 +18,9 @@
 /**
  * Always have these classes available.
  */
-include_once dirname(__FILE__) . '/template/Error.php';
-include_once dirname(__FILE__) . '/template/Exception.php';
-include_once dirname(__FILE__) . '/template/Filter.php';
+include_once __DIR__ . '/template/Error.php';
+include_once __DIR__ . '/template/Exception.php';
+include_once __DIR__ . '/template/Filter.php';
 
 
 /**
@@ -686,7 +686,7 @@ class c_template extends \Slim\View {
                 break;
             case 'resource':
                 // the template distribution resources
-                $this->addPath($type, dirname(__FILE__) . '/template/resources/');
+                $this->addPath($type, __DIR__ . '/template/resources/');
                 break;
         }
 
@@ -1245,7 +1245,7 @@ class c_template extends \Slim\View {
         // are we throwing exceptions?
         if ($this->__config['exceptions']) {
             if (! class_exists('template_Exception', $autoload)) {
-                include_once dirname(__FILE__) . '/template/Exception.php';
+                include_once __DIR__ . '/template/Exception.php';
             }
             throw new template_Exception($code);
         }
@@ -1261,7 +1261,7 @@ class c_template extends \Slim\View {
 
         // make sure the template error class is available
         if (! class_exists('template_Error', $autoload)) {
-            include_once dirname(__FILE__) . '/template/Error.php';
+            include_once __DIR__ . '/template/Error.php';
         }
 
     }
@@ -1292,7 +1292,7 @@ class c_template extends \Slim\View {
             // make sure the template error class is available for
             // comparison
             if (! class_exists('template_Error', $autoload)) {
-                include_once dirname(__FILE__) . '/template/Error.php';
+                include_once __DIR__ . '/template/Error.php';
             }
             // now compare the parentage
             $is = $obj instanceof c_template_Error;

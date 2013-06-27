@@ -1,6 +1,6 @@
 <?php
 
-require_once dirname(__FILE__).DS. 'PHPMailer' . DS . 'class.phpmailer.php';
+require_once __DIR__.DS. 'PHPMailer' . DS . 'class.phpmailer.php';
 
 class a_PHPmailer extends PHPMailer
 {

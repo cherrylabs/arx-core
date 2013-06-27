@@ -24,7 +24,7 @@ class ctrl_install extends \Arx\c_controller{
 
         $t->aMenu = $oFinder->app->config->scan();
 
-        $template = file_get_contents(htmlspecialchars(dirname(dirname(__FILE__)).DS.$t->schemasDir.$source));
+        $template = file_get_contents(htmlspecialchars(dirname(__DIR__).DS.$t->schemasDir.$source));
 
         $t->display('install', array('template' => $template));
 

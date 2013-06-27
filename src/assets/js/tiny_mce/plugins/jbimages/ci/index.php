@@ -137,7 +137,7 @@ if (defined('ENVIRONMENT'))
 	// Set the current directory correctly for CLI requests
 	if (defined('STDIN'))
 	{
-		chdir(dirname(__FILE__));
+		chdir(__DIR__);
 	}
 
 	if (realpath($system_path) !== FALSE)

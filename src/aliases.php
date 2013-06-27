@@ -1,8 +1,7 @@
 <?php
 
 $aClassAliases = array(
-    'arx\\arx' => '\Arx',
-    'c_hook' => '\arx\c_hook'
+
 );
 
 foreach ($aClassAliases as $aliasName  => $class) {
@@ -11,7 +10,10 @@ foreach ($aClassAliases as $aliasName  => $class) {
 
 
 $aFunctionAliases = array(
-    'arxConfig' => '\Arx\c_config::get',
+    'arxConfig' => '\Arx\classes\Config::getInstance',
+    'gConfig' => '\Arx\classes\Config::get',
+    'sConfig' => '\Arx\classes\Config::set',
+
 );
 
 foreach ($aFunctionAliases as $aliasName => $callback) {

@@ -635,7 +635,7 @@ abstract class u {
     } // hexToStr
 
     public static function header($type) {
-        include_once(dirname(__FILE__).DS.'utils'.DS.'header.php');
+        include_once(__DIR__.DS.'utils'.DS.'header.php');
 
         header($aHeader[$type]);
     } // header

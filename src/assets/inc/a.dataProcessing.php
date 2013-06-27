@@ -17,7 +17,7 @@
      * you want to insert a non-database field (for example a counter or static image)
      */
 
-    require_once dirname(__FILE__).'/../core.php';
+    require_once __DIR__.'/../core.php';
 
     //predie(count(ORM::for_table('t_labels')->raw_query('SELECT * FROM t_labels')->find_many()));
 

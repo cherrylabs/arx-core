@@ -32,16 +32,16 @@ $app->route->map('/:app(/:controller)(/:action)(/:param1)(/:param2)(/:param3)(/:
 
     //CHANGE DIR PATH => RELATIVE TO THE APP FOLDER NOW !! PAID ATTENTION
 
-    if (is_dir(dirname(__FILE__).DS.$application)) {
+    if (is_dir(__DIR__.DS.$application)) {
 
         define('APP_URL', URL_ROOT.'/'.APPS.'/'.$application);
-        define('APP_ROOT', dirname(__FILE__).DS.$application);
+        define('APP_ROOT', __DIR__.DS.$application);
         define('APP_DIR', '/'.$application.'/');
 
         define('ROOT_PATH', APP_ROOT);
         define('BASE_URL', APP_URL);
 
-        chdir(dirname(__FILE__).DS.$application);
+        chdir(__DIR__.DS.$application);
 
     }
 

@@ -10,18 +10,19 @@
  * @version         1.0
  */
 
-require_once dirname(__FILE__) . DIRECTORY_SEPARATOR . 'config.php';
+require_once __DIR__ . DIRECTORY_SEPARATOR . 'config.php';
 
 // Minimum classes requirements:
-require_once dirname(__FILE__) . DIRECTORY_SEPARATOR . 'classes' . DIRECTORY_SEPARATOR . 'utils.php';
-require_once dirname(__FILE__) . DIRECTORY_SEPARATOR . 'classes' . DIRECTORY_SEPARATOR . 'singleton.php';
-require_once dirname(__FILE__) . DIRECTORY_SEPARATOR . 'classes' . DIRECTORY_SEPARATOR . 'config.php';
-require_once dirname(__FILE__) . DIRECTORY_SEPARATOR . 'classes' . DIRECTORY_SEPARATOR . 'load.php';
-require_once dirname(__FILE__) . DIRECTORY_SEPARATOR . 'classes' . DIRECTORY_SEPARATOR . 'hook.php';
-require_once dirname(__FILE__) . DIRECTORY_SEPARATOR . 'classes' . DIRECTORY_SEPARATOR . 'filemanager.php';
+require_once __DIR__ . DIRECTORY_SEPARATOR . 'classes' . DIRECTORY_SEPARATOR . 'utils.php';
+require_once __DIR__ . DIRECTORY_SEPARATOR . 'classes' . DIRECTORY_SEPARATOR . 'singleton.php';
+require_once __DIR__ . DIRECTORY_SEPARATOR . 'classes' . DIRECTORY_SEPARATOR . 'container.php';
+require_once __DIR__ . DIRECTORY_SEPARATOR . 'classes' . DIRECTORY_SEPARATOR . 'config.php';
+require_once __DIR__ . DIRECTORY_SEPARATOR . 'classes' . DIRECTORY_SEPARATOR . 'load.php';
+require_once __DIR__ . DIRECTORY_SEPARATOR . 'classes' . DIRECTORY_SEPARATOR . 'hook.php';
+require_once __DIR__ . DIRECTORY_SEPARATOR . 'classes' . DIRECTORY_SEPARATOR . 'filemanager.php';
 
-use Arx\c_config as Config;
-use Arx\c_singleton;
+use Arx\classes\Config;
+use Arx\classes\Singleton;
 
 /**
  * Arx
@@ -35,7 +36,7 @@ use Arx\c_singleton;
  *      $app = new Arx('{orm: redbean}');
  */
 
-class Arx extends c_singleton
+class Arx extends Singleton
 {
 
     const VERSION = '1.0';
@@ -296,4 +297,4 @@ spl_autoload_register('arx_autoload');
 \Arx\c_hook::preload();
 
 //Load the aliases in one file
-include_once dirname(__FILE__) . DS . 'aliases.php';
+include_once __DIR__ . DS . 'aliases.php';

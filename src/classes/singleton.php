@@ -1,27 +1,29 @@
-<?php namespace Arx;
+<?php namespace Arx\classes;
 
-class c_singleton
+class Singleton
 {
     private static $_aInstances = array();
+    public $_clonable = true;
 
     public static function getInstance()
     {
         $sClass = get_called_class();
 
-        if ( !isset( self::$_aInstances[ $sClass ] ) ){
-            self::$_aInstances[ $sClass ] = new $sClass;
+        if (!isset(self::$_aInstances[$sClass])) {
+            self::$_aInstances[$sClass] = new $sClass;
         }
 
-        return self::$_aInstances[ $sClass ];
+        return self::$_aInstances[$sClass];
     } // getInstance
 
     public function __clone()
     {
-        throw new Exception( "Cloning is not authorized." );
+        if (!$this->_clonable) {
+            throw new Exception( "Cloning is not authorized." );
+        }
     } // __clone
-
-    protected function __construct() {} // __construct
 
 } // class::Singleton
 
-class_alias('\Arx\c_singleton', 'c_singleton');
+class_alias('Arx\classes\Singleton', 'c_singleton');
+

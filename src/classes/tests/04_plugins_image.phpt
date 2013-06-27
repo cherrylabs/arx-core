@@ -12,7 +12,7 @@ $conf = array(
 
 // fake the $_SERVER settings
 $_SERVER['HTTP_USER_AGENT'] = "Mozilla";
-$_SERVER['DOCUMENT_ROOT'] = realpath(dirname(__FILE__) . '/../tests');
+$_SERVER['DOCUMENT_ROOT'] = realpath(__DIR__ . '/../tests');
 
 $tpl = new Savant3($conf);
 $tpl->setPluginConf(

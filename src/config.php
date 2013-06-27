@@ -16,7 +16,7 @@ if (!defined('ROOT_DIR'))
     define('ROOT_DIR', getenv('DOCUMENT_ROOT'));
 
 if (!defined('ROOT_URL')){
-    define('ROOT_URL', HTTP . getenv('HTTP_HOST') . str_replace(getenv('DOCUMENT_ROOT'), '', dirname(dirname(__FILE__))));
+    define('ROOT_URL', HTTP . getenv('HTTP_HOST') . str_replace(getenv('DOCUMENT_ROOT'), '', dirname(__DIR__)));
 }
 
 if (!defined('FILE_DIR'))
@@ -65,10 +65,10 @@ define('VENDOR', 'vendor');
 define('HELPERS', 'helpers');
 
 if(!defined('ARX_DIR'))
-    define('ARX_DIR', dirname(__FILE__));
+    define('ARX_DIR', __DIR__);
 
 if(!defined('SYSPATH'))
-    define('SYSPATH', dirname(__FILE__));
+    define('SYSPATH', __DIR__);
 
 define('ARX_CLASSES', ARX_DIR . DS . CLASSES);
 define('ARX_ADAPTERS', ARX_DIR . DS . ADAPTERS);
