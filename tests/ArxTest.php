@@ -40,6 +40,11 @@ class ArxTest extends \PHPUnit_Framework_TestCase
         $this->assertSame($arxConfig["level1"]["level2"]['level3']['level4']['level5'], c_config::get('level1.level2.level3.level4.level5') );
     }
 
+    public function testInit()
+    {
+        
+    }
+
     public function testInstance()
     {
         $app = new arx();
