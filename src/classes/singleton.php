@@ -1,11 +1,23 @@
-<?php namespace Arx\classes;
+<?php namespace Arx/classes;
+/**
+ * ARX The refexive kit.
+ *
+ * PHP File - /classes/singleton.php
+ *
+ * @package         arx
+ */
+
 
 class Singleton
 {
-    private static $_aInstances = array();
-    public $_clonable = true;
+    // --- Constructor
 
-    public static function getInstance()
+    protected function __construct() {} // __construct
+
+
+    // --- Public methods
+
+    final public static function getInstance()
     {
         $sClass = get_called_class();
 
@@ -16,14 +28,9 @@ class Singleton
         return self::$_aInstances[$sClass];
     } // getInstance
 
-    public function __clone()
-    {
-        if (!$this->_clonable) {
-            throw new Exception( "Cloning is not authorized." );
-        }
-    } // __clone
+
+    // --- Private members
+
+    private static $_aInstances = array();
 
 } // class::Singleton
-
-class_alias('Arx\classes\Singleton', 'c_singleton');
-
