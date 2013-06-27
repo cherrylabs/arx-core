@@ -591,13 +591,13 @@ abstract class u {
                 $url_string = parse_url($url, PHP_URL_QUERY);
                 parse_str($url_string, $args);
                 $id = isset($args['v']) ? $args['v'] : false;
-                
+
                 if (!empty($id)) {
                     return '<iframe width="'.$width.'" height="'.$height.'" src="http://www.youtube.com/embed/'.$id.'?rel=0" frameborder="0" allowfullscreen></iframe>';
                 }
-                
+
                 return false;
-            
+
             case preg_match('/vimeo/i', $url):
                 // sscanf(parse_url($url, PHP_URL_PATH), '/%d', $id);
                 $id = filter_var($url, FILTER_SANITIZE_NUMBER_INT);
@@ -605,12 +605,12 @@ abstract class u {
                 if (!empty($id)) {
                     return '<iframe src="http://player.vimeo.com/video/'.$id.'?portrait=0" width="'.$width.'" height="'.$height.'" frameborder="0" webkitAllowFullScreen mozallowfullscreen allowFullScreen></iframe>';
                 }
-                
+
                 return false;
 
             case preg_match('/dailymotion/i', $url):
                 $id = str_replace('/video/', '', parse_url($url, PHP_URL_PATH));
-                
+
                 if (!empty($id)) {
                     return '<iframe frameborder="0" width="'.$width.'" height="'.$height.'" src="http://www.dailymotion.com/embed/video/'.$id.'"></iframe>';
                 }
@@ -720,7 +720,7 @@ abstract class u {
         $total_time = ($time - $start);
 
         trigger_error("K called @ $file line $line loaded in ".$total_time. " seconds");
-        
+
         exit;
     } // k
 
@@ -808,14 +808,14 @@ abstract class u {
 
     /**
     * Parses a user agent string into its important parts
-    * 
+    *
     * @author Jesse G. Donat <donatj@gmail.com>
     * @link https://github.com/donatj/PhpUserAgent
     * @link http://donatstudios.com/PHP-Parser-HTTP_USER_AGENT
     * @param string $u_agent
     * @return array an array with browser, version and platform keys
     */
-    public static function parseUserAgent($u_agent = null) { 
+    public static function parseUserAgent($u_agent = null) {
         if (is_null($u_agent) && isset($_SERVER['HTTP_USER_AGENT'])) {
             $u_agent = $_SERVER['HTTP_USER_AGENT'];
         }
@@ -825,11 +825,11 @@ abstract class u {
             'browser'  => null,
             'version'  => null,
         );
-        
+
         if (!$u_agent) {
             return $data;
         }
-        
+
         if (preg_match('/\((.*?)\)/im', $u_agent, $regs)) {
             preg_match_all('/(?P<platform>Android|CrOS|iPhone|iPad|Linux|Macintosh|Windows(\ Phone\ OS)?|Silk|linux-gnu|BlackBerry|Nintendo\ (WiiU?|3DS)|Xbox)
                 (?:\ [^;]*)?
@@ -852,14 +852,14 @@ abstract class u {
         if ($data['platform'] == 'linux-gnu') {
             $data['platform'] = 'Linux';
         }
-        
+
         if ($data['platform'] == 'CrOS') {
             $data['platform'] = 'Chrome OS';
         }
 
         preg_match_all('%(?P<browser>Camino|Kindle(\ Fire\ Build)?|Firefox|Safari|MSIE|AppleWebKit|Chrome|IEMobile|Opera|Silk|Lynx|Version|Wget|curl|NintendoBrowser|PLAYSTATION\ \d+)
                 (?:;?)
-                (?:(?:[/ ])(?P<version>[0-9A-Z.]+)|/(?:[A-Z]*))%x', 
+                (?:(?:[/ ])(?P<version>[0-9A-Z.]+)|/(?:[A-Z]*))%x',
         $u_agent, $result, PREG_PATTERN_ORDER);
 
         $key = 0;
@@ -901,7 +901,7 @@ abstract class u {
                     $key = $vkey;
                 }
             }
-            
+
             $data['version'] = $result['version'][$key];
         } elseif ( ($key = array_search( 'Opera', $result['browser'] )) !== false) {
             $data['browser'] = $result['browser'][$key];
@@ -942,7 +942,7 @@ abstract class u {
 
             echo self::epre($value);
         }
-        
+
         $aErrors = debug_backtrace();
 
         foreach ($aErrors as $key => $error) {
@@ -1033,7 +1033,7 @@ abstract class u {
         if ($c['with'] == 'specialchars') {
             $chaine .= "éâ'`,!('&#$*^";
         }
-        
+
         if (!empty($c['add'])) {
             $chaine .= $c['add'];
         }
@@ -1120,7 +1120,7 @@ abstract class u {
         $out[] = "\n\n";
 
         $handle = opendir( $dir );
-        
+
         while (false !== ($file = readdir($handle))) {
             if ($file == '.' || $file == '..') {// don't get lost by recursively going through the current or top directory
                 continue;
@@ -1249,7 +1249,7 @@ abstract class u {
 
         foreach ($needles as $needle) {
             $res = strpos($haystack, $needle, $offset);
-            
+
             if ($res !== false) {
                 $chr[$needle] = $res;
             }
@@ -1377,7 +1377,7 @@ abstract class u {
 
     /**
      * Transform a string to particular SMS text format
-     * 
+     *
      * @param string $str string
      * @return string      string formatted
      */
