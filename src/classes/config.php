@@ -18,6 +18,15 @@ class Config extends Singleton
     // --- Public methods
 
     /**
+     * Request a particular config.
+     *
+     * @param  string       $sNeedle    The config name requested
+     * @return bool                     True if the config exist, false instead
+     */
+    public static function needs($sNeedle) {} // get
+
+
+    /**
      * Get value from $_settings
      *
      * @param   string      $sNeedle    The (dot-notated) name

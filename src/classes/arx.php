@@ -11,13 +11,24 @@
  */
 
 
-class Core extends Singleton
+class Arx extends Singleton
 {
 
     // --- Constants
 
     const VERSION = '1.0';
     const CODENAME = 'Lupa';
+
+
+    // --- Private members
+
+    private $_aDefaults = array();
+    private $_aSettings = array();
+
+    private $_cache = null;
+    private $_orm = null;
+    private $_route = null;
+    private $_template = null;
 
 
     // --- Magic methods
@@ -44,14 +55,4 @@ class Core extends Singleton
 
 
 
-    // --- Private members
-
-    private $_defaults = array();
-    private $_settings = array();
-
-    private $_cache = null;
-    private $_orm = null;
-    private $_route = null;
-    private $_template = null;
-
-} // class::Core
+} // class::Arx
