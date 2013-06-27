@@ -5,7 +5,7 @@
  */
 
 
-if (!defined('IS_HTTPS') && !empty(getenv('HTTPS')) && $getenv('HTTPS') !== 'off' || getenv('SERVER_PORT') == 443) {
+if (!defined('IS_HTTPS') && !empty(getenv('HTTPS')) && getenv('HTTPS') !== 'off' || getenv('SERVER_PORT') == 443) {
     define('IS_HTTPS', true);
 }
 
