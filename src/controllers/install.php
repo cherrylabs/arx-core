@@ -10,11 +10,11 @@ class ctrl_install extends \Arx\c_controller{
 
     public function _init(){
 
-    }
+    } // _init
 
     public function ioc(){
 
-    }
+    } // ioc
 
     public function setup($source = 'arxConfig.php', $destination = null){
 
@@ -28,6 +28,6 @@ class ctrl_install extends \Arx\c_controller{
 
         $t->display('install', array('template' => $template));
 
-    }
+    } // setup
 
 }
