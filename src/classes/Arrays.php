@@ -398,8 +398,11 @@ abstract class Arrays
                 $aArray =& $aArray[$mFind];
             }
 
-            echo(var_dump(array_shif($mFind)));
-            $aArray[array_shift($mFind)] = $mValue;
+            if (is_array($mFind)) {
+                $aArray[array_shift($mFind)] = $mValue;
+            } else {
+                $aArray[$mFind] = $mValue;
+            }
         }
     } // set
 
