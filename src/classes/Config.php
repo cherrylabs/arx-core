@@ -26,7 +26,12 @@ class Config extends Singleton
      *
      * @return bool            True if the config exist, false instead
      */
-    public static function needs($sNeedle) {} // get
+    public static function needs($sNeedle) {
+        $t = self::getInstance();
+        if(empty($t->get($sNeedle))){
+          Debug::
+        }
+    } // get
 
 
     /**
