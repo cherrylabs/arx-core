@@ -69,6 +69,18 @@ class App extends Singleton
 
         // ...
 
+
+        // Settings Aliases
+        $aliases = Config::get('aliases');
+
+        foreach ($aliases['classes'] as $aliasName  => $class) {
+            class_alias($class, $aliasName);
+        }
+
+        foreach ($aliases['functions'] as $aliasName => $callback) {
+            Utils::alias($aliasName, $callback);
+        }
+
     } // __construct
 
 
