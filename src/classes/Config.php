@@ -26,12 +26,7 @@ class Config extends Singleton
      *
      * @return bool            True if the config exist, false instead
      */
-    public static function needs($sNeedle) {
-        $t = self::getInstance();
-        if(empty($t->get($sNeedle))){
-          Debug::
-        }
-    } // get
+    public static function needs($sNeedle) {} // get
 
 
     /**
@@ -47,12 +42,14 @@ class Config extends Singleton
      */
     public static function get($sNeedle = null, $mDefault = null)
     {
+        $settings =& self::getInstance()->aSettings;
+
         if (is_null($mDefault)) {
-            $mDefault = self::getInstance()->aSettings;
+            $mDefault = $settings;
         }
-echo(var_dump(Arrays::get(self::getInstance()->aSettings, 'defaults.'.$sNeedle, $mDefault)));
-echo(var_dump(Arrays::get(self::getInstance()->aSettings, $sNeedle, $mDefault)));
-        $mDefault = Arrays::get(self::getInstance()->aSettings, $sNeedle, Arrays::get(self::getInstance()->aSettings, 'defaults.'.$sNeedle, $mDefault));
+// echo(var_dump(Arrays::get(self::getInstance()->aSettings, 'defaults.'.$sNeedle, $mDefault)));
+// echo(var_dump(Arrays::get(self::getInstance()->aSettings, $sNeedle, $mDefault)));
+        $mDefault = Arrays::get($settings, $sNeedle, Arrays::get($settings, 'defaults.'.$sNeedle, $mDefault));
 
         return $mDefault;
     } // get
@@ -73,10 +70,12 @@ echo(var_dump(Arrays::get(self::getInstance()->aSettings, $sNeedle, $mDefault)))
      */
     public static function load($mPath, $sNamespace = null)
     {
+        $settings =& self::getInstance()->aSettings;
+
         if (is_array($mPath) && count($mPath) > 0) {
             $aFiles = realpath($mPath);
-        } elseif (strpos($mPath, '.') > 0 && !is_null(Arrays::get(self::getInstance()->aSettings, $mPath))) {
-            $tmp = Arrays::get(self::getInstance()->aSettings, $mPath);
+        } elseif (strpos($mPath, '.') > 0 && !is_null(Arrays::get($settings, $mPath))) {
+            $tmp = Arrays::get($settings, $mPath);
             $aFiles = glob(substr($tmp, -1) === '/' ? $tmp.'*' : $tmp);
         } else {
             $aFiles = glob(substr($mPath, -1) === '/' ? $mPath.'*' : $mPath);
@@ -90,7 +89,7 @@ echo(var_dump(Arrays::get(self::getInstance()->aSettings, $sNeedle, $mDefault)))
                 $key = array_search($sFilePath, $aFiles);
             }
 
-            if (!is_null(Arrays::get(self::getInstance()->aSettings, $key))) {
+            if (!is_null(Arrays::get($settings, $key))) {
                 self::set($key, Arrays::merge(self::get($key), include $sFilePath));
             } else {
                 self::set($key, include $sFilePath);
