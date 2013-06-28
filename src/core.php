@@ -1,11 +1,38 @@
 <?php namespace Arx;
 /**
- * Arx  - Entry point
- * PHP File - /arx.php
+ * PHP File - /core.php
+ *
+ * The MIT License (MIT)
+ *
+ * Copyright (c) <year> <copyright holders>
+ *
+ * Permission is hereby granted, free of charge, to any person obtaining a copy
+ * of this software and associated documentation files (the "Software"), to deal
+ * in the Software without restriction, including without limitation the rights
+ * to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+ * copies of the Software, and to permit persons to whom the Software is
+ * furnished to do so, subject to the following conditions:
+ *
+ * The above copyright notice and this permission notice shall be included in
+ * all copies or substantial portions of the Software.
+ *
+ * THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+ * IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+ * FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+ * AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+ * LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+ * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
+ * THE SOFTWARE.
+ *
+ * @category Kit
+ * @package  Arx
+ * @author   Daniel Sum <daniel@cherrypulp.com>
+ * @author   Stéphan Zych <stephan@cherrypulp.com>
+ * @license  http://opensource.org/licenses/MIT MIT License
+ * @link     http://arx.xxx
  */
 
-
-if (!defined('IS_HTTPS') && !empty(getenv('HTTPS')) && getenv('HTTPS') !== 'off' || getenv('SERVER_PORT') == 443) {
+if (!defined('IS_HTTPS') && !empty(getenv('HTTPS')) && getenv('HTTPS') !== 'off' || getenv('SERVER_PORT') === 443) {
     define('IS_HTTPS', true);
 }
 
@@ -14,16 +41,7 @@ defined('HTTP') or define('HTTP', 'http'.(defined('IS_HTTPS') ? 's' : '') . '://
 defined('DS') or define('DS', DIRECTORY_SEPARATOR);
 
 
-<<<<<<< HEAD:src/core.php
-require_once __DIR__.DIRECTORY_SEPARATOR.'classes'.DIRECTORY_SEPARATOR.'utils.php';
-require_once __DIR__.DIRECTORY_SEPARATOR.'classes'.DIRECTORY_SEPARATOR.'singleton.php';
-require_once __DIR__.DIRECTORY_SEPARATOR.'classes'.DIRECTORY_SEPARATOR.'config.php';
-require_once __DIR__.DIRECTORY_SEPARATOR.'classes'.DIRECTORY_SEPARATOR.'load.php';
-require_once __DIR__.DIRECTORY_SEPARATOR.'classes'.DIRECTORY_SEPARATOR.'hook.php';
-require_once __DIR__.DIRECTORY_SEPARATOR.'classes'.DIRECTORY_SEPARATOR.'arx.php';
-=======
 require_once __DIR__.DS.'classes'.DS.'singleton.php';
 require_once __DIR__.DS.'classes'.DS.'utils.php';
 require_once __DIR__.DS.'classes'.DS.'config.php';
 require_once __DIR__.DS.'classes'.DS.'arx.php';
->>>>>>> dfe2615c121e53eb107667e31362383da9914387:src/arx.php
