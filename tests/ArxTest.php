@@ -22,6 +22,20 @@ class ArxTest extends \PHPUnit_Framework_TestCase
 
     public function testConfig()
     {
+<<<<<<< HEAD
+=======
+
+        global $arxConfig;
+        $this->assertNotNull($arxConfig);
+        $this->assertNotNull($arxConfig["system"]);
+        $this->assertNotNull($arxConfig["system"]["app"]);
+        $this->assertNotNull($arxConfig["system"]["template"]);
+        $this->assertNotNull($arxConfig["system"]["db"]);
+
+        $this->assertSame( $arxConfig["system"]["app"], c_config::get('system.app') );
+
+        $this->assertNotNull( arxConfig(__DIR__.'/../src/config')->app->debug, 'arxConfig.app.debug should exist');
+>>>>>>> 743f67e3ef01110e7c5d94e40c05359cf4aaae1f
 
         $this->assertNotNull(\Arx\classes\Config::get(), 'Config::get() should return an array with all the configuration!');
 

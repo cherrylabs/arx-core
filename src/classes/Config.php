@@ -42,8 +42,14 @@ class Config extends Singleton
      */
     public static function get($sNeedle = null, $mDefault = null)
     {
+<<<<<<< HEAD
         if (!is_null(Arrays::get(self::$aSettings, $sNeedle, $mDefault))) {
             $mDefault = Arrays::get(self::$aSettings, $sNeedle, $mDefault);
+=======
+        die('oki');
+        if (!is_null(Arrays::get(self::$settings, $sName, $mDefault))) {
+            $mDefault = Arrays::get(self::$settings, $sName, $mDefault);
+>>>>>>> 743f67e3ef01110e7c5d94e40c05359cf4aaae1f
         }
 
         if (is_null($sNeedle)) {
