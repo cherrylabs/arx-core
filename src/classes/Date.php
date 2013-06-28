@@ -1,11 +1,18 @@
 <?php namespace Arx\classes;
+
 /**
- * Arx
+ * Date
  * PHP File - /classes/Date.php
+ *
+ * @category Utils
+ * @package  Arx
+ * @author   Daniel Sum <daniel@cherrypulp.com>
+ * @author   Stéphan Zych <stephan@cherrypulp.com>
+ * @license  http://opensource.org/licenses/MIT MIT License
+ * @link     http://arx.xxx/doc/Date
  */
-
-
-abstract class Date {
+abstract class Date
+{
 
     /**
      * Number of days in a month
@@ -16,12 +23,13 @@ abstract class Date {
      * Credit: http://codeigniter.com/user_guide/helpers/date_helper.html
      * License: http://codeigniter.com/user_guide/license.html
      *
-     * @param   integer
-     * @param   integer
+     * @param int $month Month
+     * @param int $year  Year
      *
-     * @return  integer
+     * @return int
      */
-    public static function days_in_month($month = 0, $year = '') {
+    public static function daysInMonth($month = 0, $year = '')
+    {
         if ($month < 1 OR $month > 12) {
             return 0;
         }
@@ -39,7 +47,7 @@ abstract class Date {
         $days_in_month  = array(31, 28, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31);
 
         return $days_in_month[$month - 1];
-    } // days_in_month
+    } // daysInMonth
 
 
     /**
@@ -52,13 +60,14 @@ abstract class Date {
      * Credit: http://codeigniter.com/user_guide/helpers/date_helper.html
      * License: http://codeigniter.com/user_guide/license.html
      *
-     * @param   integer Unix timestamp
-     * @param   string  timezone
-     * @param   bool    whether DST is active
+     * @param int    $time     Unix timestamp
+     * @param string $timezone timezone
+     * @param bool   $dst      whether DST is active
      *
-     * @return  integer
+     * @return int
      */
-    public static function gmt_to_local($time = '', $timezone = 'UTC', $dst = false) {
+    public static function gmtToLocal($time = '', $timezone = 'UTC', $dst = false)
+    {
         if (empty($time)) {
             return now();
         }
@@ -70,7 +79,7 @@ abstract class Date {
         }
 
         return $time;
-    } // gmt_to_local
+    } // gmtToLocal
 
 
     /**
@@ -81,12 +90,13 @@ abstract class Date {
      *
      * Credit: http://core.svn.wordpress.org/trunk/wp-includes/formatting.php
      *
-     * @param   int
-     * @param   int
+     * @param int $from
+     * @param int $to
      *
      * @return  string
      */
-    public static function human_time_diff($from, $to = '') {
+    public static function humanTimeDiff($from, $to = '')
+    {
         if (empty($to)) {
             $to = time();
         }
@@ -132,7 +142,7 @@ abstract class Date {
         }
 
         return $since;
-    } // human_time_diff
+    } // humanTimeDiff
 
 
     /**
@@ -143,11 +153,12 @@ abstract class Date {
      * Credit: http://codeigniter.com/user_guide/helpers/date_helper.html
      * License: http://codeigniter.com/user_guide/license.html
      *
-     * @param   string  format: us or euro
+     * @param string $datestr Format: us or euro
      *
-     * @return  integer
+     * @return int
      */
-    public static function human_to_unix($datestr = '') {
+    public static function humanToUnix($datestr = '')
+    {
         if (empty($datestr)) {
             return false;
         }
@@ -196,7 +207,7 @@ abstract class Date {
         }
 
         return mktime($hour, $min, $sec, $month, $day, $year);
-    } // human_to_unix
+    } // humanToUnix
 
 
     /**
@@ -205,17 +216,18 @@ abstract class Date {
      * Credit: http://codeigniter.com/user_guide/helpers/date_helper.html
      * License: http://codeigniter.com/user_guide/license.html
      *
-     * @param   integer Unix timestamp
+     * @param int $time Unix timestamp
      *
-     * @return  integer
+     * @return int
      */
-    public static function local_to_gmt($time = '') {
+    public static function localToGMT($time = '')
+    {
         if (empty($time)) {
             $time = time();
         }
 
         return gmmktime(gmdate("H", $time), gmdate("i", $time), gmdate("s", $time), gmdate("m", $time), gmdate("d", $time), gmdate("Y", $time));
-    } // local_to_gmt
+    } // localToGMT
 
 
     /**
@@ -233,12 +245,13 @@ abstract class Date {
      * Credit: http://codeigniter.com/user_guide/helpers/date_helper.html
      * License: http://codeigniter.com/user_guide/license.html
      *
-     * @param   string
-     * @param   integer
+     * @param string $datestr
+     * @param int    $time
      *
-     * @return  integer
+     * @return int
      */
-    public static function mdate($datestr = '', $time = '') {
+    public static function mdate($datestr = '', $time = '')
+    {
         if (empty($datestr)) {
             return '';
         }
@@ -256,15 +269,16 @@ abstract class Date {
     /**
      * Convert a month number to a month name.
      *
-     * @param   integer
+     * @param int $number
      *
-     * @return  integer
+     * @return int
      */
-    public static function month_name($number) {
+    public static function monthName($number)
+    {
         $month_name = date("F", mktime(0, 0, 0, $number, 10));
 
         return $month_name;
-    } // month_name
+    } // monthName
 
 
     /**
@@ -273,11 +287,12 @@ abstract class Date {
      * Credit: http://codeigniter.com/user_guide/helpers/date_helper.html
      * License: http://codeigniter.com/user_guide/license.html
      *
-     * @param   integer Unix timestamp
+     * @param int $time Unix timestamp
      *
-     * @return  integer
+     * @return int
      */
-    public static function mysql_to_unix($time = '') {
+    public static function mysqlToUnix($time = '')
+    {
         // We'll remove certain characters for backward compatibility
         // since the formatting changed with MySQL 4.1
         // YYYY-MM-DD HH:MM:SS
@@ -295,17 +310,18 @@ abstract class Date {
             substr($time, 6, 2),
             substr($time, 0, 4)
         );
-    } // mysql_to_unix
+    } // mysqlToUnix
 
 
     /**
      * Get "now" time and return it as time() or its GMT equivalent.
      *
-     * @param   boolean     $bGMT   Set return as GMT equivalent
+     * @param bool $bGMT Set return as GMT equivalent
      *
-     * @return  integer
+     * @return int
      */
-    public static function now($bGMT = false) {
+    public static function now($bGMT = false)
+    {
         $now = time();
 
         if ($bGMT) {
@@ -324,12 +340,13 @@ abstract class Date {
      * Credit: http://codeigniter.com/user_guide/helpers/date_helper.html
      * License: http://codeigniter.com/user_guide/license.html
      *
-     * @param   string
-     * @param   integer
+     * @param string $format
+     * @param int    $time
      *
-     * @return  string
+     * @return string
      */
-    public static function standard_date($format = 'RFC822', $time = '') {
+    public static function standardDate($format = 'RFC822', $time = '')
+    {
         $formats = array(
             'ATOM'      =>  '%Y-%m-%dT%H:%i:%s%Q',
             'COOKIE'    =>  '%l, %d-%M-%y %H:%i:%s UTC',
@@ -351,7 +368,7 @@ abstract class Date {
         }
 
         return static::mdate($formats[$format], $time);
-    } // standard_date
+    } // standardDate
 
 
     /**
@@ -363,11 +380,12 @@ abstract class Date {
      * Credit: http://codeigniter.com/user_guide/helpers/date_helper.html
      * License: http://codeigniter.com/user_guide/license.html
      *
-     * @param   string  timezone
+     * @param string timezone
      *
-     * @return  string
+     * @return string
      */
-    public static function timezones($tz = '') {
+    public static function timezones($tz = '')
+    {
         $tz = strtolower($tz);
 
         // Note: Don't change the order of these even though
@@ -435,13 +453,14 @@ abstract class Date {
      * Credit: http://codeigniter.com/user_guide/helpers/date_helper.html
      * License: http://codeigniter.com/user_guide/license.html
      *
-     * @param   integer Unix timestamp
-     * @param   bool    whether to show seconds
-     * @param   string  format: us or euro
+     * @param int    $time    Unix timestamp
+     * @param bool   $seconds whether to show seconds
+     * @param string $fmt     format: us or euro
      *
-     * @return  string
+     * @return string
      */
-    public static function unix_to_human($time = '', $seconds = false, $fmt = 'us') {
+    public static function unixToHuman($time = '', $seconds = false, $fmt = 'us')
+    {
         $r  = date('Y', $time).'-'.date('m', $time).'-'.date('d', $time).' ';
 
         if ($fmt == 'us') {
@@ -459,6 +478,6 @@ abstract class Date {
         }
 
         return $r;
-    } // unix_to_human
+    } // unixToHuman
 
 } // class::Date

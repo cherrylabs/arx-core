@@ -1,16 +1,24 @@
 <?php namespace Arx\classes;
+
 /**
- * Arx
+ * Globals
  * PHP File - /classes/Globals.php
+ *
+ * @category Utils
+ * @package  Arx
+ * @author   Daniel Sum <daniel@cherrypulp.com>
+ * @author   Stéphan Zych <stephan@cherrypulp.com>
+ * @license  http://opensource.org/licenses/MIT MIT License
+ * @link     http://arx.xxx/doc/Globals
  *
  * @todo
  * Configure Exception (make the custom classe first)...
  */
+abstract class Globals
+{
 
-
-abstract class Globals {
-
-    public static function getBrowserLanguage() {
+    public static function getBrowserLanguage()
+    {
         return substr($_SERVER['HTTP_ACCEPT_LANGUAGE'], 0, 2);
     } // getBrowserLanguage
 
@@ -22,9 +30,11 @@ abstract class Globals {
     * @link https://github.com/donatj/PhpUserAgent
     * @link http://donatstudios.com/PHP-Parser-HTTP_USER_AGENT
     * @param string $u_agent
+    *
     * @return array an array with browser, version and platform keys
     */
-    public static function parseUserAgent($u_agent = null) {
+    public static function parseUserAgent($u_agent = null)
+    {
         if (is_null($u_agent) && isset($_SERVER['HTTP_USER_AGENT'])) {
             $u_agent = $_SERVER['HTTP_USER_AGENT'];
         }
@@ -40,9 +50,14 @@ abstract class Globals {
         }
 
         if (preg_match('/\((.*?)\)/im', $u_agent, $regs)) {
-            preg_match_all('/(?P<platform>Android|CrOS|iPhone|iPad|Linux|Macintosh|Windows(\ Phone\ OS)?|Silk|linux-gnu|BlackBerry|Nintendo\ (WiiU?|3DS)|Xbox)
+            preg_match_all(
+                '/(?P<platform>Android|CrOS|iPhone|iPad|Linux|Macintosh|Windows(\ Phone\ OS)?|Silk|linux-gnu|BlackBerry|Nintendo\ (WiiU?|3DS)|Xbox)
                 (?:\ [^;]*)?
-                (?:;|$)/imx', $regs[1], $result, PREG_PATTERN_ORDER);
+                (?:;|$)/imx',
+                $regs[1],
+                $result,
+                PREG_PATTERN_ORDER
+            );
 
             $priority = array('Android', 'Xbox');
             $result['platform'] = array_unique($result['platform']);
@@ -66,10 +81,14 @@ abstract class Globals {
             $data['platform'] = 'Chrome OS';
         }
 
-        preg_match_all('%(?P<browser>Camino|Kindle(\ Fire\ Build)?|Firefox|Safari|MSIE|AppleWebKit|Chrome|IEMobile|Opera|Silk|Lynx|Version|Wget|curl|NintendoBrowser|PLAYSTATION\ \d+)
+        preg_match_all(
+            '%(?P<browser>Camino|Kindle(\ Fire\ Build)?|Firefox|Safari|MSIE|AppleWebKit|Chrome|IEMobile|Opera|Silk|Lynx|Version|Wget|curl|NintendoBrowser|PLAYSTATION\ \d+)
                 (?:;?)
                 (?:(?:[/ ])(?P<version>[0-9A-Z.]+)|/(?:[A-Z]*))%x',
-        $u_agent, $result, PREG_PATTERN_ORDER);
+            $u_agent,
+            $result,
+            PREG_PATTERN_ORDER
+        );
 
         $key = 0;
 

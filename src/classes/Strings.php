@@ -1,16 +1,24 @@
 <?php namespace Arx\classes;
+
 /**
- * Arx
+ * Strings
  * PHP File - /classes/Strings.php
+ *
+ * @category Utils
+ * @package  Arx
+ * @author   Daniel Sum <daniel@cherrypulp.com>
+ * @author   Stéphan Zych <stephan@cherrypulp.com>
+ * @license  http://opensource.org/licenses/MIT MIT License
+ * @link     http://arx.xxx/doc/Strings
  *
  * @todo
  * Configure Exception (make the custom classe first)...
  */
+abstract class Strings
+{
 
-
-abstract class Strings {
-
-    public static function bbcode_to_html($s) {
+    public static function bbcode_to_html($s)
+    {
         $b = array('[br]', '[h1]', '[/h1]', '[b]', '[/b]', '[strong]', '[/strong]', '[i]', '[/i]', '[em]', '[/em]', '&apos;', '&lt;', '&gt;', '&quot;');
         $h = array('<br />', '<h1>', '</h1>', '<strong>', '</strong>', '<strong>', '</strong>', '<em>', '</em>', '<em>', '</em>', '\'', '<', '>', '"');
 
@@ -18,17 +26,20 @@ abstract class Strings {
     } // bbcode_to_html
 
 
-    public static function decrypt($text, $salt) {
+    public static function decrypt($text, $salt)
+    {
         return trim(mcrypt_decrypt(MCRYPT_RIJNDAEL_256, $salt, base64_decode($text), MCRYPT_MODE_ECB, mcrypt_create_iv(mcrypt_get_iv_size(MCRYPT_RIJNDAEL_256, MCRYPT_MODE_ECB), MCRYPT_RAND)));
     } // decrypt
 
 
-    public static function encrypt($text, $salt) {
+    public static function encrypt($text, $salt)
+    {
         return trim(base64_encode(mcrypt_encrypt(MCRYPT_RIJNDAEL_256, $salt, $text, MCRYPT_MODE_ECB, mcrypt_create_iv(mcrypt_get_iv_size(MCRYPT_RIJNDAEL_256, MCRYPT_MODE_ECB), MCRYPT_RAND))));
     } // encrypt
 
 
-    public static function excerpt($string, $length = 160, $trailing = '...', $strict = false) {
+    public static function excerpt($string, $length = 160, $trailing = '...', $strict = false)
+    {
         $length -= mb_strlen($trailing);
 
         if ($strict) {
@@ -47,7 +58,8 @@ abstract class Strings {
     } // excerpt
 
 
-    public static function gen_char($size, $char = 'abcdefghijklmnopqrstuvxzkwyABCDEFGHIJKLMNOPQRSTUVXZKWY0123456789_') {
+    public static function gen_char($size, $char = 'abcdefghijklmnopqrstuvxzkwyABCDEFGHIJKLMNOPQRSTUVXZKWY0123456789_')
+    {
         $return = '';
         $max = strlen($char) - 1;
 
@@ -59,7 +71,8 @@ abstract class Strings {
     } // gen_char
 
 
-    public static function in_string($needle, $haystack, $sep = ',') {
+    public static function in_string($needle, $haystack, $sep = ',')
+    {
         $array = explode($sep, $haystack);
 
         if (in_array($needle, $array)) {
@@ -70,12 +83,14 @@ abstract class Strings {
     } // in_string
 
 
-    public static function is_json($str) {
+    public static function is_json($str)
+    {
        return json_decode($str) != null;
     } // is_json
 
 
-    public static function json_encode_string($s) {
+    public static function json_encode_string($s)
+    {
         return json_encode(array($s));
     } // json_encode_string
 
@@ -88,7 +103,8 @@ abstract class Strings {
      *
      * @return  string
      */
-    public static function limit_text_sentences($text, $count) {
+    public static function limit_text_sentences($text, $count)
+    {
         preg_match('/^([^.!?]*[\.!?]+){0,'.$count.'}/', strip_tags($text), $excerpt);
 
         return $excerpt[0];
@@ -103,7 +119,8 @@ abstract class Strings {
      *
      * @return  string
      */
-    public static function limit_text_words($text, $count) {
+    public static function limit_text_words($text, $count)
+    {
         preg_match('/^([^.!?\s]*[\.!?\s]+){0,'.$count.'}/', strip_tags($text), $excerpt);
 
         return $excerpt[0];
@@ -120,7 +137,8 @@ abstract class Strings {
      *
      * @return  string
      */
-    public static function strip_all_tags($string, $remove_breaks = false) {
+    public static function strip_all_tags($string, $remove_breaks = false)
+    {
         $string = preg_replace('@<(script|style)[^>]*?>.*?</\\1>@si', '', $string);
         $string = strip_tags($string);
 

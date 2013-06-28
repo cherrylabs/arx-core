@@ -1,13 +1,17 @@
 <?php namespace Arx/classes;
+
 /**
- * ARX The refexive kit.
+ * Singleton
  *
  * PHP File - /classes/Singleton.php
  *
- * @package         arx
+ * @category Utils
+ * @package  Arx
+ * @author   Daniel Sum <daniel@cherrypulp.com>
+ * @author   Stéphan Zych <stephan@cherrypulp.com>
+ * @license  http://opensource.org/licenses/MIT MIT License
+ * @link     http://arx.xxx/doc/Singleton
  */
-
-
 class Singleton
 {
     // --- Constructor
