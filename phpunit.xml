@@ -12,7 +12,7 @@
         >
     <testsuites>
         <testsuite name="Arx Test Suite">
-            <directory>./tests/</directory>
+            <file>tests/classes/ContainerTest.php</file>
         </testsuite>
     </testsuites>
 </phpunit>
