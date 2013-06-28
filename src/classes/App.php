@@ -1,16 +1,15 @@
 <?php namespace Arx\classes;
+
 /**
- * ARX The refexive kit.
+ * App
  *
- * PHP File - /classes/arx.php
- *
- * @description     Core File
- * @package         arx
- * @author          Daniel Sum, Stéphan Zych
- * @version         1.0
+ * @category Core
+ * @package  Arx
+ * @author   Daniel Sum <daniel@cherrypulp.com>
+ * @author   Stéphan Zych <stephan@cherrypulp.com>
+ * @license  http://opensource.org/licenses/MIT MIT License
+ * @link     http://arx.xxx/doc/App
  */
-
-
 class App extends Singleton
 {
 
@@ -34,13 +33,14 @@ class App extends Singleton
     /**
      * Magic constructor by default load default config.
      *
-     * @status      dev
+     * @param mixed $mConfig Path, array of paths or array of params
      */
-    public function __construct($mConfig = null) {
+    public function __construct($mConfig = null)
+    {
         $aFiles = glob(__DIR__.'/utils/*');
 
         foreach ($aFiles as $sFilePath) {
-            require_once $sFilePath;
+            include_once $sFilePath;
         }
 
         Config::load(__DIR__.'/../config/*', 'default');

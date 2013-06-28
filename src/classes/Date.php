@@ -1,11 +1,18 @@
 <?php namespace Arx\classes;
+
 /**
  * Arx
  * PHP File - /classes/Date.php
+ *
+ * @category Utils
+ * @package  Arx
+ * @author   Daniel Sum <daniel@cherrypulp.com>
+ * @author   Stéphan Zych <stephan@cherrypulp.com>
+ * @license  http://opensource.org/licenses/MIT MIT License
+ * @link     http://arx.xxx/doc/Date
  */
-
-
-abstract class Date {
+abstract class Date
+{
 
     /**
      * Number of days in a month
@@ -16,8 +23,8 @@ abstract class Date {
      * Credit: http://codeigniter.com/user_guide/helpers/date_helper.html
      * License: http://codeigniter.com/user_guide/license.html
      *
-     * @param   integer
-     * @param   integer
+     * @param   int
+     * @param   int
      *
      * @return  integer
      */

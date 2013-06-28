@@ -1,21 +1,28 @@
 <?php namespace Arx\classes;
+
 /**
- * Arx
- * PHP File - /classes/Arrays.php
+ * Arrays
+ *
+ * @category Utils
+ * @package  Arx
+ * @author   Daniel Sum <daniel@cherrypulp.com>
+ * @author   Stéphan Zych <stephan@cherrypulp.com>
+ * @license  http://opensource.org/licenses/MIT MIT License
+ * @link     http://arx.xxx/doc/Arrays
  */
-
-
 abstract class Arrays
 {
 
     /**
      * Unsets dot-notated key from an array.
      *
-     * @param  array  $aSearch The search array
-     * @param  mixed  $mFind   The dot-notated key or array of keys
+     * @param array &$aSearch The search array
+     * @param mixed $mFind    The dot-notated key or array of keys
+     *
      * @return mixed
      */
-    public static function delete(&$aSearch, $mFind) {
+    public static function delete(&$aSearch, $mFind)
+    {
         if (is_null($mFind)) {
             return false;
         }
@@ -53,12 +60,14 @@ abstract class Arrays
     /**
      * Gets a dot-notated key from an array, with a default value if it does not exist.
      *
-     * @param  array  $aSearch  The seach array
-     * @param  mixed  $mFind    The dot-notated key or array of keys
-     * @param  string $sDefault The default value
+     * @param array  $aSearch  The seach array
+     * @param mixed  $mFind    The dot-notated key or array of keys
+     * @param string $sDefault The default value
+     *
      * @return mixed
      */
-    public static function get($aSearch, $mFind, $sDefault = null) {
+    public static function get($aSearch, $mFind, $sDefault = null)
+    {
         if (is_null($mFind)) {
             return $aSearch;
         }
@@ -90,11 +99,11 @@ abstract class Arrays
     /**
      * Merge 2 arrays recursively.
      *
-     * @param  array  Multiple variables all of which must be arrays
      * @return array
      * @throws \InvalidArgumentException
      */
-    public static function merge() {
+    public static function merge()
+    {
         $array = func_get_arg(0);
         $arrays = array_slice(func_get_args(), 1);
 
@@ -125,12 +134,14 @@ abstract class Arrays
     /**
      * Set an array item (dot-notated) to the value.
      *
-     * @param  array  $aArray The array to insert it into
-     * @param  mixed  $mFind  The dot-notated key to set or array of keys
-     * @param  mixed  $mValue The value
+     * @param array &$aArray The array to insert it into
+     * @param mixed $mFind   The dot-notated key to set or array of keys
+     * @param mixed $mValue  The value
+     *
      * @return void
      */
-    public static function set(&$aArray, $mFind, $mValue = null) {
+    public static function set(&$aArray, $mFind, $mValue = null)
+    {
         if (is_null($mFind)) {
             $aArray = $mValue;
             return;
