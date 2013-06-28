@@ -1,4 +1,5 @@
 <?php namespace Arx;
+
 /**
  * PHP File - /core.php
  *
