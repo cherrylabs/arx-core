@@ -43,7 +43,7 @@ class App extends Singleton
             include_once $sFilePath;
         }
 
-        Config::load(__DIR__.'/../config/*', 'default');
+        Config::load(__DIR__.'/../config/*', 'defaults');
 
         $this->_config = Config::getInstance();
 
