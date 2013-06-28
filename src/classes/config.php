@@ -1,7 +1,5 @@
 <?php namespace Arx\classes;
 
-use Symfony\Component\Finder\Finder;
-
 /**
  * Config
  *
