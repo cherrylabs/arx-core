@@ -509,4 +509,3 @@ class Utils
 
 } // class::Utils
 
-class u extends Utils {} // Aliases

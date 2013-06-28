@@ -14,6 +14,7 @@ return array(
         'Singleton' => '\Arx\classes\Singleton',
         'Utils' => '\Arx\classes\Utils',
         'Valid' => '\Arx\classes\Valid',
+        'u' => '\Arx\classes\Utils',
     ),
     'functions' => array(
         'arxConfig' => '\Arx\classes\Config::getInstance',
