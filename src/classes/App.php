@@ -37,12 +37,6 @@ class App extends Singleton
      */
     public function __construct($mConfig = null)
     {
-        $aFiles = glob(__DIR__.'/utils/*');
-
-        foreach ($aFiles as $sFilePath) {
-            include_once $sFilePath;
-        }
-
         Config::load(__DIR__.'/../config/*', 'defaults');
 
         $this->_config = Config::getInstance();

@@ -50,6 +50,16 @@ abstract class Date
     } // daysInMonth
 
 
+    public static function diffMicrotime($mt_old, $mt_new) {
+        list($old_usec, $old_sec) = explode(' ', $mt_old);
+        list($new_usec, $new_sec) = explode(' ', $mt_new);
+        $old_mt = ((float) $old_usec + (float) $old_sec);
+        $new_mt = ((float) $new_usec + (float) $new_sec);
+
+        return $new_mt - $old_mt;
+    } // diffMicrotime
+
+
     /**
      * Converts GMT time to a localized value
      *

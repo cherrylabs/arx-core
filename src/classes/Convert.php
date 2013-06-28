@@ -2135,6 +2135,14 @@ abstract class Convert
     } // httpStatusDesc
 
 
+    public static function parseInt($string) {
+        if ((bool) preg_match('/(\d+)/', $string, $array)) {return $array[1];
+        } else {
+            return false;
+        }
+    } // parseInt
+
+
     /**
      * Converts number of bytes to human readable number by taking the number of that unit
      * that the bytes will go into it. Supports TB value.

@@ -36,15 +36,18 @@ class Config extends Singleton
      * @param mixed  $mDefault A default value if necessary
      *
      * @return mixed           The value of the setting or the entire settings array
+     *
+     * @example
+     * Config::get();
      */
     public static function get($sNeedle = null, $mDefault = null)
     {
-        if (!is_null(Arrays::get(self::$settings, $sName, $mDefault))) {
-            $mDefault = Arrays::get(self::$settings, $sName, $mDefault);
+        if (!is_null(Arrays::get(self::$aSettings, $sNeedle, $mDefault))) {
+            $mDefault = Arrays::get(self::$aSettings, $sNeedle, $mDefault);
         }
 
-        if (is_null($sName)) {
-            $mDefault = self::$settings;
+        if (is_null($sNeedle)) {
+            $mDefault = self::$aSettings;
         }
 
         return $mDefault;
@@ -60,18 +63,19 @@ class Config extends Singleton
      * @return void
      *
      * @example
-     * Config::load('paths.adapters'); // dot-notated query url in configuration paths
+     * Config::load('paths.adapters', 'defaults'); // dot-notated query url in configuration paths
      * Config::load('some/path/to/your/configuration/file.php');
-     * Config::load('some/path/to/your/configuration/folder/*');
+     * Config::load('some/path/to/your/configuration/folder/');
      */
     public static function load($mPath, $sNamespace = null)
     {
-        if (is_array($mPaths) && count($mPaths) > 0) {
-            $aFiles = $mPaths;
-        } elseif (strpos($mPaths, '.') > 0 && !is_null(Arrays::get(self::$aSettings, $mPaths))) {
-            $aFiles = glob(Arrays::get(self::$aSettings, $mPaths).'*');
+        if (is_array($mPath) && count($mPath) > 0) {
+            $aFiles = $mPath;
+        } elseif (strpos($mPath, '.') > 0 && !is_null(Arrays::get(self::$aSettings, $mPath))) {
+            $tmp = Arrays::get(self::$aSettings, $mPath);
+            $aFiles = glob(substr($tmp, -1) === '/' ? $tmp.'*' : $tmp);
         } else {
-            $aFiles = glob($mPaths);
+            $aFiles = glob(substr($mPaths, -1) === '/' ? $mPath.'*' : $mPath);
         }
 
         foreach ($sNamespace as $sFilePath) {
@@ -103,10 +107,10 @@ class Config extends Singleton
     {
         if (is_array($sName)) {
             foreach ($sName as $key => $value) {
-                Arrays::set(self::$settings, $key, $value);
+                Arrays::set(self::$aSettings, $key, $value);
             }
         } else {
-            Arrays::set(self::$settings, $sName, $mValue);
+            Arrays::set(self::$aSettings, $sName, $mValue);
         }
     } // set
 

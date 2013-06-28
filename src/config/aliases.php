@@ -13,11 +13,14 @@ return array(
         'Hook' => '\Arx\classes\Hook',
         'Singleton' => '\Arx\classes\Singleton',
         'Utils' => '\Arx\classes\Utils',
-        'Validate' => '\Arx\classes\Validate',
+        'Valid' => '\Arx\classes\Valid',
     ),
     'functions' => array(
         'arxConfig' => '\Arx\classes\Config::getInstance',
         'getConfig' => '\Arx\classes\Config::get',
         'setConfig' => '\Arx\classes\Config::set',
+        'predie' => '\Arx\classes\Utils::predie',
+        'pre' => '\Arx\classes\Utils::pre',
+        'k' => '\Arx\classes\Utils::k',
     ),
 );

@@ -44,7 +44,9 @@ defined('DS') or define('DS', DIRECTORY_SEPARATOR);
 
 
 require_once __DIR__.DS.'classes'.DS.'Singleton.php';
+
+require_once __DIR__.DS.'classes'.DS.'Arrays.php';
 require_once __DIR__.DS.'classes'.DS.'Utils.php';
+
 require_once __DIR__.DS.'classes'.DS.'Config.php';
 require_once __DIR__.DS.'classes'.DS.'App.php';
-require_once __DIR__.DS.'aliases.php';

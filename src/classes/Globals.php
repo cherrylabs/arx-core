@@ -17,10 +17,90 @@
 abstract class Globals
 {
 
+    public static function checkSession() {
+        if (!isset($_SESSION) || empty($_SESSION)) {
+            session_start();
+            $_SESSION['ARX_SESSIONSTART'] = ARX_STARTTIME;
+        }
+    } // checkSession
+
+
+    public function deleteAllCookies() {
+        if(headers_sent($filename, $line)){
+
+            predie($filename, $line);
+
+            die('<script type="text/javascript">javascript:new function(){var c=document.cookie.split(";");for(var i=0;i<c.length;i++){var e=c[i].indexOf("=");var n=e>-1?c[i].substr(0,e):c[i];document.cookie=n+"=;expires=Thu, 01 Jan 1970 00:00:00 GMT";}}()</script>');
+        }
+
+        if (isset($_SERVER['HTTP_COOKIE'])) {
+            $cookies = explode(';', $_SERVER['HTTP_COOKIE']);
+            foreach($cookies as $cookie) {
+                $parts = explode('=', $cookie);
+                $name = trim($parts[0]);
+                setcookie($name, '', time()-1000);
+                setcookie($name, '', time()-1000, '/');
+            }
+
+            return true;
+        }
+
+        return false;
+    } // deleteAllCookies
+
+
     public static function getBrowserLanguage()
     {
         return substr($_SERVER['HTTP_ACCEPT_LANGUAGE'], 0, 2);
     } // getBrowserLanguage
+
+
+    public static function getGets() {
+        if (!empty($_GET)) {
+            $a = array_keys($_GET);
+
+            return strip_tags($a[0]);
+        }
+
+        return false;
+    } // getGets
+
+
+    public static function getIp() {
+        return $_SERVER['REMOTE_ADDR'];
+    } // getIp
+
+
+    /**
+     * Try to get the http url
+     * @param  [type] $file [description]
+     * @return [type]       [description]
+     */
+    public static function getURL($file = null) {
+
+        if (!preg_match('/http/i', $file)) {
+            if (is_file($file)) {
+                return str_replace(array(DIR_ROOT, DS), array(URL_ROOT, "/"), $file);
+            } elseif (is_dir($file)) {
+                return str_replace(array(DIR_ROOT, DS), array(URL_ROOT, "/"), $file);
+            }
+
+            return str_replace(DS, "/", $_SERVER['HTTP_HOST'].str_replace('index.php', '', $_SERVER['SCRIPT_NAME']));
+        }
+
+        return $file;
+    } // getURL
+
+
+    public static function getURLPath($file = null) {
+        if (is_file($file)) {
+            return str_replace(DIR_ROOT, URL_ROOT, dirname($file));
+        } elseif (is_dir($file)) {
+            return str_replace(DIR_ROOT, URL_ROOT, $file);
+        }
+
+        return $_SERVER['HTTP_HOST'].str_replace('index.php', '', $_SERVER['SCRIPT_NAME']);
+    } // getURLPath
 
 
     /**
