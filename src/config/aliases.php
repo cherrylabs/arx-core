@@ -8,7 +8,7 @@ return array(
         'Assets' => '\Arx\classes\Assets',
         'Config' => '\Arx\classes\Config',
         'Date' => '\Arx\classes\Date',
-        'Filemanager' => '\Arx\classes\Filemanager',
+        'Finder' => '\Arx\classes\Finder',
         'Globals' => '\Arx\classes\Globals',
         'Hook' => '\Arx\classes\Hook',
         'Singleton' => '\Arx\classes\Singleton',

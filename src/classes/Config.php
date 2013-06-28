@@ -14,7 +14,7 @@ class Config extends Singleton
 {
     // --- Protected members
 
-    protected $aSettings = array();
+    protected static $aSettings = array();
 
 
     // --- Public methods
@@ -37,18 +37,54 @@ class Config extends Singleton
      *
      * @return mixed           The value of the setting or the entire settings array
      */
-    public static function get($sNeedle, $mDefault = null) {} // get
+    public static function get($sNeedle = null, $mDefault = null)
+    {
+        if (!is_null(Arrays::get(self::$settings, $sName, $mDefault))) {
+            $mDefault = Arrays::get(self::$settings, $sName, $mDefault);
+        }
+
+        if (is_null($sName)) {
+            $mDefault = self::$settings;
+        }
+
+        return $mDefault;
+    } // get
 
 
     /**
      * Load single or multiple file configuration.
      *
-     * @param string $sPath      Array of path or string
+     * @param string $mPath      Array of path or string
      * @param string $sNamespace String used as reference (ex. Config::get('namespace.paths.classes'))
      *
      * @return void
+     *
+     * @example
+     * Config::load('paths.adapters'); // dot-notated query url in configuration paths
+     * Config::load('some/path/to/your/configuration/file.php');
+     * Config::load('some/path/to/your/configuration/folder/*');
      */
-    public static function load($sPath, $sNamespace = null) {} // load
+    public static function load($mPath, $sNamespace = null)
+    {
+        if (is_array($mPaths) && count($mPaths) > 0) {
+            $aFiles = $mPaths;
+        } elseif (strpos($mPaths, '.') > 0 && !is_null(Arrays::get(self::$aSettings, $mPaths))) {
+            $aFiles = glob(Arrays::get(self::$aSettings, $mPaths).'*');
+        } else {
+            $aFiles = glob($mPaths);
+        }
+
+        foreach ($sNamespace as $sFilePath) {
+            $pathinfo = pathinfo($sFilePath);
+            $key = !is_null($sNamespace) ? $sNamespace.'.'.$pathinfo['filename'] : $pathinfo['filename'];
+
+            if (!is_null(self::get($key))) {
+                self::set($key, Arrays::merge(self::get($key), include $sFilePath));
+            } else {
+                self::set($key, include $sFilePath);
+            }
+        }
+    } // load
 
 
     /**
@@ -58,8 +94,21 @@ class Config extends Singleton
      * @param mixed  $mValue Value for name
      *
      * @return void
+     *
+     * @example
+     * Config::set(array('defaults.somehing' => 'something'));
+     * Config::set('defaults.something', 'something');
      */
-    public static function set($sName, $mValue = null) {} // set
+    public static function set($sName, $mValue = null)
+    {
+        if (is_array($sName)) {
+            foreach ($sName as $key => $value) {
+                Arrays::set(self::$settings, $key, $value);
+            }
+        } else {
+            Arrays::set(self::$settings, $sName, $mValue);
+        }
+    } // set
 
 } // class::Config
 
