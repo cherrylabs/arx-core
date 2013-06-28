@@ -24,6 +24,7 @@ class ArxTest extends \PHPUnit_Framework_TestCase
 
     public function testConfig()
     {
+
         global $arxConfig;
         $this->assertNotNull($arxConfig);
         $this->assertNotNull($arxConfig["system"]);
