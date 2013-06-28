@@ -46,7 +46,14 @@ defined('DS') or define('DS', DIRECTORY_SEPARATOR);
 require_once __DIR__.DS.'classes'.DS.'Singleton.php';
 
 require_once __DIR__.DS.'classes'.DS.'Arrays.php';
+require_once __DIR__.DS.'classes'.DS.'Assets.php';
+require_once __DIR__.DS.'classes'.DS.'Convert.php';
+require_once __DIR__.DS.'classes'.DS.'Date.php';
+require_once __DIR__.DS.'classes'.DS.'Globals.php';
+require_once __DIR__.DS.'classes'.DS.'Hook.php';
+require_once __DIR__.DS.'classes'.DS.'Strings.php';
 require_once __DIR__.DS.'classes'.DS.'Utils.php';
+require_once __DIR__.DS.'classes'.DS.'Valid.php';
 
 require_once __DIR__.DS.'classes'.DS.'Config.php';
 require_once __DIR__.DS.'classes'.DS.'App.php';
