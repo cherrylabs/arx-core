@@ -1,4 +1,4 @@
-<?php namespace Arx/classes;
+<?php namespace Arx\classes;
 
 /**
  * Singleton

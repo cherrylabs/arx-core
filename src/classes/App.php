@@ -77,7 +77,7 @@ class App extends Singleton
     public function __call($sName, $aArgs) {} // __call
 
 
-    public function __callStatic($sName, $aArgs) {} // __callStatic
+    public static function __callStatic($sName, $aArgs) {} // __callStatic
 
 
     public function __get($sName) {} // __get
