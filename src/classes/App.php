@@ -37,35 +37,42 @@ class App extends Singleton
      */
     public function __construct($mConfig = null)
     {
-        Config::load(__DIR__.'/../config/*', 'defaults');
-
         $this->_config = Config::getInstance();
 
+        Config::load(__DIR__.'/../config/', 'defaults');
+
         if (!is_null($mConfig)) {
-            $system = Config::get('system');
-
-            foreach ($system as $type => $class) {
-                $path = Config::get('paths.adapters');
-
-                if (end(explode(DS, $path)) !== '') {
-                    $path .= DS;
-                }
-
-                Config::load($path.$class.'.php');
-
-                $className = '\\App\\classes\\'.$type;
-
-                if (class_exists($className)) {
-                    $this->{'_'.$type} = new $className();
-                }
+            if (is_array($mConfig)) {
+                Config::set($mConfig);
+            } else {
+                Config::load($mConfig);
             }
         }
 
+        // Settings System
+        $system = Config::get('system');
+
+        foreach ($system as $type => $class) {
+            $path = Config::get('paths.adapters');
+
+            if (end(explode(DS, $path)) !== '') {
+                $path .= DS;
+            }
+
+            Config::load($path.$class.'.php');
+
+            $className = '\\App\\classes\\'.$type;
+
+            if (class_exists($className)) {
+                $this->{'_'.$type} = new $className();
+            }
+        }
+
+
         // ...
 
-
         // Settings Aliases
-        $aliases = Config::get('aliases');
+        $aliases = Config::get('defaults.aliases');
 
         foreach ($aliases['classes'] as $aliasName  => $class) {
             class_alias($class, $aliasName);

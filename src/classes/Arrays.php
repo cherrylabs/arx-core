@@ -224,7 +224,7 @@ abstract class Arrays
             $return = array();
 
             foreach ($mFind as $key) {
-                $return[$key] = static::delete($aSearch, $key);
+                $return[$key] = self::delete($aSearch, $key);
             }
 
             return $return;
@@ -241,7 +241,7 @@ abstract class Arrays
         if (!empty($keys)) {
             $key = implode('.', $keys);
 
-            return static::delete($aSearch[$this_key], $key);
+            return self::delete($aSearch[$this_key], $key);
         } else {
             unset($aSearch[$this_key]);
         }
@@ -269,7 +269,7 @@ abstract class Arrays
             $return = array();
 
             foreach ($mFind as $key) {
-                $return[$key] = static::get($aSearch, $key, $sDefault);
+                $return[$key] = self::get($aSearch, $key, $sDefault);
             }
 
             return $return;
@@ -322,7 +322,7 @@ abstract class Arrays
                 if (is_int($key)) {
                     array_key_exists($key, $array) ? array_push($array, $value) : $array[$key] = $value;
                 } elseif (is_array($value) && array_key_exists($key, $array) && is_array($array[$key])) {
-                    $array[$key] = static::merge($array[$key], $value);
+                    $array[$key] = self::merge($array[$key], $value);
                 } else {
                     $array[$key] = $value;
                 }
@@ -377,13 +377,13 @@ abstract class Arrays
     public static function set(&$aArray, $mFind, $mValue = null)
     {
         if (is_null($mFind)) {
-            $aArray = $mValue;
+            $aArray = !is_null($mValue) ? $mValue : $aArray;
             return;
         }
 
         if (is_array($mFind)) {
             foreach ($mFind as $key => $value) {
-                static::set($aArray, $key, $value);
+                self::set($aArray, $key, $value);
             }
         } else {
             $keys = explode('.', $mFind);
@@ -398,11 +398,7 @@ abstract class Arrays
                 $aArray =& $aArray[$mFind];
             }
 
-            if (is_array($mFind)) {
-                $aArray[array_shift($mFind)] = $mValue;
-            } else {
-                $aArray[$mFind] = $mValue;
-            }
+            $aArray[reset($keys)] = $mValue;
         }
     } // set
 

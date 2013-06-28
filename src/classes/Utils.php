@@ -223,6 +223,11 @@ class Utils
     } // k
 
 
+    public static function epre($v) {
+        return d($v);
+    } // epre
+
+
     public static function pre() {
         $aArgs = func_get_args();
 

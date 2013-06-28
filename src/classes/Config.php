@@ -14,7 +14,7 @@ class Config extends Singleton
 {
     // --- Protected members
 
-    protected static $aSettings = array();
+    protected $aSettings = array();
 
 
     // --- Public methods
@@ -42,12 +42,14 @@ class Config extends Singleton
      */
     public static function get($sNeedle = null, $mDefault = null)
     {
-        if (!is_null(Arrays::get(self::$aSettings, $sNeedle, $mDefault))) {
-            $mDefault = Arrays::get(self::$aSettings, $sNeedle, $mDefault);
+        if (is_null($mDefault)) {
+            $mDefault = self::getInstance()->aSettings;
         }
 
-        if (is_null($sNeedle)) {
-            $mDefault = self::$aSettings;
+        $mDefault = Arrays::get(self::getInstance()->aSettings, $sNeedle, $mDefault);
+
+        if (is_null($mDefault)) {
+            $mDefault = Arrays::get(self::getInstance()->aSettings, 'defaults.'.$sNeedle, $mDefault);
         }
 
         return $mDefault;
@@ -70,19 +72,23 @@ class Config extends Singleton
     public static function load($mPath, $sNamespace = null)
     {
         if (is_array($mPath) && count($mPath) > 0) {
-            $aFiles = $mPath;
-        } elseif (strpos($mPath, '.') > 0 && !is_null(Arrays::get(self::$aSettings, $mPath))) {
-            $tmp = Arrays::get(self::$aSettings, $mPath);
+            $aFiles = realpath($mPath);
+        } elseif (strpos($mPath, '.') > 0 && !is_null(Arrays::get(self::getInstance()->aSettings, $mPath))) {
+            $tmp = Arrays::get(self::getInstance()->aSettings, $mPath);
             $aFiles = glob(substr($tmp, -1) === '/' ? $tmp.'*' : $tmp);
         } else {
-            $aFiles = glob(substr($mPaths, -1) === '/' ? $mPath.'*' : $mPath);
+            $aFiles = glob(substr($mPath, -1) === '/' ? $mPath.'*' : $mPath);
         }
 
-        foreach ($sNamespace as $sFilePath) {
+        foreach ($aFiles as $sFilePath) {
             $pathinfo = pathinfo($sFilePath);
             $key = !is_null($sNamespace) ? $sNamespace.'.'.$pathinfo['filename'] : $pathinfo['filename'];
 
-            if (!is_null(self::get($key))) {
+            if (!is_int(array_search($sFilePath, $aFiles))) {
+                $key = array_search($sFilePath, $aFiles);
+            }
+
+            if (!is_null(Arrays::get(self::getInstance()->aSettings, $key))) {
                 self::set($key, Arrays::merge(self::get($key), include $sFilePath));
             } else {
                 self::set($key, include $sFilePath);
@@ -107,10 +113,10 @@ class Config extends Singleton
     {
         if (is_array($sName)) {
             foreach ($sName as $key => $value) {
-                Arrays::set(self::$aSettings, $key, $value);
+                Arrays::set(self::getInstance()->aSettings, $key, $value);
             }
         } else {
-            Arrays::set(self::$aSettings, $sName, $mValue);
+            Arrays::set(self::getInstance()->aSettings, $sName, $mValue);
         }
     } // set
 
