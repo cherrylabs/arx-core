@@ -45,12 +45,9 @@ class Config extends Singleton
         if (is_null($mDefault)) {
             $mDefault = self::getInstance()->aSettings;
         }
-
-        $mDefault = Arrays::get(self::getInstance()->aSettings, $sNeedle, $mDefault);
-
-        if (is_null($mDefault)) {
-            $mDefault = Arrays::get(self::getInstance()->aSettings, 'defaults.'.$sNeedle, $mDefault);
-        }
+echo(var_dump(Arrays::get(self::getInstance()->aSettings, 'defaults.'.$sNeedle, $mDefault)));
+echo(var_dump(Arrays::get(self::getInstance()->aSettings, $sNeedle, $mDefault)));
+        $mDefault = Arrays::get(self::getInstance()->aSettings, $sNeedle, Arrays::get(self::getInstance()->aSettings, 'defaults.'.$sNeedle, $mDefault));
 
         return $mDefault;
     } // get

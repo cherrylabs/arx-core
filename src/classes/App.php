@@ -54,7 +54,7 @@ class App extends Singleton
 
         foreach ($system as $type => $class) {
             $path = Config::get('paths.adapters');
-
+die(var_dump('----'));
             if (end(explode(DS, $path)) !== '') {
                 $path .= DS;
             }
