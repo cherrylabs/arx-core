@@ -1,4 +1,4 @@
-### We apologize, /\rx still in progress for a first alpha release please wait at the end of June.
+### /\rx still in progress for a first alpha release please wait at the end of June.
 
 ```
 
@@ -34,5 +34,6 @@
    _(    (    )b  -`.  ) +
   ( 8)  ( _.aP" _a   \( \   *
 +  )/    (8P   (88    )  )
-   (<a href="http://www.ascii-art.de/info/artists/andreas/" class="no-line">a:f</a>   "     `"       `
+   (a:f   "     `"       `
 ```
+@ http://www.ascii-art.de/info/artists/andreas/
