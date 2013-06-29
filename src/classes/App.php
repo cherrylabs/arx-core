@@ -23,6 +23,7 @@ class App extends Singleton
 
     private $_cache = null;
     private $_config = null;
+    private $_debug = null;
     private $_orm = null;
     private $_route = null;
     private $_template = null;
@@ -39,40 +40,40 @@ class App extends Singleton
     {
         $this->_config = Config::getInstance();
 
-        Config::load(__DIR__.'/../config/', 'defaults');
+        $this->_config->load(__DIR__.'/../config/', 'defaults'); // restart working here !!! :-)
 
         if (!is_null($mConfig)) {
             if (is_array($mConfig)) {
-                Config::set($mConfig);
+                $this->_config->set($mConfig);
             } else {
-                Config::load($mConfig);
+                $this->_config->load($mConfig);
             }
         }
 
         // Settings System
-        $system = Config::get('system');
+        $system = $this->_config->get('system');
 
         foreach ($system as $type => $class) {
-            $path = Config::get('paths.adapters');
-// die(var_dump($path));
+            $path = $this->_config->get('paths.adapters');
+
             if (end(explode(DS, $path)) !== '') {
                 $path .= DS;
             }
 
-            Config::load($path.$class.'.php');
+            $this->_config->load($path.$class.'.php');
 
-            $className = '\\App\\classes\\'.$type;
+            $className = '\\Arx\\classes\\'.$type;
 
             if (class_exists($className)) {
                 $this->{'_'.$type} = new $className();
             }
         }
 
-
         // ...
 
+
         // Settings Aliases
-        $aliases = Config::get('defaults.aliases');
+        $aliases = $this->_config->get('defaults.aliases');
 
         foreach ($aliases['classes'] as $aliasName  => $class) {
             class_alias($class, $aliasName);

@@ -17,6 +17,28 @@ class Config extends Singleton
     protected $aSettings = array();
 
 
+    // --- Magic methods
+
+    /**
+     * Magic function __callStatic.
+     *
+     * @param string $sMehod The name of the method
+     * @param mixed  $mArgs  Params
+     *
+     * @return mixed
+     */
+    public static function __callStatic($sMehod, $mArgs)
+    {
+        $config = static::getInstance();
+
+        if (method_exists($config, $sMethod)) {
+            return call_user_func_array(array($config, $sName), $mArgs);
+        }
+
+        return false;
+    } // __callStatic
+
+
     // --- Public methods
 
     /**
@@ -26,7 +48,7 @@ class Config extends Singleton
      *
      * @return bool            True if the config exist, false instead
      */
-    public static function needs($sNeedle) {} // get
+    public function needs($sNeedle) {} // get
 
 
     /**
@@ -38,20 +60,17 @@ class Config extends Singleton
      * @return mixed           The value of the setting or the entire settings array
      *
      * @example
-     * Config::get();
+     * Config::getInstance()->get('something.other');
+     *
+     * @todo Faire en sorte que si pas trouvé dans les config user (property), il tente de chopper la config par défault (default.property)
      */
-    public static function get($sNeedle = null, $mDefault = null)
+    public function get($sNeedle = null, $mDefault = null)
     {
-        $settings =& self::getInstance()->aSettings;
-
-        if (is_null($mDefault)) {
-            $mDefault = $settings;
+        if (is_null($sNeedle) && is_null($mDefault)) {
+            $mDefault = $this->aSettings;
         }
-// echo(var_dump(Arrays::get(self::getInstance()->aSettings, 'defaults.'.$sNeedle, $mDefault)));
-// echo(var_dump(Arrays::get(self::getInstance()->aSettings, $sNeedle, $mDefault)));
-        $mDefault = Arrays::get($settings, $sNeedle, Arrays::get($settings, 'defaults.'.$sNeedle, $mDefault));
 
-        return $mDefault;
+        return Arrays::get($this->aSettings, $sNeedle, Arrays::get($this->aSettings, 'defaults.'.$sNeedle, $mDefault));  // restart working here !!! :-)
     } // get
 
 
@@ -64,18 +83,16 @@ class Config extends Singleton
      * @return void
      *
      * @example
-     * Config::load('paths.adapters', 'defaults'); // dot-notated query url in configuration paths
-     * Config::load('some/path/to/your/configuration/file.php');
-     * Config::load('some/path/to/your/configuration/folder/');
+     * Config::getInstance()->load('paths.adapters', 'defaults'); // dot-notated query url in configuration paths
+     * Config::getInstance()->load('some/path/to/your/configuration/file.php');
+     * Config::getInstance()->load('some/path/to/your/configuration/folder/');
      */
-    public static function load($mPath, $sNamespace = null)
+    public function load($mPath, $sNamespace = null)
     {
-        $settings =& self::getInstance()->aSettings;
-
         if (is_array($mPath) && count($mPath) > 0) {
             $aFiles = realpath($mPath);
-        } elseif (strpos($mPath, '.') > 0 && !is_null(Arrays::get($settings, $mPath))) {
-            $tmp = Arrays::get($settings, $mPath);
+        } elseif (strpos($mPath, '.') > 0 && !is_null(Arrays::get($this->aSettings, $mPath))) {
+            $tmp = Arrays::get($this->aSettings, $mPath);
             $aFiles = glob(substr($tmp, -1) === '/' ? $tmp.'*' : $tmp);
         } else {
             $aFiles = glob(substr($mPath, -1) === '/' ? $mPath.'*' : $mPath);
@@ -89,12 +106,14 @@ class Config extends Singleton
                 $key = array_search($sFilePath, $aFiles);
             }
 
-            if (!is_null(Arrays::get($settings, $key))) {
-                self::set($key, Arrays::merge(self::get($key), include $sFilePath));
+            if (!is_null(Arrays::get($this->aSettings, $key))) {
+                $this->set($key, Arrays::merge($this->get($key), include $sFilePath));
             } else {
-                self::set($key, include $sFilePath);
+                $this->set($key, include $sFilePath);
             }
         }
+
+        return $this;
     } // load
 
 
@@ -107,18 +126,20 @@ class Config extends Singleton
      * @return void
      *
      * @example
-     * Config::set(array('defaults.somehing' => 'something'));
-     * Config::set('defaults.something', 'something');
+     * Config::getInstance()->set(array('defaults.somehing' => 'something'));
+     * Config::getInstance()->set('defaults.something', 'something');
      */
-    public static function set($sName, $mValue = null)
+    public function set($sName, $mValue = null)
     {
         if (is_array($sName)) {
             foreach ($sName as $key => $value) {
-                Arrays::set(self::getInstance()->aSettings, $key, $value);
+                Arrays::set($this->aSettings, $key, $value);
             }
         } else {
-            Arrays::set(self::getInstance()->aSettings, $sName, $mValue);
+            Arrays::set($this->aSettings, $sName, $mValue);
         }
+
+        return $this;
     } // set
 
 } // class::Config
