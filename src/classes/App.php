@@ -16,7 +16,7 @@ class App extends Singleton
     // --- Constants
 
     const VERSION = '1.0';
-    const CODENAME = 'Lupa';
+    const CODENAME = 'Lupanar';
 
 
     // --- Private members
@@ -73,9 +73,9 @@ class App extends Singleton
 
 
         // Settings Aliases
-        $aliases = $this->_config->get('defaults.aliases');
+        $aliases = $this->_config->get('aliases');
 
-        foreach ($aliases['classes'] as $aliasName  => $class) {
+        foreach ($aliases['classes'] as $aliasName => $class) {
             class_alias($class, $aliasName);
         }
 
