@@ -40,7 +40,7 @@ class App extends Singleton
     {
         $this->_config = Config::getInstance();
 
-        $this->_config->load(__DIR__.'/../config/', 'defaults'); // restart working here !!! :-)
+        $this->_config->load(__DIR__.'/../config/', 'defaults');
 
         if (!is_null($mConfig)) {
             if (is_array($mConfig)) {
