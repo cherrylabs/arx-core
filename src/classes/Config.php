@@ -51,7 +51,7 @@ class Config extends Singleton
     public static function get($sNeedle = null, $mDefault = null)
     {
         if (is_null($sNeedle) && is_null($mDefault)) {
-            $mDefault = static::$aSettings;
+            return static::$aSettings;
         }
 
         return Arrays::get(static::$aSettings, $sNeedle, Arrays::get(static::$aSettings, 'defaults.'.$sNeedle, $mDefault));

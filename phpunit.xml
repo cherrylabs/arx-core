@@ -12,7 +12,7 @@
         >
     <testsuites>
         <testsuite name="Arx Test Suite">
-            <file>tests/classes/ContainerTest.php</file>
+            <file>tests/ArxTest.php</file>
         </testsuite>
     </testsuites>
 </phpunit>
