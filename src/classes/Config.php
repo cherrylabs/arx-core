@@ -14,29 +14,10 @@ class Config extends Singleton
 {
     // --- Protected members
 
-    protected $aSettings = array();
+    protected static $aSettings = array();
 
 
     // --- Magic methods
-
-    /**
-     * Magic function __callStatic.
-     *
-     * @param string $sMehod The name of the method
-     * @param mixed  $mArgs  Params
-     *
-     * @return mixed
-     */
-    public static function __callStatic($sMehod, $mArgs)
-    {
-        $config = static::getInstance();
-
-        if (method_exists($config, $sMethod)) {
-            return call_user_func_array(array($config, $sName), $mArgs);
-        }
-
-        return false;
-    } // __callStatic
 
 
     // --- Public methods
@@ -48,9 +29,9 @@ class Config extends Singleton
      *
      * @return void
      */
-    public function delete($sName)
+    public static function delete($sName)
     {
-        Arrays::delete($this->aSettings, $sName);
+        Arrays::delete(static::$aSettings, $sName);
     } // delete
 
 
@@ -67,13 +48,13 @@ class Config extends Singleton
      *
      * @todo Faire en sorte que si pas trouvé dans les config user (property), il tente de chopper la config par défault (default.property)
      */
-    public function get($sNeedle = null, $mDefault = null)
+    public static function get($sNeedle = null, $mDefault = null)
     {
         if (is_null($sNeedle) && is_null($mDefault)) {
-            $mDefault = $this->aSettings;
+            $mDefault = static::$aSettings;
         }
 
-        return Arrays::get($this->aSettings, $sNeedle, Arrays::get($this->aSettings, 'defaults.'.$sNeedle, $mDefault));  // restart working here !!! :-)
+        return Arrays::get(static::$aSettings, $sNeedle, Arrays::get(static::$aSettings, 'defaults.'.$sNeedle, $mDefault));
     } // get
 
 
@@ -83,19 +64,19 @@ class Config extends Singleton
      * @param string $mPath      Array of path or string
      * @param string $sNamespace String used as reference (ex. Config::get('namespace.paths.classes'))
      *
-     * @return void
+     * @return instance
      *
      * @example
      * Config::getInstance()->load('paths.adapters', 'defaults'); // dot-notated query url in configuration paths
      * Config::getInstance()->load('some/path/to/your/configuration/file.php');
      * Config::getInstance()->load('some/path/to/your/configuration/folder/');
      */
-    public function load($mPath, $sNamespace = null)
+    public static function load($mPath, $sNamespace = null)
     {
         if (is_array($mPath) && count($mPath) > 0) {
             $aFiles = realpath($mPath);
-        } elseif (strpos($mPath, '.') > 0 && !is_null(Arrays::get($this->aSettings, $mPath))) {
-            $tmp = Arrays::get($this->aSettings, $mPath);
+        } elseif (strpos($mPath, '.') > 0 && !is_null(Arrays::get(static::$aSettings, $mPath))) {
+            $tmp = Arrays::get(static::$aSettings, $mPath);
             $aFiles = glob(substr($tmp, -1) === '/' ? $tmp.'*' : $tmp);
         } else {
             $aFiles = glob(substr($mPath, -1) === '/' ? $mPath.'*' : $mPath);
@@ -109,25 +90,39 @@ class Config extends Singleton
                 $key = array_search($sFilePath, $aFiles);
             }
 
-            if (!is_null(Arrays::get($this->aSettings, $key))) {
-                $this->set($key, Arrays::merge($this->get($key), include $sFilePath));
+            if (!is_null(Arrays::get(static::$aSettings, $key))) {
+                static::set($key, Arrays::merge(static::get($key), include $sFilePath));
             } else {
-                $this->set($key, include $sFilePath);
+                static::set($key, include $sFilePath);
             }
         }
 
-        return $this;
+        return static::getInstance();
     } // load
 
 
     /**
      * Request a particular config.
      *
-     * @param string $sNeedle The config name requested
+     * @param string $sNeedle   The config name requested
+     * @param string $sCallback The callback if not find
+     * @param array  $aArgs     The args of the callback
      *
-     * @return bool           True if the config exist, false instead
+     * @return bool             True if the config exist, false instead
      */
-    public function needs($sNeedle) {} // needs
+    public static function needs($sNeedle, $sCallback = null, $aArgs = null) {
+        if (!is_null(static::get($sNeedle))) {
+            return true;
+        } elseif (!is_null($sCallback)) {
+            if (is_array($aArgs)) {
+                return call_user_func_array($sCallback, $aArgs);
+            }
+
+            return call_user_func($sCallback);
+        }
+
+        return false;
+    } // needs
 
 
     /**
@@ -136,23 +131,23 @@ class Config extends Singleton
      * @param string $sName  Array of new value or name
      * @param mixed  $mValue Value for name
      *
-     * @return void
+     * @return instance
      *
      * @example
      * Config::getInstance()->set(array('defaults.somehing' => 'something'));
      * Config::getInstance()->set('defaults.something', 'something');
      */
-    public function set($sName, $mValue = null)
+    public static function set($sName, $mValue = null)
     {
         if (is_array($sName)) {
             foreach ($sName as $key => $value) {
-                Arrays::set($this->aSettings, $key, $value);
+                Arrays::set(static::$aSettings, $key, $value);
             }
         } else {
-            Arrays::set($this->aSettings, $sName, $mValue);
+            Arrays::set(static::$aSettings, $sName, $mValue);
         }
 
-        return $this;
+        return static::getInstance();
     } // set
 
 } // class::Config
