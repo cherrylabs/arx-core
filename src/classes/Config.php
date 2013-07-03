@@ -45,8 +45,6 @@ class Config extends Singleton
      *
      * @example
      * Config::getInstance()->get('something.other');
-     *
-     * @todo Faire en sorte que si pas trouvé dans les config user (property), il tente de chopper la config par défault (default.property)
      */
     public static function get($sNeedle = null, $mDefault = null)
     {
@@ -64,7 +62,7 @@ class Config extends Singleton
      * @param string $mPath      Array of path or string
      * @param string $sNamespace String used as reference (ex. Config::get('namespace.paths.classes'))
      *
-     * @return instance
+     * @return object
      *
      * @example
      * Config::getInstance()->load('paths.adapters', 'defaults'); // dot-notated query url in configuration paths
@@ -131,7 +129,7 @@ class Config extends Singleton
      * @param string $sName  Array of new value or name
      * @param mixed  $mValue Value for name
      *
-     * @return instance
+     * @return object
      *
      * @example
      * Config::getInstance()->set(array('defaults.somehing' => 'something'));

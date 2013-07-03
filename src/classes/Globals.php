@@ -25,7 +25,7 @@ abstract class Globals
     } // checkSession
 
 
-    public function deleteAllCookies() {
+    public static function deleteAllCookies() {
         if(headers_sent($filename, $line)){
 
             predie($filename, $line);
