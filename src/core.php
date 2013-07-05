@@ -1,4 +1,4 @@
-<?php namespace Arx;
+<?php
 
 /**
  * PHP File - /core.php
@@ -33,6 +33,10 @@
  * @link     http://arx.xxx
  */
 
+use Arx\classes\Utils;
+
+defined('ARX_STARTTIME') or define('ARX_STARTTIME', microtime(true));
+
 if (!defined('IS_HTTPS')) {
 
     define('IS_HTTPS', true);
@@ -45,8 +49,8 @@ defined('DS') or define('DS', DIRECTORY_SEPARATOR);
 
 require_once __DIR__.DS.'classes'.DS.'Singleton.php';
 
-require_once __DIR__.DS.'classes'.DS.'Arrays.php';
-require_once __DIR__.DS.'classes'.DS.'Assets.php';
+require_once __DIR__.DS.'classes'.DS.'Arr.php';
+require_once __DIR__.DS.'classes'.DS.'Asset.php';
 require_once __DIR__.DS.'classes'.DS.'Convert.php';
 require_once __DIR__.DS.'classes'.DS.'Date.php';
 require_once __DIR__.DS.'classes'.DS.'Finder.php';
@@ -58,3 +62,7 @@ require_once __DIR__.DS.'classes'.DS.'Valid.php';
 
 require_once __DIR__.DS.'classes'.DS.'Config.php';
 require_once __DIR__.DS.'classes'.DS.'App.php';
+
+class Arx extends \Arx\classes\App{};
+
+spl_autoload_register('Arx::load');

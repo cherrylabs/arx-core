@@ -3,9 +3,8 @@
 
 return array(
     'classes' => array(
-        'App' => '\Arx\classes\App',
-        'Arrays' => '\Arx\classes\Arrays',
-        'Assets' => '\Arx\classes\Assets',
+        'Arrays' => '\Arx\classes\Arr',
+        'Assets' => '\Arx\classes\Asset',
         'Config' => '\Arx\classes\Config',
         'Date' => '\Arx\classes\Date',
         'Finder' => '\Arx\classes\Finder',

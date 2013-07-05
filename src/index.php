@@ -2,12 +2,13 @@
 
 require __DIR__.'/../vendor/autoload.php';
 
+$app = new Arx();
 
-$app = new \Arx\classes\App();
+predie($app);
 
+$app->get('/', function() use ($app){
+    $app->content(__('hello'));
+    $app->display('index');
+});
 
-u::pre('test');
-
-die(var_dump(get_included_files()));
-
-echo 'ok';
+$app->run();

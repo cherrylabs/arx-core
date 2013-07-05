@@ -2,9 +2,8 @@
 // --- System configuration
 
 return array(
-    'cache'  => '',
-    // 'config' => '', // will reset the actual config object if setted !!
-    'debug' => '',
-    'orm' => '',
-    'route' => '',
+    'cache'  => '\\Arx\\classes\\Cache',
+    'debug' => '\\Arx\\classes\\Debug',
+    'orm' => '\\Arx\\classes\\Orm',
+    'route' => '\\Arx\\classes\\Route'
 );

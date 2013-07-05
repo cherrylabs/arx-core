@@ -21,7 +21,7 @@ class Singleton
 
     // --- Public methods
 
-    final public static function getInstance()
+    public static function getInstance()
     {
         $sClass = get_called_class();
 

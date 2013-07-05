@@ -31,7 +31,7 @@ class Config extends Singleton
      */
     public static function delete($sName)
     {
-        Arrays::delete(static::$aSettings, $sName);
+        Arr::delete(static::$aSettings, $sName);
     } // delete
 
 
@@ -52,7 +52,7 @@ class Config extends Singleton
             return static::$aSettings;
         }
 
-        return Arrays::get(static::$aSettings, $sNeedle, Arrays::get(static::$aSettings, 'defaults.'.$sNeedle, $mDefault));
+        return Arr::get(static::$aSettings, $sNeedle, Arr::get(static::$aSettings, 'defaults.'.$sNeedle, $mDefault));
     } // get
 
 
@@ -73,11 +73,11 @@ class Config extends Singleton
     {
         if (is_array($mPath) && count($mPath) > 0) {
             $aFiles = realpath($mPath);
-        } elseif (strpos($mPath, '.') > 0 && !is_null(Arrays::get(static::$aSettings, $mPath))) {
-            $tmp = Arrays::get(static::$aSettings, $mPath);
-            $aFiles = glob(substr($tmp, -1) === '/' ? $tmp.'*' : $tmp);
+        } elseif (strpos($mPath, '.') > 0 && !is_null(Arr::get(static::$aSettings, $mPath))) {
+            $tmp = Arr::get(static::$aSettings, $mPath);
+            $aFiles = glob(substr($tmp, -1) === '/' ? $tmp.'*.php' : $tmp);
         } else {
-            $aFiles = glob(substr($mPath, -1) === '/' ? $mPath.'*' : $mPath);
+            $aFiles = glob(substr($mPath, -1) === '/' ? $mPath.'*.php' : $mPath);
         }
 
         foreach ($aFiles as $sFilePath) {
@@ -88,8 +88,8 @@ class Config extends Singleton
                 $key = array_search($sFilePath, $aFiles);
             }
 
-            if (!is_null(Arrays::get(static::$aSettings, $key))) {
-                static::set($key, Arrays::merge(static::get($key), include $sFilePath));
+            if (!is_null(Arr::get(static::$aSettings, $key))) {
+                static::set($key, Arr::merge(static::get($key), include $sFilePath));
             } else {
                 static::set($key, include $sFilePath);
             }
@@ -139,10 +139,10 @@ class Config extends Singleton
     {
         if (is_array($sName)) {
             foreach ($sName as $key => $value) {
-                Arrays::set(static::$aSettings, $key, $value);
+                Arr::set(static::$aSettings, $key, $value);
             }
         } else {
-            Arrays::set(static::$aSettings, $sName, $mValue);
+            Arr::set(static::$aSettings, $sName, $mValue);
         }
 
         return static::getInstance();

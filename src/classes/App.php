@@ -40,7 +40,7 @@ class App extends Singleton
     {
         $this->_config = Config::getInstance();
 
-        $this->_config->load(__DIR__.'/../config/', 'defaults');
+        $this->_config->load(__DIR__ . '/../config/', 'defaults');
 
         if (!is_null($mConfig)) {
             if (is_array($mConfig)) {
@@ -50,54 +50,94 @@ class App extends Singleton
             }
         }
 
+
+        // Settings Aliases
+        $aliases = $this->_config->get('aliases');
+
+        foreach ($aliases['classes'] as $aliasName => $class) {
+            if (!class_exists($aliasName)) {
+                class_alias($class, $aliasName);
+            }
+        }
+
+        foreach ($aliases['functions'] as $aliasName => $callback) {
+            if (!function_exists($aliasName)) {
+                Utils::alias($aliasName, $callback);
+            }
+        }
+
         // Settings System
         $system = $this->_config->get('system');
 
         foreach ($system as $type => $class) {
             $path = $this->_config->get('paths.adapters');
 
-            if (end(explode(DS, $path)) !== '') {
+            $aPath = explode(DS, $path);
+
+            if (end($aPath) !== '') {
                 $path .= DS;
             }
 
-            $this->_config->load($path.$class.'.php');
+            $this->_config->load($path . $class . '.php');
 
-            $className = '\\Arx\\classes\\'.$type;
-
-            if (class_exists($className)) {
-                $this->{'_'.$type} = new $className();
-            }
+            $this->{'_' . $type} = new $class();
         }
+
+
+        // autoload
 
         // ...
-
-
-        // Settings Aliases
-        $aliases = $this->_config->get('aliases');
-
-        foreach ($aliases['classes'] as $aliasName => $class) {
-            class_alias($class, $aliasName);
-        }
-
-        foreach ($aliases['functions'] as $aliasName => $callback) {
-            Utils::alias($aliasName, $callback);
-        }
 
     } // __construct
 
 
     // --- Magic methods
 
-    public function __call($sName, $aArgs) {} // __call
+    public function __call($sName, $aArgs)
+    {
+
+    } // __call
 
 
-    public static function __callStatic($sName, $aArgs) {} // __callStatic
+    public static function __callStatic($sName, $aArgs)
+    {
+
+    } // __callStatic
 
 
-    public function __get($sName) {} // __get
+    public function __get($sName)
+    {
+    } // __get
 
 
-    public function __set($sName, $mValue) {} // __set
+    public function __set($sName, $mValue)
+    {
+    } // __set
+
+    public function get()
+    {
+        call_user_func_array(array($this->_route, 'get'), func_get_args());
+    }
+
+    static function load()
+    {
+
+        $instance = self::getInstance();
+
+        $className = ltrim($className, '\\');
+        $fileName = '';
+        $namespace = '';
+
+        if ($lastNsPos = strrpos($className, '\\')) {
+            $namespace = substr($className, 0, $lastNsPos);
+            $className = substr($className, $lastNsPos + 1);
+            $fileName = str_replace('\\', DIRECTORY_SEPARATOR, $namespace) . DIRECTORY_SEPARATOR;
+        }
+        $fileName .= str_replace('_', DIRECTORY_SEPARATOR, $className) . '.php';
+
+        require $fileName;
+
+    } // load
 
 
 } // class::App

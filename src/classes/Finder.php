@@ -105,7 +105,7 @@ class Finder
         if(!$exclude_file) $exclude_file = $this->_exclude_file;
         if(!$exclude_dir) $exclude_dir = $this->_exclude_dir;
 
-        // Lowercase exclude arrays
+        // Lowercase exclude Arr
         $exclude_extension = array_map("strtolower", $exclude_extension);
         $exclude_file = array_map("strtolower", $exclude_file);
         $exclude_dir = array_map("strtolower", $exclude_dir);
