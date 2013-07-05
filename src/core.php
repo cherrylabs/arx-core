@@ -33,17 +33,10 @@
  * @link     http://arx.xxx
  */
 
-use Arx\classes\Utils;
 
 defined('ARX_STARTTIME') or define('ARX_STARTTIME', microtime(true));
-
-if (!defined('IS_HTTPS')) {
-
-    define('IS_HTTPS', true);
-}
-
+defined('IS_HTTPS') or define('IS_HTTPS', true);
 defined('HTTP') or define('HTTP', 'http'.(defined('IS_HTTPS') ? 's' : '') . '://');
-
 defined('DS') or define('DS', DIRECTORY_SEPARATOR);
 
 
@@ -51,11 +44,15 @@ require_once __DIR__.DS.'classes'.DS.'Singleton.php';
 
 require_once __DIR__.DS.'classes'.DS.'Arr.php';
 require_once __DIR__.DS.'classes'.DS.'Asset.php';
+require_once __DIR__.DS.'classes'.DS.'Cache.php';
 require_once __DIR__.DS.'classes'.DS.'Convert.php';
 require_once __DIR__.DS.'classes'.DS.'Date.php';
+require_once __DIR__.DS.'classes'.DS.'Debug.php';
 require_once __DIR__.DS.'classes'.DS.'Finder.php';
 require_once __DIR__.DS.'classes'.DS.'Globals.php';
 require_once __DIR__.DS.'classes'.DS.'Hook.php';
+require_once __DIR__.DS.'classes'.DS.'Orm.php';
+require_once __DIR__.DS.'classes'.DS.'Route.php';
 require_once __DIR__.DS.'classes'.DS.'Strings.php';
 require_once __DIR__.DS.'classes'.DS.'Utils.php';
 require_once __DIR__.DS.'classes'.DS.'Valid.php';
@@ -63,6 +60,32 @@ require_once __DIR__.DS.'classes'.DS.'Valid.php';
 require_once __DIR__.DS.'classes'.DS.'Config.php';
 require_once __DIR__.DS.'classes'.DS.'App.php';
 
-class Arx extends \Arx\classes\App{};
 
-spl_autoload_register('Arx::load');
+// --- Autoload
+
+if (!function_exists('arx_autoload')) {
+    function arx_autoload($className)
+    {
+        $aAlias = array(
+            "ctrl_" => "/controllers/",
+            "c_" => "/classes/",
+            "a_" => "/adapters/",
+            "i_" => "/interfaces/",
+            "h_" => "/helpers/",
+            "m_" => "/models/",
+            "Arx\\" => __DIR__
+        );
+
+        $classPath = \Arx\classes\Utils::strAReplace($aAlias, $className).'.php';
+
+        if (is_file($classPath)) {
+            include_once $classPath;
+        } elseif (is_file(__DIR__.$classPath)) {
+            include_once __DIR__.$classPath;
+        } else {
+            //trigger_error($classPath);
+        }
+    } // arx_autoload
+}
+
+spl_autoload_register('arx_autoload');

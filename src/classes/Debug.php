@@ -1,4 +1,4 @@
-<?php namespace Neuron\classes;
+<?php namespace Arx\classes;
 
 /**
  * Debug
@@ -33,7 +33,7 @@ class Debug extends Singleton
 
     // --- Magic methods
 
-    public function __callStatic() {} // __callStatic
+    public static function __callStatic($sName, $mValue) {} // __callStatic
 
     public function __construct() {} // __construct
 

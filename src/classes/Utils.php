@@ -14,6 +14,20 @@
 class Utils
 {
 
+    // --- Magic methods
+
+    public static function __callStatic($sName, $aArgs) {
+
+        switch (true) {
+            case method_exists('\Arx\classes\Strings', $sName):
+                return call_user_func_array(array('\Arx\classes\Strings', $sName), $aArgs);
+        }
+
+        die('oook');
+
+    } // __call
+
+
     // --- Public methods
 
     public static function alias($aliasName, $callback) {
