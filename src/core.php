@@ -33,8 +33,6 @@
  * @link     http://arx.xxx
  */
 
-use Arx\classes\Utils;
-
 defined('ARX_STARTTIME') or define('ARX_STARTTIME', microtime(true));
 
 if (!defined('IS_HTTPS')) {
@@ -65,4 +63,4 @@ require_once __DIR__.DS.'classes'.DS.'App.php';
 
 class Arx extends \Arx\classes\App{};
 
-spl_autoload_register('Arx::load');
+spl_autoload_register('Arx::autoload');

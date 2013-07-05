@@ -3,16 +3,6 @@
 
 return array(
     'classes' => array(
-        'Arrays' => '\Arx\classes\Arr',
-        'Assets' => '\Arx\classes\Asset',
-        'Config' => '\Arx\classes\Config',
-        'Date' => '\Arx\classes\Date',
-        'Finder' => '\Arx\classes\Finder',
-        'Globals' => '\Arx\classes\Globals',
-        'Hook' => '\Arx\classes\Hook',
-        'Singleton' => '\Arx\classes\Singleton',
-        'Utils' => '\Arx\classes\Utils',
-        'Valid' => '\Arx\classes\Valid',
         'u' => '\Arx\classes\Utils',
     ),
     'functions' => array(

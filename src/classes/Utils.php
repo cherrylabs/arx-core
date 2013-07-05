@@ -248,7 +248,7 @@ class Utils
         $aErrors = debug_backtrace();
 
         foreach ($aErrors as $key => $error) {
-            if ($error['function'] == 'predie' && !empty($error['line']) && !empty($error['file'])) {
+            if (preg_match('/predie/i', $error['function']) && !empty($error['line']) && !empty($error['file'])) {
                 $line = $error['line'];
                 $file = $error['file'];
             }
@@ -513,4 +513,16 @@ class Utils
     } // sendMail
 
 } // class::Utils
+
+function predie(){
+    call_user_func_array(__NAMESPACE__."\\Utils::predie", func_get_args());
+}
+
+function k(){
+    call_user_func_array(__NAMESPACE__."\\Utils::k", func_get_args());
+}
+
+function pre(){
+    call_user_func_array(__NAMESPACE__."\\Utils::pre", func_get_args());
+}
 

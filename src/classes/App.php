@@ -139,5 +139,16 @@ class App extends Singleton
 
     } // load
 
+    static function autoload($className)
+    {
+        $aAutoload = Config::get('autoload');
+
+        if (array_key_exists($className, $aAutoload) && is_file($aAutoload[$className])) {
+            include $aAutoload[$className];
+        } else {
+
+        }
+    }
+
 
 } // class::App
