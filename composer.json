@@ -25,7 +25,7 @@
     },
     "autoload": {
         "psr-0": {
-            "Arx": "src",
+            "Arx": "src"
         },
         "autoload": {
             "classmap": ["vendor"]
