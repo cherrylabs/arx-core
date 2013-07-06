@@ -14,6 +14,10 @@
  */
 class Singleton
 {
+    // --- Private members
+
+    private static $_aInstances = array();
+
     // --- Constructor
 
     protected function __construct() {} // __construct
@@ -23,6 +27,12 @@ class Singleton
 
     public static function getInstance()
     {
+
+        Debug::deprecated(1.0, 'Standard PSR-2');
+
+    } // getInstance
+
+    public static function instance(){
         $sClass = get_called_class();
 
         if (!isset(self::$_aInstances[$sClass])) {
@@ -30,11 +40,6 @@ class Singleton
         }
 
         return self::$_aInstances[$sClass];
-    } // getInstance
-
-
-    // --- Private members
-
-    private static $_aInstances = array();
+    }
 
 } // class::Singleton

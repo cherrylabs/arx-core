@@ -10,7 +10,7 @@
  * @license  http://opensource.org/licenses/MIT MIT License
  * @link     http://arx.xxx/doc/App
  */
-class App extends Singleton
+class App extends Container
 {
 
     // --- Constants
@@ -21,12 +21,12 @@ class App extends Singleton
 
     // --- Private members
 
-    private $_cache = null;
-    private $_config = null;
-    private $_debug = null;
-    private $_orm = null;
-    private $_route = null;
-    private $_template = null;
+    protected $_cache = null;
+    protected $_config = null;
+    protected $_debug = null;
+    protected $_orm = null;
+    protected $_router = null;
+    protected $_view = null;
 
 
     // --- Constructor
@@ -38,7 +38,7 @@ class App extends Singleton
      */
     public function __construct($mConfig = null)
     {
-        $this->_config = Config::getInstance();
+        $this->_config = Config::instance();
 
         $this->_config->load(__DIR__ . '/../config/', 'defaults');
 
@@ -62,6 +62,7 @@ class App extends Singleton
 
         foreach ($aliases['functions'] as $aliasName => $callback) {
             if (!function_exists($aliasName)) {
+
                 Utils::alias($aliasName, $callback);
             }
         }
@@ -70,23 +71,8 @@ class App extends Singleton
         $system = $this->_config->get('system');
 
         foreach ($system as $type => $class) {
-            $path = $this->_config->get('paths.adapters');
-
-            $aPath = explode(DS, $path);
-
-            if (end($aPath) !== '') {
-                $path .= DS;
-            }
-
-            $this->_config->load($path . $class . '.php');
-
-            $this->{'_' . $type} = new $class();
+            $this->{'_' . $type} = new \ReflectionClass($class);
         }
-
-
-        // autoload
-
-        // ...
 
     } // __construct
 
@@ -107,11 +93,15 @@ class App extends Singleton
 
     public function __get($sName)
     {
+        if(isset($this->{'_'.$sName})){
+            return $this->{'_'.$sName};
+        }
     } // __get
 
 
     public function __set($sName, $mValue)
     {
+
     } // __set
 
     public function get()
@@ -139,13 +129,31 @@ class App extends Singleton
 
     } // load
 
-    static function autoload($className)
+    static function autoload($className, $aParam = array())
     {
         $aAutoload = Config::get('autoload');
 
-        if (array_key_exists($className, $aAutoload) && is_file($aAutoload[$className])) {
+        $className = ltrim($className, '\\');
+        $fileName  = '';
+        $namespace = '';
+        if ($lastNsPos = strrpos($className, '\\')) {
+            $namespace = substr($className, 0, $lastNsPos);
+            $className = substr($className, $lastNsPos + 1);
+            $fileName  = str_replace('\\', DIRECTORY_SEPARATOR, $namespace) . DIRECTORY_SEPARATOR;
+        }
+        $fileName .= str_replace('_', DIRECTORY_SEPARATOR, $className) . '.php';
+
+        $aNamespaces = Composer::getNamespaces();
+
+        if (is_array($aAutoload) and array_key_exists($className, $aAutoload) and is_file($aAutoload[$className])) {
             include $aAutoload[$className];
         } else {
+
+        }
+
+        if($className != 'u'){
+
+            $aNamespaces = Composer::getNamespaces();
 
         }
     }

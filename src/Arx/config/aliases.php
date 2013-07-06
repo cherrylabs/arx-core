@@ -6,7 +6,7 @@ return array(
         'u' => '\Arx\classes\Utils',
     ),
     'functions' => array(
-        'arxConfig' => '\Arx\classes\Config::getInstance',
+        'arxConfig' => '\Arx\classes\Config::instance',
         'getConfig' => '\Arx\classes\Config::get',
         'setConfig' => '\Arx\classes\Config::set',
         'predie' => '\Arx\classes\Utils::predie',

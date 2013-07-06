@@ -5,5 +5,6 @@ return array(
     'cache'  => '\\Arx\\classes\\Cache',
     'debug' => '\\Arx\\classes\\Debug',
     'orm' => '\\Arx\\classes\\Orm',
-    'route' => '\\Arx\\classes\\Route'
+    'router' => '\\Arx\\classes\\Router',
+    'view' => '\\Arx\\classes\\View'
 );
