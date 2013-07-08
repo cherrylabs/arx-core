@@ -15,6 +15,11 @@ include_once 'Container.php';
 
 class Config extends Container
 {
+    // --- Private memebers
+
+    private static $_instance;
+
+
     // --- Protected members
 
     protected static $aSettings = array();
@@ -59,14 +64,12 @@ class Config extends Container
     } // get
 
     public static function instance(){
-        $sClass = get_called_class();
-
-        if (!isset(self::$_aInstances[$sClass])) {
-            self::$_aInstances[$sClass] = new $sClass;
+        if (is_null(self::$_instance)) {
+            self::$_instance = new Config();
         }
 
-        return self::$_aInstances[$sClass];
-    }
+        return self::$_instance;
+    } // instance
 
 
     /**
