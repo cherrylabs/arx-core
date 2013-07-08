@@ -143,7 +143,12 @@ class App extends Singleton
     {
         $aAutoload = Config::get('autoload');
 
-        if (array_key_exists($className, $aAutoload) && is_file($aAutoload[$className])) {
+        if (empty($aAutoload)) {
+            Config::getInstance()->load(__DIR__ . '/../config/', 'defaults');
+            $aAutoload = Config::get('defaults.autoload');
+        }
+
+        if (is_array($aAutoload) && array_key_exists($className, $aAutoload) && is_file($aAutoload[$className])) {
             include $aAutoload[$className];
         } else {
 
