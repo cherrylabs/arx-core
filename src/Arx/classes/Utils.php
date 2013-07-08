@@ -21,9 +21,9 @@ class Utils
         switch (true) {
             case method_exists('\Arx\classes\Strings', $sName):
                 return call_user_func_array(array('\Arx\classes\Strings', $sName), $aArgs);
+            case method_exists('\Arx\classes\Arr', $sName):
+                return call_user_func_array(array('\Arx\classes\Arr', $sName), $aArgs);
         }
-
-        die('oook');
 
     } // __call
 

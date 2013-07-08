@@ -1,6 +1,6 @@
 <?php
 
-require __DIR__.'/../vendor/autoload.php';
+require __DIR__ . '/../vendor/autoload.php';
 
 \Arx\classes\Debug::dump('test', array('test', 3, new StdClass()));
 

@@ -10,7 +10,10 @@
  * @license  http://opensource.org/licenses/MIT MIT License
  * @link     http://arx.xxx/doc/Config
  */
-class Config extends Singleton
+
+include_once 'Container.php';
+
+class Config extends Container
 {
     // --- Protected members
 
@@ -44,7 +47,7 @@ class Config extends Singleton
      * @return mixed           The value of the setting or the entire settings array
      *
      * @example
-     * Config::getInstance()->get('something.other');
+     * Config::instance()->get('something.other');
      */
     public static function get($sNeedle = null, $mDefault = null)
     {
@@ -54,6 +57,16 @@ class Config extends Singleton
 
         return Arr::get(static::$aSettings, $sNeedle, Arr::get(static::$aSettings, 'defaults.'.$sNeedle, $mDefault));
     } // get
+
+    public static function instance(){
+        $sClass = get_called_class();
+
+        if (!isset(self::$_aInstances[$sClass])) {
+            self::$_aInstances[$sClass] = new $sClass;
+        }
+
+        return self::$_aInstances[$sClass];
+    }
 
 
     /**
@@ -65,9 +78,9 @@ class Config extends Singleton
      * @return object
      *
      * @example
-     * Config::getInstance()->load('paths.adapters', 'defaults'); // dot-notated query url in configuration paths
-     * Config::getInstance()->load('some/path/to/your/configuration/file.php');
-     * Config::getInstance()->load('some/path/to/your/configuration/folder/');
+     * Config::instance()->load('paths.adapters', 'defaults'); // dot-notated query url in configuration paths
+     * Config::instance()->load('some/path/to/your/configuration/file.php');
+     * Config::instance()->load('some/path/to/your/configuration/folder/');
      */
     public static function load($mPath, $sNamespace = null)
     {
@@ -95,7 +108,7 @@ class Config extends Singleton
             }
         }
 
-        return static::getInstance();
+        return static::instance();
     } // load
 
 
@@ -132,8 +145,8 @@ class Config extends Singleton
      * @return object
      *
      * @example
-     * Config::getInstance()->set(array('defaults.somehing' => 'something'));
-     * Config::getInstance()->set('defaults.something', 'something');
+     * Config::instance()->set(array('defaults.somehing' => 'something'));
+     * Config::instance()->set('defaults.something', 'something');
      */
     public static function set($sName, $mValue = null)
     {
@@ -145,7 +158,7 @@ class Config extends Singleton
             Arr::set(static::$aSettings, $sName, $mValue);
         }
 
-        return static::getInstance();
+        return static::instance();
     } // set
 
 } // class::Config
