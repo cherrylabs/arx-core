@@ -37,7 +37,7 @@
  * Constant declarations
  */
 defined('ARX_STARTTIME') or define('ARX_STARTTIME', microtime(true));
-defined('IS_HTTPS') or define('IS_HTTPS', true);
+defined('IS_HTTPS') or define('IS_HTTPS', false);
 defined('HTTP') or define('HTTP', 'http' . (defined('IS_HTTPS') ? 's' : '') . '://');
 defined('DS') or define('DS', DIRECTORY_SEPARATOR);
 

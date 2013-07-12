@@ -4,7 +4,7 @@
 return array(
     'cache'  => '\\Arx\\classes\\Cache',
     'debug' => '\\Arx\\classes\\Debug',
-    'orm' => '\\Arx\\classes\\Orm',
+    'orm' => array('\\Arx\\classes\\Orm', 'database'),
     'router' => '\\Arx\\classes\\Router',
     'view' => '\\Arx\\classes\\View'
 );

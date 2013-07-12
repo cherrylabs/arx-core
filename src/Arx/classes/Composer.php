@@ -8,22 +8,22 @@ class Composer extends Container{
     }
 
     public static function getPath() {
-        $t = self::instance();
+        $t = self::getInstance();
         return $t->path;
     }
 
     public static function getNamespaces(){
-        $t = self::instance();
+        $t = self::getInstance();
         return include $t->path . DS . 'autoload_namespaces.php';
     }
 
     public static function getClassmap(){
-        $t = self::instance();
+        $t = self::getInstance();
         return include $t->path . DS . 'autoload_classmap.php';
     }
 
     public static function getIncludedPaths(){
-        $t = self::instance();
+        $t = self::getInstance();
         return include $t->path . DS . 'include_paths.php';
     }
 

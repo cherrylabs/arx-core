@@ -220,7 +220,7 @@ class Utils
         $aErrors = debug_backtrace();
 
         foreach ($aErrors as $key => $error) {
-            if ($error['function'] == 'k' && !empty($error['line']) && !empty($error['file'])) {
+            if ( preg_match('/k/i', $error['function']) && !empty($error['line']) && !empty($error['file'])) {
                 $line = $error['line'];
                 $file = $error['file'];
             }
@@ -496,6 +496,18 @@ class Utils
     } // resizeImage
 
 
+    /**
+     * Quick resize image function
+     *
+     * @param $thumb_image_name
+     * @param $image
+     * @param $width
+     * @param $height
+     * @param $start_width
+     * @param $start_height
+     * @param $scale
+     * @return mixed
+     */
     public static function resizeThumbnailImage($thumb_image_name, $image, $width, $height, $start_width, $start_height, $scale) {
         $newImageWidth = ceil($width*$scale);
         $newImageHeight = ceil($height*$scale);

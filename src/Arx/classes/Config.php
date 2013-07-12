@@ -18,6 +18,7 @@ class Config extends Container
     // --- Protected members
 
     protected static $aSettings = array();
+    protected static $_aInstances = array();
 
 
     // --- Magic methods
@@ -58,7 +59,7 @@ class Config extends Container
         return Arr::get(static::$aSettings, $sNeedle, Arr::get(static::$aSettings, 'defaults.'.$sNeedle, $mDefault));
     } // get
 
-    public static function instance(){
+    public static function getInstance(){
         $sClass = get_called_class();
 
         if (!isset(self::$_aInstances[$sClass])) {
@@ -108,7 +109,7 @@ class Config extends Container
             }
         }
 
-        return static::instance();
+        return static::getInstance();
     } // load
 
 
@@ -158,7 +159,7 @@ class Config extends Container
             Arr::set(static::$aSettings, $sName, $mValue);
         }
 
-        return static::instance();
+        return static::getInstance();
     } // set
 
 } // class::Config

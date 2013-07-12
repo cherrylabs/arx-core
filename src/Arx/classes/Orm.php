@@ -1,3 +1,9 @@
 <?php namespace Arx\classes;
 
-class Orm {} // class::Orm
+class Orm {
+
+    public function __construct($config){
+
+    }
+
+} // class::Orm
