@@ -2,13 +2,14 @@
 
 require __DIR__ . '/../vendor/autoload.php';
 
-$app = new Arx();
+\Arx\classes\Debug::dump('test', array('test', 3, new StdClass()));
 
-predie($app);
+$app = new \Arx\classes\App();
 
-$app->get('/', function() use ($app){
-    $app->content(__('hello'));
-    $app->display('index');
-});
 
-$app->run();
+//$app->get('/', function() use ($app){
+//    $app->content(__('hello'));
+//    $app->display('index');
+//});
+//
+//$app->run();

@@ -144,7 +144,6 @@ class App extends Container
 
         foreach ($aliases['functions'] as $aliasName => $callback) {
             if (!function_exists($aliasName)) {
-
                 Utils::alias($aliasName, $callback);
             }
         }
