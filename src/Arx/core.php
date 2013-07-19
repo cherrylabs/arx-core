@@ -66,7 +66,7 @@ require_once __DIR__ . DS . 'classes' . DS . 'Debug.php';
 require_once __DIR__ . DS . 'classes' . DS . 'Finder.php';
 require_once __DIR__ . DS . 'classes' . DS . 'Globals.php';
 require_once __DIR__ . DS . 'classes' . DS . 'Hook.php';
-require_once __DIR__ . DS . 'classes' . DS . 'Orm.php';
+require_once __DIR__ . DS . 'classes' . DS . 'Db.php';
 require_once __DIR__ . DS . 'classes' . DS . 'Route.php';
 require_once __DIR__ . DS . 'classes' . DS . 'Valid.php';
 require_once __DIR__ . DS . 'classes' . DS . 'Config.php';

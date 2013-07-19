@@ -89,16 +89,30 @@ class App extends Container
     /**
      * Magic constructor by default load default config.
      *
-     * @param mixed $mConfig Path, array of paths or array of params
+     * @param mixed $mConfig String Path, array of paths or Request object
      */
     public function __construct()
     {
         $iArgs = func_num_args();
         $aArgs = func_get_args();
 
-        if($iArgs == 0){
-            $request = null;
+        $config = __DIR__ . '/../config/';
+
+        if ($iArgs == 1) {
+            if (is_array($aArgs[0]) || is_string($aArgs[0])) {
+                $config = $aArgs[0];
+            } elseif (is_object($aArgs[0])) {
+                $request = $aArgs[0];
+            }
+        } elseif($iArgs == 2){
+            if (is_array($aArgs[0]) || is_string($aArgs[0])) {
+                $config = $aArgs[0];
+            }
+            if (is_object($aArgs[1])) {
+                $request = $aArgs[1];
+            }
         } else {
+            $config = __DIR__ . '/../config/';
             $request = null;
         }
 
@@ -115,26 +129,14 @@ class App extends Container
 
         $this['env'] = "production";
 
-        /*$mConfig = !empty($aArgs) && is_array($aArgs[0]) ? $aArgs[0] : '';
-
         $this['config'] = Config::getInstance();
 
-        $this['request'] = Request::createFromGlobals();
-
-        $this['config']->load(__DIR__ . '/../config/', 'defaults');
-
-        if (!is_null($mConfig)) {
-            if (is_array($mConfig)) {
-                $this['config']->set($mConfig);
-            } else {
-                $this['config']->load($mConfig);
-            }
-        }
+        $this['config']->load($config, 'defaults');
 
         // Settings Aliases
         $aliases = $this['config']->get('aliases');
 
-        foreach ($aliases['classes'] as $aliasName => $class) {
+        foreach ( (array) $aliases['classes'] as $aliasName => $class) {
             if ( !class_exists($aliasName) ) {
                 class_alias($class, $aliasName);
             } else {
@@ -142,7 +144,7 @@ class App extends Container
             }
         }
 
-        foreach ($aliases['functions'] as $aliasName => $callback) {
+        foreach ( (array) $aliases['functions'] as $aliasName => $callback) {
             if (!function_exists($aliasName)) {
                 Utils::alias($aliasName, $callback);
             }
@@ -151,7 +153,7 @@ class App extends Container
         // Settings System
         $system = $this['config']->get('system');
 
-        foreach ($system as $accessor => $class) {
+        foreach ( (array) $system as $accessor => $class) {
             if(is_array($class)){
                 $oClass = new \ReflectionClass($class[0]);
 
@@ -160,7 +162,7 @@ class App extends Container
             } else {
                 $this[$accessor] = new $class();
             }
-        }*/
+        }
 
     } // __construct
 
@@ -174,7 +176,7 @@ class App extends Container
 
             case method_exists($this['router'], $sName):
                 return call_user_func_array(array($this['router'], $sName), $aArgs);
-            break;
+                break;
 
             default:
                 if (class_exists('\\Arx\\' . $sName)) {
@@ -200,7 +202,7 @@ class App extends Container
     /**
      * Dynamically access application services.
      *
-     * @param  string  $key
+     * @param  string $key
      * @return mixed
      */
     public function __get($key)
@@ -211,8 +213,8 @@ class App extends Container
     /**
      * Dynamically set application services.
      *
-     * @param  string  $key
-     * @param  mixed   $value
+     * @param  string $key
+     * @param  mixed $value
      * @return void
      */
     public function __set($key, $value)
@@ -255,7 +257,8 @@ class App extends Container
     }
 
     #C
-    public static function conf($name){
+    public static function conf($name)
+    {
         return self::getInstance()['config']->get($name);
     }
 
@@ -283,12 +286,12 @@ class App extends Container
     /**
      * Create the request for the application.
      *
-     * @param  \Illuminate\Http\Request  $request
+     * @param  \Illuminate\Http\Request $request
      * @return \Illuminate\Http\Request
      */
     protected function createRequest(Request $request = null)
     {
-        return $request ?: Request::createFromGlobals();
+        return $request ? : Request::createFromGlobals();
     }
 
     /**
@@ -317,8 +320,7 @@ class App extends Container
         // content in this application while still providing a solid experience.
         $path = $this['request']->getPathInfo();
 
-        if ($path != '/' and ends_with($path, '/') and ! ends_with($path, '//'))
-        {
+        if ($path != '/' and ends_with($path, '/') and !ends_with($path, '//')) {
             with(new SymfonyRedirect($this['request']->fullUrl(), 301))->send();
 
             exit;
@@ -328,15 +330,14 @@ class App extends Container
     /**
      * Bind the installation paths to the application.
      *
-     * @param  array  $paths
+     * @param  array $paths
      * @return void
      */
     public function bindInstallPaths(array $paths)
     {
         $this->instance('path', realpath($paths['app']));
 
-        foreach (array_except($paths, array('app')) as $key => $value)
-        {
+        foreach (array_except($paths, array('app')) as $key => $value) {
             $this->instance("path.{$key}", realpath($value));
         }
     }
@@ -348,7 +349,7 @@ class App extends Container
      */
     public static function getBootstrapFile()
     {
-        return __DIR__.'/start.php';
+        return __DIR__ . '/start.php';
     }
 
     /**
@@ -376,7 +377,7 @@ class App extends Container
     /**
      * Detect the application's current environment.
      *
-     * @param  array|string  $environments
+     * @param  array|string $environments
      * @return string
      */
     public function detectEnvironment($environments)
@@ -385,8 +386,7 @@ class App extends Container
 
         $arguments = $this['request']->server->get('argv');
 
-        if ($this->runningInConsole())
-        {
+        if ($this->runningInConsole()) {
             return $this->detectConsoleEnvironment($base, $environments, $arguments);
         }
 
@@ -396,8 +396,8 @@ class App extends Container
     /**
      * Set the application environment for a web request.
      *
-     * @param  string  $base
-     * @param  array|string  $environments
+     * @param  string $base
+     * @param  array|string $environments
      * @return string
      */
     protected function detectWebEnvironment($base, $environments)
@@ -405,20 +405,16 @@ class App extends Container
         // If the given environment is just a Closure, we will defer the environment
         // detection to the Closure the developer has provided, which allows them
         // to totally control the web environment detection if they require to.
-        if ($environments instanceof Closure)
-        {
+        if ($environments instanceof Closure) {
             return $this['env'] = call_user_func($environments);
         }
 
-        foreach ($environments as $environment => $hosts)
-        {
+        foreach ($environments as $environment => $hosts) {
             // To determine the current environment, we'll simply iterate through the
             // possible environments and look for a host that matches this host in
             // the request's context, then return back that environment's names.
-            foreach ((array) $hosts as $host)
-            {
-                if (str_is($host, $base) or $this->isMachine($host))
-                {
+            foreach ((array)$hosts as $host) {
+                if (str_is($host, $base) or $this->isMachine($host)) {
                     return $this['env'] = $environment;
                 }
             }
@@ -430,20 +426,18 @@ class App extends Container
     /**
      * Set the application environment from command-line arguments.
      *
-     * @param  string  $base
-     * @param  mixed   $environments
-     * @param  array   $arguments
+     * @param  string $base
+     * @param  mixed $environments
+     * @param  array $arguments
      * @return string
      */
     protected function detectConsoleEnvironment($base, $environments, $arguments)
     {
-        foreach ($arguments as $key => $value)
-        {
+        foreach ($arguments as $key => $value) {
             // For the console environment, we'll just look for an argument that starts
             // with "--env" then assume that it is setting the environment for every
             // operation being performed, and we'll use that environment's config.
-            if (starts_with($value, '--env='))
-            {
+            if (starts_with($value, '--env=')) {
                 $segments = array_slice(explode('=', $value), 1);
 
                 return $this['env'] = head($segments);
@@ -456,7 +450,7 @@ class App extends Container
     /**
      * Determine if the name matches the machine name.
      *
-     * @param  string  $name
+     * @param  string $name
      * @return bool
      */
     protected function isMachine($name)
@@ -487,8 +481,8 @@ class App extends Container
     /**
      * Register a service provider with the application.
      *
-     * @param  \Illuminate\Support\ServiceProvider|string  $provider
-     * @param  array  $options
+     * @param  \Illuminate\Support\ServiceProvider|string $provider
+     * @param  array $options
      * @return void
      */
     public function register($provider, $options = array())
@@ -496,8 +490,7 @@ class App extends Container
         // If the given "provider" is a string, we will resolve it, passing in the
         // application instance automatically for the developer. This is simply
         // a more convenient way of specifying your service provider classes.
-        if (is_string($provider))
-        {
+        if (is_string($provider)) {
             $provider = $this->resolveProviderClass($provider);
         }
 
@@ -506,8 +499,7 @@ class App extends Container
         // Once we have registered the service we will iterate through the options
         // and set each of them on the application so they will be available on
         // the actual loading of the service objects and for developer usage.
-        foreach ($options as $key => $value)
-        {
+        foreach ($options as $key => $value) {
             $this[$key] = $value;
         }
 
@@ -519,7 +511,7 @@ class App extends Container
     /**
      * Resolve a service provider instance from the class name.
      *
-     * @param  string  $provider
+     * @param  string $provider
      * @return \Illuminate\Support\ServiceProvider
      */
     protected function resolveProviderClass($provider)
@@ -537,8 +529,7 @@ class App extends Container
         // We will simply spin through each of the deferred providers and register each
         // one and boot them if the application has booted. This should make each of
         // the remaining services available to this application for immediate use.
-        foreach (array_unique($this->deferredServices) as $provider)
-        {
+        foreach (array_unique($this->deferredServices) as $provider) {
             $this->register($instance = new $provider($this));
 
             if ($this->booted) $instance->boot();
@@ -550,7 +541,7 @@ class App extends Container
     /**
      * Load the provider for a deferred service.
      *
-     * @param  string  $service
+     * @param  string $service
      * @return void
      */
     protected function loadDeferredProvider($service)
@@ -560,8 +551,7 @@ class App extends Container
         // If the service provider has not already been loaded and registered we can
         // register it with the application and remove the service from this list
         // of deferred services, since it will already be loaded on subsequent.
-        if ( ! isset($this->loadedProviders[$provider]))
-        {
+        if (!isset($this->loadedProviders[$provider])) {
             $this->register($instance = new $provider($this));
 
             unset($this->deferredServices[$service]);
@@ -573,14 +563,16 @@ class App extends Container
     /**
      * Handle the booting of a deferred service provider.
      *
-     * @param  \Illuminate\Support\ServiceProvider  $instance
+     * @param  \Illuminate\Support\ServiceProvider $instance
      * @return void
      */
     protected function setupDeferredBoot($instance)
     {
         if ($this->booted) return $instance->boot();
 
-        $this->booting(function() use ($instance) { $instance->boot(); });
+        $this->booting(function () use ($instance) {
+            $instance->boot();
+        });
     }
 
     /**
@@ -588,14 +580,13 @@ class App extends Container
      *
      * (Overriding Container::make)
      *
-     * @param  string  $abstract
-     * @param  array   $parameters
+     * @param  string $abstract
+     * @param  array $parameters
      * @return mixed
      */
     public function make($abstract, $parameters = array())
     {
-        if (isset($this->deferredServices[$abstract]))
-        {
+        if (isset($this->deferredServices[$abstract])) {
             $this->loadDeferredProvider($abstract);
         }
 
@@ -605,7 +596,7 @@ class App extends Container
     /**
      * Register a "before" application filter.
      *
-     * @param  Closure|string  $callback
+     * @param  Closure|string $callback
      * @return void
      */
     public function before($callback)
@@ -616,7 +607,7 @@ class App extends Container
     /**
      * Register an "after" application filter.
      *
-     * @param  Closure|string  $callback
+     * @param  Closure|string $callback
      * @return void
      */
     public function after($callback)
@@ -627,7 +618,7 @@ class App extends Container
     /**
      * Register a "close" application filter.
      *
-     * @param  Closure|string  $callback
+     * @param  Closure|string $callback
      * @return void
      */
     public function close($callback)
@@ -638,7 +629,7 @@ class App extends Container
     /**
      * Register a "finish" application filter.
      *
-     * @param  Closure|string  $callback
+     * @param  Closure|string $callback
      * @return void
      */
     public function finish($callback)
@@ -649,17 +640,14 @@ class App extends Container
     /**
      * Register a "shutdown" callback.
      *
-     * @param  callable  $callback
+     * @param  callable $callback
      * @return void
      */
     public function shutdown($callback = null)
     {
-        if (is_null($callback))
-        {
+        if (is_null($callback)) {
             $this->fireAppCallbacks($this->shutdownCallbacks);
-        }
-        else
-        {
+        } else {
             $this->shutdownCallbacks[] = $callback;
         }
     }
@@ -674,7 +662,7 @@ class App extends Container
         $aArgs = func_get_args();
         $iArgs = func_num_args();
 
-        if(isset($aArgs[0])){
+        if (isset($aArgs[0])) {
             $this['request'] = $aArgs[0];
         }
 
@@ -690,21 +678,21 @@ class App extends Container
     /**
      * Handle the given request and get the response.
      *
-     * @param  \Illuminate\Http\Request  $request
+     * @param  \Illuminate\Http\Request $request
      * @return \Symfony\Component\HttpFoundation\Response
      */
     public function dispatch(Request $request)
     {
-/*        if ($this->isDownForMaintenance())
-        {
-            $response = $this['events']->until('illuminate.app.down');
+        /*        if ($this->isDownForMaintenance())
+                {
+                    $response = $this['events']->until('illuminate.app.down');
 
-            return $this->prepareResponse($response, $request);
-        }
-        else
-        {
-            return $this['router']->dispatch($this->prepareRequest($request));
-        }*/
+                    return $this->prepareResponse($response, $request);
+                }
+                else
+                {
+                    return $this['router']->dispatch($this->prepareRequest($request));
+                }*/
 
         return $this['router']->dispatch($this->prepareRequest($request));
     }
@@ -716,9 +704,9 @@ class App extends Container
      *
      * @implements HttpKernelInterface::handle
      *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  int   $type
-     * @param  bool  $catch
+     * @param  \Illuminate\Http\Request $request
+     * @param  int $type
+     * @param  bool $catch
      * @return \Symfony\Component\HttpFoundation\Response
      */
     public function handle(SymfonyRequest $request, $type = HttpKernelInterface::MASTER_REQUEST, $catch = true)
@@ -742,8 +730,7 @@ class App extends Container
         // To boot the application we will simply spin through each service provider
         // and call the boot method, which will give them a chance to override on
         // something that was registered by another provider when it registers.
-        foreach ($this->serviceProviders as $provider)
-        {
+        foreach ($this->serviceProviders as $provider) {
             $provider->boot();
         }
 
@@ -760,7 +747,7 @@ class App extends Container
     /**
      * Register a new boot listener.
      *
-     * @param  mixed  $callback
+     * @param  mixed $callback
      * @return void
      */
     public function booting($callback)
@@ -771,7 +758,7 @@ class App extends Container
     /**
      * Register a new "booted" listener.
      *
-     * @param  mixed  $callback
+     * @param  mixed $callback
      * @return void
      */
     public function booted($callback)
@@ -786,8 +773,7 @@ class App extends Container
      */
     protected function fireAppCallbacks(array $callbacks)
     {
-        foreach ($callbacks as $callback)
-        {
+        foreach ($callbacks as $callback) {
             call_user_func($callback, $this);
         }
     }
@@ -795,13 +781,12 @@ class App extends Container
     /**
      * Prepare the request by injecting any services.
      *
-     * @param  \Illuminate\Http\Request  $request
+     * @param  \Illuminate\Http\Request $request
      * @return \Illuminate\Http\Request
      */
     public function prepareRequest(Request $request)
     {
-        if (isset($this['session']))
-        {
+        if (isset($this['session'])) {
             $request->setSessionStore($this['session']);
         }
 
@@ -811,12 +796,12 @@ class App extends Container
     /**
      * Prepare the given value as a Response object.
      *
-     * @param  mixed  $value
+     * @param  mixed $value
      * @return \Symfony\Component\HttpFoundation\Response
      */
     public function prepareResponse($value)
     {
-        if ( ! $value instanceof SymfonyResponse) $value = new Response($value);
+        if (!$value instanceof SymfonyResponse) $value = new Response($value);
 
         return $value->prepare($this['request']);
     }
@@ -834,7 +819,7 @@ class App extends Container
     /**
      * Register a maintenance mode event listener.
      *
-     * @param  \Closure  $callback
+     * @param  \Closure $callback
      * @return void
      */
     public function down(Closure $callback)
@@ -845,19 +830,16 @@ class App extends Container
     /**
      * Throw an HttpException with the given data.
      *
-     * @param  int     $code
-     * @param  string  $message
-     * @param  array   $headers
+     * @param  int $code
+     * @param  string $message
+     * @param  array $headers
      * @return void
      */
     public function abort($code, $message = '', array $headers = array())
     {
-        if ($code == 404)
-        {
+        if ($code == 404) {
             throw new NotFoundHttpException($message);
-        }
-        else
-        {
+        } else {
             throw new HttpException($code, $message, null, $headers);
         }
     }
@@ -865,13 +847,12 @@ class App extends Container
     /**
      * Register a 404 error handler.
      *
-     * @param  Closure  $callback
+     * @param  Closure $callback
      * @return void
      */
     public function missing(Closure $callback)
     {
-        $this->error(function(NotFoundHttpException $e) use ($callback)
-        {
+        $this->error(function (NotFoundHttpException $e) use ($callback) {
             return call_user_func($callback, $e);
         });
     }
@@ -879,7 +860,7 @@ class App extends Container
     /**
      * Register an application error handler.
      *
-     * @param  \Closure  $callback
+     * @param  \Closure $callback
      * @return void
      */
     public function error(Closure $callback)
@@ -890,7 +871,7 @@ class App extends Container
     /**
      * Register an error handler at the bottom of the stack.
      *
-     * @param  \Closure  $callback
+     * @param  \Closure $callback
      * @return void
      */
     public function pushError(Closure $callback)
@@ -901,13 +882,12 @@ class App extends Container
     /**
      * Register an error handler for fatal errors.
      *
-     * @param  Closure  $callback
+     * @param  Closure $callback
      * @return void
      */
     public function fatal(Closure $callback)
     {
-        $this->error(function(FatalErrorException $e) use ($callback)
-        {
+        $this->error(function (FatalErrorException $e) use ($callback) {
             return call_user_func($callback, $e);
         });
     }
@@ -919,7 +899,7 @@ class App extends Container
      */
     public function getConfigLoader()
     {
-        return new FileLoader(new Filesystem, $this['path'].'/config');
+        return new FileLoader(new Filesystem, $this['path'] . '/config');
     }
 
     /**
@@ -937,7 +917,7 @@ class App extends Container
     /**
      * Set the current application locale.
      *
-     * @param  string  $locale
+     * @param  string $locale
      * @return void
      */
     public function setLocale($locale)
@@ -962,7 +942,7 @@ class App extends Container
     /**
      * Set the application's deferred services.
      *
-     * @param  array  $services
+     * @param  array $services
      * @return void
      */
     public function setDeferredServices(array $services)

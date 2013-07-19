@@ -1,5 +1,7 @@
 <?php namespace Arx\classes;
 
+use Symfony\Component\Finder\Finder as ParentClass;
+
 /**
  * Finder
  *
@@ -9,7 +11,7 @@
  * @license  http://opensource.org/licenses/MIT MIT License
  * @link     http://arx.xxx/doc/Finder
  */
-class Finder
+class Finder extends ParentClass
 {
 
     // --- Constants
@@ -25,8 +27,8 @@ class Finder
 
     private $_path = "";
     private $_exclude_extension = array('entries', 'all-wcprops', 'DS_Store');
-    private $_exclude_file = array('.DS_Store', 'all-wcprops', 'DS_Store');
-    private $_exclude_dir = array('.svn', 'all-wcprops', 'DS_Store');
+    private $_exclude_file = array('.DS_Store', 'all-wcprops', 'DS_Store','.gitkeep', '.gitignore');
+    private $_exclude_dir = array('.svn', 'all-wcprops', 'DS_Store', '.git','.idea');
 
 
     // --- Magic methods
@@ -129,7 +131,7 @@ class Finder
                     $info["type"]       = "dir";
                     $info["path"]       = $dir;
                     $info["fullpath"]   = $dir . $file;
-                    $info["urlpath"]    = str_replace(ROOT_DIR, ROOT_URL, $info["fullpath"]);
+                    $info["urlpath"]    = str_replace(Config::get('paths.root'), Config::get('paths.rooturl'), $info["fullpath"]);
                     $info["name"]   = str_replace($dir, '', $info["fullpath"]);
                     $list[] = $info;
                 }
@@ -141,7 +143,7 @@ class Finder
                     $info["path"]       = $dir;
                     $info["filename"]   = $file;
                     $info["fullpath"]   = $dir . $file;
-                    $info["urlpath"]    = str_replace(ROOT_DIR, ROOT_URL, $info["fullpath"]);
+                    $info["urlpath"]    = str_replace(Config::get('paths.root'), Config::get('paths.rooturl'), $info["fullpath"]);
                     $info["name"]   = str_replace('.'.$extension, '', $file);
                     $list[] = $info;
                 }

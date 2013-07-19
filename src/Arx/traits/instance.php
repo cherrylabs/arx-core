@@ -1,6 +1,6 @@
 <?php
 
-trait instance(){
+trait getInstance(){
     $sClass = get_called_class();
 
     if (!isset(self::$_aInstances[$sClass])) {
