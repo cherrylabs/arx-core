@@ -1,97 +1,55 @@
 <?php namespace Arx\classes;
 
-use Illuminate\View\View as ParentClass;
-use Illuminate\View\Environment;
-use Illuminate\View\Engines\EngineInterface;
 
-class View extends ParentClass {
+use Illuminate\View\ViewServiceProvider;
+use Arx\classes\view\FileViewFinder;
+use Arx\classes\view\Environment;
+use Arx\classes\view\engines\blade\BladeCompiler;
 
-    /**
-     * The view environment instance.
-     *
-     * @var \Illuminate\View\Environment
-     */
-    protected $environment;
-
-    /**
-     * The engine implementation.
-     *
-     * @var \Illuminate\View\Engines\EngineInterface
-     */
-    protected $engine;
-
-    /**
-     * The name of the view.
-     *
-     * @var string
-     */
-    protected $view;
-
-    /**
-     * The array of view data.
-     *
-     * @var array
-     */
-    protected $data;
-
-    /**
-     * The path to the view file.
-     *
-     * @var string
-     */
-    protected $path;
+class View extends ViewServiceProvider{
 
 
     /**
-     * Create a new view instance.
+     * Register the view finder implementation.
      *
-     * @param  \Illuminate\View\Environment  $environment
-     * @param  \Illuminate\View\Engines\EngineInterface  $engine
-     * @param  string  $view
-     * @param  string  $path
-     * @param  array   $data
      * @return void
      */
-    public function __construct(Environment $environment, EngineInterface $engine, $view, $path, $data = array())
+    public function registerViewFinder()
     {
-        $this->view = $view;
-        $this->path = $path;
-        $this->engine = $engine;
-        $this->environment = $environment;
+        $this->app['view.finder'] = $this->app->share(function($app)
+        {
+            $paths = $app['config']['view.paths'];
 
-        $this->data = $data instanceof Arrayable ? $data->toArray() : (array) $data;
+            return new FileViewFinder($app['files'], $paths);
+        });
     }
 
     /**
-     * @param $file
-     * @param $data
+     * Register the view environment.
+     *
+     * @return void
      */
-    public static function make($file, $data){
+    public function registerEnvironment()
+    {
+        $this->app['view'] = $this->app->share(function($app)
+        {
+            // Next we need to grab the engine resolver instance that will be used by the
+            // environment. The resolver will be used by an environment to get each of
+            // the various engine implementations such as plain PHP or Blade engine.
+            $resolver = $app['view.engine.resolver'];
 
-        $config = new Config();
+            $finder = $app['view.finder'];
 
-        $path = Config::get('app.views.path');
+            $env = new Environment($resolver, $finder, $app['events']);
 
-        $app = App::getInstance();
+            // We will also set the container instance on this view environment since the
+            // view composers may be classes registered in the container, which allows
+            // for great testable, flexible composers for the application developer.
+            $env->setContainer($app);
 
-        if(!is_file($file)){
-            $file = Config::get('app.view.path').$file.Config::get('app.view.extension');
+            $env->share('app', $app);
 
-            if(!is_file($path.$file.'.php')){
-                $file = __DIR__.'/../views/'.$file.'.php';
-            }
-        }
-
-        if(is_file($file)){
-
-            ob_start();
-            extract($data);
-            echo include( $file );
-            $content = ob_get_contents();
-            ob_flush();
-
-        } else {
-            Debug::error('Cannot open %s%', $file);
-        }
+            return $env;
+        });
     }
 }

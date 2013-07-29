@@ -214,7 +214,7 @@ class Finder extends ParentClass
      * @access public
      * @return string
      */
-    public function get_path()
+    public function getPath()
     {
         return $this->get_dir().DS;
     } // get_path
@@ -225,7 +225,7 @@ class Finder extends ParentClass
      * @access public
      * @return string
      */
-    public function get_dir()
+    public function getDir()
     {
         return $this->_path;
     } // get_dir

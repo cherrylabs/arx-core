@@ -5,7 +5,7 @@
 | PHPUnit Bootstrap
 |--------------------------------------------------------------------------
 |
-| Php Unit bootstraper for test please run composer install
+| Php Unit bootstraper for test please run composer install inside console
 |
 */
 

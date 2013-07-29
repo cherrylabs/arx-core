@@ -1,6 +1,6 @@
 <?php namespace Arx\classes;
 
-class Controller extends Container {
+class Controller extends App {
 
     public function __construct()
     {

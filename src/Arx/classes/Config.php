@@ -1,5 +1,7 @@
 <?php namespace Arx\classes;
 
+use Closure;
+
 /**
  * Config
  *
@@ -11,13 +13,14 @@
  * @link     http://arx.xxx/doc/Config
  */
 
-include_once 'Container.php';
-
 class Config extends Container
 {
     // --- Protected members
 
-    protected static $aSettings = array();
+    public static $aSettings = array();
+    public static $env;
+    public static $envLevel;
+    public static $loadedPaths;
     protected static $_aInstances = array();
 
 
@@ -31,13 +34,65 @@ class Config extends Container
      *
      * @param string $sName The name of the setting
      *
-     * @return void
+     * @return bool
      */
     public static function delete($sName)
     {
-        Arr::delete(static::$aSettings, $sName);
+        return Arr::delete(static::$aSettings, $sName);
     } // delete
 
+
+    /**
+     * Detect environment
+     *
+     * By default check
+     *
+     * @return string env
+     */
+    public static function detectEnvironment($request = null)
+    {
+        if (!empty(static::$env)) {
+            return static::$env;
+        }
+
+        $rules = self::get('env');
+
+        $host = getenv('SERVER_NAME');
+
+        $request = $request ? $request : Request::createFromGlobals();
+
+        $host = $request->getHost();
+
+        foreach ($rules as $env => $rule) {
+            if (is_callable($rule)) {
+                static::$env = $env;
+            } elseif (preg_match($rule, $host)) {
+                static::$env = $env;
+                break;
+            }
+        }
+
+        static::loadEnvironment($env);
+
+        return static::$env;
+    }
+
+    /**
+     * Load an environment defined or not
+     *
+     * @param null $env
+     * @return void
+     */
+    public static function loadEnvironment($env = null)
+    {
+        $env = $env ? $env : static::$env;
+
+        foreach((array) static::$loadedPaths as $path){
+            if(is_dir($path.DS.$env)){
+                self::load($path.DS.$env);
+            }
+        }
+    }
 
     /**
      * Get value from $_settings
@@ -56,10 +111,11 @@ class Config extends Container
             return static::$aSettings;
         }
 
-        return Arr::get(static::$aSettings, $sNeedle, Arr::get(static::$aSettings, 'defaults.'.$sNeedle, $mDefault));
+        return Arr::get(static::$aSettings, $sNeedle, Arr::get(static::$aSettings, 'defaults.' . $sNeedle, $mDefault));
     } // get
 
-    public static function getInstance(){
+    public static function getInstance()
+    {
         $sClass = get_called_class();
 
         if (!isset(self::$_aInstances[$sClass])) {
@@ -85,18 +141,19 @@ class Config extends Container
      */
     public static function load($mPath, $sNamespace = null)
     {
-        if (is_array($mPath) && count($mPath) > 0) {
-            $aFiles = realpath($mPath);
+        # Check if $mPath is an array of path
+        if (is_array($mPath) && !empty($mPath)) {
+            $aFiles = $mPath;
         } elseif (strpos($mPath, '.') > 0 && !is_null(Arr::get(static::$aSettings, $mPath))) {
             $tmp = Arr::get(static::$aSettings, $mPath);
-            $aFiles = glob(substr($tmp, -1) === '/' ? $tmp.'*.php' : $tmp);
+            $aFiles = glob(substr($tmp, -1) === '/' ? $tmp . '*.php' : $tmp);
         } else {
-            $aFiles = glob(substr($mPath, -1) === '/' ? $mPath.'*.php' : $mPath);
+            $aFiles = glob(substr($mPath, -1) === '/' ? $mPath . '*.php' : $mPath);
         }
 
         foreach ($aFiles as $sFilePath) {
             $pathinfo = pathinfo($sFilePath);
-            $key = !is_null($sNamespace) ? $sNamespace.'.'.$pathinfo['filename'] : $pathinfo['filename'];
+            $key = !is_null($sNamespace) ? $sNamespace . '.' . $pathinfo['filename'] : $pathinfo['filename'];
 
             if (!is_int(array_search($sFilePath, $aFiles))) {
                 $key = array_search($sFilePath, $aFiles);
@@ -104,7 +161,7 @@ class Config extends Container
 
             if (!is_null(Arr::get(static::$aSettings, $key))) {
                 static::set($key, Arr::merge(static::get($key), include $sFilePath));
-            } else {
+            } elseif (is_file($sFilePath)) {
                 static::set($key, include $sFilePath);
             }
         }
@@ -122,7 +179,8 @@ class Config extends Container
      *
      * @return bool             True if the config exist, false instead
      */
-    public static function needs($sNeedle, $sCallback = null, $aArgs = null) {
+    public static function needs($sNeedle, $sCallback = null, $aArgs = null)
+    {
         if (!is_null(static::get($sNeedle))) {
             return true;
         } elseif (!is_null($sCallback)) {
@@ -161,5 +219,62 @@ class Config extends Container
 
         return static::getInstance();
     } // set
+
+    public static function values()
+    {
+        return static::$aSettings;
+    }
+
+    /**
+     * Get the value at a given offset.
+     *
+     * @param  string $key
+     *
+     * @return mixed
+     */
+    public function offsetGet($key)
+    {
+        $value = self::get($key);
+
+        if (!is_null($value)) {
+            return $value;
+        }
+
+        return $this->make($key);
+    }
+
+    /**
+     * Set the value at a given offset.
+     *
+     * @param  string $key
+     * @param  mixed  $value
+     *
+     * @return void
+     */
+    public function offsetSet($key, $value)
+    {
+        // If the value is not a Closure, we will make it one. This simply gives
+        // more "drop-in" replacement functionality for the Pimple which this
+        // container's simplest functions are base modeled and built after.
+        if (!$value instanceof Closure) {
+            $value = function () use ($value) {
+                return $value;
+            };
+        }
+
+        $this->bind($key, $value);
+    }
+
+    /**
+     * Unset the value at a given offset.
+     *
+     * @param  string $key
+     *
+     * @return void
+     */
+    public function offsetUnset($key)
+    {
+        unset($this->bindings[$key]);
+    }
 
 } // class::Config

@@ -35,10 +35,13 @@
 
 /**
  * Constant declarations
+ *
+ * Minimum constants needed to make it works and have to be instanciate before anything.
+ * You can override this constant by defining before the autoload.php.
+ *
  */
+
 defined('ARX_STARTTIME') or define('ARX_STARTTIME', microtime(true));
-defined('IS_HTTPS') or define('IS_HTTPS', false);
-defined('HTTP') or define('HTTP', 'http' . (defined('IS_HTTPS') ? 's' : '') . '://');
 defined('DS') or define('DS', DIRECTORY_SEPARATOR);
 
 /**
@@ -50,10 +53,15 @@ require_once __DIR__ . DS . 'classes' . DS . 'Arr.php';
 require_once __DIR__ . DS . 'classes' . DS . 'Strings.php';
 require_once __DIR__ . DS . 'classes' . DS . 'Utils.php';
 
+
+defined('HTTP_SECURE') or define('HTTP_SECURE', \Arx\classes\Utils::isHttps());
+defined('HTTP_PROTOCOL') or define('HTTP_PROTOCOL', 'http' . ( HTTP_SECURE ? 's' : '') . '://');
+
 /**
- * Composer class to helping to manage Namespace and Class (need to be relative)
+ * Composer class to helping to manage Namespace and Class (need to be relative to works)
  */
-require_once 'classes/Composer.php';
+require_once __DIR__ . DS .'classes/Composer.php';
+
 
 /**
  * Classes that needs to be include and can't be include with autoload
@@ -72,6 +80,24 @@ require_once __DIR__ . DS . 'classes' . DS . 'Valid.php';
 require_once __DIR__ . DS . 'classes' . DS . 'Config.php';
 require_once __DIR__ . DS . 'classes' . DS . 'App.php';
 
-class Arx extends \Arx\classes\App{}
+/**
+ * Class Arx
+ *
+ * Extend classes/app.php.
+ * Needed to avoid any namespace problem in first level
+ *
+ */
+class Arx extends \Arx\classes\App{
 
+    public static function path(){
+        return __DIR__;
+    }
+}
+
+/**
+ * Spl class register
+ *
+ * If a class is not found will trigger this function defined in classes/app.php
+ *
+ */
 spl_autoload_register('Arx::autoload');

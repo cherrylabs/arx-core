@@ -1,14 +1,57 @@
 <?php
-// --- Paths configuration
 
 return array(
-    'classes'   => realpath(__DIR__.'/../classes'),
-    'config'    => realpath(__DIR__.'/../config'),
-    'arx'       => realpath(__DIR__.'/..'),
-    'root'      => getenv('DOCUMENT_ROOT'),
-    'rooturl'   => HTTP.getenv('HTTP_HOST'),
-    'app'       => getenv('DOCUMENT_ROOT').DIRECTORY_SEPARATOR.'app',
-    'controllers'       => getenv('DOCUMENT_ROOT').DIRECTORY_SEPARATOR.'app/controllers',
-    'models'       => getenv('DOCUMENT_ROOT').DIRECTORY_SEPARATOR.'app/models',
-    'views'       => getenv('DOCUMENT_ROOT').DIRECTORY_SEPARATOR.'app/views',
+
+    /*
+    |--------------------------------------------------------------------------
+    | Application Path
+    |--------------------------------------------------------------------------
+    |
+    | Here we just defined the path to the application directory. Most likely
+    | you will never need to change this value as the default setup should
+    | work perfectly fine for the vast majority of all our applications.
+    |
+    */
+
+    'app' => realpath('../app'),
+
+    /*
+    |--------------------------------------------------------------------------
+    | Public Path
+    |--------------------------------------------------------------------------
+    |
+    | The public path contains the assets for your web application, such as
+    | your JavaScript and CSS files, and also contains the primary entry
+    | point for web requests into these applications from the outside.
+    |
+    */
+
+    'public' => realpath('.'),
+
+    /*
+    |--------------------------------------------------------------------------
+    | Base Path
+    |--------------------------------------------------------------------------
+    |
+    | The base path is the root of the Laravel installation. Most likely you
+    | will not need to change this value. But, if for some wild reason it
+    | is necessary you will do so here, just proceed with some caution.
+    |
+    */
+
+    'base' => \Arx\classes\Composer::getRootPath(),
+
+    /*
+    |--------------------------------------------------------------------------
+    | Storage Path
+    |--------------------------------------------------------------------------
+    |
+    | The storage path is used by Laravel to store cached Blade views, logs
+    | and other pieces of information. You may modify the path here when
+    | you want to change the location of this directory for your apps.
+    |
+    */
+
+    'storage' => realpath('../app/storage'),
+
 );

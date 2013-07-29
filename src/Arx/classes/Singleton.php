@@ -22,17 +22,7 @@ class Singleton
 
     protected function __construct() {} // __construct
 
-
-    // --- Public methods
-
-    public static function getInstance()
-    {
-
-        Debug::deprecated(1.0, 'Standard PSR-2');
-
-    } // getInstance
-
-    public static function instance(){
+    public static function getInstance(){
         $sClass = get_called_class();
 
         if (!isset(self::$_aInstances[$sClass])) {

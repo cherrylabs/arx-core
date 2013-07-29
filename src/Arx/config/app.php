@@ -1,34 +1,44 @@
 <?php
+/**
+ * Default App config for Arx project
+ *
+ * You can easily override any
+ */
 
 return array(
 
     /*
-    |--------------------------------------------------------------------------
-    | Application Debug Mode
-    |--------------------------------------------------------------------------
-    |
-    | When your application is in debug mode, detailed error messages with
-    | stack traces will be shown on every error that occurs within your
-    | application. If disabled, a simple generic error page is shown.
-    |
+     * Variable debug
+     *
+     * If enabled will show error message on your page.
+     * It should be set to false by default in your production url.
+     *
+     * @type bool
     */
 
-    'debug' => true,
+    'debug' => false,
 
-    'profiler' => true,
+    /**
+     * Variable profiler
+     *
+     * If enabled, will show a beautiful profiler on your page.
+     * It should be set to false by default in your production url.
+     *
+     * @type bool
+     */
+    'profiler' => false,
 
     /*
-    |--------------------------------------------------------------------------
-    | Application URL
-    |--------------------------------------------------------------------------
-    |
-    | This URL is used by the console to properly generate URLs when using
-    | the Artisan command line tool. You should set this to the root of
-    | your application so that it is used when running Artisan tasks.
-    |
-    */
+     * Variable detectEnv
+     *
+     * Check if we should detect environment defined in env.php or not.
+     * The detect environment script is defined in Config::detectEnv()
+     *
+     * @type bool
+     */
+    'detectEnv' => true,
 
-    'url' => HTTP.$_SERVER['HTTP_HOST'],
+    'url' => HTTP_PROTOCOL.$_SERVER['HTTP_HOST'],
 
     'path' => '/app',
 

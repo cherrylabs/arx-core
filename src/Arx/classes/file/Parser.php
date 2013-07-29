@@ -46,9 +46,13 @@ class Parser extends Container{
 
     public static function DOMinnerHTML($element)
     {
+        if(!$element){
+            return false;
+        }
+
         $innerHTML = "";
         $children = $element->childNodes;
-        foreach ($children as $child)
+        foreach ( (object) $children as $child)
         {
             $tmp_dom = new DOMDocument();
             $tmp_dom->appendChild($tmp_dom->importNode($child, true));

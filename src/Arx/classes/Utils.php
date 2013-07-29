@@ -209,6 +209,37 @@ class Utils
         }
     }
 
+    /**
+     * Function to check if the Server is on HTTPS or not
+     *
+     * You can precise a server configuration (useful if you need to check an external server Params)
+     *
+     * @param array $server
+     *
+     * @return bool
+     */
+    public static function isHTTPS($server = array()){
+
+        $response = false;
+
+        if(empty($server) && isset($_SERVER)){
+            $server = $_SERVER;
+            if(!isset($server['SERVER_PORT'])){
+                $server['SERVER_PORT'] = 80;
+            }
+        } else {
+            $server['HTTPS'] = getenv('HTTPS');
+            $server['SERVER_PORT'] = getenv('SERVER_PORT');
+        }
+
+        if ( isset($server['HTTPS']) && $server['HTTPS'] !== 'off'
+            || $server['SERVER_PORT'] == 443) {
+            $response = true;
+        }
+
+        return $response;
+    }
+
 
     public static function json_die($array) {
         header("content-type: application/json");
@@ -519,6 +550,16 @@ class Utils
 
         return $thumb_image_name;
     } // resizeThumbnailImage
+
+    /**
+     * Check if it's running in a console
+     *
+     * @return bool
+     */
+    public function runningInConsole()
+    {
+        return php_sapi_name() == 'cli';
+    }
 
 
     /**
