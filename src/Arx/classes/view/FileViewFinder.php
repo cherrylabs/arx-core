@@ -1,7 +1,10 @@
 <?php namespace Arx\classes\view;
 
+use Arx;
 use Illuminate\View\FileViewFinder as ParentClass;
 use Whoops\Example\Exception;
+
+
 
 class FileViewFinder extends ParentClass
 {
@@ -33,6 +36,17 @@ class FileViewFinder extends ParentClass
      */
     protected function findInPaths($name, $paths)
     {
+        if(preg_match('/arx/i', $name)){
+            foreach ($this->getPossibleViewFiles($name) as $file)
+            {
+                if ($this->files->exists($viewPath = str_replace('arx/', Arx::path('views').'/', $file)))
+                {
+                    return $viewPath;
+                }
+            }
+        }
+
+
         foreach ((array) $paths as $path)
         {
             foreach ($this->getPossibleViewFiles($name) as $file)

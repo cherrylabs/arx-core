@@ -89,8 +89,8 @@ require_once __DIR__ . DS . 'classes' . DS . 'App.php';
  */
 class Arx extends \Arx\classes\App{
 
-    public static function path(){
-        return __DIR__;
+    public static function path($value = null){
+        return __DIR__.($value ? DS. $value : '');
     }
 }
 

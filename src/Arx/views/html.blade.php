@@ -8,7 +8,7 @@
         <title>@yield('title')</title>
     @show
 </head>
-<body <?php !isset($body, $body['attributes']) ?: HTML::attr($body['attributes']) ?>>
+<body <?php !isset($body, $body['attributes']) ?: HTML::attributes($body['attributes']) ?>>
 @yield('body')
 @yield('js')
 </body>
