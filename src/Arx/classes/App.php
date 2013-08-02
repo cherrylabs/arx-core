@@ -24,6 +24,7 @@ use Symfony\Component\HttpFoundation\Response as SymfonyResponse;
 use Symfony\Component\HttpKernel\Exception\NotFoundHttpException;
 use Symfony\Component\HttpFoundation\RedirectResponse as SymfonyRedirect;
 use Exception;
+use Arx\classes\Config;
 
 
 /**
@@ -140,7 +141,7 @@ class App extends Application
 
         if(is_file($file)){
             require_once $file;
-        } elseif(is_file($file = __DIR__.'/../bootstraps/'.$file)){
+        } elseif(is_file($file = __DIR__.'/../bootstrap/'.$file)){
             require_once $file;
         } else{
             Throw new Exception('Whoops, there is nothing to boot');
@@ -160,34 +161,62 @@ class App extends Application
     {
         $instance = self::getInstance();
 
-        if (preg_match('/\w+Controller$/', $className)) {
-
-        }
-
         $aAutoload = Config::get('autoload');
 
         $className = ltrim($className, '\\');
         $fileName = '';
         $namespace = '';
+        $vendorName = '';
+        $packageName = '';
+        $routeName = '';
+        $composerName = '';
+
         if ($lastNsPos = strrpos($className, '\\')) {
             $namespace = substr($className, 0, $lastNsPos);
             $className = substr($className, $lastNsPos + 1);
             $fileName = str_replace('\\', DIRECTORY_SEPARATOR, $namespace) . DIRECTORY_SEPARATOR;
+
+            $aExplode = explode('\\', $namespace);
+            $iExplode = count($aExplode);
+
+            if($iExplode === 1){
+                $packageName = $aExplode[0];
+            } elseif($iExplode === 2){
+                list($vendorName, $packageName) = $aExplode;
+                $composerName = $vendorName.'/'.$packageName;
+            } elseif($iExplode >= 3){
+                $vendorName = array_shift($aExplode);
+                $packageName = array_shift($aExplode);
+                $composerName = $vendorName.'/'.$packageName;
+                $routeName = implode('/', $aExplode);
+            }
         }
         $fileName .= str_replace('_', DIRECTORY_SEPARATOR, $className) . '.php';
 
         $aNamespaces = Composer::getNamespaces();
 
-        if (is_array($aAutoload) and array_key_exists($className, $aAutoload) and is_file($aAutoload[$className])) {
-            include $aAutoload[$className];
-        } else {
 
+        if (in_array($namespace, array_keys($aNamespaces))) {
+            dd($fileName, $namespace, $className, $fileName, $vendorName, $packageName, $routeName);
+        } elseif(in_array($composerName, array_keys($aNamespaces))){
+
+            $paths = $aNamespaces[$composerName];
+
+            foreach($paths as $path){
+                if(is_file($fileName = $path.'/'.$fileName)){
+                    include $fileName;
+                }
+            }
         }
 
-        if ($className != 'u') {
+        if(is_file($fileName = Config::get('paths.workbench') . DS . strtolower($composerName) .DS. 'src' . DS . $fileName)){
+            include $fileName;
+        } elseif(is_file($fileName = Config::get('paths.workbench') . DS . $fileName)){
+            include $fileName;
+        }
 
-            $aNamespaces = Composer::getNamespaces();
-
+        if (is_array($aAutoload) and array_key_exists($className, $aAutoload) and is_file($aAutoload[$className])) {
+            include $aAutoload[$className];
         }
     }
 

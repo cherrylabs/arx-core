@@ -28,6 +28,42 @@ class FileViewFinder extends ParentClass
     }
 
     /**
+     * Get the path to a template with a named path.
+     *
+     * @param  string  $name
+     * @return string
+     */
+    protected function findNamedPathView($name)
+    {
+        list($namespace, $view) = $this->getNamespaceSegments($name);
+
+        return $this->findInPaths($view, $this->hints[$namespace]);
+    }
+
+    /**
+     * Get the segments of a template with a named path.
+     *
+     * @param  string  $name
+     * @return array
+     */
+    protected function getNamespaceSegments($name)
+    {
+        $segments = explode('::', $name);
+
+        if (count($segments) != 2)
+        {
+            throw new \InvalidArgumentException("View [$name] has an invalid name.");
+        }
+
+        if ( ! isset($this->hints[$segments[0]]))
+        {
+            throw new \InvalidArgumentException("No hint path defined for [{$segments[0]}].");
+        }
+
+        return $segments;
+    }
+
+    /**
      * Find the given view in the list of paths.
      *
      * @param  string  $name

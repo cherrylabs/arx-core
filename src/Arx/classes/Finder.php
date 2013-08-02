@@ -2,6 +2,12 @@
 
 use Symfony\Component\Finder\Finder as ParentClass;
 
+use Symfony\Component\Finder\Adapter\AdapterInterface;
+use Symfony\Component\Finder\Adapter\GnuFindAdapter;
+use Symfony\Component\Finder\Adapter\BsdFindAdapter;
+use Symfony\Component\Finder\Adapter\PhpAdapter;
+use Symfony\Component\Finder\Exception\ExceptionInterface;
+
 /**
  * Finder
  *
@@ -27,8 +33,8 @@ class Finder extends ParentClass
 
     private $_path = "";
     private $_exclude_extension = array('entries', 'all-wcprops', 'DS_Store');
-    private $_exclude_file = array('.DS_Store', 'all-wcprops', 'DS_Store','.gitkeep', '.gitignore');
-    private $_exclude_dir = array('.svn', 'all-wcprops', 'DS_Store', '.git','.idea');
+    private $_exclude_file = array('.DS_Store', 'all-wcprops', 'DS_Store', '.gitkeep', '.gitignore');
+    private $_exclude_dir = array('.svn', 'all-wcprops', 'DS_Store', '.git', '.idea');
 
 
     // --- Magic methods
@@ -37,34 +43,43 @@ class Finder extends ParentClass
      * Constructor
      *
      * @access public
-     *
-     * @return void
      */
     public function __construct($path = null)
     {
-        if (!is_null($path)) {
+        if ($path) {
             $this->setPath($path);
+            parent::__construct($path);
         }
 
-        return $this;
     } // __construct
 
     public function __get($file)
     {
-        $file = $this->_path.DS.$file;
+        $file = $this->_path . DS . $file;
 
         return new self($file);
 
     } // __get
 
-    public function __set($sName, $mValue) {} // __set}
+    public function __set($sName, $mValue)
+    {
+    } // __set}
+
+    public static function dir($path)
+    {
+        return new self($path);
+    }
+
+    public static function instance($path = null){
+        return new self($path);
+    }
 
 
     // --- Public methods
 
     public function open($file)
     {
-        $file = $this->_path.DS.$file;
+        $file = $this->_path . DS . $file;
 
         return new self($file);
 
@@ -74,10 +89,12 @@ class Finder extends ParentClass
      * Set the explorer path
      *
      * @access public
+     *
      * @param  string $path
+     *
      * @return void
      */
-    public function setPath($path="")
+    public function setPath($path = "")
     {
         if ($path != "") {
             $this->_path = str_replace("\\", DS, $path);
@@ -89,23 +106,25 @@ class Finder extends ParentClass
      * List directory content
      *
      * @access public
+     *
      * @param  array $exclude
      * @param  bool  $recursive
+     *
      * @return array
      */
-    public function scan($c = true, &$list=array(), $exclude_extension = array(), $exclude_file=array(), $exclude_dir=array(), $dir="")
+    public function scan($c = true, &$list = array(), $exclude_extension = array(), $exclude_file = array(), $exclude_dir = array(), $dir = "")
     {
         if (is_array($c)) {
-            foreach ($c as $key=>$item) {
+            foreach ($c as $key => $item) {
                 ${$key} = $item;
             }
         } else {
             $recursive = $c;
         }
 
-        if(!$exclude_extension) $exclude_extension = $this->_exclude_extension;
-        if(!$exclude_file) $exclude_file = $this->_exclude_file;
-        if(!$exclude_dir) $exclude_dir = $this->_exclude_dir;
+        if (!$exclude_extension) $exclude_extension = $this->_exclude_extension;
+        if (!$exclude_file) $exclude_file = $this->_exclude_file;
+        if (!$exclude_dir) $exclude_dir = $this->_exclude_dir;
 
         // Lowercase exclude Arr
         $exclude_extension = array_map("strtolower", $exclude_extension);
@@ -113,7 +132,7 @@ class Finder extends ParentClass
         $exclude_dir = array_map("strtolower", $exclude_dir);
 
         $dir = ($dir == "") ? $this->_path : $dir;
-        if(substr($dir, -1) != DS) $dir .= DS;
+        if (substr($dir, -1) != DS) $dir .= DS;
 
         // Open the folder
         $dir_handle = @opendir($dir) or die("Unable to open $dir");
@@ -123,28 +142,28 @@ class Finder extends ParentClass
 
             // Strip dir pointers and extension exclude
             $extension = $this->getExtension($file);
-            if($file == "." || $file == ".." || in_array($extension, $exclude_extension)) continue;
+            if ($file == "." || $file == ".." || in_array($extension, $exclude_extension)) continue;
 
             if (is_dir($dir . $file)) {
                 if (!in_array(strtolower($file), $exclude_dir)) {
-                    $info               = "";
-                    $info["type"]       = "dir";
-                    $info["path"]       = $dir;
-                    $info["fullpath"]   = $dir . $file;
-                    $info["urlpath"]    = str_replace(Config::get('paths.root'), Config::get('paths.rooturl'), $info["fullpath"]);
-                    $info["name"]   = str_replace($dir, '', $info["fullpath"]);
+                    $info = "";
+                    $info["type"] = "dir";
+                    $info["path"] = $dir;
+                    $info["fullpath"] = $dir . $file;
+                    $info["urlpath"] = str_replace(Config::get('paths.root'), Config::get('paths.rooturl'), $info["fullpath"]);
+                    $info["name"] = str_replace($dir, '', $info["fullpath"]);
                     $list[] = $info;
                 }
             } else {
                 if (!in_array(strtolower($file), $exclude_file)) {
-                    $info               = "";
+                    $info = "";
                     $info["extension"] = $extension;
-                    $info["type"]       = "file";
-                    $info["path"]       = $dir;
-                    $info["filename"]   = $file;
-                    $info["fullpath"]   = $dir . $file;
-                    $info["urlpath"]    = str_replace(Config::get('paths.root'), Config::get('paths.rooturl'), $info["fullpath"]);
-                    $info["name"]   = str_replace('.'.$extension, '', $file);
+                    $info["type"] = "file";
+                    $info["path"] = $dir;
+                    $info["filename"] = $file;
+                    $info["fullpath"] = $dir . $file;
+                    $info["urlpath"] = str_replace(Config::get('paths.root'), Config::get('paths.rooturl'), $info["fullpath"]);
+                    $info["name"] = str_replace('.' . $extension, '', $file);
                     $list[] = $info;
                 }
             }
@@ -165,25 +184,26 @@ class Finder extends ParentClass
      * List directory content
      *
      * @access public
+     *
      * @param  array $exclude
      * @param  bool  $recursive
      *
      * @return array
-     * @TODO : function more generic
+     * @TODO   : function more generic
      */
-    public function scan_only($c = true, &$list=array(), $exclude_extension = array(), $exclude_file=array(), $exclude_dir=array(),   $dir="")
+    public function scanOnly($c = true, &$list = array(), $exclude_extension = array(), $exclude_file = array(), $exclude_dir = array(), $dir = "")
     {
         $aFiles = $this->scan($c, $list, $exclude_extension, $exclude_file, $exclude_dir, $dir);
 
         $list = array();
 
-        foreach ($aFiles as $key=>$v) {
+        foreach ($aFiles as $key => $v) {
 
-            if (isset($c['extension']) && preg_match('/'.$c['extension'].'/i', $v['extension'])) {
+            if (isset($c['extension']) && preg_match('/' . $c['extension'] . '/i', $v['extension'])) {
                 $list[$key] = $v;
             }
 
-            if (isset($c['type']) && preg_match('/'.$c['type'].'/i', $v['type'])) {
+            if (isset($c['type']) && preg_match('/' . $c['type'] . '/i', $v['type'])) {
                 $list[$key] = $v;
             }
 
@@ -216,7 +236,7 @@ class Finder extends ParentClass
      */
     public function getPath()
     {
-        return $this->get_dir().DS;
+        return $this->getDir() . DS;
     } // get_path
 
     /**
@@ -240,6 +260,7 @@ class Finder extends ParentClass
      * Get extension from a string
      *
      * @access private
+     *
      * @param  string $file
      *
      * @return string
@@ -255,6 +276,7 @@ class Finder extends ParentClass
      * Sort an arry based on the strings length
      *
      * @access private
+     *
      * @param  string $val_1
      * @param  string $val_2
      *

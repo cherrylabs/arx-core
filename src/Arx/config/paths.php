@@ -54,4 +54,6 @@ return array(
 
     'storage' => realpath('../app/storage'),
 
+    'workbench' => \Arx\classes\Composer::getRootPath().'/workbench'
+
 );

@@ -27,10 +27,27 @@ class Composer extends Container
         return dirname(dirname($t->path));
     }
 
-    public static function getNamespaces()
+    /**
+     * Get the array of namespace defined in composer
+     *
+     * It includes a array_flip function to add a more easy way to handle the array
+     *
+     * @param null $flip
+     *
+     * @return array|mixed
+     */
+    public static function getNamespaces($flip = null)
     {
         $t = self::getInstance();
-        return include $t->path . DS . 'autoload_namespaces.php';
+        $response = (array) include $t->path . DS . 'autoload_namespaces.php';
+
+        $flip = true;
+
+        if($flip){
+            return $response;
+        } else {
+            return $response;
+        }
     }
 
     public static function getClassmap()

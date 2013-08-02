@@ -1,8 +1,26 @@
+<?php
+
+if(!isset($_formLogin)){
+    $_formLogin = Array(
+        'attributes' => array(
+            'class' => 'form-signin',
+            'method' => 'POST'
+        )
+    );
+}
+
+if(isset($formLogin)){
+    $formLogin = array_merge($_formLogin, $formLogin);
+} else {
+    $formLogin = $_formLogin;
+}
+
+?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="utf-8">
-    <title>@yiel('title')</title>
+    <title><?= !isset($title) ?: $title ?></title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="description" content="">
     <meta name="author" content="">
@@ -53,15 +71,16 @@
 <body>
 
 <div class="container">
-
-    <form class="form-signin">
+    <form <?= HTML::attributes($formLogin['attributes'])?>>
         <h2 class="form-signin-heading">Please sign in</h2>
-        <input type="text" class="input-block-level" placeholder="Email address">
-        <input type="password" class="input-block-level" placeholder="Password">
+        <input name="email" type="text" class="input-block-level" placeholder="Email address">
+        <input name="password" type="password" class="input-block-level" placeholder="Password">
         <label class="checkbox">
-            <input type="checkbox" value="remember-me"> Remember me
+            <input type="checkbox" value="true" name="remember"> Remember me
         </label>
+        @section('buttons')
         <button class="btn btn-large btn-primary" type="submit">Sign in</button>
+        @show
     </form>
 
 </div> <!-- /container -->
