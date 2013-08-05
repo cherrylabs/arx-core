@@ -87,10 +87,13 @@ require_once __DIR__ . DS . 'classes' . DS . 'App.php';
  * Needed to avoid any namespace problem in first level
  *
  */
-class Arx extends \Arx\classes\App{
 
-    public static function path($value = null){
-        return __DIR__.($value ? DS. $value : '');
+if(!class_exists('Arx')){
+    class Arx extends \Arx\classes\App{
+
+        public static function path($value = null){
+            return __DIR__.($value ? DS. $value : '');
+        }
     }
 }
 

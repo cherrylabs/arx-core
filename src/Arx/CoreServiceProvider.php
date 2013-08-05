@@ -1,6 +1,6 @@
 <?php namespace Arx;
 
-use Arx\classes\View;
+use View,Config,Lang,Arx;
 use Illuminate\Support\ServiceProvider;
 
 class CoreServiceProvider extends ServiceProvider {
@@ -19,8 +19,11 @@ class CoreServiceProvider extends ServiceProvider {
      */
     public function boot()
     {
-        $this->package('arx/core');
-        View::addNamespace('Arx', Arx::path().'/views');
+        $this->package('Arx/Core');
+        View::addNamespace('Arx', Arx::path('views'));
+        Lang::addNamespace('Arx', Arx::path('lang'));
+        Config::addNamespace('Arx', Arx::path('config'));
+
     }
 
     /**

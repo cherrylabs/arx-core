@@ -156,6 +156,8 @@ class App extends Application
      * @param array $aParam
      *
      * @return void
+     *
+     * @todo clean this function
      */
     static function autoload($className, $aParam = array())
     {
@@ -197,7 +199,7 @@ class App extends Application
 
 
         if (in_array($namespace, array_keys($aNamespaces))) {
-            dd($fileName, $namespace, $className, $fileName, $vendorName, $packageName, $routeName);
+
         } elseif(in_array($composerName, array_keys($aNamespaces))){
 
             $paths = $aNamespaces[$composerName];
