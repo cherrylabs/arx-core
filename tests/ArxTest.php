@@ -33,8 +33,6 @@ class ArxTest extends \PHPUnit_Framework_TestCase
             $config["level1"]["level2"]['level3']['level4']['level5'],
             \Arx\classes\Config::get('level1.level2.level3.level4.level5')
         );
-
-        echo(var_dump(\Arx\classes\Config::get()));
     }
 
     public function testInstance()
