@@ -1,4 +1,4 @@
-#### /\rx still in progress for a first alpha release please wait at the end of June.
+#### /\rx still in progress for a first alpha release please wait until the trees lose their leaves. 
 
 ```
 
@@ -36,4 +36,3 @@
 +  )/    (8P   (88    )  )
    (a:f   "     `"       `
 ```
-@ http://www.ascii-art.de/info/artists/andreas/
