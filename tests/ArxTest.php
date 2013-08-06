@@ -1,7 +1,5 @@
 <?php
 
-use Arx\classes\Config;
-
 /**
  * Class ArxTest
  */
@@ -24,41 +22,35 @@ class ArxTest extends \PHPUnit_Framework_TestCase
 
     public function testConfig()
     {
-        global $arxConfig;
-        $this->assertNotNull($arxConfig);
-        $this->assertNotNull($arxConfig["system"]);
-        $this->assertNotNull($arxConfig["system"]["app"]);
-        $this->assertNotNull($arxConfig["system"]["template"]);
-        $this->assertNotNull($arxConfig["system"]["db"]);
+        $this->assertNotNull(\Arx\classes\Config::get(), 'Config::get() should return an array with all the configuration!');
 
-        $this->assertSame( $arxConfig["system"]["app"], c_config::get('system.app') );
+        \Arx\classes\Config::set('level1.level2.level3.level4.level5', 'arg5');
+        \Arx\classes\Config::load(__DIR__.'/../src/config/');
 
-        $this->assertNotNull( arxConfig(__DIR__.'/../src/config')->app->debug, 'arxConfig.app.debug should exist');
+        $config = \Arx\classes\Config::get();
 
-        c_config::set('level1.level2.level3.level4.level5', 'arg5');
+        $this->assertSame(
+            $config["level1"]["level2"]['level3']['level4']['level5'],
+            \Arx\classes\Config::get('level1.level2.level3.level4.level5')
+        );
 
-        $this->assertSame($arxConfig["level1"]["level2"]['level3']['level4']['level5'], c_config::get('level1.level2.level3.level4.level5') );
-    }
-
-    public function testInit()
-    {
-        
+        echo(var_dump(\Arx\classes\Config::get()));
     }
 
     public function testInstance()
     {
-        $app = new arx();
-        $this->assertObjectHasAttribute("_oTpl", $app);
-        $this->assertTrue(is_object($app->tpl), "tpl is not an object");
-        $this->assertTrue(is_object($app->route), "route is not an object");
+        // $app = new \Arx\classes\App();
+        // $this->assertObjectHasAttribute("_oTpl", $app);
+        // $this->assertTrue(is_object($app->tpl), "tpl is not an object");
+        // $this->assertTrue(is_object($app->route), "route is not an object");
     }
 
 
     public function testLoading()
     {
-        $app = new arx();
+        // $app = new \Arx\classes\App();
 
-        $this->assertTrue(is_object($app->c_finder()), "c_finder test is not an object");
+        // $this->assertTrue(is_object($app->c_finder()), "c_finder test is not an object");
     }
 }
 

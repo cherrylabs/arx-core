@@ -1,33 +1,21 @@
 {
     "name": "arx/core",
-    "description": "Arx as a library",
-    "homepage": "http://arx.xxx",
+    "description": "Arx core is a boosted web development kit",
+    "homepage": "http://www.arx.xxx",
     "license": "MIT",
     "require": {
         "php": ">=5.3.0",
         "raveren/kint" : "*",
-        "j4mie/idiorm" : "*",
-        "mustache/mustache" : "*",
-        "slim/slim" : "*",
-        "slim/extras" : "*",
-        "phpunit/phpunit": "3.7.*"
+        "illuminate/support": "4.0.x",
+        "mockery/mockery": "0.7.2",
+        "kriswallsmith/assetic" : "*"
     },
     "autoload": {
         "psr-0": {
-            "Arx": "src/"
+            "Arx": "src"
         },
-        "autoload": {
-            "classmap": ["vendor"]
-        },
-        "files" : ["src/core.php"]
+        "files" : ["src/Arx/core.php"]
     },
-
-    "repositories": [
-        {
-            "type": "composer",
-            "url": "https://packages.zendframework.com/"
-        }
-    ],
 
     "minimum-stability": "dev"
 }
