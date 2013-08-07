@@ -6,7 +6,7 @@
     "require": {
         "php": ">=5.3.0",
         "raveren/kint" : "*",
-        "laravel/framework" : "*",
+        "laravel/framework" : "4.0.*",
         "mockery/mockery": "0.7.2",
         "kriswallsmith/assetic" : "*"
     },
@@ -16,6 +16,8 @@
         },
         "files" : ["src/Arx/core.php"]
     },
-
+    "config": {
+        "preferred-install": "dist"
+    },
     "minimum-stability": "dev"
 }
