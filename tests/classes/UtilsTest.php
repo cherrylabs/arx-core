@@ -10,7 +10,7 @@ use Arx\classes\Utils;
 class UtilsTest extends PHPUnit_Framework_TestCase {
 
     public function testAlias(){
-        
+
     }
 
 }
