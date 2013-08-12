@@ -38,7 +38,7 @@ return array(
      */
     'detectEnv' => true,
 
-    'url' => HTTP_PROTOCOL.$_SERVER['HTTP_HOST'],
+    'url' => HTTP_PROTOCOL.getenv('HTTP_HOST'),
 
     'path' => '/app',
 
