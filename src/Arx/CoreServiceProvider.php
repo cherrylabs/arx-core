@@ -20,9 +20,15 @@ class CoreServiceProvider extends ServiceProvider {
     public function boot()
     {
         $this->package('Arx/Core');
-        View::addNamespace('Arx', Arx::path('views'));
-        Lang::addNamespace('Arx', Arx::path('lang'));
-        Config::addNamespace('Arx', Arx::path('config'));
+        \View::addNamespace('Arx', Arx::path('views'));
+        \Lang::addNamespace('Arx', Arx::path('lang'));
+        \Config::addNamespace('Arx', Arx::path('config'));
+
+        Arx\classes\Utils::alias('predie', '\Arx\classes\Utils::predie');
+
+        Arx\classes\Utils::alias('k', '\Arx\classes\Utils::k');
+
+
 
     }
 
