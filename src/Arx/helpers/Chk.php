@@ -1,4 +1,4 @@
-<?php namespace Arx;
+<?php
 
 /**
  * Class chk

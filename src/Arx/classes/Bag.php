@@ -1,7 +1,16 @@
 <?php namespace Arx\classes;
 
 /**
- * Super Smart Bag to avoid isset statement
+ * Bag class
+ *
+ * Override the default undefined behavior by returning smartly a false when a subvariable is not defined
+ *
+ * @example :
+ *
+ * $bag = new Bag(array('title', 'array' => 'array value'))
+ *
+ * print $bag['falsevar'] ?: 'title by default';
+ *
  */
 
 use Closure;
@@ -10,6 +19,10 @@ class Bag implements \ArrayAccess, \Iterator {
 
     private $__var = array();
 
+    /**
+     * Auto constructor
+     * @param $data
+     */
     public function __construct($data) {
         $this->__var = $data;
         return $data;
@@ -103,18 +116,7 @@ class Bag implements \ArrayAccess, \Iterator {
      */
     public function offsetSet($key, $value)
     {
-        // If the value is not a Closure, we will make it one. This simply gives
-        // more "drop-in" replacement functionality for the Pimple which this
-        // container's simplest functions are base modeled and built after.
-        if ( ! $value instanceof Closure)
-        {
-            $value = function() use ($value)
-            {
-                return $value;
-            };
-        }
-
-        $this->__var($key, $value);
+        $this->__var[$key] = $value;
     }
 
     /**

@@ -4,8 +4,7 @@
 return array(
 
     'classes' => array(
-        'u' => '\Arx\classes\Utils',
-        'Route' => '\Arx\facades\Route'
+        'u' => '\Arx\classes\Utils'
     ),
 
     'functions' => array(
