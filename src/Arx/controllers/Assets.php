@@ -7,10 +7,11 @@ use Assetic\Asset\AssetCollection;
 use Assetic\Asset\FileAsset;
 use Assetic\Asset\GlobAsset;
 
-class Assets extends \Controller implements \Arx\interfaces\Assets {
+class Assets extends \Controller implements \Arx\interfaces\Assets
+{
 
     /**
-     * Path always relative to the class
+     * Path should be always relative to the class
      *
      * @var string
      */
@@ -25,58 +26,86 @@ class Assets extends \Controller implements \Arx\interfaces\Assets {
     {
         $parameters = implode('/', $parameters);
 
-        if(preg_match('/.css/i', $parameters)){
-            header('Content-Type: text/css');
-        } elseif(preg_match('/.js/i', $parameters)){
-            header('Content-Type: text/javascript');
-        }
-
         # If parameters is a file
-        if($file = $this->path($parameters)){
+        if ($file = $this->path($parameters)) {
             $response = \with(new AssetCollection(array(
                 new FileAsset($file)
             )))->dump();
         }
 
-        if($aParameters = json_decode($parameters, TRUE)){
+        # If parament is in json format
+        if ($aParameters = json_decode($parameters, TRUE)) {
 
-            array_walk($aParameters, function (&$item){
-               $item = new FileAsset($this->path($item));
+            array_walk($aParameters, function (&$item) {
+                $item = new FileAsset($this->path($item));
             });
 
-            $response = \with( new AssetCollection($aParameters) )->dump();
+            $response = \with(new AssetCollection($aParameters))->dump();
         }
 
 
-        if($response){
+        if ($response) {
+
+            if (preg_match('/.css/i', $parameters)) {
+                header('Content-Type: text/css');
+            } elseif (preg_match('/.js/i', $parameters)) {
+                header('Content-Type: text/javascript');
+            }
             die($response);
         }
 
+        dd($aParameters);
 
-        App::missing(function($exception)
-        {
+
+        App::missing(function ($exception) {
             return Response::view('arx::404', array('message' => 'Not found'), 404);
         });
 
         return App::abort(404, 'Not found');
     }
 
-    public function path($file = null){
+    public function js($parameters)
+    {
+        return $this->missingMethod($parameters);
+    }
+
+    public function css($parameters)
+    {
+        return $this->missingMethod($parameters);
+
+    }
+
+    public function img($parameters)
+    {
+        return $this->missingMethod($parameters);
+
+    }
+
+    public function path($file = null)
+    {
 
         $reflector = new \ReflectionClass(get_class($this));
 
-        $response = realpath(dirname($reflector->getFileName()) .'/'. $this->path);
+        $response = realpath(dirname($reflector->getFileName()) . '/' . $this->path);
 
-        if(!$response){
+        if (!$response) {
             App::abort(404, 'Path not found');
-        } elseif($file){
-            $response .= '/'.$file;
-            if(!is_file($response)){
+        } elseif ($file) {
+            $response .= '/' . $file;
+            if (!is_file($response)) {
                 return false;
             }
         }
 
         return $response;
     }
+
+}
+
+namespace Arx;
+
+use Arx\controllers\Assets;
+
+class ctrl_Assets extends Assets{
 
 }
