@@ -43,7 +43,6 @@ class Assets extends \Controller implements \Arx\interfaces\Assets
             $response = \with(new AssetCollection($aParameters))->dump();
         }
 
-
         if ($response) {
 
             if (preg_match('/.css/i', $parameters)) {
@@ -53,9 +52,6 @@ class Assets extends \Controller implements \Arx\interfaces\Assets
             }
             die($response);
         }
-
-        dd($aParameters);
-
 
         App::missing(function ($exception) {
             return Response::view('arx::404', array('message' => 'Not found'), 404);
