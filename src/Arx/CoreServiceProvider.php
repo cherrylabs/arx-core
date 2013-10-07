@@ -1,6 +1,8 @@
 <?php namespace Arx;
 
 use View,Config,Lang,Arx;
+
+use Arx\classes\Utils as u;
 use Illuminate\Support\ServiceProvider;
 
 class CoreServiceProvider extends ServiceProvider {
@@ -20,14 +22,19 @@ class CoreServiceProvider extends ServiceProvider {
     public function boot()
     {
         $this->package('Arx/Core');
+
         \View::addNamespace('Arx', Arx::path('views'));
         \Lang::addNamespace('Arx', Arx::path('lang'));
         \Config::addNamespace('Arx', Arx::path('config'));
 
-        Arx\classes\Utils::alias('predie', '\Arx\classes\Utils::predie');
+        u::alias('predie', '\Arx\classes\Utils::predie');
 
-        Arx\classes\Utils::alias('k', '\Arx\classes\Utils::k');
+        u::alias('k', '\Arx\classes\Utils::k');
 
+        u::alias('lg', '\Lang::get');
+
+        require_once 'filters.php';
+        require_once 'routes.php';
 
 
     }

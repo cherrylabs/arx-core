@@ -1,5 +1,5 @@
 <?php namespace Arx\classes;
 
-class Check {
+class Opengraph {
 
 }

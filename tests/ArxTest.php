@@ -1,7 +1,7 @@
 <?php
 
 /**
- * Class ArxTest
+ * Main arx test
  */
 class ArxTest extends \PHPUnit_Framework_TestCase
 {

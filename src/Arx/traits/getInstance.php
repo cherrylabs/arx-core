@@ -1,4 +1,4 @@
-<?php
+<?php namespace Arx\traits;
 
 trait getInstance(){
     $sClass = get_called_class();
