@@ -16,7 +16,8 @@ class Utils
 
     // --- Magic methods
 
-    public static function __callStatic($sName, $aArgs) {
+    public static function __callStatic($sName, $aArgs)
+    {
 
         switch (true) {
             case method_exists('\Arx\classes\Strings', $sName):
@@ -30,8 +31,11 @@ class Utils
 
     // --- Public methods
 
-    public static function alias($aliasName, $callback) {
+#A
+    public static function alias($aliasName, $callback)
+    {
         $err = false;
+
         if (function_exists($aliasName)) {
             $err = 'This function already' . $aliasName . ' exist';
         }
@@ -64,11 +68,13 @@ class Utils
 
         eval($bodyFunc);
 
-        return true;
+        return $err;
     } // alias
 
+#B
 
-    public static function benchIt() {
+    public static function benchIt()
+    {
         if (function_exists('xdebug_time_index')) {
             return xdebug_time_index();
         } else {
@@ -76,8 +82,10 @@ class Utils
         }
     } // benchIt
 
+#C
 
-    public static function curlGet($url) {
+    public static function curlGet($url)
+    {
         $curl = curl_init($url);
         curl_setopt($curl, CURLOPT_RETURNTRANSFER, 1);
         curl_setopt($curl, CURLOPT_TIMEOUT, 30);
@@ -88,8 +96,16 @@ class Utils
         return $return;
     } // curlGet
 
+#E
+    public static function epre($v)
+    {
+        return d($v);
+    } // epre
 
-    public function findCaller($mVar) {
+#F
+
+    public function findCaller($mVar)
+    {
         if (is_string($mVar)) {
             $aQuery = array('function' => $mVar);
         } elseif (is_array($mVar)) {
@@ -108,7 +124,8 @@ class Utils
     } // findCaller
 
 
-    public function findCallers($functionName){
+    public function findCallers($functionName)
+    {
         $aErrors = debug_backtrace();
         $aResult = array();
 
@@ -123,13 +140,15 @@ class Utils
         return $aResult;
     } // findCallers
 
-
-    public static function getContents($file) {
+#G
+    public static function getContents($file)
+    {
         return self::curlGet(self::getURL($file));
     } // getContents
 
 
-    public static function getHeight($image) {
+    public static function getHeight($image)
+    {
         $sizes = getimagesize($image);
         $height = $sizes[1];
 
@@ -137,16 +156,30 @@ class Utils
     } // getHeight
 
 
-    public static function getJSON($file, $as_array = false) {
-        if (!empty($file)) {
-            return json_decode(@file_get_contents(u::getURL($file)), $as_array);
-        }
-
-        return false;
+    public static function getJSON($url, $as_array = false)
+    {
+        $response = json_decode(@file_get_contents($url), $as_array);
+        return $response;
     } // getJSON
 
+    public static function getIp()
+    {
 
-    public static function getVideoEmbed($url, $width = 560, $height = 315) {
+        return \Request::getClientIp();
+    }
+
+    public static function getIpInfos($ip = null)
+    {
+
+        $response = self::getJSON('http://ip-api.com/json');
+
+        return $response;
+
+    }
+
+
+    public static function getVideoEmbed($url, $width = 560, $height = 315)
+    {
         switch (true) {
             case preg_match('/youtu/i', $url):
                 $url_string = parse_url($url, PHP_URL_QUERY);
@@ -154,7 +187,7 @@ class Utils
                 $id = isset($args['v']) ? $args['v'] : false;
 
                 if (!empty($id)) {
-                    return '<iframe width="'.$width.'" height="'.$height.'" src="http://www.youtube.com/embed/'.$id.'?rel=0" frameborder="0" allowfullscreen></iframe>';
+                    return '<iframe width="' . $width . '" height="' . $height . '" src="http://www.youtube.com/embed/' . $id . '?rel=0" frameborder="0" allowfullscreen></iframe>';
                 }
 
                 return false;
@@ -164,7 +197,7 @@ class Utils
                 $id = filter_var($url, FILTER_SANITIZE_NUMBER_INT);
 
                 if (!empty($id)) {
-                    return '<iframe src="http://player.vimeo.com/video/'.$id.'?portrait=0" width="'.$width.'" height="'.$height.'" frameborder="0" webkitAllowFullScreen mozallowfullscreen allowFullScreen></iframe>';
+                    return '<iframe src="http://player.vimeo.com/video/' . $id . '?portrait=0" width="' . $width . '" height="' . $height . '" frameborder="0" webkitAllowFullScreen mozallowfullscreen allowFullScreen></iframe>';
                 }
 
                 return false;
@@ -173,7 +206,7 @@ class Utils
                 $id = str_replace('/video/', '', parse_url($url, PHP_URL_PATH));
 
                 if (!empty($id)) {
-                    return '<iframe frameborder="0" width="'.$width.'" height="'.$height.'" src="http://www.dailymotion.com/embed/video/'.$id.'"></iframe>';
+                    return '<iframe frameborder="0" width="' . $width . '" height="' . $height . '" src="http://www.dailymotion.com/embed/video/' . $id . '"></iframe>';
                 }
 
                 return false;
@@ -181,28 +214,31 @@ class Utils
     } // getVideoEmbed
 
 
-    public static function getWidth($image) {
+    public static function getWidth($image)
+    {
         $sizes = getimagesize($image);
         $width = $sizes[0];
 
         return $width;
     } // getWidth
 
-
-    public static function header($type) {
-        include_once(__DIR__.DS.'utils'.DS.'header.php');
+#H
+    public static function header($type)
+    {
+        include_once(__DIR__ . DS . 'utils' . DS . 'header.php');
 
         header($aHeader[$type]);
     } // header
 
-
-    public static function issetOr($sValue, $defaultValue = null){
+#I
+    public static function issetOr($sValue, $defaultValue = null)
+    {
 
         if (($sValue = strstr($sValue, '$')) !== false) {
             $sValue = substr($sValue, 1);
         }
 
-        if(isset(${$sValue})){
+        if (isset(${$sValue})) {
             return $sValue;
         } else {
             return $defaultValue;
@@ -218,13 +254,14 @@ class Utils
      *
      * @return bool
      */
-    public static function isHTTPS($server = array()){
+    public static function isHTTPS($server = array())
+    {
 
         $response = false;
 
-        if(empty($server) && isset($_SERVER)){
+        if (empty($server) && isset($_SERVER)) {
             $server = $_SERVER;
-            if(!isset($server['SERVER_PORT'])){
+            if (!isset($server['SERVER_PORT'])) {
                 $server['SERVER_PORT'] = 80;
             }
         } else {
@@ -232,26 +269,34 @@ class Utils
             $server['SERVER_PORT'] = getenv('SERVER_PORT');
         }
 
-        if ( isset($server['HTTPS']) && $server['HTTPS'] !== 'off'
-            || $server['SERVER_PORT'] == 443) {
+        if (isset($server['HTTPS']) && $server['HTTPS'] !== 'off'
+            || $server['SERVER_PORT'] == 443
+        ) {
             $response = true;
         }
 
         return $response;
     }
 
+    public static function isClosure($var)
+    {
+        return is_object($var) && ($var instanceof \Closure);
+    }
 
-    public static function json_die($array) {
+#J
+    public static function json_die($array)
+    {
         header("content-type: application/json");
         die(json_encode($array, true));
     } // json_die
 
-
-    public static function k($string = '') {
+#K
+    public static function k($string = '')
+    {
         $aErrors = debug_backtrace();
 
         foreach ($aErrors as $key => $error) {
-            if ( preg_match('/k/i', $error['function']) && !empty($error['line']) && !empty($error['file'])) {
+            if (preg_match('/k/i', $error['function']) && !empty($error['line']) && !empty($error['file'])) {
                 $line = $error['line'];
                 $file = $error['file'];
             }
@@ -262,18 +307,15 @@ class Utils
         $time = microtime(true);
         $total_time = ($time - $start);
 
-        trigger_error("K called @ $file line $line loaded in ".$total_time. " seconds");
+        trigger_error("K called @ $file line $line loaded in " . $total_time . " seconds");
 
         exit;
     } // k
 
 
-    public static function epre($v) {
-        return d($v);
-    } // epre
-
-
-    public static function pre() {
+#P
+    public static function pre()
+    {
         $aArgs = func_get_args();
 
         foreach ($aArgs as $key => $value) {
@@ -282,7 +324,8 @@ class Utils
     } // pre
 
 
-    public static function predie() {
+    public static function predie()
+    {
         $aArgs = func_get_args();
 
         foreach ($aArgs as $key => $value) {
@@ -304,7 +347,7 @@ class Utils
         $time = microtime(true);
         $total_time = ($time - $start);
 
-        die("Predie called @ $file line $line loaded in ".$total_time. " seconds");
+        die("Predie called @ $file line $line loaded in " . $total_time . " seconds");
     } // predie
 
 
@@ -319,12 +362,14 @@ class Utils
      *
      * @endcode
      */
-    public static function put_json($dest, $value, $type = false) {
+    public static function put_json($dest, $value, $type = false)
+    {
         return @file_put_contents($dest, json_encode($value));
     } // put_json
 
-
-    public static function randGen($numb = 10, $c = '') {
+#R
+    public static function randGen($numb = 10, $c = '')
+    {
         if (!is_array($c)) {
             $c = json_decode($c, true);
         }
@@ -343,10 +388,11 @@ class Utils
             $chaine = $c['only'];
         }
 
-        return $c['prepend'].substr(str_shuffle(str_repeat($chaine, $numb)), 0, $numb).$c['append'];
+        return $c['prepend'] . substr(str_shuffle(str_repeat($chaine, $numb)), 0, $numb) . $c['append'];
     } // randGen
 
-    public static function randString($numb = 10, $c = '') {
+    public static function randString($numb = 10, $c = '')
+    {
         if (!is_array($c)) {
             $c = json_decode($c, true);
         }
@@ -365,10 +411,11 @@ class Utils
             $chaine = $c['only'];
         }
 
-        return $c['prepend'].substr(str_shuffle(str_repeat($chaine, $numb)), 0, $numb).$c['append'];
+        return $c['prepend'] . substr(str_shuffle(str_repeat($chaine, $numb)), 0, $numb) . $c['append'];
     } // randString
 
-    public static function randNum($numb = 10, $c = '') {
+    public static function randNum($numb = 10, $c = '')
+    {
         if (!is_array($c)) {
             $c = json_decode($c, true);
         }
@@ -387,10 +434,11 @@ class Utils
             $chaine = $c['only'];
         }
 
-        return $c['prepend'].substr(str_shuffle(str_repeat($chaine, $numb)), 0, $numb).$c['append'];
+        return $c['prepend'] . substr(str_shuffle(str_repeat($chaine, $numb)), 0, $numb) . $c['append'];
     } // randNum
 
-    public static function randEmail($numb = 10, $c = '') {
+    public static function randEmail($numb = 10, $c = '')
+    {
         if (!is_array($c)) {
             $c = json_decode($c, true);
         }
@@ -412,20 +460,21 @@ class Utils
         if (!empty($c['domain'])) {
             $domain = $c['domain'];
         } else {
-            $domain = substr(str_shuffle(str_repeat($chaine, $numb)), 0, $numb).'.com';
+            $domain = substr(str_shuffle(str_repeat($chaine, $numb)), 0, $numb) . '.com';
         }
 
-        return $c['prepend'].substr(str_shuffle(str_repeat($chaine, $numb)), 0, $numb).$c['append'].'@'.$domain;
+        return $c['prepend'] . substr(str_shuffle(str_repeat($chaine, $numb)), 0, $numb) . $c['append'] . '@' . $domain;
     } // randEmail
 
-    public static function randArray($a, $c = '') {
+    public static function randArray($a, $c = '')
+    {
         if (!is_array($c)) {
             $c = json_decode($c, true);
         }
 
         if (!empty($c['num'])) {
             for ($i = 1; $i <= $c['num']; $i++) {
-                $r .= $c['prepend'].$a[array_rand($input, 1)].$c['append'];
+                $r .= $c['prepend'] . $a[array_rand($input, 1)] . $c['append'];
             }
 
             return $r;
@@ -435,7 +484,8 @@ class Utils
     } // randArray
 
 
-    public static function removeSVN($dir) {
+    public static function removeSVN($dir)
+    {
         $out = array();
 
         $out[] = "Searching: $dir\n\t";
@@ -448,9 +498,9 @@ class Utils
                 $out[] = "File permissions could not be changed (this may or may not be a problem--check the statement below).\n\t"; // if the permissions were already 777, this is not a problem
             }
 
-            self::removeTree( $svn ); // remove the .svn directory with a helper function
+            self::removeTree($svn); // remove the .svn directory with a helper function
 
-            if (is_dir($svn)) {// deleting failed
+            if (is_dir($svn)) { // deleting failed
                 $out[] = "Failed to delete $svn due to file permissions.";
             } else {
                 $out[] = "Successfully deleted $svn from the file system.";
@@ -459,21 +509,21 @@ class Utils
             $flag = true; // found directory
         }
 
-        if (!$flag) {// no .svn directory
+        if (!$flag) { // no .svn directory
             $out[] = 'No .svn directory found.';
         }
 
         $out[] = "\n\n";
 
-        $handle = opendir( $dir );
+        $handle = opendir($dir);
 
         while (false !== ($file = readdir($handle))) {
-            if ($file == '.' || $file == '..') {// don't get lost by recursively going through the current or top directory
+            if ($file == '.' || $file == '..') { // don't get lost by recursively going through the current or top directory
                 continue;
             }
 
             if (is_dir($dir . $file)) {
-                self::removeSVN( $dir . $file . '/' ); // apply the SVN removal for sub directories
+                self::removeSVN($dir . $file . '/'); // apply the SVN removal for sub directories
             }
         }
 
@@ -481,8 +531,9 @@ class Utils
     } // removeSVN
 
 
-    public static function removeTree($dir) {
-        $files = glob( $dir . '*', GLOB_MARK ); // find all files in the directory
+    public static function removeTree($dir)
+    {
+        $files = glob($dir . '*', GLOB_MARK); // find all files in the directory
 
         foreach ($files as $file) {
             if (substr($file, -1) == '/') {
@@ -493,14 +544,15 @@ class Utils
         }
 
         if (is_dir($dir)) {
-            rmdir( $dir ); // remove the directory itself (rmdir only removes a directory once it is empty)
+            rmdir($dir); // remove the directory itself (rmdir only removes a directory once it is empty)
         }
     } // removeTree
 
 
-    public static function resizeImage($image, $width, $height, $scale) {
-        $newImageWidth = ceil($width*$scale);
-        $newImageHeight = ceil($height*$scale);
+    public static function resizeImage($image, $width, $height, $scale)
+    {
+        $newImageWidth = ceil($width * $scale);
+        $newImageHeight = ceil($height * $scale);
         $newImage = imagecreatetruecolor($newImageWidth, $newImageHeight);
         $ext = pathinfo($image, PATHINFO_EXTENSION);
 
@@ -537,11 +589,13 @@ class Utils
      * @param $start_width
      * @param $start_height
      * @param $scale
+     *
      * @return mixed
      */
-    public static function resizeThumbnailImage($thumb_image_name, $image, $width, $height, $start_width, $start_height, $scale) {
-        $newImageWidth = ceil($width*$scale);
-        $newImageHeight = ceil($height*$scale);
+    public static function resizeThumbnailImage($thumb_image_name, $image, $width, $height, $start_width, $start_height, $scale)
+    {
+        $newImageWidth = ceil($width * $scale);
+        $newImageHeight = ceil($height * $scale);
         $newImage = imagecreatetruecolor($newImageWidth, $newImageHeight);
         $source = imagecreatefromjpeg($image);
         imagecopyresampled($newImage, $source, 0, 0, $start_width, $start_height, $newImageWidth, $newImageHeight, $width, $height);
@@ -561,35 +615,26 @@ class Utils
         return php_sapi_name() == 'cli';
     }
 
-
+#S
     /**
      * SendEmail
+     *
      * @param $recipient
+     *
      * @return
      * @todo make more customisable !
      */
-    public static function sendMail($recipient, $subject = null, $html, $c = null) {
+    public static function sendMail($recipient, $subject = null, $html, $c = null)
+    {
         $c = u::toArray($c);
-        $headers = 'From: '.stripslashes($c['exp_nom']).' <'.$c['exp_mail'].'>' . "\r\n";
-        $headers .= 'MIME-version: 1.0'."\n";
-        $headers .= 'Content-type: text/html; charset=UTF-8'."\n";
-        $headers .= 'Reply-To: '.$c['exp_mail']. "\r\n";
-        $success = mail($recipient, '=?UTF-8?B?'.base64_encode($subject).'?=', stripslashes($html), $headers);
+        $headers = 'From: ' . stripslashes($c['exp_nom']) . ' <' . $c['exp_mail'] . '>' . "\r\n";
+        $headers .= 'MIME-version: 1.0' . "\n";
+        $headers .= 'Content-type: text/html; charset=UTF-8' . "\n";
+        $headers .= 'Reply-To: ' . $c['exp_mail'] . "\r\n";
+        $success = mail($recipient, '=?UTF-8?B?' . base64_encode($subject) . '?=', stripslashes($html), $headers);
 
         return $success;
     } // sendMail
 
 } // class::Utils
-
-function predie(){
-    call_user_func_array(__NAMESPACE__."\\Utils::predie", func_get_args());
-}
-
-function k(){
-    call_user_func_array(__NAMESPACE__."\\Utils::k", func_get_args());
-}
-
-function pre(){
-    call_user_func_array(__NAMESPACE__."\\Utils::pre", func_get_args());
-}
 
