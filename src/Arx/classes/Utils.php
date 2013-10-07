@@ -171,7 +171,7 @@ class Utils
     public static function getIpInfos($ip = null)
     {
 
-        $response = self::getJSON('http://ip-api.com/json');
+        $response = self::getJSON('freegeoip.net/{format}/'.self::getIp());
 
         return $response;
 
@@ -635,6 +635,10 @@ class Utils
 
         return $success;
     } // sendMail
+
+    public static function smrtr($haystack, $aMatch, $aDelimiter = array("{","}")){
+        return Strings::smrtr($haystack, $aMatch, $aDelimiter);
+    }
 
 } // class::Utils
 

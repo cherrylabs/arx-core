@@ -39,6 +39,18 @@ class Parser extends Container{
         return $instance;
     }
 
+    public static function extract($attribute, $content, $delimiter = '"'){
+        preg_match_all('/'.$attribute.'='.$delimiter.'([^\s'.$delimiter.']+)/', $content, $match);
+
+        if(count($match) == 2){
+            $match = $match[1];
+        } else {
+            $match = false;
+        }
+
+        return $match;
+    }
+
     public function query($query){
         $query = CssSelector::toXPath($query);
         return $this->xpath->query($query);
