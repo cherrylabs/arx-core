@@ -2,7 +2,7 @@
     "name": "arx/core",
     "type" : "library",
     "description": "Arx core is a boosted web development kit based on Laravel",
-    "homepage": "http://www.arx.xxx",
+    "homepage": "http://www.arx.io",
     "license": "MIT",
     "authors": [
         {
