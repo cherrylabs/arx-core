@@ -10,7 +10,7 @@
     <link rel="stylesheet" href="/assets/[css/style, css/bootstrap]"/>
     @show
 </head>
-<body <?php !isset($body, $body['attributes']) ?: HTML::attributes($body['attributes']) ?>>
+<body {{ !isset($body, $body['attributes']) ?: HTML::attributes($body['attributes']) }}>
 @yield('body')
 @yield('js')
 </body>
