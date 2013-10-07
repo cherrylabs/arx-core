@@ -16,13 +16,12 @@ $app->redirectIfTrailingSlash();
 | given environment, then we will automatically detect it for you.
 |
 */
-
-$env = $app->detectEnvironment(array(
-
- 'local' => array('loc.cherrylabs.net'),
- 'dev' => array('dev.cherrylabs.net')
-
-));
+/**
+ * @todo : detectEnvironment script
+ */
+$env = $app->detectEnvironment(function(){
+    return Arx::env();
+});
 
 /*
 |--------------------------------------------------------------------------

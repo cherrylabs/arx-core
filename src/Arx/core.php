@@ -78,6 +78,7 @@ require_once __DIR__ . DS . 'classes' . DS . 'Db.php';
 require_once __DIR__ . DS . 'classes' . DS . 'Route.php';
 require_once __DIR__ . DS . 'classes' . DS . 'Valid.php';
 require_once __DIR__ . DS . 'classes' . DS . 'Config.php';
+require_once __DIR__ . DS . 'classes' . DS . 'Env.php';
 require_once __DIR__ . DS . 'classes' . DS . 'App.php';
 
 /**
@@ -93,6 +94,10 @@ if(!class_exists('Arx')){
 
         public static function path($value = null){
             return __DIR__.($value ? DS. $value : '');
+        }
+
+        public static function env(){
+            return Arx\classes\Env::detect();
         }
     }
 }

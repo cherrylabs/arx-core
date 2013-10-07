@@ -6,6 +6,8 @@
     @section('head')
         <meta charset="UTF-8">
         <title>@yield('title')</title>
+
+    <link rel="stylesheet" href="/assets/[css/style, css/bootstrap]"/>
     @show
 </head>
 <body {{ !isset($body, $body['attributes']) ?: HTML::attributes($body['attributes']) }}>
