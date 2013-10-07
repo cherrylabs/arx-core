@@ -23,9 +23,9 @@ class CoreServiceProvider extends ServiceProvider {
     {
         $this->package('Arx/Core');
 
-        \View::addNamespace('Arx', Arx::path('views'));
-        \Lang::addNamespace('Arx', Arx::path('lang'));
-        \Config::addNamespace('Arx', Arx::path('config'));
+        \View::addNamespace('arx', Arx::path('views'));
+        \Lang::addNamespace('arx', Arx::path('lang'));
+        \Config::addNamespace('arx', Arx::path('config'));
 
         u::alias('predie', '\Arx\classes\Utils::predie');
 

@@ -1,4 +1,4 @@
-@extends('html')
+@extends('arx::html')
 
 @section('head')
     @parent
@@ -6,7 +6,7 @@
 @stop
 
 @section('body')
-    @include('snippets.container')
+    @include('arx::snippets.container')
 @stop
 
 @section('js')

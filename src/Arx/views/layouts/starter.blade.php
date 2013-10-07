@@ -1,4 +1,4 @@
-@extends('layouts.bootstrap')
+@extends('arx::layouts.bootstrap')
 
 @section('head')
     @parent
@@ -11,13 +11,11 @@
 
 @section('body')
 
-@include('snippets.navbars.top-fixed')
+@include('arx::snippets.navbars.top-fixed')
 
 <div class="container">
     @section('container')
         @yield('content')
-        <h1>Bootstrap starter template</h1>
-        <p>Use this document as a way to quick start any new project.<br> All you get is this message and a barebones HTML document.</p>
-    @stop
+    @show
 </div> <!-- /container -->
 @stop
