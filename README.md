@@ -29,5 +29,6 @@ composer install or update
 - allow to use a different structure than default Laravel structure => instead to call in public/index.php ../bootstrap/start.php => just require ../vendor/autoload.php then $app = new arx()
 - add some useful classes like Utils class (for better getJson, little template engine, Dummy class (image, text, video generator) for development etc.
 - add Hash class to people that can't install mcrypt extension or is under PHP 5.3.7
+- add possibility to have directly a facade function with resolve functions
 
-For the complete features : [check the documentation](http://docs.arx.io)
+For the complete features : [check the documentation](http://www.arx.io/docs/arx/core)
