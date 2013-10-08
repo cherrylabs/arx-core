@@ -2,11 +2,6 @@
 
 @section('head')
     @parent
-    <style>
-        body {
-            padding-top: 60px;
-        }
-    </style>
 @stop
 
 @section('body')
