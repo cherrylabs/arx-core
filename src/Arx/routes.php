@@ -1,3 +1,3 @@
 <?php
 
-Route::controller('assets', 'Arx\controllers\Assets');
+Route::controller('arx/assets', 'Arx\controllers\Assets');

@@ -11,7 +11,9 @@
 
 @section('body')
 
-@include('arx::snippets.navbars.top-fixed')
+@section('navbar')
+    @include('arx::snippets.navbars.top-fixed')
+@show
 
 <div class="container">
     @section('container')
