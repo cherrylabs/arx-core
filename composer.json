@@ -9,7 +9,13 @@
             "name": "Daniel Sum",
             "email": "daniel@cherrylabs.net",
             "homepage": "http://www.cherrylabs.net",
-            "role": "Developer"
+            "role": "Back-end developer"
+        },
+        {
+            "name": "Stephan Zych",
+            "email": "stephan@cherrylabs.net",
+            "homepage": "http://www.cherrylabs.net",
+            "role": "Front-end developer"
         }
     ],
     "require": {

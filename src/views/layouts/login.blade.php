@@ -32,7 +32,6 @@ if(isset($formLogin)){
         body {
             padding-top: 40px;
             padding-bottom: 40px;
-            background: url('http://api.arx.io/get/background');
         }
 
         .form-signin {
@@ -72,20 +71,28 @@ if(isset($formLogin)){
 
 <div class="container">
     <form <?= HTML::attributes($formLogin['attributes'])?>>
-        <h2 class="form-signin-heading">Please sign in</h2>
+        <h2 class="form-signin-heading"><?= Lang::get('arx::login.title') ?></h2>
         <input name="email" type="text" class="input-block-level" placeholder="Email address">
         <input name="password" type="password" class="input-block-level" placeholder="Password">
         <label class="checkbox">
-            <input type="checkbox" value="true" name="remember"> Remember me
+            <input type="checkbox" value="true" name="remember"> <?php echo Lang::get('Remember me') ?>
         </label>
         @section('buttons')
-        <button class="btn btn-large btn-primary" type="submit">Sign in</button>
+            <button class="btn btn-large btn-primary" type="submit"><?php echo Lang::get('arx::form.signin') ?></button>
         @show
     </form>
 
 </div> <!-- /container -->
 
 <script src="//netdna.bootstrapcdn.com/twitter-bootstrap/2.3.2/js/bootstrap.min.js"></script>
+
+<script type="text/javascript">
+    $.backstretch([
+        "http://dl.dropbox.com/u/515046/www/outside.jpg"
+        , "http://dl.dropbox.com/u/515046/www/garfield-interior.jpg"
+        , "http://dl.dropbox.com/u/515046/www/cheers.jpg"
+    ], {duration: 3000, fade: 750});
+</script>
 
 </body>
 </html>
