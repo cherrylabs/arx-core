@@ -14,5 +14,6 @@ return array(
         'predie' => '\Arx\classes\Utils::predie',
         'pre' => '\Arx\classes\Utils::pre',
         'k' => '\Arx\classes\Utils::k',
+        'ddd' => '\Arx\classes\Utils::predie',
     ),
 );

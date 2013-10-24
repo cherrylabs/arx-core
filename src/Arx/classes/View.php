@@ -39,6 +39,7 @@ class View extends ViewServiceProvider{
             // instance to pass into the engine so it can compile the views properly.
             $compiler = new BladeCompiler($app['files'], $cache);
 
+
             return new CompilerEngine($compiler, $app['files']);
         });
     }

@@ -1,0 +1,865 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+	<meta name="generator" content="ApiGen 2.8.0" />
+
+	<title>Class Arx\classes\Date</title>
+
+	<script type="text/javascript" src="resources/combined.js?3048962811"></script>
+	<script type="text/javascript" src="elementlist.js?3003587550"></script>
+	<link rel="stylesheet" type="text/css" media="all" href="resources/style.css?3505392360" />
+
+</head>
+
+<body>
+<div id="left">
+	<div id="menu">
+		<a href="index.html" title="Overview"><span>Overview</span></a>
+
+
+		<div id="groups">
+			<h3>Namespaces</h3>
+			<ul>
+				<li class="active"><a href="namespace-Arx.html">Arx<span></span></a>
+						<ul>
+				<li class="active"><a href="namespace-Arx.classes.html">classes<span></span></a>
+						<ul>
+				<li><a href="namespace-Arx.classes.file.html">file</a>
+						</li>
+				<li><a href="namespace-Arx.classes.Filesystem.html">Filesystem</a>
+						</li>
+				<li><a href="namespace-Arx.classes.view.html">view<span></span></a>
+						<ul>
+				<li><a href="namespace-Arx.classes.view.engines.html">engines<span></span></a>
+						<ul>
+				<li><a href="namespace-Arx.classes.view.engines.blade.html">blade</a>
+						</li>
+							</ul></li></ul></li></ul></li>
+				<li><a href="namespace-Arx.controllers.html">controllers</a>
+						</li>
+				<li><a href="namespace-Arx.facades.html">facades</a>
+						</li>
+				<li><a href="namespace-Arx.helpers.html">helpers</a>
+						</li>
+				<li><a href="namespace-Arx.interfaces.html">interfaces</a>
+						</li>
+				<li><a href="namespace-Arx.modeles.html">modeles</a>
+						</li>
+				<li><a href="namespace-Arx.providers.html">providers</a>
+						</li>
+							</ul></li>
+				<li><a href="namespace-Composer.html">Composer<span></span></a>
+						<ul>
+				<li><a href="namespace-Composer.Autoload.html">Autoload</a>
+						</li>
+							</ul></li>
+				<li><a href="namespace-None.html">None</a>
+						</li>
+				<li><a href="namespace-PHP.html">PHP</a>
+						</li>
+			</ul>
+		</div>
+
+		<hr />
+
+
+		<div id="elements">
+			<h3>Classes</h3>
+			<ul>
+				<li><a href="class-Arx.classes.App.html">App</a></li>
+				<li><a href="class-Arx.classes.Arr.html">Arr</a></li>
+				<li><a href="class-Arx.classes.Asset.html">Asset</a></li>
+				<li><a href="class-Arx.classes.Bag.html">Bag</a></li>
+				<li><a href="class-Arx.classes.Cache.html">Cache</a></li>
+				<li><a href="class-Arx.classes.ClassLoader.html">ClassLoader</a></li>
+				<li><a href="class-Arx.classes.Composer.html">Composer</a></li>
+				<li><a href="class-Arx.classes.Config.html">Config</a></li>
+				<li><a href="class-Arx.classes.Container.html">Container</a></li>
+				<li><a href="class-Arx.classes.ContainerConcreteStub.html">ContainerConcreteStub</a></li>
+				<li><a href="class-Arx.classes.ContainerDefaultValueStub.html">ContainerDefaultValueStub</a></li>
+				<li><a href="class-Arx.classes.ContainerDependentStub.html">ContainerDependentStub</a></li>
+				<li><a href="class-Arx.classes.ContainerImplementationStub.html">ContainerImplementationStub</a></li>
+				<li><a href="class-Arx.classes.ContainerNestedDependentStub.html">ContainerNestedDependentStub</a></li>
+				<li><a href="class-Arx.classes.Controller.html">Controller</a></li>
+				<li><a href="class-Arx.classes.Convert.html">Convert</a></li>
+				<li class="active"><a href="class-Arx.classes.Date.html">Date</a></li>
+				<li><a href="class-Arx.classes.DB.html">DB</a></li>
+				<li><a href="class-Arx.Classes.DBUtil.html">DBUtil</a></li>
+				<li><a href="class-Arx.classes.Debug.html">Debug</a></li>
+				<li><a href="class-Arx.classes.Detect.html">Detect</a></li>
+				<li><a href="class-Arx.classes.Dummy.html">Dummy</a></li>
+				<li><a href="class-Arx.classes.Env.html">Env</a></li>
+				<li><a href="class-Arx.classes.ErrorHandler.html">ErrorHandler</a></li>
+				<li><a href="class-Arx.classes.Facade.html">Facade</a></li>
+				<li><a href="class-Arx.classes.File.html">File</a></li>
+				<li><a href="class-Arx.classes.Finder.html">Finder</a></li>
+				<li><a href="class-Arx.classes.Globals.html">Globals</a></li>
+				<li><a href="class-Arx.classes.Hash.html">Hash</a></li>
+				<li><a href="class-Arx.classes.Helper.html">Helper</a></li>
+				<li><a href="class-Arx.classes.Hook.html">Hook</a></li>
+				<li><a href="class-Arx.classes.Html.html">Html</a></li>
+				<li><a href="class-Arx.classes.Load.html">Load</a></li>
+				<li><a href="class-Arx.classes.Markdown.html">Markdown</a></li>
+				<li><a href="class-Arx.classes.Model.html">Model</a></li>
+				<li><a href="class-Arx.classes.OAuthConsumer.html">OAuthConsumer</a></li>
+				<li><a href="class-Arx.classes.OAuthDataStore.html">OAuthDataStore</a></li>
+				<li><a href="class-Arx.classes.OAuthException.html">OAuthException</a></li>
+				<li><a href="class-Arx.classes.OAuthRequest.html">OAuthRequest</a></li>
+				<li><a href="class-Arx.classes.OAuthServer.html">OAuthServer</a></li>
+				<li><a href="class-Arx.classes.OAuthSignatureMethod.html">OAuthSignatureMethod</a></li>
+				<li><a href="class-Arx.classes.OAuthSignatureMethod_HMAC_SHA1.html">OAuthSignatureMethod_HMAC_SHA1</a></li>
+				<li><a href="class-Arx.classes.OAuthSignatureMethod_PLAINTEXT.html">OAuthSignatureMethod_PLAINTEXT</a></li>
+				<li><a href="class-Arx.classes.OAuthSignatureMethod_RSA_SHA1.html">OAuthSignatureMethod_RSA_SHA1</a></li>
+				<li><a href="class-Arx.classes.OAuthToken.html">OAuthToken</a></li>
+				<li><a href="class-Arx.classes.OAuthUtil.html">OAuthUtil</a></li>
+				<li><a href="class-Arx.classes.Opengraph.html">Opengraph</a></li>
+				<li><a href="class-Arx.classes.Profiler.html">Profiler</a></li>
+				<li><a href="class-Arx.classes.Request.html">Request</a></li>
+				<li><a href="class-Arx.classes.Response.html">Response</a></li>
+				<li><a href="class-Arx.classes.Route.html">Route</a></li>
+				<li><a href="class-Arx.classes.Router.html">Router</a></li>
+				<li><a href="class-Arx.classes.Singleton.html">Singleton</a></li>
+				<li><a href="class-Arx.classes.Strings.html">Strings</a></li>
+				<li><a href="class-Arx.classes.Uri.html">Uri</a></li>
+				<li><a href="class-Arx.classes.Utils.html">Utils</a></li>
+				<li><a href="class-Arx.classes.Valid.html">Valid</a></li>
+				<li><a href="class-Arx.classes.View.html">View</a></li>
+			</ul>
+
+			<h3>Interfaces</h3>
+			<ul>
+				<li><a href="class-Arx.classes.IContainerContractStub.html">IContainerContractStub</a></li>
+			</ul>
+
+
+
+
+		</div>
+	</div>
+</div>
+
+<div id="splitter"></div>
+
+<div id="right">
+<div id="rightInner">
+	<form id="search">
+		<input type="hidden" name="cx" value="" />
+		<input type="hidden" name="ie" value="UTF-8" />
+		<input type="text" name="q" class="text" />
+		<input type="submit" value="Search" />
+	</form>
+
+	<div id="navigation">
+		<ul>
+			<li>
+				<a href="index.html" title="Overview"><span>Overview</span></a>
+			</li>
+			<li>
+				<a href="namespace-Arx.classes.html" title="Summary of Arx\classes"><span>Namespace</span></a>
+			</li>
+			<li class="active">
+<span>Class</span>			</li>
+		</ul>
+		<ul>
+			<li>
+				<a href="tree.html" title="Tree view of classes, interfaces, traits and exceptions"><span>Tree</span></a>
+			</li>
+		</ul>
+		<ul>
+		</ul>
+	</div>
+
+<div id="content" class="class">
+	<h1>Class Date</h1>
+
+
+	<div class="description">
+	
+<p>Date PHP File - /classes/Date.php</p>
+
+	</div>
+
+
+
+
+
+
+
+
+
+	<div class="info">
+		<b>Abstract</b><br />
+		
+		<b>Namespace:</b> <a href="namespace-Arx.html">Arx</a>\<a href="namespace-Arx.classes.html">classes</a><br />
+		<b>Package:</b> Arx<br />
+
+				<b>Category:</b>
+				Utils<br />
+				<b>License:</b>
+				<a href="http://opensource.org/licenses/MIT">MIT License</a><br />
+				<b>Author:</b>
+				Daniel Sum &lt;<a
+href="mailto:daniel&#64;cherrypulp.com">daniel&#64;<!---->cherrypulp.com</a>&gt;<br />
+				<b>Author:</b>
+				Stéphan Zych &lt;<a
+href="mailto:stephan&#64;cherrypulp.com">stephan&#64;<!---->cherrypulp.com</a>&gt;<br />
+				<b>Link:</b>
+				<a href="http://arx.xxx/doc/Date">http://arx.xxx/doc/Date</a><br />
+		<b>Located at</b> <a href="source-class-Arx.classes.Date.html#3-493" title="Go to source code">src/Arx/classes/Date.php</a><br />
+	</div>
+
+
+
+	<table class="summary" id="methods">
+	<caption>Methods summary</caption>
+	<tr data-order="daysInMonth" id="_daysInMonth">
+
+		<td class="attributes"><code>
+			 public static
+			integer
+			
+			</code>
+		</td>
+
+		<td class="name"><div>
+		<a class="anchor" href="#_daysInMonth">#</a>
+		<code><a href="source-class-Arx.classes.Date.html#17-50" title="Go to source code">daysInMonth</a>( <span>integer <var>$month</var> = <span class="php-num">0</span></span>, <span>integer <var>$year</var> = <span class="php-quote">''</span></span> )</code>
+
+		<div class="description short">
+			
+<p>Number of days in a month</p>
+
+		</div>
+
+		<div class="description detailed hidden">
+			
+<p>Number of days in a month</p>
+
+<p>Takes a month/year as input and returns the number of days for the given
+month/year. Takes leap years into consideration.</p>
+
+<p>Credit: <a
+href="http://codeigniter.com/user_guide/helpers/date_helper.html">http://codeigniter.com/user_guide/helpers/date_helper.html</a>
+License: <a
+href="http://codeigniter.com/user_guide/license.html">http://codeigniter.com/user_guide/license.html</a></p>
+
+
+
+				<h4>Parameters</h4>
+				<div class="list"><dl>
+					<dt><var>$month</var></dt>
+					<dd><code>integer</code><br>$month Month</dd>
+					<dt><var>$year</var></dt>
+					<dd><code>integer</code><br>$year Year</dd>
+				</dl></div>
+
+				<h4>Returns</h4>
+				<div class="list">
+					<code>integer</code><br />
+				</div>
+
+
+
+
+		</div>
+		</div></td>
+	</tr>
+	<tr data-order="diffMicrotime" id="_diffMicrotime">
+
+		<td class="attributes"><code>
+			 public static
+			
+			
+			</code>
+		</td>
+
+		<td class="name"><div>
+		<a class="anchor" href="#_diffMicrotime">#</a>
+		<code><a href="source-class-Arx.classes.Date.html#53-60" title="Go to source code">diffMicrotime</a>( <span>mixed <var>$mt_old</var></span>, <span>mixed <var>$mt_new</var></span> )</code>
+
+		<div class="description short">
+			
+		</div>
+
+		<div class="description detailed hidden">
+			
+
+
+
+
+
+
+
+		</div>
+		</div></td>
+	</tr>
+	<tr data-order="gmtToLocal" id="_gmtToLocal">
+
+		<td class="attributes"><code>
+			 public static
+			integer
+			
+			</code>
+		</td>
+
+		<td class="name"><div>
+		<a class="anchor" href="#_gmtToLocal">#</a>
+		<code><a href="source-class-Arx.classes.Date.html#63-92" title="Go to source code">gmtToLocal</a>( <span>integer <var>$time</var> = <span class="php-quote">''</span></span>, <span>string <var>$timezone</var> = <span class="php-quote">'UTC'</span></span>, <span>boolean <var>$dst</var> = <span class="php-keyword1">false</span></span> )</code>
+
+		<div class="description short">
+			
+<p>Converts GMT time to a localized value</p>
+
+		</div>
+
+		<div class="description detailed hidden">
+			
+<p>Converts GMT time to a localized value</p>
+
+<p>Takes a Unix timestamp (in GMT) as input, and returns at the local value
+based on the timezone and DST setting submitted</p>
+
+<p>Credit: <a
+href="http://codeigniter.com/user_guide/helpers/date_helper.html">http://codeigniter.com/user_guide/helpers/date_helper.html</a>
+License: <a
+href="http://codeigniter.com/user_guide/license.html">http://codeigniter.com/user_guide/license.html</a></p>
+
+
+
+				<h4>Parameters</h4>
+				<div class="list"><dl>
+					<dt><var>$time</var></dt>
+					<dd><code>integer</code><br>$time Unix timestamp</dd>
+					<dt><var>$timezone</var></dt>
+					<dd><code>string</code><br>$timezone timezone</dd>
+					<dt><var>$dst</var></dt>
+					<dd><code>boolean</code><br>$dst whether DST is active</dd>
+				</dl></div>
+
+				<h4>Returns</h4>
+				<div class="list">
+					<code>integer</code><br />
+				</div>
+
+
+
+
+		</div>
+		</div></td>
+	</tr>
+	<tr data-order="humanTimeDiff" id="_humanTimeDiff">
+
+		<td class="attributes"><code>
+			 public static
+			string
+			
+			</code>
+		</td>
+
+		<td class="name"><div>
+		<a class="anchor" href="#_humanTimeDiff">#</a>
+		<code><a href="source-class-Arx.classes.Date.html#95-155" title="Go to source code">humanTimeDiff</a>( <span>integer <var>$from</var></span>, <span>integer <var>$to</var> = <span class="php-quote">''</span></span> )</code>
+
+		<div class="description short">
+			
+<p>Determines the difference between two timestamps.</p>
+
+		</div>
+
+		<div class="description detailed hidden">
+			
+<p>Determines the difference between two timestamps.</p>
+
+<p>The difference is returned in a human readable format such as "1 hour", "5
+mins", "2 days".</p>
+
+<p>Credit: <a
+href="http://core.svn.wordpress.org/trunk/wp-includes/formatting.php">http://core.svn.wordpress.org/trunk/wp-includes/formatting.php</a></p>
+
+
+
+				<h4>Parameters</h4>
+				<div class="list"><dl>
+					<dt><var>$from</var></dt>
+					<dd><code>integer</code><br>$from</dd>
+					<dt><var>$to</var></dt>
+					<dd><code>integer</code><br>$to</dd>
+				</dl></div>
+
+				<h4>Returns</h4>
+				<div class="list">
+					<code>string</code><br />
+				</div>
+
+
+
+
+		</div>
+		</div></td>
+	</tr>
+	<tr data-order="humanToUnix" id="_humanToUnix">
+
+		<td class="attributes"><code>
+			 public static
+			integer
+			
+			</code>
+		</td>
+
+		<td class="name"><div>
+		<a class="anchor" href="#_humanToUnix">#</a>
+		<code><a href="source-class-Arx.classes.Date.html#158-220" title="Go to source code">humanToUnix</a>( <span>string <var>$datestr</var> = <span class="php-quote">''</span></span> )</code>
+
+		<div class="description short">
+			
+<p>Convert "human" date to GMT</p>
+
+		</div>
+
+		<div class="description detailed hidden">
+			
+<p>Convert "human" date to GMT</p>
+
+<p>Reverses the above process</p>
+
+<p>Credit: <a
+href="http://codeigniter.com/user_guide/helpers/date_helper.html">http://codeigniter.com/user_guide/helpers/date_helper.html</a>
+License: <a
+href="http://codeigniter.com/user_guide/license.html">http://codeigniter.com/user_guide/license.html</a></p>
+
+
+
+				<h4>Parameters</h4>
+				<div class="list"><dl>
+					<dt><var>$datestr</var></dt>
+					<dd><code>string</code><br>$datestr Format: us or euro</dd>
+				</dl></div>
+
+				<h4>Returns</h4>
+				<div class="list">
+					<code>integer</code><br />
+				</div>
+
+
+
+
+		</div>
+		</div></td>
+	</tr>
+	<tr data-order="localToGMT" id="_localToGMT">
+
+		<td class="attributes"><code>
+			 public static
+			integer
+			
+			</code>
+		</td>
+
+		<td class="name"><div>
+		<a class="anchor" href="#_localToGMT">#</a>
+		<code><a href="source-class-Arx.classes.Date.html#223-240" title="Go to source code">localToGMT</a>( <span>integer <var>$time</var> = <span class="php-quote">''</span></span> )</code>
+
+		<div class="description short">
+			
+<p>Converts a local Unix timestamp to GMT</p>
+
+		</div>
+
+		<div class="description detailed hidden">
+			
+<p>Converts a local Unix timestamp to GMT</p>
+
+<p>Credit: <a
+href="http://codeigniter.com/user_guide/helpers/date_helper.html">http://codeigniter.com/user_guide/helpers/date_helper.html</a>
+License: <a
+href="http://codeigniter.com/user_guide/license.html">http://codeigniter.com/user_guide/license.html</a></p>
+
+
+
+				<h4>Parameters</h4>
+				<div class="list"><dl>
+					<dt><var>$time</var></dt>
+					<dd><code>integer</code><br>$time Unix timestamp</dd>
+				</dl></div>
+
+				<h4>Returns</h4>
+				<div class="list">
+					<code>integer</code><br />
+				</div>
+
+
+
+
+		</div>
+		</div></td>
+	</tr>
+	<tr data-order="mdate" id="_mdate">
+
+		<td class="attributes"><code>
+			 public static
+			integer
+			
+			</code>
+		</td>
+
+		<td class="name"><div>
+		<a class="anchor" href="#_mdate">#</a>
+		<code><a href="source-class-Arx.classes.Date.html#243-276" title="Go to source code">mdate</a>( <span>string <var>$datestr</var> = <span class="php-quote">''</span></span>, <span>integer <var>$time</var> = <span class="php-quote">''</span></span> )</code>
+
+		<div class="description short">
+			
+<p>Convert MySQL Style Datecodes</p>
+
+		</div>
+
+		<div class="description detailed hidden">
+			
+<p>Convert MySQL Style Datecodes</p>
+
+<p>This function is identical to PHPs date() function, except that it allows
+date codes to be formatted using the MySQL style, where each code letter is
+preceded with a percent sign: %Y %m %d etc...</p>
+
+<p>The benefit of doing dates this way is that you don't have to worry about
+escaping your text letters that match the date codes.</p>
+
+<p>Credit: <a
+href="http://codeigniter.com/user_guide/helpers/date_helper.html">http://codeigniter.com/user_guide/helpers/date_helper.html</a>
+License: <a
+href="http://codeigniter.com/user_guide/license.html">http://codeigniter.com/user_guide/license.html</a></p>
+
+
+
+				<h4>Parameters</h4>
+				<div class="list"><dl>
+					<dt><var>$datestr</var></dt>
+					<dd><code>string</code><br>$datestr</dd>
+					<dt><var>$time</var></dt>
+					<dd><code>integer</code><br>$time</dd>
+				</dl></div>
+
+				<h4>Returns</h4>
+				<div class="list">
+					<code>integer</code><br />
+				</div>
+
+
+
+
+		</div>
+		</div></td>
+	</tr>
+	<tr data-order="monthName" id="_monthName">
+
+		<td class="attributes"><code>
+			 public static
+			integer
+			
+			</code>
+		</td>
+
+		<td class="name"><div>
+		<a class="anchor" href="#_monthName">#</a>
+		<code><a href="source-class-Arx.classes.Date.html#279-291" title="Go to source code">monthName</a>( <span>integer <var>$number</var></span> )</code>
+
+		<div class="description short">
+			
+<p>Convert a month number to a month name.</p>
+
+		</div>
+
+		<div class="description detailed hidden">
+			
+<p>Convert a month number to a month name.</p>
+
+
+
+				<h4>Parameters</h4>
+				<div class="list"><dl>
+					<dt><var>$number</var></dt>
+					<dd><code>integer</code><br>$number</dd>
+				</dl></div>
+
+				<h4>Returns</h4>
+				<div class="list">
+					<code>integer</code><br />
+				</div>
+
+
+
+
+		</div>
+		</div></td>
+	</tr>
+	<tr data-order="mysqlToUnix" id="_mysqlToUnix">
+
+		<td class="attributes"><code>
+			 public static
+			integer
+			
+			</code>
+		</td>
+
+		<td class="name"><div>
+		<a class="anchor" href="#_mysqlToUnix">#</a>
+		<code><a href="source-class-Arx.classes.Date.html#294-323" title="Go to source code">mysqlToUnix</a>( <span>integer <var>$time</var> = <span class="php-quote">''</span></span> )</code>
+
+		<div class="description short">
+			
+<p>Converts a MySQL Timestamp to Unix</p>
+
+		</div>
+
+		<div class="description detailed hidden">
+			
+<p>Converts a MySQL Timestamp to Unix</p>
+
+<p>Credit: <a
+href="http://codeigniter.com/user_guide/helpers/date_helper.html">http://codeigniter.com/user_guide/helpers/date_helper.html</a>
+License: <a
+href="http://codeigniter.com/user_guide/license.html">http://codeigniter.com/user_guide/license.html</a></p>
+
+
+
+				<h4>Parameters</h4>
+				<div class="list"><dl>
+					<dt><var>$time</var></dt>
+					<dd><code>integer</code><br>$time Unix timestamp</dd>
+				</dl></div>
+
+				<h4>Returns</h4>
+				<div class="list">
+					<code>integer</code><br />
+				</div>
+
+
+
+
+		</div>
+		</div></td>
+	</tr>
+	<tr data-order="now" id="_now">
+
+		<td class="attributes"><code>
+			 public static
+			integer
+			
+			</code>
+		</td>
+
+		<td class="name"><div>
+		<a class="anchor" href="#_now">#</a>
+		<code><a href="source-class-Arx.classes.Date.html#326-342" title="Go to source code">now</a>( <span>boolean <var>$bGMT</var> = <span class="php-keyword1">false</span></span> )</code>
+
+		<div class="description short">
+			
+<p>Get "now" time and return it as time() or its GMT equivalent.</p>
+
+		</div>
+
+		<div class="description detailed hidden">
+			
+<p>Get "now" time and return it as time() or its GMT equivalent.</p>
+
+
+
+				<h4>Parameters</h4>
+				<div class="list"><dl>
+					<dt><var>$bGMT</var></dt>
+					<dd><code>boolean</code><br>$bGMT Set return as GMT equivalent</dd>
+				</dl></div>
+
+				<h4>Returns</h4>
+				<div class="list">
+					<code>integer</code><br />
+				</div>
+
+
+
+
+		</div>
+		</div></td>
+	</tr>
+	<tr data-order="standardDate" id="_standardDate">
+
+		<td class="attributes"><code>
+			 public static
+			string
+			
+			</code>
+		</td>
+
+		<td class="name"><div>
+		<a class="anchor" href="#_standardDate">#</a>
+		<code><a href="source-class-Arx.classes.Date.html#345-381" title="Go to source code">standardDate</a>( <span>string <var>$format</var> = <span class="php-quote">'RFC822'</span></span>, <span>integer <var>$time</var> = <span class="php-quote">''</span></span> )</code>
+
+		<div class="description short">
+			
+<p>Standard Date</p>
+
+		</div>
+
+		<div class="description detailed hidden">
+			
+<p>Standard Date</p>
+
+<p>Returns a date formatted according to the submitted standard.</p>
+
+<p>Credit: <a
+href="http://codeigniter.com/user_guide/helpers/date_helper.html">http://codeigniter.com/user_guide/helpers/date_helper.html</a>
+License: <a
+href="http://codeigniter.com/user_guide/license.html">http://codeigniter.com/user_guide/license.html</a></p>
+
+
+
+				<h4>Parameters</h4>
+				<div class="list"><dl>
+					<dt><var>$format</var></dt>
+					<dd><code>string</code><br>$format</dd>
+					<dt><var>$time</var></dt>
+					<dd><code>integer</code><br>$time</dd>
+				</dl></div>
+
+				<h4>Returns</h4>
+				<div class="list">
+					<code>string</code><br />
+				</div>
+
+
+
+
+		</div>
+		</div></td>
+	</tr>
+	<tr data-order="timezones" id="_timezones">
+
+		<td class="attributes"><code>
+			 public static
+			string
+			
+			</code>
+		</td>
+
+		<td class="name"><div>
+		<a class="anchor" href="#_timezones">#</a>
+		<code><a href="source-class-Arx.classes.Date.html#384-455" title="Go to source code">timezones</a>( <span>string <var>$tz</var> = <span class="php-quote">''</span></span> )</code>
+
+		<div class="description short">
+			
+<p>Timezones</p>
+
+		</div>
+
+		<div class="description detailed hidden">
+			
+<p>Timezones</p>
+
+<p>Returns an array of timezones or if a timezone is set will return the number
+of hours offset from UTC.</p>
+
+<p>Credit: <a
+href="http://codeigniter.com/user_guide/helpers/date_helper.html">http://codeigniter.com/user_guide/helpers/date_helper.html</a>
+License: <a
+href="http://codeigniter.com/user_guide/license.html">http://codeigniter.com/user_guide/license.html</a></p>
+
+
+
+				<h4>Parameters</h4>
+				<div class="list"><dl>
+					<dt><var>$tz</var></dt>
+					<dd><code>string</code><br>timezone</dd>
+				</dl></div>
+
+				<h4>Returns</h4>
+				<div class="list">
+					<code>string</code><br />
+				</div>
+
+
+
+
+		</div>
+		</div></td>
+	</tr>
+	<tr data-order="unixToHuman" id="_unixToHuman">
+
+		<td class="attributes"><code>
+			 public static
+			string
+			
+			</code>
+		</td>
+
+		<td class="name"><div>
+		<a class="anchor" href="#_unixToHuman">#</a>
+		<code><a href="source-class-Arx.classes.Date.html#458-491" title="Go to source code">unixToHuman</a>( <span>integer <var>$time</var> = <span class="php-quote">''</span></span>, <span>boolean <var>$seconds</var> = <span class="php-keyword1">false</span></span>, <span>string <var>$fmt</var> = <span class="php-quote">'us'</span></span> )</code>
+
+		<div class="description short">
+			
+<p>Unix to "Human"</p>
+
+		</div>
+
+		<div class="description detailed hidden">
+			
+<p>Unix to "Human"</p>
+
+<p>Formats Unix timestamp to the following prototype: 2006-08-21 11:35 PM</p>
+
+<p>Credit: <a
+href="http://codeigniter.com/user_guide/helpers/date_helper.html">http://codeigniter.com/user_guide/helpers/date_helper.html</a>
+License: <a
+href="http://codeigniter.com/user_guide/license.html">http://codeigniter.com/user_guide/license.html</a></p>
+
+
+
+				<h4>Parameters</h4>
+				<div class="list"><dl>
+					<dt><var>$time</var></dt>
+					<dd><code>integer</code><br>$time Unix timestamp</dd>
+					<dt><var>$seconds</var></dt>
+					<dd><code>boolean</code><br>$seconds whether to show seconds</dd>
+					<dt><var>$fmt</var></dt>
+					<dd><code>string</code><br>$fmt format: us or euro</dd>
+				</dl></div>
+
+				<h4>Returns</h4>
+				<div class="list">
+					<code>string</code><br />
+				</div>
+
+
+
+
+		</div>
+		</div></td>
+	</tr>
+	</table>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+</div>
+
+	<div id="footer">
+		 API documentation generated by <a href="http://apigen.org">ApiGen 2.8.0</a>
+	</div>
+</div>
+</div>
+</body>
+</html>

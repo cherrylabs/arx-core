@@ -1,0 +1,1415 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+	<meta name="generator" content="ApiGen 2.8.0" />
+
+	<title>Class Arx\classes\Container</title>
+
+	<script type="text/javascript" src="resources/combined.js?3048962811"></script>
+	<script type="text/javascript" src="elementlist.js?3003587550"></script>
+	<link rel="stylesheet" type="text/css" media="all" href="resources/style.css?3505392360" />
+
+</head>
+
+<body>
+<div id="left">
+	<div id="menu">
+		<a href="index.html" title="Overview"><span>Overview</span></a>
+
+
+		<div id="groups">
+			<h3>Namespaces</h3>
+			<ul>
+				<li class="active"><a href="namespace-Arx.html">Arx<span></span></a>
+						<ul>
+				<li class="active"><a href="namespace-Arx.classes.html">classes<span></span></a>
+						<ul>
+				<li><a href="namespace-Arx.classes.file.html">file</a>
+						</li>
+				<li><a href="namespace-Arx.classes.Filesystem.html">Filesystem</a>
+						</li>
+				<li><a href="namespace-Arx.classes.view.html">view<span></span></a>
+						<ul>
+				<li><a href="namespace-Arx.classes.view.engines.html">engines<span></span></a>
+						<ul>
+				<li><a href="namespace-Arx.classes.view.engines.blade.html">blade</a>
+						</li>
+							</ul></li></ul></li></ul></li>
+				<li><a href="namespace-Arx.controllers.html">controllers</a>
+						</li>
+				<li><a href="namespace-Arx.facades.html">facades</a>
+						</li>
+				<li><a href="namespace-Arx.helpers.html">helpers</a>
+						</li>
+				<li><a href="namespace-Arx.interfaces.html">interfaces</a>
+						</li>
+				<li><a href="namespace-Arx.modeles.html">modeles</a>
+						</li>
+				<li><a href="namespace-Arx.providers.html">providers</a>
+						</li>
+							</ul></li>
+				<li><a href="namespace-Composer.html">Composer<span></span></a>
+						<ul>
+				<li><a href="namespace-Composer.Autoload.html">Autoload</a>
+						</li>
+							</ul></li>
+				<li><a href="namespace-None.html">None</a>
+						</li>
+				<li><a href="namespace-PHP.html">PHP</a>
+						</li>
+			</ul>
+		</div>
+
+		<hr />
+
+
+		<div id="elements">
+			<h3>Classes</h3>
+			<ul>
+				<li><a href="class-Arx.classes.App.html">App</a></li>
+				<li><a href="class-Arx.classes.Arr.html">Arr</a></li>
+				<li><a href="class-Arx.classes.Asset.html">Asset</a></li>
+				<li><a href="class-Arx.classes.Bag.html">Bag</a></li>
+				<li><a href="class-Arx.classes.Cache.html">Cache</a></li>
+				<li><a href="class-Arx.classes.ClassLoader.html">ClassLoader</a></li>
+				<li><a href="class-Arx.classes.Composer.html">Composer</a></li>
+				<li><a href="class-Arx.classes.Config.html">Config</a></li>
+				<li class="active"><a href="class-Arx.classes.Container.html">Container</a></li>
+				<li><a href="class-Arx.classes.ContainerConcreteStub.html">ContainerConcreteStub</a></li>
+				<li><a href="class-Arx.classes.ContainerDefaultValueStub.html">ContainerDefaultValueStub</a></li>
+				<li><a href="class-Arx.classes.ContainerDependentStub.html">ContainerDependentStub</a></li>
+				<li><a href="class-Arx.classes.ContainerImplementationStub.html">ContainerImplementationStub</a></li>
+				<li><a href="class-Arx.classes.ContainerNestedDependentStub.html">ContainerNestedDependentStub</a></li>
+				<li><a href="class-Arx.classes.Controller.html">Controller</a></li>
+				<li><a href="class-Arx.classes.Convert.html">Convert</a></li>
+				<li><a href="class-Arx.classes.Date.html">Date</a></li>
+				<li><a href="class-Arx.classes.DB.html">DB</a></li>
+				<li><a href="class-Arx.Classes.DBUtil.html">DBUtil</a></li>
+				<li><a href="class-Arx.classes.Debug.html">Debug</a></li>
+				<li><a href="class-Arx.classes.Detect.html">Detect</a></li>
+				<li><a href="class-Arx.classes.Dummy.html">Dummy</a></li>
+				<li><a href="class-Arx.classes.Env.html">Env</a></li>
+				<li><a href="class-Arx.classes.ErrorHandler.html">ErrorHandler</a></li>
+				<li><a href="class-Arx.classes.Facade.html">Facade</a></li>
+				<li><a href="class-Arx.classes.File.html">File</a></li>
+				<li><a href="class-Arx.classes.Finder.html">Finder</a></li>
+				<li><a href="class-Arx.classes.Globals.html">Globals</a></li>
+				<li><a href="class-Arx.classes.Hash.html">Hash</a></li>
+				<li><a href="class-Arx.classes.Helper.html">Helper</a></li>
+				<li><a href="class-Arx.classes.Hook.html">Hook</a></li>
+				<li><a href="class-Arx.classes.Html.html">Html</a></li>
+				<li><a href="class-Arx.classes.Load.html">Load</a></li>
+				<li><a href="class-Arx.classes.Markdown.html">Markdown</a></li>
+				<li><a href="class-Arx.classes.Model.html">Model</a></li>
+				<li><a href="class-Arx.classes.OAuthConsumer.html">OAuthConsumer</a></li>
+				<li><a href="class-Arx.classes.OAuthDataStore.html">OAuthDataStore</a></li>
+				<li><a href="class-Arx.classes.OAuthException.html">OAuthException</a></li>
+				<li><a href="class-Arx.classes.OAuthRequest.html">OAuthRequest</a></li>
+				<li><a href="class-Arx.classes.OAuthServer.html">OAuthServer</a></li>
+				<li><a href="class-Arx.classes.OAuthSignatureMethod.html">OAuthSignatureMethod</a></li>
+				<li><a href="class-Arx.classes.OAuthSignatureMethod_HMAC_SHA1.html">OAuthSignatureMethod_HMAC_SHA1</a></li>
+				<li><a href="class-Arx.classes.OAuthSignatureMethod_PLAINTEXT.html">OAuthSignatureMethod_PLAINTEXT</a></li>
+				<li><a href="class-Arx.classes.OAuthSignatureMethod_RSA_SHA1.html">OAuthSignatureMethod_RSA_SHA1</a></li>
+				<li><a href="class-Arx.classes.OAuthToken.html">OAuthToken</a></li>
+				<li><a href="class-Arx.classes.OAuthUtil.html">OAuthUtil</a></li>
+				<li><a href="class-Arx.classes.Opengraph.html">Opengraph</a></li>
+				<li><a href="class-Arx.classes.Profiler.html">Profiler</a></li>
+				<li><a href="class-Arx.classes.Request.html">Request</a></li>
+				<li><a href="class-Arx.classes.Response.html">Response</a></li>
+				<li><a href="class-Arx.classes.Route.html">Route</a></li>
+				<li><a href="class-Arx.classes.Router.html">Router</a></li>
+				<li><a href="class-Arx.classes.Singleton.html">Singleton</a></li>
+				<li><a href="class-Arx.classes.Strings.html">Strings</a></li>
+				<li><a href="class-Arx.classes.Uri.html">Uri</a></li>
+				<li><a href="class-Arx.classes.Utils.html">Utils</a></li>
+				<li><a href="class-Arx.classes.Valid.html">Valid</a></li>
+				<li><a href="class-Arx.classes.View.html">View</a></li>
+			</ul>
+
+			<h3>Interfaces</h3>
+			<ul>
+				<li><a href="class-Arx.classes.IContainerContractStub.html">IContainerContractStub</a></li>
+			</ul>
+
+
+
+
+		</div>
+	</div>
+</div>
+
+<div id="splitter"></div>
+
+<div id="right">
+<div id="rightInner">
+	<form id="search">
+		<input type="hidden" name="cx" value="" />
+		<input type="hidden" name="ie" value="UTF-8" />
+		<input type="text" name="q" class="text" />
+		<input type="submit" value="Search" />
+	</form>
+
+	<div id="navigation">
+		<ul>
+			<li>
+				<a href="index.html" title="Overview"><span>Overview</span></a>
+			</li>
+			<li>
+				<a href="namespace-Arx.classes.html" title="Summary of Arx\classes"><span>Namespace</span></a>
+			</li>
+			<li class="active">
+<span>Class</span>			</li>
+		</ul>
+		<ul>
+			<li>
+				<a href="tree.html" title="Tree view of classes, interfaces, traits and exceptions"><span>Tree</span></a>
+			</li>
+		</ul>
+		<ul>
+		</ul>
+	</div>
+
+<div id="content" class="class">
+	<h1>Class Container</h1>
+
+
+
+	<dl class="tree">
+		<dd style="padding-left:0px">
+Illuminate\Container\Container
+			
+			
+		</dd>
+		<dd style="padding-left:30px">
+			<img src="resources/inherit.png" alt="Extended by" />
+<b><span>Arx\classes\Container</span></b>			
+			 implements 
+				<a href="class-ArrayAccess.html"><span>ArrayAccess</span></a>
+			
+			
+		</dd>
+	</dl>
+
+
+	<div>
+		<h4>Direct known subclasses</h4>
+			<a href="class-Arx.classes.Composer.html">Arx\classes\Composer</a>, 
+			<a href="class-Arx.classes.Config.html">Arx\classes\Config</a>, 
+			<a href="class-Arx.classes.file.Parser.html">Arx\classes\file\Parser</a>, 
+			<a href="class-Arx.classes.Helper.html">Arx\classes\Helper</a>, 
+			<a href="class-Arx.controllers.Install.html">Arx\controllers\Install</a>
+	</div>
+
+	<div>
+		<h4>Indirect known subclasses</h4>
+			<a href="class-Arx.helpers.Bootstrap.html">Arx\helpers\Bootstrap</a>
+	</div>
+
+
+
+
+
+	<div class="info">
+		
+		
+		<b>Namespace:</b> <a href="namespace-Arx.html">Arx</a>\<a href="namespace-Arx.classes.html">classes</a><br />
+		
+
+		<b>Located at</b> <a href="source-class-Arx.classes.Container.html#39-551" title="Go to source code">src/Arx/classes/Container.php</a><br />
+	</div>
+
+
+
+	<table class="summary" id="methods">
+	<caption>Methods summary</caption>
+	<tr data-order="bound" id="_bound">
+
+		<td class="attributes"><code>
+			 public 
+			boolean
+			
+			</code>
+		</td>
+
+		<td class="name"><div>
+		<a class="anchor" href="#_bound">#</a>
+		<code><a href="source-class-Arx.classes.Container.html#71-80" title="Go to source code">bound</a>( <span>string <var>$abstract</var></span> )</code>
+
+		<div class="description short">
+			
+<p>Determine if the given abstract type has been bound.</p>
+
+		</div>
+
+		<div class="description detailed hidden">
+			
+<p>Determine if the given abstract type has been bound.</p>
+
+
+
+				<h4>Parameters</h4>
+				<div class="list"><dl>
+					<dt><var>$abstract</var></dt>
+					<dd><code>string</code><br>$abstract</dd>
+				</dl></div>
+
+				<h4>Returns</h4>
+				<div class="list">
+					<code>boolean</code><br />
+				</div>
+
+
+
+
+		</div>
+		</div></td>
+	</tr>
+	<tr data-order="bind" id="_bind">
+
+		<td class="attributes"><code>
+			 public 
+			
+			
+			</code>
+		</td>
+
+		<td class="name"><div>
+		<a class="anchor" href="#_bind">#</a>
+		<code><a href="source-class-Arx.classes.Container.html#82-126" title="Go to source code">bind</a>( <span>string <var>$abstract</var></span>, <span><code><a href="class-Closure.html">Closure</a></code>|string|null <var>$concrete</var> = <span class="php-keyword1">null</span></span>, <span>boolean <var>$shared</var> = <span class="php-keyword1">false</span></span> )</code>
+
+		<div class="description short">
+			
+<p>Register a binding with the container.</p>
+
+		</div>
+
+		<div class="description detailed hidden">
+			
+<p>Register a binding with the container.</p>
+
+
+
+				<h4>Parameters</h4>
+				<div class="list"><dl>
+					<dt><var>$abstract</var></dt>
+					<dd><code>string</code><br>$abstract</dd>
+					<dt><var>$concrete</var></dt>
+					<dd><code><code><a href="class-Closure.html">Closure</a></code>|string|null</code><br>$concrete</dd>
+					<dt><var>$shared</var></dt>
+					<dd><code>boolean</code><br>$shared</dd>
+				</dl></div>
+
+
+
+
+
+		</div>
+		</div></td>
+	</tr>
+	<tr data-order="bindIf" id="_bindIf">
+
+		<td class="attributes"><code>
+			 public 
+			boolean
+			
+			</code>
+		</td>
+
+		<td class="name"><div>
+		<a class="anchor" href="#_bindIf">#</a>
+		<code><a href="source-class-Arx.classes.Container.html#128-142" title="Go to source code">bindIf</a>( <span>string <var>$abstract</var></span>, <span><code><a href="class-Closure.html">Closure</a></code>|string|null <var>$concrete</var> = <span class="php-keyword1">null</span></span>, <span>boolean <var>$shared</var> = <span class="php-keyword1">false</span></span> )</code>
+
+		<div class="description short">
+			
+<p>Register a binding if it hasn't already been registered.</p>
+
+		</div>
+
+		<div class="description detailed hidden">
+			
+<p>Register a binding if it hasn't already been registered.</p>
+
+
+
+				<h4>Parameters</h4>
+				<div class="list"><dl>
+					<dt><var>$abstract</var></dt>
+					<dd><code>string</code><br>$abstract</dd>
+					<dt><var>$concrete</var></dt>
+					<dd><code><code><a href="class-Closure.html">Closure</a></code>|string|null</code><br>$concrete</dd>
+					<dt><var>$shared</var></dt>
+					<dd><code>boolean</code><br>$shared</dd>
+				</dl></div>
+
+				<h4>Returns</h4>
+				<div class="list">
+					<code>boolean</code><br />
+				</div>
+
+
+
+
+		</div>
+		</div></td>
+	</tr>
+	<tr data-order="singleton" id="_singleton">
+
+		<td class="attributes"><code>
+			 public 
+			
+			
+			</code>
+		</td>
+
+		<td class="name"><div>
+		<a class="anchor" href="#_singleton">#</a>
+		<code><a href="source-class-Arx.classes.Container.html#144-154" title="Go to source code">singleton</a>( <span>string <var>$abstract</var></span>, <span><code><a href="class-Closure.html">Closure</a></code>|string|null <var>$concrete</var> = <span class="php-keyword1">null</span></span> )</code>
+
+		<div class="description short">
+			
+<p>Register a shared binding in the container.</p>
+
+		</div>
+
+		<div class="description detailed hidden">
+			
+<p>Register a shared binding in the container.</p>
+
+
+
+				<h4>Parameters</h4>
+				<div class="list"><dl>
+					<dt><var>$abstract</var></dt>
+					<dd><code>string</code><br>$abstract</dd>
+					<dt><var>$concrete</var></dt>
+					<dd><code><code><a href="class-Closure.html">Closure</a></code>|string|null</code><br>$concrete</dd>
+				</dl></div>
+
+
+
+
+
+		</div>
+		</div></td>
+	</tr>
+	<tr data-order="share" id="_share">
+
+		<td class="attributes"><code>
+			 public 
+			<code><a href="class-Closure.html">Closure</a></code>
+			
+			</code>
+		</td>
+
+		<td class="name"><div>
+		<a class="anchor" href="#_share">#</a>
+		<code><a href="source-class-Arx.classes.Container.html#156-178" title="Go to source code">share</a>( <span><code><a href="class-Closure.html">Closure</a></code> <var>$closure</var></span> )</code>
+
+		<div class="description short">
+			
+<p>Wrap a Closure such that it is shared.</p>
+
+		</div>
+
+		<div class="description detailed hidden">
+			
+<p>Wrap a Closure such that it is shared.</p>
+
+
+
+				<h4>Parameters</h4>
+				<div class="list"><dl>
+					<dt><var>$closure</var></dt>
+					<dd><code><code><a href="class-Closure.html">Closure</a></code></code><br>$closure</dd>
+				</dl></div>
+
+				<h4>Returns</h4>
+				<div class="list">
+					<code><code><a href="class-Closure.html">Closure</a></code></code><br />
+				</div>
+
+
+
+
+		</div>
+		</div></td>
+	</tr>
+	<tr data-order="extend" id="_extend">
+
+		<td class="attributes"><code>
+			 public 
+			
+			
+			</code>
+		</td>
+
+		<td class="name"><div>
+		<a class="anchor" href="#_extend">#</a>
+		<code><a href="source-class-Arx.classes.Container.html#180-204" title="Go to source code">extend</a>( <span>string <var>$abstract</var></span>, <span><code><a href="class-Closure.html">Closure</a></code> <var>$closure</var></span> )</code>
+
+		<div class="description short">
+			
+<p>"Extend" an abstract type in the container.</p>
+
+		</div>
+
+		<div class="description detailed hidden">
+			
+<p>"Extend" an abstract type in the container.</p>
+
+
+
+				<h4>Parameters</h4>
+				<div class="list"><dl>
+					<dt><var>$abstract</var></dt>
+					<dd><code>string</code><br>$abstract</dd>
+					<dt><var>$closure</var></dt>
+					<dd><code><code><a href="class-Closure.html">Closure</a></code></code><br>$closure</dd>
+				</dl></div>
+
+
+
+
+
+		</div>
+		</div></td>
+	</tr>
+	<tr data-order="instance" id="_instance">
+
+		<td class="attributes"><code>
+			 public 
+			
+			
+			</code>
+		</td>
+
+		<td class="name"><div>
+		<a class="anchor" href="#_instance">#</a>
+		<code><a href="source-class-Arx.classes.Container.html#206-223" title="Go to source code">instance</a>( <span>string <var>$abstract</var></span>, <span>mixed <var>$instance</var></span> )</code>
+
+		<div class="description short">
+			
+<p>Register an existing instance as shared in the container.</p>
+
+		</div>
+
+		<div class="description detailed hidden">
+			
+<p>Register an existing instance as shared in the container.</p>
+
+
+
+				<h4>Parameters</h4>
+				<div class="list"><dl>
+					<dt><var>$abstract</var></dt>
+					<dd><code>string</code><br>$abstract</dd>
+					<dt><var>$instance</var></dt>
+					<dd><code>mixed</code><br>$instance</dd>
+				</dl></div>
+
+
+
+
+
+		</div>
+		</div></td>
+	</tr>
+	<tr data-order="alias" id="_alias">
+
+		<td class="attributes"><code>
+			 public 
+			
+			
+			</code>
+		</td>
+
+		<td class="name"><div>
+		<a class="anchor" href="#_alias">#</a>
+		<code><a href="source-class-Arx.classes.Container.html#225-235" title="Go to source code">alias</a>( <span>string <var>$abstract</var></span>, <span>string <var>$alias</var></span> )</code>
+
+		<div class="description short">
+			
+<p>Alias a type to a shorter name.</p>
+
+		</div>
+
+		<div class="description detailed hidden">
+			
+<p>Alias a type to a shorter name.</p>
+
+
+
+				<h4>Parameters</h4>
+				<div class="list"><dl>
+					<dt><var>$abstract</var></dt>
+					<dd><code>string</code><br>$abstract</dd>
+					<dt><var>$alias</var></dt>
+					<dd><code>string</code><br>$alias</dd>
+				</dl></div>
+
+
+
+
+
+		</div>
+		</div></td>
+	</tr>
+	<tr data-order="extractAlias" id="_extractAlias">
+
+		<td class="attributes"><code>
+			 protected 
+			array
+			
+			</code>
+		</td>
+
+		<td class="name"><div>
+		<a class="anchor" href="#_extractAlias">#</a>
+		<code><a href="source-class-Arx.classes.Container.html#237-246" title="Go to source code">extractAlias</a>( <span>array <var>$definition</var></span> )</code>
+
+		<div class="description short">
+			
+<p>Extract the type and alias from a given definition.</p>
+
+		</div>
+
+		<div class="description detailed hidden">
+			
+<p>Extract the type and alias from a given definition.</p>
+
+
+
+				<h4>Parameters</h4>
+				<div class="list"><dl>
+					<dt><var>$definition</var></dt>
+					<dd><code>array</code><br>$definition</dd>
+				</dl></div>
+
+				<h4>Returns</h4>
+				<div class="list">
+					<code>array</code><br />
+				</div>
+
+
+
+
+		</div>
+		</div></td>
+	</tr>
+	<tr data-order="make" id="_make">
+
+		<td class="attributes"><code>
+			 public 
+			mixed
+			
+			</code>
+		</td>
+
+		<td class="name"><div>
+		<a class="anchor" href="#_make">#</a>
+		<code><a href="source-class-Arx.classes.Container.html#248-292" title="Go to source code">make</a>( <span>string <var>$abstract</var></span>, <span>array <var>$parameters</var> = <span class="php-keyword1">array</span>()</span> )</code>
+
+		<div class="description short">
+			
+<p>Resolve the given type from the container.</p>
+
+		</div>
+
+		<div class="description detailed hidden">
+			
+<p>Resolve the given type from the container.</p>
+
+
+
+				<h4>Parameters</h4>
+				<div class="list"><dl>
+					<dt><var>$abstract</var></dt>
+					<dd><code>string</code><br>$abstract</dd>
+					<dt><var>$parameters</var></dt>
+					<dd><code>array</code><br>$parameters</dd>
+				</dl></div>
+
+				<h4>Returns</h4>
+				<div class="list">
+					<code>mixed</code><br />
+				</div>
+
+
+
+
+		</div>
+		</div></td>
+	</tr>
+	<tr data-order="getConcrete" id="_getConcrete">
+
+		<td class="attributes"><code>
+			 protected 
+			mixed
+			
+			</code>
+		</td>
+
+		<td class="name"><div>
+		<a class="anchor" href="#_getConcrete">#</a>
+		<code><a href="source-class-Arx.classes.Container.html#294-313" title="Go to source code">getConcrete</a>( <span>string <var>$abstract</var></span> )</code>
+
+		<div class="description short">
+			
+<p>Get the concrete type for a given abstract.</p>
+
+		</div>
+
+		<div class="description detailed hidden">
+			
+<p>Get the concrete type for a given abstract.</p>
+
+
+
+				<h4>Parameters</h4>
+				<div class="list"><dl>
+					<dt><var>$abstract</var></dt>
+					<dd><code>string</code><br>$abstract</dd>
+				</dl></div>
+
+				<h4>Returns</h4>
+				<div class="list">
+					<code>mixed</code><br>$concrete<br />
+				</div>
+
+
+
+
+		</div>
+		</div></td>
+	</tr>
+	<tr data-order="getInstance" id="_getInstance">
+
+		<td class="attributes"><code>
+			 public static
+			
+			
+			</code>
+		</td>
+
+		<td class="name"><div>
+		<a class="anchor" href="#_getInstance">#</a>
+		<code><a href="source-class-Arx.classes.Container.html#315-323" title="Go to source code">getInstance</a>( )</code>
+
+		<div class="description short">
+			
+		</div>
+
+		<div class="description detailed hidden">
+			
+
+
+
+
+
+
+
+		</div>
+		</div></td>
+	</tr>
+	<tr data-order="build" id="_build">
+
+		<td class="attributes"><code>
+			 public 
+			mixed
+			
+			</code>
+		</td>
+
+		<td class="name"><div>
+		<a class="anchor" href="#_build">#</a>
+		<code><a href="source-class-Arx.classes.Container.html#325-372" title="Go to source code">build</a>( <span>string <var>$concrete</var></span>, <span>array <var>$parameters</var> = <span class="php-keyword1">array</span>()</span> )</code>
+
+		<div class="description short">
+			
+<p>Instantiate a concrete instance of the given type.</p>
+
+		</div>
+
+		<div class="description detailed hidden">
+			
+<p>Instantiate a concrete instance of the given type.</p>
+
+
+
+				<h4>Parameters</h4>
+				<div class="list"><dl>
+					<dt><var>$concrete</var></dt>
+					<dd><code>string</code><br>$concrete</dd>
+					<dt><var>$parameters</var></dt>
+					<dd><code>array</code><br>$parameters</dd>
+				</dl></div>
+
+				<h4>Returns</h4>
+				<div class="list">
+					<code>mixed</code><br />
+				</div>
+
+
+
+
+		</div>
+		</div></td>
+	</tr>
+	<tr data-order="getDependencies" id="_getDependencies">
+
+		<td class="attributes"><code>
+			 protected 
+			array
+			
+			</code>
+		</td>
+
+		<td class="name"><div>
+		<a class="anchor" href="#_getDependencies">#</a>
+		<code><a href="source-class-Arx.classes.Container.html#374-402" title="Go to source code">getDependencies</a>( <span>array <var>$parameters</var></span> )</code>
+
+		<div class="description short">
+			
+<p>Resolve all of the dependencies from the ReflectionParameters.</p>
+
+		</div>
+
+		<div class="description detailed hidden">
+			
+<p>Resolve all of the dependencies from the ReflectionParameters.</p>
+
+
+
+				<h4>Parameters</h4>
+				<div class="list"><dl>
+					<dt><var>$parameters</var></dt>
+					<dd><code>array</code><br>$parameters</dd>
+				</dl></div>
+
+				<h4>Returns</h4>
+				<div class="list">
+					<code>array</code><br />
+				</div>
+
+
+
+
+		</div>
+		</div></td>
+	</tr>
+	<tr data-order="resolveNonClass" id="_resolveNonClass">
+
+		<td class="attributes"><code>
+			 protected 
+			mixed
+			
+			</code>
+		</td>
+
+		<td class="name"><div>
+		<a class="anchor" href="#_resolveNonClass">#</a>
+		<code><a href="source-class-Arx.classes.Container.html#404-422" title="Go to source code">resolveNonClass</a>( <span>Arx\classes\ReflectionParameter <var>$parameter</var></span> )</code>
+
+		<div class="description short">
+			
+<p>Resolve a non-class hinted dependency.</p>
+
+		</div>
+
+		<div class="description detailed hidden">
+			
+<p>Resolve a non-class hinted dependency.</p>
+
+
+
+				<h4>Parameters</h4>
+				<div class="list"><dl>
+					<dt><var>$parameter</var></dt>
+					<dd><code><code><a href="class-ReflectionParameter.html">ReflectionParameter</a></code></code><br>$parameter</dd>
+				</dl></div>
+
+				<h4>Returns</h4>
+				<div class="list">
+					<code>mixed</code><br />
+				</div>
+
+
+
+
+		</div>
+		</div></td>
+	</tr>
+	<tr data-order="resolving" id="_resolving">
+
+		<td class="attributes"><code>
+			 public 
+			
+			
+			</code>
+		</td>
+
+		<td class="name"><div>
+		<a class="anchor" href="#_resolving">#</a>
+		<code><a href="source-class-Arx.classes.Container.html#424-433" title="Go to source code">resolving</a>( <span><code><a href="class-Closure.html">Closure</a></code> <var>$callback</var></span> )</code>
+
+		<div class="description short">
+			
+<p>Register a new resolving callback.</p>
+
+		</div>
+
+		<div class="description detailed hidden">
+			
+<p>Register a new resolving callback.</p>
+
+
+
+				<h4>Parameters</h4>
+				<div class="list"><dl>
+					<dt><var>$callback</var></dt>
+					<dd><code><code><a href="class-Closure.html">Closure</a></code></code><br>$callback</dd>
+				</dl></div>
+
+
+
+
+
+		</div>
+		</div></td>
+	</tr>
+	<tr data-order="fireResolvingCallbacks" id="_fireResolvingCallbacks">
+
+		<td class="attributes"><code>
+			 protected 
+			
+			
+			</code>
+		</td>
+
+		<td class="name"><div>
+		<a class="anchor" href="#_fireResolvingCallbacks">#</a>
+		<code><a href="source-class-Arx.classes.Container.html#435-447" title="Go to source code">fireResolvingCallbacks</a>( <span>mixed <var>$object</var></span> )</code>
+
+		<div class="description short">
+			
+<p>Fire all of the resolving callbacks.</p>
+
+		</div>
+
+		<div class="description detailed hidden">
+			
+<p>Fire all of the resolving callbacks.</p>
+
+
+
+				<h4>Parameters</h4>
+				<div class="list"><dl>
+					<dt><var>$object</var></dt>
+					<dd><code>mixed</code><br>$object</dd>
+				</dl></div>
+
+
+
+
+
+		</div>
+		</div></td>
+	</tr>
+	<tr data-order="isShared" id="_isShared">
+
+		<td class="attributes"><code>
+			 protected 
+			boolean
+			
+			</code>
+		</td>
+
+		<td class="name"><div>
+		<a class="anchor" href="#_isShared">#</a>
+		<code><a href="source-class-Arx.classes.Container.html#449-460" title="Go to source code">isShared</a>( <span>string <var>$abstract</var></span> )</code>
+
+		<div class="description short">
+			
+<p>Determine if a given type is shared.</p>
+
+		</div>
+
+		<div class="description detailed hidden">
+			
+<p>Determine if a given type is shared.</p>
+
+
+
+				<h4>Parameters</h4>
+				<div class="list"><dl>
+					<dt><var>$abstract</var></dt>
+					<dd><code>string</code><br>$abstract</dd>
+				</dl></div>
+
+				<h4>Returns</h4>
+				<div class="list">
+					<code>boolean</code><br />
+				</div>
+
+
+
+
+		</div>
+		</div></td>
+	</tr>
+	<tr data-order="isBuildable" id="_isBuildable">
+
+		<td class="attributes"><code>
+			 protected 
+			boolean
+			
+			</code>
+		</td>
+
+		<td class="name"><div>
+		<a class="anchor" href="#_isBuildable">#</a>
+		<code><a href="source-class-Arx.classes.Container.html#462-472" title="Go to source code">isBuildable</a>( <span>mixed <var>$concrete</var></span>, <span>string <var>$abstract</var></span> )</code>
+
+		<div class="description short">
+			
+<p>Determine if the given concrete is buildable.</p>
+
+		</div>
+
+		<div class="description detailed hidden">
+			
+<p>Determine if the given concrete is buildable.</p>
+
+
+
+				<h4>Parameters</h4>
+				<div class="list"><dl>
+					<dt><var>$concrete</var></dt>
+					<dd><code>mixed</code><br>$concrete</dd>
+					<dt><var>$abstract</var></dt>
+					<dd><code>string</code><br>$abstract</dd>
+				</dl></div>
+
+				<h4>Returns</h4>
+				<div class="list">
+					<code>boolean</code><br />
+				</div>
+
+
+
+
+		</div>
+		</div></td>
+	</tr>
+	<tr data-order="getAlias" id="_getAlias">
+
+		<td class="attributes"><code>
+			 protected 
+			string
+			
+			</code>
+		</td>
+
+		<td class="name"><div>
+		<a class="anchor" href="#_getAlias">#</a>
+		<code><a href="source-class-Arx.classes.Container.html#474-483" title="Go to source code">getAlias</a>( <span>string <var>$abstract</var></span> )</code>
+
+		<div class="description short">
+			
+<p>Get the alias for an abstract if available.</p>
+
+		</div>
+
+		<div class="description detailed hidden">
+			
+<p>Get the alias for an abstract if available.</p>
+
+
+
+				<h4>Parameters</h4>
+				<div class="list"><dl>
+					<dt><var>$abstract</var></dt>
+					<dd><code>string</code><br>$abstract</dd>
+				</dl></div>
+
+				<h4>Returns</h4>
+				<div class="list">
+					<code>string</code><br />
+				</div>
+
+
+
+
+		</div>
+		</div></td>
+	</tr>
+	<tr data-order="getBindings" id="_getBindings">
+
+		<td class="attributes"><code>
+			 public 
+			array
+			
+			</code>
+		</td>
+
+		<td class="name"><div>
+		<a class="anchor" href="#_getBindings">#</a>
+		<code><a href="source-class-Arx.classes.Container.html#485-493" title="Go to source code">getBindings</a>( )</code>
+
+		<div class="description short">
+			
+<p>Get the container's bindings.</p>
+
+		</div>
+
+		<div class="description detailed hidden">
+			
+<p>Get the container's bindings.</p>
+
+
+
+
+				<h4>Returns</h4>
+				<div class="list">
+					<code>array</code><br />
+				</div>
+
+
+
+
+		</div>
+		</div></td>
+	</tr>
+	<tr data-order="offsetExists" id="_offsetExists">
+
+		<td class="attributes"><code>
+			 public 
+			boolean
+			
+			</code>
+		</td>
+
+		<td class="name"><div>
+		<a class="anchor" href="#_offsetExists">#</a>
+		<code><a href="source-class-Arx.classes.Container.html#495-504" title="Go to source code">offsetExists</a>( <span>string <var>$key</var></span> )</code>
+
+		<div class="description short">
+			
+<p>Determine if a given offset exists.</p>
+
+		</div>
+
+		<div class="description detailed hidden">
+			
+<p>Determine if a given offset exists.</p>
+
+
+
+				<h4>Parameters</h4>
+				<div class="list"><dl>
+					<dt><var>$key</var></dt>
+					<dd><code>string</code><br>$key</dd>
+				</dl></div>
+
+				<h4>Returns</h4>
+				<div class="list">
+					<code>boolean</code><br />
+				</div>
+
+
+
+
+				<h4>Implementation of</h4>
+				<div class="list"><code><a href="class-ArrayAccess.html#_offsetExists">ArrayAccess::offsetExists()</a></code></div>
+		</div>
+		</div></td>
+	</tr>
+	<tr data-order="offsetGet" id="_offsetGet">
+
+		<td class="attributes"><code>
+			 public 
+			mixed
+			
+			</code>
+		</td>
+
+		<td class="name"><div>
+		<a class="anchor" href="#_offsetGet">#</a>
+		<code><a href="source-class-Arx.classes.Container.html#506-515" title="Go to source code">offsetGet</a>( <span>string <var>$key</var></span> )</code>
+
+		<div class="description short">
+			
+<p>Get the value at a given offset.</p>
+
+		</div>
+
+		<div class="description detailed hidden">
+			
+<p>Get the value at a given offset.</p>
+
+
+
+				<h4>Parameters</h4>
+				<div class="list"><dl>
+					<dt><var>$key</var></dt>
+					<dd><code>string</code><br>$key</dd>
+				</dl></div>
+
+				<h4>Returns</h4>
+				<div class="list">
+					<code>mixed</code><br />
+				</div>
+
+
+
+
+				<h4>Implementation of</h4>
+				<div class="list"><code><a href="class-ArrayAccess.html#_offsetGet">ArrayAccess::offsetGet()</a></code></div>
+		</div>
+		</div></td>
+	</tr>
+	<tr data-order="offsetSet" id="_offsetSet">
+
+		<td class="attributes"><code>
+			 public 
+			
+			
+			</code>
+		</td>
+
+		<td class="name"><div>
+		<a class="anchor" href="#_offsetSet">#</a>
+		<code><a href="source-class-Arx.classes.Container.html#517-538" title="Go to source code">offsetSet</a>( <span>string <var>$key</var></span>, <span>mixed <var>$value</var></span> )</code>
+
+		<div class="description short">
+			
+<p>Set the value at a given offset.</p>
+
+		</div>
+
+		<div class="description detailed hidden">
+			
+<p>Set the value at a given offset.</p>
+
+
+
+				<h4>Parameters</h4>
+				<div class="list"><dl>
+					<dt><var>$key</var></dt>
+					<dd><code>string</code><br>$key</dd>
+					<dt><var>$value</var></dt>
+					<dd><code>mixed</code><br>$value</dd>
+				</dl></div>
+
+
+
+
+
+				<h4>Implementation of</h4>
+				<div class="list"><code><a href="class-ArrayAccess.html#_offsetSet">ArrayAccess::offsetSet()</a></code></div>
+		</div>
+		</div></td>
+	</tr>
+	<tr data-order="offsetUnset" id="_offsetUnset">
+
+		<td class="attributes"><code>
+			 public 
+			
+			
+			</code>
+		</td>
+
+		<td class="name"><div>
+		<a class="anchor" href="#_offsetUnset">#</a>
+		<code><a href="source-class-Arx.classes.Container.html#540-549" title="Go to source code">offsetUnset</a>( <span>string <var>$key</var></span> )</code>
+
+		<div class="description short">
+			
+<p>Unset the value at a given offset.</p>
+
+		</div>
+
+		<div class="description detailed hidden">
+			
+<p>Unset the value at a given offset.</p>
+
+
+
+				<h4>Parameters</h4>
+				<div class="list"><dl>
+					<dt><var>$key</var></dt>
+					<dd><code>string</code><br>$key</dd>
+				</dl></div>
+
+
+
+
+
+				<h4>Implementation of</h4>
+				<div class="list"><code><a href="class-ArrayAccess.html#_offsetUnset">ArrayAccess::offsetUnset()</a></code></div>
+		</div>
+		</div></td>
+	</tr>
+	</table>
+
+
+
+
+
+
+
+
+
+
+
+
+	<table class="summary" id="properties">
+	<caption>Properties summary</caption>
+	<tr data-order="bindings" id="$bindings">
+		<td class="attributes"><code>
+			protected  
+			array
+		</code></td>
+
+		<td class="name">
+				<a href="source-class-Arx.classes.Container.html#41-46" title="Go to source code"><var>$bindings</var></a>
+		</td>
+		<td class="value"><code><span class="php-keyword1">array</span>()</code></td>
+		<td class="description"><div>
+			<a href="#$bindings" class="anchor">#</a>
+
+			<div class="description short">
+				
+<p>The container's bindings.</p>
+
+			</div>
+
+			<div class="description detailed hidden">
+				
+<p>The container's bindings.</p>
+
+
+			</div>
+		</div></td>
+	</tr>
+	<tr data-order="_aInstances" id="$_aInstances">
+		<td class="attributes"><code>
+			protected static 
+			array
+		</code></td>
+
+		<td class="name">
+				<a href="source-class-Arx.classes.Container.html#48" title="Go to source code"><var>$_aInstances</var></a>
+		</td>
+		<td class="value"><code><span class="php-keyword1">array</span>()</code></td>
+		<td class="description"><div>
+			<a href="#$_aInstances" class="anchor">#</a>
+
+			<div class="description short">
+				
+			</div>
+
+			<div class="description detailed hidden">
+				
+
+			</div>
+		</div></td>
+	</tr>
+	<tr data-order="instances" id="$instances">
+		<td class="attributes"><code>
+			protected  
+			array
+		</code></td>
+
+		<td class="name">
+				<a href="source-class-Arx.classes.Container.html#50-55" title="Go to source code"><var>$instances</var></a>
+		</td>
+		<td class="value"><code><span class="php-keyword1">array</span>()</code></td>
+		<td class="description"><div>
+			<a href="#$instances" class="anchor">#</a>
+
+			<div class="description short">
+				
+<p>The container's shared instances.</p>
+
+			</div>
+
+			<div class="description detailed hidden">
+				
+<p>The container's shared instances.</p>
+
+
+			</div>
+		</div></td>
+	</tr>
+	<tr data-order="aliases" id="$aliases">
+		<td class="attributes"><code>
+			protected  
+			array
+		</code></td>
+
+		<td class="name">
+				<a href="source-class-Arx.classes.Container.html#57-62" title="Go to source code"><var>$aliases</var></a>
+		</td>
+		<td class="value"><code><span class="php-keyword1">array</span>()</code></td>
+		<td class="description"><div>
+			<a href="#$aliases" class="anchor">#</a>
+
+			<div class="description short">
+				
+<p>The registered type aliases.</p>
+
+			</div>
+
+			<div class="description detailed hidden">
+				
+<p>The registered type aliases.</p>
+
+
+			</div>
+		</div></td>
+	</tr>
+	<tr data-order="resolvingCallbacks" id="$resolvingCallbacks">
+		<td class="attributes"><code>
+			protected  
+			array
+		</code></td>
+
+		<td class="name">
+				<a href="source-class-Arx.classes.Container.html#64-69" title="Go to source code"><var>$resolvingCallbacks</var></a>
+		</td>
+		<td class="value"><code><span class="php-keyword1">array</span>()</code></td>
+		<td class="description"><div>
+			<a href="#$resolvingCallbacks" class="anchor">#</a>
+
+			<div class="description short">
+				
+<p>All of the registered resolving callbacks.</p>
+
+			</div>
+
+			<div class="description detailed hidden">
+				
+<p>All of the registered resolving callbacks.</p>
+
+
+			</div>
+		</div></td>
+	</tr>
+	</table>
+
+
+
+
+
+
+</div>
+
+	<div id="footer">
+		 API documentation generated by <a href="http://apigen.org">ApiGen 2.8.0</a>
+	</div>
+</div>
+</div>
+</body>
+</html>

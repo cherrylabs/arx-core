@@ -43,7 +43,7 @@ class Assets extends \Controller implements \Arx\interfaces\Assets
             $response = \with(new AssetCollection($aParameters))->dump();
         }
 
-        if ($response) {
+        if (isset($response)) {
 
             if (preg_match('/.css/i', $parameters)) {
                 header('Content-Type: text/css');
@@ -102,6 +102,7 @@ namespace Arx;
 
 use Arx\controllers\Assets;
 
-class ctrl_Assets extends Assets{
+class AssetsController extends Assets
+{
 
 }

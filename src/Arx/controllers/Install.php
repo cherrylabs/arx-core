@@ -5,9 +5,14 @@ use Arx\classes\Config;
 use Arx\classes\Container;
 use Arx\classes\Finder;
 
+/**
+ * Controller Install
+ *
+ * A Default controller for installation
+ *
+ * @package Arx\controllers
+ */
 class Install extends Container {
-
-    $view = 'install';
 
 
     public $finderConfig;

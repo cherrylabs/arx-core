@@ -42,6 +42,9 @@ class CompilerEngine extends PhpEngine {
             $this->compiler->compile($path);
         }
 
+        # SAVE VIEWS INFO IN SERVER DATA
+        $_SERVER['view_used'] = $path;
+
         $compiled = $this->compiler->getCompiledPath($path);
 
         return $this->evaluatePath($compiled, $data);

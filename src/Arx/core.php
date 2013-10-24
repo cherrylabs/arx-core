@@ -85,7 +85,7 @@ require_once __DIR__ . DS . 'classes' . DS . 'App.php';
  * Class Arx
  *
  * Extend classes/app.php.
- * Needed to avoid any namespace problem in first level
+ * Needed to avoid any namespace problem in first level of the process
  *
  */
 
