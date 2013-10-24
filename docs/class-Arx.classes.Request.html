@@ -1,0 +1,1729 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+	<meta name="generator" content="ApiGen 2.8.0" />
+
+	<title>Class Arx\classes\Request</title>
+
+	<script type="text/javascript" src="resources/combined.js?3048962811"></script>
+	<script type="text/javascript" src="elementlist.js?3003587550"></script>
+	<link rel="stylesheet" type="text/css" media="all" href="resources/style.css?3505392360" />
+
+</head>
+
+<body>
+<div id="left">
+	<div id="menu">
+		<a href="index.html" title="Overview"><span>Overview</span></a>
+
+
+		<div id="groups">
+			<h3>Namespaces</h3>
+			<ul>
+				<li class="active"><a href="namespace-Arx.html">Arx<span></span></a>
+						<ul>
+				<li class="active"><a href="namespace-Arx.classes.html">classes<span></span></a>
+						<ul>
+				<li><a href="namespace-Arx.classes.file.html">file</a>
+						</li>
+				<li><a href="namespace-Arx.classes.Filesystem.html">Filesystem</a>
+						</li>
+				<li><a href="namespace-Arx.classes.view.html">view<span></span></a>
+						<ul>
+				<li><a href="namespace-Arx.classes.view.engines.html">engines<span></span></a>
+						<ul>
+				<li><a href="namespace-Arx.classes.view.engines.blade.html">blade</a>
+						</li>
+							</ul></li></ul></li></ul></li>
+				<li><a href="namespace-Arx.controllers.html">controllers</a>
+						</li>
+				<li><a href="namespace-Arx.facades.html">facades</a>
+						</li>
+				<li><a href="namespace-Arx.helpers.html">helpers</a>
+						</li>
+				<li><a href="namespace-Arx.interfaces.html">interfaces</a>
+						</li>
+				<li><a href="namespace-Arx.modeles.html">modeles</a>
+						</li>
+				<li><a href="namespace-Arx.providers.html">providers</a>
+						</li>
+							</ul></li>
+				<li><a href="namespace-Composer.html">Composer<span></span></a>
+						<ul>
+				<li><a href="namespace-Composer.Autoload.html">Autoload</a>
+						</li>
+							</ul></li>
+				<li><a href="namespace-None.html">None</a>
+						</li>
+				<li><a href="namespace-PHP.html">PHP</a>
+						</li>
+			</ul>
+		</div>
+
+		<hr />
+
+
+		<div id="elements">
+			<h3>Classes</h3>
+			<ul>
+				<li><a href="class-Arx.classes.App.html">App</a></li>
+				<li><a href="class-Arx.classes.Arr.html">Arr</a></li>
+				<li><a href="class-Arx.classes.Asset.html">Asset</a></li>
+				<li><a href="class-Arx.classes.Bag.html">Bag</a></li>
+				<li><a href="class-Arx.classes.Cache.html">Cache</a></li>
+				<li><a href="class-Arx.classes.ClassLoader.html">ClassLoader</a></li>
+				<li><a href="class-Arx.classes.Composer.html">Composer</a></li>
+				<li><a href="class-Arx.classes.Config.html">Config</a></li>
+				<li><a href="class-Arx.classes.Container.html">Container</a></li>
+				<li><a href="class-Arx.classes.ContainerConcreteStub.html">ContainerConcreteStub</a></li>
+				<li><a href="class-Arx.classes.ContainerDefaultValueStub.html">ContainerDefaultValueStub</a></li>
+				<li><a href="class-Arx.classes.ContainerDependentStub.html">ContainerDependentStub</a></li>
+				<li><a href="class-Arx.classes.ContainerImplementationStub.html">ContainerImplementationStub</a></li>
+				<li><a href="class-Arx.classes.ContainerNestedDependentStub.html">ContainerNestedDependentStub</a></li>
+				<li><a href="class-Arx.classes.Controller.html">Controller</a></li>
+				<li><a href="class-Arx.classes.Convert.html">Convert</a></li>
+				<li><a href="class-Arx.classes.Date.html">Date</a></li>
+				<li><a href="class-Arx.classes.DB.html">DB</a></li>
+				<li><a href="class-Arx.Classes.DBUtil.html">DBUtil</a></li>
+				<li><a href="class-Arx.classes.Debug.html">Debug</a></li>
+				<li><a href="class-Arx.classes.Detect.html">Detect</a></li>
+				<li><a href="class-Arx.classes.Dummy.html">Dummy</a></li>
+				<li><a href="class-Arx.classes.Env.html">Env</a></li>
+				<li><a href="class-Arx.classes.ErrorHandler.html">ErrorHandler</a></li>
+				<li><a href="class-Arx.classes.Facade.html">Facade</a></li>
+				<li><a href="class-Arx.classes.File.html">File</a></li>
+				<li><a href="class-Arx.classes.Finder.html">Finder</a></li>
+				<li><a href="class-Arx.classes.Globals.html">Globals</a></li>
+				<li><a href="class-Arx.classes.Hash.html">Hash</a></li>
+				<li><a href="class-Arx.classes.Helper.html">Helper</a></li>
+				<li><a href="class-Arx.classes.Hook.html">Hook</a></li>
+				<li><a href="class-Arx.classes.Html.html">Html</a></li>
+				<li><a href="class-Arx.classes.Load.html">Load</a></li>
+				<li><a href="class-Arx.classes.Markdown.html">Markdown</a></li>
+				<li><a href="class-Arx.classes.Model.html">Model</a></li>
+				<li><a href="class-Arx.classes.OAuthConsumer.html">OAuthConsumer</a></li>
+				<li><a href="class-Arx.classes.OAuthDataStore.html">OAuthDataStore</a></li>
+				<li><a href="class-Arx.classes.OAuthException.html">OAuthException</a></li>
+				<li><a href="class-Arx.classes.OAuthRequest.html">OAuthRequest</a></li>
+				<li><a href="class-Arx.classes.OAuthServer.html">OAuthServer</a></li>
+				<li><a href="class-Arx.classes.OAuthSignatureMethod.html">OAuthSignatureMethod</a></li>
+				<li><a href="class-Arx.classes.OAuthSignatureMethod_HMAC_SHA1.html">OAuthSignatureMethod_HMAC_SHA1</a></li>
+				<li><a href="class-Arx.classes.OAuthSignatureMethod_PLAINTEXT.html">OAuthSignatureMethod_PLAINTEXT</a></li>
+				<li><a href="class-Arx.classes.OAuthSignatureMethod_RSA_SHA1.html">OAuthSignatureMethod_RSA_SHA1</a></li>
+				<li><a href="class-Arx.classes.OAuthToken.html">OAuthToken</a></li>
+				<li><a href="class-Arx.classes.OAuthUtil.html">OAuthUtil</a></li>
+				<li><a href="class-Arx.classes.Opengraph.html">Opengraph</a></li>
+				<li><a href="class-Arx.classes.Profiler.html">Profiler</a></li>
+				<li class="active"><a href="class-Arx.classes.Request.html">Request</a></li>
+				<li><a href="class-Arx.classes.Response.html">Response</a></li>
+				<li><a href="class-Arx.classes.Route.html">Route</a></li>
+				<li><a href="class-Arx.classes.Router.html">Router</a></li>
+				<li><a href="class-Arx.classes.Singleton.html">Singleton</a></li>
+				<li><a href="class-Arx.classes.Strings.html">Strings</a></li>
+				<li><a href="class-Arx.classes.Uri.html">Uri</a></li>
+				<li><a href="class-Arx.classes.Utils.html">Utils</a></li>
+				<li><a href="class-Arx.classes.Valid.html">Valid</a></li>
+				<li><a href="class-Arx.classes.View.html">View</a></li>
+			</ul>
+
+			<h3>Interfaces</h3>
+			<ul>
+				<li><a href="class-Arx.classes.IContainerContractStub.html">IContainerContractStub</a></li>
+			</ul>
+
+
+
+
+		</div>
+	</div>
+</div>
+
+<div id="splitter"></div>
+
+<div id="right">
+<div id="rightInner">
+	<form id="search">
+		<input type="hidden" name="cx" value="" />
+		<input type="hidden" name="ie" value="UTF-8" />
+		<input type="text" name="q" class="text" />
+		<input type="submit" value="Search" />
+	</form>
+
+	<div id="navigation">
+		<ul>
+			<li>
+				<a href="index.html" title="Overview"><span>Overview</span></a>
+			</li>
+			<li>
+				<a href="namespace-Arx.classes.html" title="Summary of Arx\classes"><span>Namespace</span></a>
+			</li>
+			<li class="active">
+<span>Class</span>			</li>
+		</ul>
+		<ul>
+			<li>
+				<a href="tree.html" title="Tree view of classes, interfaces, traits and exceptions"><span>Tree</span></a>
+			</li>
+		</ul>
+		<ul>
+		</ul>
+	</div>
+
+<div id="content" class="class">
+	<h1>Class Request</h1>
+
+
+
+	<dl class="tree">
+		<dd style="padding-left:0px">
+Symfony\Component\HttpFoundation\Request
+			
+			
+		</dd>
+		<dd style="padding-left:30px">
+			<img src="resources/inherit.png" alt="Extended by" />
+<b><span>Arx\classes\Request</span></b>			
+			
+			
+		</dd>
+	</dl>
+
+
+
+
+
+
+
+
+	<div class="info">
+		
+		
+		<b>Namespace:</b> <a href="namespace-Arx.html">Arx</a>\<a href="namespace-Arx.classes.html">classes</a><br />
+		
+
+		<b>Located at</b> <a href="source-class-Arx.classes.Request.html#6-486" title="Go to source code">src/Arx/classes/Request.php</a><br />
+	</div>
+
+
+
+	<table class="summary" id="methods">
+	<caption>Methods summary</caption>
+	<tr data-order="instance" id="_instance">
+
+		<td class="attributes"><code>
+			 public 
+			Illuminate\Http\Request
+			
+			</code>
+		</td>
+
+		<td class="name"><div>
+		<a class="anchor" href="#_instance">#</a>
+		<code><a href="source-class-Arx.classes.Request.html#22-30" title="Go to source code">instance</a>( )</code>
+
+		<div class="description short">
+			
+<p>Return the Request instance.</p>
+
+		</div>
+
+		<div class="description detailed hidden">
+			
+<p>Return the Request instance.</p>
+
+
+
+
+				<h4>Returns</h4>
+				<div class="list">
+					<code>Illuminate\Http\Request</code><br />
+				</div>
+
+
+
+
+		</div>
+		</div></td>
+	</tr>
+	<tr data-order="root" id="_root">
+
+		<td class="attributes"><code>
+			 public 
+			string
+			
+			</code>
+		</td>
+
+		<td class="name"><div>
+		<a class="anchor" href="#_root">#</a>
+		<code><a href="source-class-Arx.classes.Request.html#32-40" title="Go to source code">root</a>( )</code>
+
+		<div class="description short">
+			
+<p>Get the root URL for the application.</p>
+
+		</div>
+
+		<div class="description detailed hidden">
+			
+<p>Get the root URL for the application.</p>
+
+
+
+
+				<h4>Returns</h4>
+				<div class="list">
+					<code>string</code><br />
+				</div>
+
+
+
+
+		</div>
+		</div></td>
+	</tr>
+	<tr data-order="url" id="_url">
+
+		<td class="attributes"><code>
+			 public 
+			string
+			
+			</code>
+		</td>
+
+		<td class="name"><div>
+		<a class="anchor" href="#_url">#</a>
+		<code><a href="source-class-Arx.classes.Request.html#42-50" title="Go to source code">url</a>( )</code>
+
+		<div class="description short">
+			
+<p>Get the URL (no query string) for the request.</p>
+
+		</div>
+
+		<div class="description detailed hidden">
+			
+<p>Get the URL (no query string) for the request.</p>
+
+
+
+
+				<h4>Returns</h4>
+				<div class="list">
+					<code>string</code><br />
+				</div>
+
+
+
+
+		</div>
+		</div></td>
+	</tr>
+	<tr data-order="fullUrl" id="_fullUrl">
+
+		<td class="attributes"><code>
+			 public 
+			string
+			
+			</code>
+		</td>
+
+		<td class="name"><div>
+		<a class="anchor" href="#_fullUrl">#</a>
+		<code><a href="source-class-Arx.classes.Request.html#52-60" title="Go to source code">fullUrl</a>( )</code>
+
+		<div class="description short">
+			
+<p>Get the full URL for the request.</p>
+
+		</div>
+
+		<div class="description detailed hidden">
+			
+<p>Get the full URL for the request.</p>
+
+
+
+
+				<h4>Returns</h4>
+				<div class="list">
+					<code>string</code><br />
+				</div>
+
+
+
+
+		</div>
+		</div></td>
+	</tr>
+	<tr data-order="path" id="_path">
+
+		<td class="attributes"><code>
+			 public 
+			string
+			
+			</code>
+		</td>
+
+		<td class="name"><div>
+		<a class="anchor" href="#_path">#</a>
+		<code><a href="source-class-Arx.classes.Request.html#62-72" title="Go to source code">path</a>( )</code>
+
+		<div class="description short">
+			
+<p>Get the current path info for the request.</p>
+
+		</div>
+
+		<div class="description detailed hidden">
+			
+<p>Get the current path info for the request.</p>
+
+
+
+
+				<h4>Returns</h4>
+				<div class="list">
+					<code>string</code><br />
+				</div>
+
+
+
+
+		</div>
+		</div></td>
+	</tr>
+	<tr data-order="segment" id="_segment">
+
+		<td class="attributes"><code>
+			 public 
+			string
+			
+			</code>
+		</td>
+
+		<td class="name"><div>
+		<a class="anchor" href="#_segment">#</a>
+		<code><a href="source-class-Arx.classes.Request.html#74-88" title="Go to source code">segment</a>( <span>string <var>$index</var></span>, <span>mixed <var>$default</var> = <span class="php-keyword1">null</span></span> )</code>
+
+		<div class="description short">
+			
+<p>Get a segment from the URI (1 based index).</p>
+
+		</div>
+
+		<div class="description detailed hidden">
+			
+<p>Get a segment from the URI (1 based index).</p>
+
+
+
+				<h4>Parameters</h4>
+				<div class="list"><dl>
+					<dt><var>$index</var></dt>
+					<dd><code>string</code><br>$index</dd>
+					<dt><var>$default</var></dt>
+					<dd><code>mixed</code><br>$default</dd>
+				</dl></div>
+
+				<h4>Returns</h4>
+				<div class="list">
+					<code>string</code><br />
+				</div>
+
+
+
+
+		</div>
+		</div></td>
+	</tr>
+	<tr data-order="segments" id="_segments">
+
+		<td class="attributes"><code>
+			 public 
+			array
+			
+			</code>
+		</td>
+
+		<td class="name"><div>
+		<a class="anchor" href="#_segments">#</a>
+		<code><a href="source-class-Arx.classes.Request.html#90-100" title="Go to source code">segments</a>( )</code>
+
+		<div class="description short">
+			
+<p>Get all of the segments for the request path.</p>
+
+		</div>
+
+		<div class="description detailed hidden">
+			
+<p>Get all of the segments for the request path.</p>
+
+
+
+
+				<h4>Returns</h4>
+				<div class="list">
+					<code>array</code><br />
+				</div>
+
+
+
+
+		</div>
+		</div></td>
+	</tr>
+	<tr data-order="is" id="_is">
+
+		<td class="attributes"><code>
+			 public 
+			boolean
+			
+			</code>
+		</td>
+
+		<td class="name"><div>
+		<a class="anchor" href="#_is">#</a>
+		<code><a href="source-class-Arx.classes.Request.html#102-119" title="Go to source code">is</a>( <span>string <var>$pattern</var></span> )</code>
+
+		<div class="description short">
+			
+<p>Determine if the current request URI matches a pattern.</p>
+
+		</div>
+
+		<div class="description detailed hidden">
+			
+<p>Determine if the current request URI matches a pattern.</p>
+
+
+
+				<h4>Parameters</h4>
+				<div class="list"><dl>
+					<dt><var>$pattern</var></dt>
+					<dd><code>string</code><br>$pattern</dd>
+				</dl></div>
+
+				<h4>Returns</h4>
+				<div class="list">
+					<code>boolean</code><br />
+				</div>
+
+
+
+
+		</div>
+		</div></td>
+	</tr>
+	<tr data-order="ajax" id="_ajax">
+
+		<td class="attributes"><code>
+			 public 
+			boolean
+			
+			</code>
+		</td>
+
+		<td class="name"><div>
+		<a class="anchor" href="#_ajax">#</a>
+		<code><a href="source-class-Arx.classes.Request.html#121-129" title="Go to source code">ajax</a>( )</code>
+
+		<div class="description short">
+			
+<p>Determine if the request is the result of an AJAX call.</p>
+
+		</div>
+
+		<div class="description detailed hidden">
+			
+<p>Determine if the request is the result of an AJAX call.</p>
+
+
+
+
+				<h4>Returns</h4>
+				<div class="list">
+					<code>boolean</code><br />
+				</div>
+
+
+
+
+		</div>
+		</div></td>
+	</tr>
+	<tr data-order="secure" id="_secure">
+
+		<td class="attributes"><code>
+			 public 
+			boolean
+			
+			</code>
+		</td>
+
+		<td class="name"><div>
+		<a class="anchor" href="#_secure">#</a>
+		<code><a href="source-class-Arx.classes.Request.html#131-139" title="Go to source code">secure</a>( )</code>
+
+		<div class="description short">
+			
+<p>Determine if the request is over HTTPS.</p>
+
+		</div>
+
+		<div class="description detailed hidden">
+			
+<p>Determine if the request is over HTTPS.</p>
+
+
+
+
+				<h4>Returns</h4>
+				<div class="list">
+					<code>boolean</code><br />
+				</div>
+
+
+
+
+		</div>
+		</div></td>
+	</tr>
+	<tr data-order="has" id="_has">
+
+		<td class="attributes"><code>
+			 public 
+			boolean
+			
+			</code>
+		</td>
+
+		<td class="name"><div>
+		<a class="anchor" href="#_has">#</a>
+		<code><a href="source-class-Arx.classes.Request.html#141-162" title="Go to source code">has</a>( <span>string|array <var>$key</var></span> )</code>
+
+		<div class="description short">
+			
+<p>Determine if the request contains a given input item.</p>
+
+		</div>
+
+		<div class="description detailed hidden">
+			
+<p>Determine if the request contains a given input item.</p>
+
+
+
+				<h4>Parameters</h4>
+				<div class="list"><dl>
+					<dt><var>$key</var></dt>
+					<dd><code>string|array</code><br>$key</dd>
+				</dl></div>
+
+				<h4>Returns</h4>
+				<div class="list">
+					<code>boolean</code><br />
+				</div>
+
+
+
+
+		</div>
+		</div></td>
+	</tr>
+	<tr data-order="all" id="_all">
+
+		<td class="attributes"><code>
+			 public 
+			array
+			
+			</code>
+		</td>
+
+		<td class="name"><div>
+		<a class="anchor" href="#_all">#</a>
+		<code><a href="source-class-Arx.classes.Request.html#164-172" title="Go to source code">all</a>( )</code>
+
+		<div class="description short">
+			
+<p>Get all of the input and files for the request.</p>
+
+		</div>
+
+		<div class="description detailed hidden">
+			
+<p>Get all of the input and files for the request.</p>
+
+
+
+
+				<h4>Returns</h4>
+				<div class="list">
+					<code>array</code><br />
+				</div>
+
+
+
+
+		</div>
+		</div></td>
+	</tr>
+	<tr data-order="input" id="_input">
+
+		<td class="attributes"><code>
+			 public 
+			string
+			
+			</code>
+		</td>
+
+		<td class="name"><div>
+		<a class="anchor" href="#_input">#</a>
+		<code><a href="source-class-Arx.classes.Request.html#174-186" title="Go to source code">input</a>( <span>string <var>$key</var> = <span class="php-keyword1">null</span></span>, <span>mixed <var>$default</var> = <span class="php-keyword1">null</span></span> )</code>
+
+		<div class="description short">
+			
+<p>Retrieve an input item from the request.</p>
+
+		</div>
+
+		<div class="description detailed hidden">
+			
+<p>Retrieve an input item from the request.</p>
+
+
+
+				<h4>Parameters</h4>
+				<div class="list"><dl>
+					<dt><var>$key</var></dt>
+					<dd><code>string</code><br>$key</dd>
+					<dt><var>$default</var></dt>
+					<dd><code>mixed</code><br>$default</dd>
+				</dl></div>
+
+				<h4>Returns</h4>
+				<div class="list">
+					<code>string</code><br />
+				</div>
+
+
+
+
+		</div>
+		</div></td>
+	</tr>
+	<tr data-order="only" id="_only">
+
+		<td class="attributes"><code>
+			 public 
+			array
+			
+			</code>
+		</td>
+
+		<td class="name"><div>
+		<a class="anchor" href="#_only">#</a>
+		<code><a href="source-class-Arx.classes.Request.html#188-203" title="Go to source code">only</a>( <span>array <var>$keys</var></span> )</code>
+
+		<div class="description short">
+			
+<p>Get a subset of the items from the input data.</p>
+
+		</div>
+
+		<div class="description detailed hidden">
+			
+<p>Get a subset of the items from the input data.</p>
+
+
+
+				<h4>Parameters</h4>
+				<div class="list"><dl>
+					<dt><var>$keys</var></dt>
+					<dd><code>array</code><br>$keys</dd>
+				</dl></div>
+
+				<h4>Returns</h4>
+				<div class="list">
+					<code>array</code><br />
+				</div>
+
+
+
+
+		</div>
+		</div></td>
+	</tr>
+	<tr data-order="except" id="_except">
+
+		<td class="attributes"><code>
+			 public 
+			array
+			
+			</code>
+		</td>
+
+		<td class="name"><div>
+		<a class="anchor" href="#_except">#</a>
+		<code><a href="source-class-Arx.classes.Request.html#205-220" title="Go to source code">except</a>( <span>array <var>$keys</var></span> )</code>
+
+		<div class="description short">
+			
+<p>Get all of the input except for a specified array of items.</p>
+
+		</div>
+
+		<div class="description detailed hidden">
+			
+<p>Get all of the input except for a specified array of items.</p>
+
+
+
+				<h4>Parameters</h4>
+				<div class="list"><dl>
+					<dt><var>$keys</var></dt>
+					<dd><code>array</code><br>$keys</dd>
+				</dl></div>
+
+				<h4>Returns</h4>
+				<div class="list">
+					<code>array</code><br />
+				</div>
+
+
+
+
+		</div>
+		</div></td>
+	</tr>
+	<tr data-order="query" id="_query">
+
+		<td class="attributes"><code>
+			 public 
+			string
+			
+			</code>
+		</td>
+
+		<td class="name"><div>
+		<a class="anchor" href="#_query">#</a>
+		<code><a href="source-class-Arx.classes.Request.html#222-232" title="Go to source code">query</a>( <span>string <var>$key</var> = <span class="php-keyword1">null</span></span>, <span>mixed <var>$default</var> = <span class="php-keyword1">null</span></span> )</code>
+
+		<div class="description short">
+			
+<p>Retrieve a query string item from the request.</p>
+
+		</div>
+
+		<div class="description detailed hidden">
+			
+<p>Retrieve a query string item from the request.</p>
+
+
+
+				<h4>Parameters</h4>
+				<div class="list"><dl>
+					<dt><var>$key</var></dt>
+					<dd><code>string</code><br>$key</dd>
+					<dt><var>$default</var></dt>
+					<dd><code>mixed</code><br>$default</dd>
+				</dl></div>
+
+				<h4>Returns</h4>
+				<div class="list">
+					<code>string</code><br />
+				</div>
+
+
+
+
+		</div>
+		</div></td>
+	</tr>
+	<tr data-order="cookie" id="_cookie">
+
+		<td class="attributes"><code>
+			 public 
+			string
+			
+			</code>
+		</td>
+
+		<td class="name"><div>
+		<a class="anchor" href="#_cookie">#</a>
+		<code><a href="source-class-Arx.classes.Request.html#234-244" title="Go to source code">cookie</a>( <span>string <var>$key</var> = <span class="php-keyword1">null</span></span>, <span>mixed <var>$default</var> = <span class="php-keyword1">null</span></span> )</code>
+
+		<div class="description short">
+			
+<p>Retrieve a cookie from the request.</p>
+
+		</div>
+
+		<div class="description detailed hidden">
+			
+<p>Retrieve a cookie from the request.</p>
+
+
+
+				<h4>Parameters</h4>
+				<div class="list"><dl>
+					<dt><var>$key</var></dt>
+					<dd><code>string</code><br>$key</dd>
+					<dt><var>$default</var></dt>
+					<dd><code>mixed</code><br>$default</dd>
+				</dl></div>
+
+				<h4>Returns</h4>
+				<div class="list">
+					<code>string</code><br />
+				</div>
+
+
+
+
+		</div>
+		</div></td>
+	</tr>
+	<tr data-order="file" id="_file">
+
+		<td class="attributes"><code>
+			 public 
+			Symfony\Component\HttpFoundation\File\UploadedFile
+			
+			</code>
+		</td>
+
+		<td class="name"><div>
+		<a class="anchor" href="#_file">#</a>
+		<code><a href="source-class-Arx.classes.Request.html#246-256" title="Go to source code">file</a>( <span>string <var>$key</var> = <span class="php-keyword1">null</span></span>, <span>mixed <var>$default</var> = <span class="php-keyword1">null</span></span> )</code>
+
+		<div class="description short">
+			
+<p>Retrieve a file from the request.</p>
+
+		</div>
+
+		<div class="description detailed hidden">
+			
+<p>Retrieve a file from the request.</p>
+
+
+
+				<h4>Parameters</h4>
+				<div class="list"><dl>
+					<dt><var>$key</var></dt>
+					<dd><code>string</code><br>$key</dd>
+					<dt><var>$default</var></dt>
+					<dd><code>mixed</code><br>$default</dd>
+				</dl></div>
+
+				<h4>Returns</h4>
+				<div class="list">
+					<code>Symfony\Component\HttpFoundation\File\UploadedFile</code><br />
+				</div>
+
+
+
+
+		</div>
+		</div></td>
+	</tr>
+	<tr data-order="hasFile" id="_hasFile">
+
+		<td class="attributes"><code>
+			 public 
+			boolean
+			
+			</code>
+		</td>
+
+		<td class="name"><div>
+		<a class="anchor" href="#_hasFile">#</a>
+		<code><a href="source-class-Arx.classes.Request.html#258-267" title="Go to source code">hasFile</a>( <span>string <var>$key</var></span> )</code>
+
+		<div class="description short">
+			
+<p>Determine if the uploaded data contains a file.</p>
+
+		</div>
+
+		<div class="description detailed hidden">
+			
+<p>Determine if the uploaded data contains a file.</p>
+
+
+
+				<h4>Parameters</h4>
+				<div class="list"><dl>
+					<dt><var>$key</var></dt>
+					<dd><code>string</code><br>$key</dd>
+				</dl></div>
+
+				<h4>Returns</h4>
+				<div class="list">
+					<code>boolean</code><br />
+				</div>
+
+
+
+
+		</div>
+		</div></td>
+	</tr>
+	<tr data-order="header" id="_header">
+
+		<td class="attributes"><code>
+			 public 
+			string
+			
+			</code>
+		</td>
+
+		<td class="name"><div>
+		<a class="anchor" href="#_header">#</a>
+		<code><a href="source-class-Arx.classes.Request.html#269-279" title="Go to source code">header</a>( <span>string <var>$key</var> = <span class="php-keyword1">null</span></span>, <span>mixed <var>$default</var> = <span class="php-keyword1">null</span></span> )</code>
+
+		<div class="description short">
+			
+<p>Retrieve a header from the request.</p>
+
+		</div>
+
+		<div class="description detailed hidden">
+			
+<p>Retrieve a header from the request.</p>
+
+
+
+				<h4>Parameters</h4>
+				<div class="list"><dl>
+					<dt><var>$key</var></dt>
+					<dd><code>string</code><br>$key</dd>
+					<dt><var>$default</var></dt>
+					<dd><code>mixed</code><br>$default</dd>
+				</dl></div>
+
+				<h4>Returns</h4>
+				<div class="list">
+					<code>string</code><br />
+				</div>
+
+
+
+
+		</div>
+		</div></td>
+	</tr>
+	<tr data-order="server" id="_server">
+
+		<td class="attributes"><code>
+			 public 
+			string
+			
+			</code>
+		</td>
+
+		<td class="name"><div>
+		<a class="anchor" href="#_server">#</a>
+		<code><a href="source-class-Arx.classes.Request.html#281-291" title="Go to source code">server</a>( <span>string <var>$key</var> = <span class="php-keyword1">null</span></span>, <span>mixed <var>$default</var> = <span class="php-keyword1">null</span></span> )</code>
+
+		<div class="description short">
+			
+<p>Retrieve a server variable from the request.</p>
+
+		</div>
+
+		<div class="description detailed hidden">
+			
+<p>Retrieve a server variable from the request.</p>
+
+
+
+				<h4>Parameters</h4>
+				<div class="list"><dl>
+					<dt><var>$key</var></dt>
+					<dd><code>string</code><br>$key</dd>
+					<dt><var>$default</var></dt>
+					<dd><code>mixed</code><br>$default</dd>
+				</dl></div>
+
+				<h4>Returns</h4>
+				<div class="list">
+					<code>string</code><br />
+				</div>
+
+
+
+
+		</div>
+		</div></td>
+	</tr>
+	<tr data-order="old" id="_old">
+
+		<td class="attributes"><code>
+			 public 
+			string
+			
+			</code>
+		</td>
+
+		<td class="name"><div>
+		<a class="anchor" href="#_old">#</a>
+		<code><a href="source-class-Arx.classes.Request.html#293-303" title="Go to source code">old</a>( <span>string <var>$key</var> = <span class="php-keyword1">null</span></span>, <span>mixed <var>$default</var> = <span class="php-keyword1">null</span></span> )</code>
+
+		<div class="description short">
+			
+<p>Retrieve an old input item.</p>
+
+		</div>
+
+		<div class="description detailed hidden">
+			
+<p>Retrieve an old input item.</p>
+
+
+
+				<h4>Parameters</h4>
+				<div class="list"><dl>
+					<dt><var>$key</var></dt>
+					<dd><code>string</code><br>$key</dd>
+					<dt><var>$default</var></dt>
+					<dd><code>mixed</code><br>$default</dd>
+				</dl></div>
+
+				<h4>Returns</h4>
+				<div class="list">
+					<code>string</code><br />
+				</div>
+
+
+
+
+		</div>
+		</div></td>
+	</tr>
+	<tr data-order="flash" id="_flash">
+
+		<td class="attributes"><code>
+			 public 
+			
+			
+			</code>
+		</td>
+
+		<td class="name"><div>
+		<a class="anchor" href="#_flash">#</a>
+		<code><a href="source-class-Arx.classes.Request.html#305-317" title="Go to source code">flash</a>( <span>string <var>$filter</var> = <span class="php-keyword1">null</span></span>, <span>array <var>$keys</var> = <span class="php-keyword1">array</span>()</span> )</code>
+
+		<div class="description short">
+			
+<p>Flash the input for the current request to the session.</p>
+
+		</div>
+
+		<div class="description detailed hidden">
+			
+<p>Flash the input for the current request to the session.</p>
+
+
+
+				<h4>Parameters</h4>
+				<div class="list"><dl>
+					<dt><var>$filter</var></dt>
+					<dd><code>string</code><br>$filter</dd>
+					<dt><var>$keys</var></dt>
+					<dd><code>array</code><br>$keys</dd>
+				</dl></div>
+
+
+
+
+
+		</div>
+		</div></td>
+	</tr>
+	<tr data-order="flashOnly" id="_flashOnly">
+
+		<td class="attributes"><code>
+			 public 
+			
+			
+			</code>
+		</td>
+
+		<td class="name"><div>
+		<a class="anchor" href="#_flashOnly">#</a>
+		<code><a href="source-class-Arx.classes.Request.html#319-330" title="Go to source code">flashOnly</a>( <span>dynamic <var>$keys</var></span> )</code>
+
+		<div class="description short">
+			
+<p>Flash only some of the input to the session.</p>
+
+		</div>
+
+		<div class="description detailed hidden">
+			
+<p>Flash only some of the input to the session.</p>
+
+
+
+				<h4>Parameters</h4>
+				<div class="list"><dl>
+					<dt><var>$keys</var></dt>
+					<dd><code>dynamic</code><br>string</dd>
+				</dl></div>
+
+
+
+
+
+		</div>
+		</div></td>
+	</tr>
+	<tr data-order="flashExcept" id="_flashExcept">
+
+		<td class="attributes"><code>
+			 public 
+			
+			
+			</code>
+		</td>
+
+		<td class="name"><div>
+		<a class="anchor" href="#_flashExcept">#</a>
+		<code><a href="source-class-Arx.classes.Request.html#332-343" title="Go to source code">flashExcept</a>( <span>dynamic <var>$keys</var></span> )</code>
+
+		<div class="description short">
+			
+<p>Flash only some of the input to the session.</p>
+
+		</div>
+
+		<div class="description detailed hidden">
+			
+<p>Flash only some of the input to the session.</p>
+
+
+
+				<h4>Parameters</h4>
+				<div class="list"><dl>
+					<dt><var>$keys</var></dt>
+					<dd><code>dynamic</code><br>string</dd>
+				</dl></div>
+
+
+
+
+
+		</div>
+		</div></td>
+	</tr>
+	<tr data-order="flush" id="_flush">
+
+		<td class="attributes"><code>
+			 public 
+			
+			
+			</code>
+		</td>
+
+		<td class="name"><div>
+		<a class="anchor" href="#_flush">#</a>
+		<code><a href="source-class-Arx.classes.Request.html#345-353" title="Go to source code">flush</a>( )</code>
+
+		<div class="description short">
+			
+<p>Flush all of the old input from the session.</p>
+
+		</div>
+
+		<div class="description detailed hidden">
+			
+<p>Flush all of the old input from the session.</p>
+
+
+
+
+
+
+
+
+		</div>
+		</div></td>
+	</tr>
+	<tr data-order="retrieveItem" id="_retrieveItem">
+
+		<td class="attributes"><code>
+			 protected 
+			string
+			
+			</code>
+		</td>
+
+		<td class="name"><div>
+		<a class="anchor" href="#_retrieveItem">#</a>
+		<code><a href="source-class-Arx.classes.Request.html#355-373" title="Go to source code">retrieveItem</a>( <span>string <var>$source</var></span>, <span>string <var>$key</var></span>, <span>mixed <var>$default</var></span> )</code>
+
+		<div class="description short">
+			
+<p>Retrieve a parameter item from a given source.</p>
+
+		</div>
+
+		<div class="description detailed hidden">
+			
+<p>Retrieve a parameter item from a given source.</p>
+
+
+
+				<h4>Parameters</h4>
+				<div class="list"><dl>
+					<dt><var>$source</var></dt>
+					<dd><code>string</code><br>$source</dd>
+					<dt><var>$key</var></dt>
+					<dd><code>string</code><br>$key</dd>
+					<dt><var>$default</var></dt>
+					<dd><code>mixed</code><br>$default</dd>
+				</dl></div>
+
+				<h4>Returns</h4>
+				<div class="list">
+					<code>string</code><br />
+				</div>
+
+
+
+
+		</div>
+		</div></td>
+	</tr>
+	<tr data-order="merge" id="_merge">
+
+		<td class="attributes"><code>
+			 public 
+			
+			
+			</code>
+		</td>
+
+		<td class="name"><div>
+		<a class="anchor" href="#_merge">#</a>
+		<code><a href="source-class-Arx.classes.Request.html#375-384" title="Go to source code">merge</a>( <span>array <var>$input</var></span> )</code>
+
+		<div class="description short">
+			
+<p>Merge new input into the current request's input array.</p>
+
+		</div>
+
+		<div class="description detailed hidden">
+			
+<p>Merge new input into the current request's input array.</p>
+
+
+
+				<h4>Parameters</h4>
+				<div class="list"><dl>
+					<dt><var>$input</var></dt>
+					<dd><code>array</code><br>$input</dd>
+				</dl></div>
+
+
+
+
+
+		</div>
+		</div></td>
+	</tr>
+	<tr data-order="replace" id="_replace">
+
+		<td class="attributes"><code>
+			 public 
+			
+			
+			</code>
+		</td>
+
+		<td class="name"><div>
+		<a class="anchor" href="#_replace">#</a>
+		<code><a href="source-class-Arx.classes.Request.html#386-395" title="Go to source code">replace</a>( <span>array <var>$input</var></span> )</code>
+
+		<div class="description short">
+			
+<p>Replace the input for the current request.</p>
+
+		</div>
+
+		<div class="description detailed hidden">
+			
+<p>Replace the input for the current request.</p>
+
+
+
+				<h4>Parameters</h4>
+				<div class="list"><dl>
+					<dt><var>$input</var></dt>
+					<dd><code>array</code><br>$input</dd>
+				</dl></div>
+
+
+
+
+
+		</div>
+		</div></td>
+	</tr>
+	<tr data-order="json" id="_json">
+
+		<td class="attributes"><code>
+			 public 
+			mixed
+			
+			</code>
+		</td>
+
+		<td class="name"><div>
+		<a class="anchor" href="#_json">#</a>
+		<code><a href="source-class-Arx.classes.Request.html#397-414" title="Go to source code">json</a>( <span>string <var>$key</var> = <span class="php-keyword1">null</span></span>, <span>mixed <var>$default</var> = <span class="php-keyword1">null</span></span> )</code>
+
+		<div class="description short">
+			
+<p>Get the JSON payload for the request.</p>
+
+		</div>
+
+		<div class="description detailed hidden">
+			
+<p>Get the JSON payload for the request.</p>
+
+
+
+				<h4>Parameters</h4>
+				<div class="list"><dl>
+					<dt><var>$key</var></dt>
+					<dd><code>string</code><br>$key</dd>
+					<dt><var>$default</var></dt>
+					<dd><code>mixed</code><br>$default</dd>
+				</dl></div>
+
+				<h4>Returns</h4>
+				<div class="list">
+					<code>mixed</code><br />
+				</div>
+
+
+
+
+		</div>
+		</div></td>
+	</tr>
+	<tr data-order="getInputSource" id="_getInputSource">
+
+		<td class="attributes"><code>
+			 protected 
+			Symfony\Component\HttpFoundation\ParameterBag
+			
+			</code>
+		</td>
+
+		<td class="name"><div>
+		<a class="anchor" href="#_getInputSource">#</a>
+		<code><a href="source-class-Arx.classes.Request.html#416-426" title="Go to source code">getInputSource</a>( )</code>
+
+		<div class="description short">
+			
+<p>Get the input source for the request.</p>
+
+		</div>
+
+		<div class="description detailed hidden">
+			
+<p>Get the input source for the request.</p>
+
+
+
+
+				<h4>Returns</h4>
+				<div class="list">
+					<code>Symfony\Component\HttpFoundation\ParameterBag</code><br />
+				</div>
+
+
+
+
+		</div>
+		</div></td>
+	</tr>
+	<tr data-order="isJson" id="_isJson">
+
+		<td class="attributes"><code>
+			 public 
+			boolean
+			
+			</code>
+		</td>
+
+		<td class="name"><div>
+		<a class="anchor" href="#_isJson">#</a>
+		<code><a href="source-class-Arx.classes.Request.html#428-436" title="Go to source code">isJson</a>( )</code>
+
+		<div class="description short">
+			
+<p>Determine if the request is sending JSON.</p>
+
+		</div>
+
+		<div class="description detailed hidden">
+			
+<p>Determine if the request is sending JSON.</p>
+
+
+
+
+				<h4>Returns</h4>
+				<div class="list">
+					<code>boolean</code><br />
+				</div>
+
+
+
+
+		</div>
+		</div></td>
+	</tr>
+	<tr data-order="wantsJson" id="_wantsJson">
+
+		<td class="attributes"><code>
+			 public 
+			boolean
+			
+			</code>
+		</td>
+
+		<td class="name"><div>
+		<a class="anchor" href="#_wantsJson">#</a>
+		<code><a href="source-class-Arx.classes.Request.html#438-448" title="Go to source code">wantsJson</a>( )</code>
+
+		<div class="description short">
+			
+<p>Determine if the current request is asking for JSON in return.</p>
+
+		</div>
+
+		<div class="description detailed hidden">
+			
+<p>Determine if the current request is asking for JSON in return.</p>
+
+
+
+
+				<h4>Returns</h4>
+				<div class="list">
+					<code>boolean</code><br />
+				</div>
+
+
+
+
+		</div>
+		</div></td>
+	</tr>
+	<tr data-order="getSessionStore" id="_getSessionStore">
+
+		<td class="attributes"><code>
+			 public 
+			Illuminate\Session\Store
+			
+			</code>
+		</td>
+
+		<td class="name"><div>
+		<a class="anchor" href="#_getSessionStore">#</a>
+		<code><a href="source-class-Arx.classes.Request.html#450-463" title="Go to source code">getSessionStore</a>( )</code>
+
+		<div class="description short">
+			
+<p>Get the Illuminate session store implementation.</p>
+
+		</div>
+
+		<div class="description detailed hidden">
+			
+<p>Get the Illuminate session store implementation.</p>
+
+
+
+
+				<h4>Returns</h4>
+				<div class="list">
+					<code>Illuminate\Session\Store</code><br />
+				</div>
+
+
+
+
+		</div>
+		</div></td>
+	</tr>
+	<tr data-order="setSessionStore" id="_setSessionStore">
+
+		<td class="attributes"><code>
+			 public 
+			
+			
+			</code>
+		</td>
+
+		<td class="name"><div>
+		<a class="anchor" href="#_setSessionStore">#</a>
+		<code><a href="source-class-Arx.classes.Request.html#465-474" title="Go to source code">setSessionStore</a>( <span>Illuminate\Session\Store <var>$session</var></span> )</code>
+
+		<div class="description short">
+			
+<p>Set the Illuminate session store implementation.</p>
+
+		</div>
+
+		<div class="description detailed hidden">
+			
+<p>Set the Illuminate session store implementation.</p>
+
+
+
+				<h4>Parameters</h4>
+				<div class="list"><dl>
+					<dt><var>$session</var></dt>
+					<dd><code>Illuminate\Session\Store</code><br>$session</dd>
+				</dl></div>
+
+
+
+
+
+		</div>
+		</div></td>
+	</tr>
+	<tr data-order="hasSessionStore" id="_hasSessionStore">
+
+		<td class="attributes"><code>
+			 public 
+			boolean
+			
+			</code>
+		</td>
+
+		<td class="name"><div>
+		<a class="anchor" href="#_hasSessionStore">#</a>
+		<code><a href="source-class-Arx.classes.Request.html#476-484" title="Go to source code">hasSessionStore</a>( )</code>
+
+		<div class="description short">
+			
+<p>Determine if the session store has been set.</p>
+
+		</div>
+
+		<div class="description detailed hidden">
+			
+<p>Determine if the session store has been set.</p>
+
+
+
+
+				<h4>Returns</h4>
+				<div class="list">
+					<code>boolean</code><br />
+				</div>
+
+
+
+
+		</div>
+		</div></td>
+	</tr>
+	</table>
+
+
+
+
+
+
+
+
+
+
+
+
+	<table class="summary" id="properties">
+	<caption>Properties summary</caption>
+	<tr data-order="json" id="$json">
+		<td class="attributes"><code>
+			protected  
+			string
+		</code></td>
+
+		<td class="name">
+				<a href="source-class-Arx.classes.Request.html#8-13" title="Go to source code"><var>$json</var></a>
+		</td>
+		<td class="value"><code></code></td>
+		<td class="description"><div>
+			<a href="#$json" class="anchor">#</a>
+
+			<div class="description short">
+				
+<p>The decoded JSON content for the request.</p>
+
+			</div>
+
+			<div class="description detailed hidden">
+				
+<p>The decoded JSON content for the request.</p>
+
+
+			</div>
+		</div></td>
+	</tr>
+	<tr data-order="sessionStore" id="$sessionStore">
+		<td class="attributes"><code>
+			protected  
+			Illuminate\Session\Store
+		</code></td>
+
+		<td class="name">
+				<a href="source-class-Arx.classes.Request.html#15-20" title="Go to source code"><var>$sessionStore</var></a>
+		</td>
+		<td class="value"><code></code></td>
+		<td class="description"><div>
+			<a href="#$sessionStore" class="anchor">#</a>
+
+			<div class="description short">
+				
+<p>The Illuminate session store implementation.</p>
+
+			</div>
+
+			<div class="description detailed hidden">
+				
+<p>The Illuminate session store implementation.</p>
+
+
+			</div>
+		</div></td>
+	</tr>
+	</table>
+
+
+
+
+
+
+</div>
+
+	<div id="footer">
+		 API documentation generated by <a href="http://apigen.org">ApiGen 2.8.0</a>
+	</div>
+</div>
+</div>
+</body>
+</html>

@@ -1,6 +1,8 @@
 <?php namespace Arx;
 
 use View,Config,Lang,Arx;
+
+use Arx\classes\Utils as u;
 use Illuminate\Support\ServiceProvider;
 
 class CoreServiceProvider extends ServiceProvider {
@@ -19,10 +21,20 @@ class CoreServiceProvider extends ServiceProvider {
      */
     public function boot()
     {
-        $this->package('Arx/Core');
-        View::addNamespace('Arx', Arx::path('views'));
-        Lang::addNamespace('Arx', Arx::path('lang'));
-        Config::addNamespace('Arx', Arx::path('config'));
+        $this->package('arx/core');
+
+        // Add namespace package so you can access to views, lang and config with arx::
+        \View::addNamespace('arx', Arx::path('../views'));
+        \Lang::addNamespace('arx', Arx::path('../lang'));
+        \Config::addNamespace('arx', Arx::path('../config'));
+
+        # Add Basset namespace
+        $this->app['basset']->package('arx/core');
+
+        require_once 'helpers.php';
+        require_once 'filters.php';
+        require_once 'routes.php';
+
 
     }
 

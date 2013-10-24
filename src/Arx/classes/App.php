@@ -172,6 +172,7 @@ class App extends Application
         $packageName = '';
         $routeName = '';
         $composerName = '';
+        $supposedPath = ''; # Supposed path if class have a autoload structure in workbench
 
         if ($lastNsPos = strrpos($className, '\\')) {
             $namespace = substr($className, 0, $lastNsPos);
@@ -211,14 +212,30 @@ class App extends Application
             }
         }
 
+        if(isset($aNamespaces[$packageName]) && !empty($aNamespaces[$packageName])){
+
+            if(preg_match('/Controller$/', $className)){
+                $supposedPath = end($aNamespaces[$packageName]) . DS. str_replace('\\', DS, $namespace) . DS.  'controllers' . DS . $className . '.php';
+            }
+
+            if(preg_match('/Model$/', $className)){
+                $supposedPath = $aNamespaces[$packageName] . DS . str_replace('\\', DS, $namespace) . DS. 'models' . DS . $className . '.php';
+            }
+
+            if(preg_match('/Class$/', $className)){
+                $supposedPath = $aNamespaces[$packageName] . DS . str_replace('\\', DS, $namespace) . DS. 'classes' . DS . $className . '.php';
+            }
+
+        }
+
         if(is_file($fileName = Config::get('paths.workbench') . DS . strtolower($composerName) .DS. 'src' . DS . $fileName)){
             include $fileName;
         } elseif(is_file($fileName = Config::get('paths.workbench') . DS . $fileName)){
             include $fileName;
-        }
-
-        if (is_array($aAutoload) and array_key_exists($className, $aAutoload) and is_file($aAutoload[$className])) {
+        } elseif (is_array($aAutoload) and array_key_exists($className, $aAutoload) and is_file($aAutoload[$className])) {
             include $aAutoload[$className];
+        } elseif(is_file($supposedPath) ) {
+            include $supposedPath;
         }
     }
 

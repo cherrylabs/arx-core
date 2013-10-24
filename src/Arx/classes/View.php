@@ -1,13 +1,48 @@
 <?php namespace Arx\classes;
 
-
 use Illuminate\View\ViewServiceProvider;
 use Arx\classes\view\FileViewFinder;
 use Arx\classes\view\Environment;
+use Arx\classes\view\engines\CompilerEngine;
+use Arx\classes\view\engines\PhpEngine;
 use Arx\classes\view\engines\blade\BladeCompiler;
 
 class View extends ViewServiceProvider{
 
+    /**
+     * Register the PHP engine implementation.
+     *
+     * @param  \Illuminate\View\Engines\EngineResolver  $resolver
+     * @return void
+     */
+    public function registerPhpEngine($resolver)
+    {
+        $resolver->register('php', function() { return new PhpEngine; });
+    }
+
+    /**
+     * Register the Blade engine implementation.
+     *
+     * @param  \Illuminate\View\Engines\EngineResolver  $resolver
+     * @return void
+     */
+    public function registerBladeEngine($resolver)
+    {
+        $app = $this->app;
+
+        $resolver->register('blade', function() use ($app)
+        {
+            $cache = $app['path.storage'].'/views';
+
+            // The Compiler engine requires an instance of the CompilerInterface, which in
+            // this case will be the Blade compiler, so we'll first create the compiler
+            // instance to pass into the engine so it can compile the views properly.
+            $compiler = new BladeCompiler($app['files'], $cache);
+
+
+            return new CompilerEngine($compiler, $app['files']);
+        });
+    }
 
     /**
      * Register the view finder implementation.
