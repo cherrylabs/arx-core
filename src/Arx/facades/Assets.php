@@ -1,16 +1,22 @@
-<?php
+<?php namespace Arx\facades;
 /**
- * Assets.php.
+ * Facade Route to hide complexity of code
  *
- * @project : arx-contrib
- * @author : Daniel Sum <daniel@cherrypulp.com>
+ * @package : Arx
+ *
  */
+use Arx\classes\App;
+use Arx\classes\Router;
+use Basset\Factory\AssetFactory;
+use Illuminate\Support\Facades\Facade;
 
-namespace Arx\facades;
+class Assets extends \Arx\classes\Facade implements \Arx\interfaces\Route {
 
-
-use Basset\Facade;
-
-class Assets extends Facade {
+    /**
+     * Get the registered name of the component.
+     *
+     * @return string
+     */
+    protected static function getFacadeAccessor() { return '\\Basset\\Facade'; }
 
 }

@@ -70,7 +70,6 @@ class Route extends \Arx\classes\Facade implements \Arx\interfaces\Route {
      *
      * @param  string   $name
      * @param  Closure|string  $callback
-     * @return void
      */
     public static function filter($name, $callback)
     {
@@ -82,7 +81,6 @@ class Route extends \Arx\classes\Facade implements \Arx\interfaces\Route {
      *
      * @param  string  $pattern
      * @param  string|array  $name
-     * @return void
      */
     public static function when($pattern, $name)
     {

@@ -35,7 +35,7 @@ use Arx\classes\Config;
  * @author   Daniel Sum <daniel@cherrypulp.com>
  * @author   Stéphan Zych <stephan@cherrypulp.com>
  * @license  http://opensource.org/licenses/MIT MIT License
- * @link     http://arx.xxx/doc/App
+ * @link     http://www.arx.io/arx/core/src/Arx/classes
  */
 class App extends Application
 {
@@ -118,9 +118,7 @@ class App extends Application
 
 
     /**
-     * Bootstrap define how the app should include his configuration
-     *
-     * By default, it includes file from ../bootstraps folder
+     * Bootstrap define how the app should include his configuratio. By default, it includes file from ../bootstraps folder as Laravel do
      *
      * @see ../bootstraps/default.php
      *
@@ -135,7 +133,7 @@ class App extends Application
 
         $this['arxconfig'] = Config::load(__DIR__.'/../config/');
 
-        if(!$config){
+        if($config){
             $this['arxconfig'] = Config::load($config);
         }
 
@@ -144,7 +142,7 @@ class App extends Application
         } elseif(is_file($file = __DIR__.'/../bootstrap/'.$file)){
             require_once $file;
         } else{
-            Throw new Exception('Whoops, there is nothing to boot');
+            Throw new Exception('Whoops, there is no file boot');
         }
     }
 
@@ -215,15 +213,17 @@ class App extends Application
         if(isset($aNamespaces[$packageName]) && !empty($aNamespaces[$packageName])){
 
             if(preg_match('/Controller$/', $className)){
+
                 $supposedPath = end($aNamespaces[$packageName]) . DS. str_replace('\\', DS, $namespace) . DS.  'controllers' . DS . $className . '.php';
             }
 
             if(preg_match('/Model$/', $className)){
-                $supposedPath = $aNamespaces[$packageName] . DS . str_replace('\\', DS, $namespace) . DS. 'models' . DS . $className . '.php';
+
+                $supposedPath = end($aNamespaces[$packageName]) . DS . str_replace('\\', DS, $namespace) . DS. 'models' . DS . $className . '.php';
             }
 
             if(preg_match('/Class$/', $className)){
-                $supposedPath = $aNamespaces[$packageName] . DS . str_replace('\\', DS, $namespace) . DS. 'classes' . DS . $className . '.php';
+                $supposedPath = end($aNamespaces[$packageName]) . DS . str_replace('\\', DS, $namespace) . DS. 'classes' . DS . $className . '.php';
             }
 
         }
