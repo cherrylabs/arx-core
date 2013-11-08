@@ -246,6 +246,14 @@ class Utils
     }
 
     /**
+     * Simple isJson check
+     * @return bool
+     */
+    public static function isJson(){
+        return (!empty($_SERVER['HTTP_X_REQUESTED_WITH']) && strtolower($_SERVER['HTTP_X_REQUESTED_WITH']) == 'xmlhttprequest');
+    }
+
+    /**
      * Function to check if the Server is on HTTPS or not
      *
      * You can precise a server configuration (useful if you need to check an external server Params)

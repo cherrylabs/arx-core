@@ -17,7 +17,7 @@ use Closure;
 
 class Bag implements \ArrayAccess, \Iterator {
 
-    private $__var = array();
+    public $__var = array();
 
     /**
      * Auto constructor

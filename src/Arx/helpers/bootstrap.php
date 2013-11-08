@@ -10,7 +10,7 @@ namespace Arx\helpers;
 
 
 use Arx\classes\Helper;
-use HTML;
+use HTML, Form;
 
 class Bootstrap extends Helper
 {
@@ -121,5 +121,29 @@ class Bootstrap extends Helper
         $msg .= '</' . $params['parent'] . '>';
 
         return $msg;
+    }
+
+    /**
+     * Form helper for Bootstrap
+     *
+     * @return string
+     */
+    public static function formGroup(){
+
+        $aParams = func_get_args();
+        $label = $aParams[0];
+        $type = $aParams[1];
+        $name = $aParams[2];
+        unset($aParams[0], $aParams[1]);
+
+        $html = '<div class="form-group" id="form-' . $name . '">';
+
+        $html .= Form::label($name, $label);
+
+        $html .= call_user_func_array(array('Form', $type), $aParams);
+
+        $html .= '</div>';
+
+        return $html;
     }
 }

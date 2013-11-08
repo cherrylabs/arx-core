@@ -9,7 +9,7 @@ use Whoops\Example\Exception;
 class FileViewFinder extends ParentClass
 {
 
-    protected $extensions = array('blade.php', 'php','tmpl.php','mustache.php','twig.php');
+    protected $extensions = array('blade.php','tpl.php','mustache.php','twig.php', 'php');
 
     /**
      * Find a correct path file

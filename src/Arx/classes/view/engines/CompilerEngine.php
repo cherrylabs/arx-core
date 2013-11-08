@@ -60,4 +60,22 @@ class CompilerEngine extends PhpEngine {
         return $this->compiler;
     }
 
+    /**
+     * Get the compiler implementation.
+     *
+     * @return \Illuminate\View\Compilers\CompilerInterface
+     */
+    public function hook($data, $params = array())
+    {
+        $aDefParams = array('function' => 'array_merge_recursive');
+
+        $params = array_merge_recursive($aDefParams, $params);
+
+        if(is_array($this->_data->__var)){
+            $this->_data->__var = call_user_func($params['function'], $this->_data->__var, $data);
+        }
+
+        return $this->_data->__var;
+    }
+
 }

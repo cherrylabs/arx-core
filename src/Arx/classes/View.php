@@ -6,6 +6,7 @@ use Arx\classes\view\Environment;
 use Arx\classes\view\engines\CompilerEngine;
 use Arx\classes\view\engines\PhpEngine;
 use Arx\classes\view\engines\blade\BladeCompiler;
+use Arx\classes\view\engines\tpl\TplCompiler;
 
 class View extends ViewServiceProvider{
 
@@ -21,6 +22,30 @@ class View extends ViewServiceProvider{
     }
 
     /**
+     * Register the Tpl engine implementation.
+     *
+     * @param  \Illuminate\View\Engines\EngineResolver  $resolver
+     * @return void
+     */
+    public function registerTplEngine($resolver)
+    {
+        $app = $this->app;
+
+        $resolver->register('tpl', function() use ($app)
+        {
+            $cache = $app['path.storage'].'/views';
+
+            // The Compiler engine requires an instance of the CompilerInterface, which in
+            // this case will be the Blade compiler, so we'll first create the compiler
+            // instance to pass into the engine so it can compile the views properly.
+            $compiler = new TplCompiler($app['files'], $cache);
+
+
+            return new CompilerEngine($compiler, $app['files']);
+        });
+    }
+
+    /**
      * Register the Blade engine implementation.
      *
      * @param  \Illuminate\View\Engines\EngineResolver  $resolver
@@ -29,6 +54,9 @@ class View extends ViewServiceProvider{
     public function registerBladeEngine($resolver)
     {
         $app = $this->app;
+
+        // Also register tpl engine
+        $this->registerTplEngine($resolver);
 
         $resolver->register('blade', function() use ($app)
         {
