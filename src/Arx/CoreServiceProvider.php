@@ -28,12 +28,9 @@ class CoreServiceProvider extends ServiceProvider {
         \Lang::addNamespace('arx', Arx::path('../lang'));
         \Config::addNamespace('arx', Arx::path('../config'));
 
-        # Add Basset namespace
-        $this->app['basset']->package('arx/core');
-
-        require_once 'helpers.php';
-        require_once 'filters.php';
-        require_once 'routes.php';
+        require_once __DIR__.'/helpers.php';
+        require_once __DIR__.'/filters.php';
+        require_once __DIR__.'/routes.php';
 
 
     }

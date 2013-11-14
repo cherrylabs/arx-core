@@ -28,7 +28,7 @@ use Arx\classes\Config;
 
 
 /**
- * App extends the Laravel Application and add some extra functions
+ * App extends the Laravel Application and add some extra functions that lacks
  *
  * @category Core
  * @package  Arx
@@ -37,7 +37,7 @@ use Arx\classes\Config;
  * @license  http://opensource.org/licenses/MIT MIT License
  * @link     http://www.arx.io/arx/core/src/Arx/classes
  */
-class App extends Application
+class App extends \Illuminate\Foundation\Application
 {
 
     // --- Constants
@@ -114,6 +114,11 @@ class App extends Application
         $this->register(new RoutingServiceProvider($this));
 
         $this->register(new EventServiceProvider($this));
+    }
+
+    protected function createRequest(Request $request = null)
+    {
+        return $request ?: static::onRequest('createFromGlobals');
     }
 
 
@@ -252,6 +257,19 @@ class App extends Application
         }
 
         return self::$_aInstances[$sClass];
+    }
+
+
+    public function redirectIfTrailingSlash()
+    {
+        if ($this->runningInConsole()) {
+            return;
+        }
+        $path = $this['request']->getPathInfo();
+        if ($path != '/' and ends_with($path, '/') and !ends_with($path, '//')) {
+            with(new SymfonyRedirect($this['request']->fullUrl(), 301))->send();
+            die;
+        }
     }
 
 } // class::App

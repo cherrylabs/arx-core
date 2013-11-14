@@ -192,7 +192,7 @@ abstract class Strings
     } // strtr
 
     public static function smrtr($haystack, $aMatch, $aDelimiter = array("{","}")) {
-        return u::strtr($haystack, $aMatch, $aDelimiter);
+        return Utils::strtr($haystack, $aMatch, $aDelimiter);
     } // smrtr
 
     /**
