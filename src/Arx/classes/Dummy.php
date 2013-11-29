@@ -3,48 +3,58 @@
  * A Dummy class generator
  *
  * @project : ARX
- * @author : Daniel Sum <daniel@cherrypulp.com>
+ * @author  : Daniel Sum <daniel@cherrypulp.com>
  */
 
 namespace Arx\classes;
 
 
-class Dummy {
+class Dummy
+{
 
-    public static function image($mixSize = '400x350', $background = '000', $foregroundColor = 'fff', $text = null, $format = 'jpg'){
-        return "//dummyimage.com/$mixSize/$background/$foregroundColor".(!$text ?: '&text='.urlencode($text));
+    public static function image($mixSize = '400x350', $background = '000', $foregroundColor = 'fff', $text = null, $format = 'jpg')
+    {
+        return "//dummyimage.com/$mixSize/$background/$foregroundColor" . (!$text ? : '&text=' . urlencode($text));
     }
 
-    public static function text($param = array()){
+    public static function text($param = array())
+    {
 
         $defParam = array(
-            'amount' => 5,
-            'what' => 'paras',
+            'amount' => 128,
+            'what' => 'bytes',
             'start' => 'yes',
             'lang' => 'en'
         );
 
+        if (is_integer($param)) {
+            $param = array('amount' => $param);
+        }
+
         $param = array_merge($defParam, $param);
 
-        $json = Utils::getJSON('http://json-lipsum.appspot.com/?'.http_build_query($param));
+        $json = Utils::getJSON('http://json-lipsum.appspot.com/?' . http_build_query($param));
 
-        if(isset($json->lipsum)){
+        if (isset($json->lipsum) && strpos('--', $json->lipsum)) {
             return implode(' -- ', $json->lipsum);
+        } elseif (isset($json->lipsum)) {
+            return $json->lipsum;
         } else {
             return 'Error Lorem ipsum dolor sit amet, consectetur adipiscing elit.';
         }
-        
+
     }
 
-    public static function title($param = null){
+    public static function title($param = null)
+    {
 
-        if(is_integer($param)){
+        if (is_integer($param)) {
             $param = array(
                 'amount' => $param
             );
         }
 
-        if(!is_array($param)){
+        if (!is_array($param)) {
             $param = array();
         }
 
@@ -57,9 +67,9 @@ class Dummy {
 
         $param = array_merge($defParam, $param);
 
-        $json = Utils::getJSON('http://json-lipsum.appspot.com/?'.http_build_query($param));
+        $json = Utils::getJSON('http://json-lipsum.appspot.com/?' . http_build_query($param));
 
-        if(isset($json->lipsum)){
+        if (isset($json->lipsum)) {
             return $json->lipsum;
         } else {
             return 'Error Lorem ipsum dolor sit amet, consectetur adipiscing elit.';
@@ -67,7 +77,8 @@ class Dummy {
 
     }
 
-    public static function video($mixWidth = null, $height = null){
+    public static function video($mixWidth = null, $height = null)
+    {
 
         $defParam = array(
             'width' => 560,
@@ -79,17 +90,17 @@ class Dummy {
 
         $param = array();
 
-        if(is_integer($mixWidth)){
+        if (is_integer($mixWidth)) {
             $param['width'] = $mixWidth;
         }
 
-        if(!$height && is_integer($height)){
+        if (!$height && is_integer($height)) {
             $param['height'] = $height;
         }
 
         $param = array_merge($defParam, $param);
 
-        return '<iframe '.Html::attributes($param).'></iframe>';
+        return '<iframe ' . Html::attributes($param) . '></iframe>';
 
     }
 
