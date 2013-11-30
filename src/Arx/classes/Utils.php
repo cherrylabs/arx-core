@@ -36,33 +36,12 @@ class Utils
     {
         $err = false;
 
-        if (function_exists($aliasName)) {
-            $err = 'This function already' . $aliasName . ' exist';
-        }
-
         if (!is_callable($callback, false, $realfunc)) {
             $err = 'This function is not callable';
         }
 
-        if (false !== $err) {
-            $trace = debug_backtrace();
-            trigger_error(
-                sprintf(
-                    '%s(): %s in %s on line %d',
-                    $trace[0]['function'],
-                    $err,
-                    $trace[0]['file'],
-                    $trace[0]['line']
-                ),
-                E_USER_WARNING
-            );
-
-            return false;
-        }
-
         $bodyFunc = 'function ' . $aliasName . '() {
             $args = func_get_args();
-
             return call_user_func_array("' . $realfunc . '", $args);
         }';
 
@@ -336,15 +315,14 @@ class Utils
     {
         $aArgs = func_get_args();
 
-        foreach ($aArgs as $key => $value) {
-
-            echo self::epre($value);
-        }
-
         $aErrors = debug_backtrace();
 
+        $line =
+        $file =
+                null;
+
         foreach ($aErrors as $key => $error) {
-            if (preg_match('/predie/i', $error['function']) && !empty($error['line']) && !empty($error['file'])) {
+            if (preg_match('/predie|ddd/i', $error['function']) && !empty($error['line']) && !empty($error['file'])) {
                 $line = $error['line'];
                 $file = $error['file'];
             }
@@ -354,6 +332,8 @@ class Utils
 
         $time = microtime(true);
         $total_time = ($time - $start);
+
+        \Kint::dump($aArgs);
 
         die("Predie called @ $file line $line loaded in " . $total_time . " seconds");
     } // predie

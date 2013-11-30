@@ -1256,20 +1256,9 @@ class Arr
     } // multiexplode
 
 
-    public static function objectToArray($d)
+    public static function objectToArray($object)
     {
-        // Gets the properties of the given object with get_object_vars function
-        if (is_object($d)) {
-            $d = get_object_vars($d);
-        }
-
-        // Return array converted to object (recursive call)
-        if (is_array($d)) {
-            return array_map(array('u', 'objectToArray'), $d);
-        } // Return array
-        else {
-            return $d;
-        }
+       return json_decode(json_encode($object), true);
     } // objectToArray
 
 

@@ -69,23 +69,6 @@ class Assets extends \Controller implements \Arx\interfaces\Assets
         return App::abort(404, 'Not found');
     }
 
-    public function js($parameters)
-    {
-        return $this->missingMethod($parameters);
-    }
-
-    public function css($parameters)
-    {
-        return $this->missingMethod($parameters);
-
-    }
-
-    public function img($parameters)
-    {
-        return $this->missingMethod($parameters);
-
-    }
-
     public function path($file = null)
     {
 
