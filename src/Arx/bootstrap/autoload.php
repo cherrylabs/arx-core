@@ -1,5 +1,17 @@
 <?php
-
+/**
+ * Default bootstrap autoload resolver for Laravel
+ *
+ * Override the Laravel Bootstrap to allow developer to handle with a non typycal Laravel structure
+ *
+ * instead of : only able to working in a /public folder
+ *
+ * => you can work in any directory folder that you want !
+ *
+ * @example :
+ * If you are working in a workbench environment and you want
+ *
+ */
 if(!defined('LARAVEL_START')){
     define('LARAVEL_START', microtime(true));
 }

@@ -4,6 +4,10 @@ use Illuminate\View\Engines\CompilerEngine as ParentClass;
 use Illuminate\View\Compilers\CompilerInterface;
 use Illuminate\View\EngineInterface;
 
+/**
+ * Class CompilerEngine
+ * @package Arx\classes\view\engines
+ */
 class CompilerEngine extends PhpEngine {
 
     /**

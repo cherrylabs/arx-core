@@ -28,7 +28,9 @@ use Arx\classes\Config;
 
 
 /**
- * App extends the Laravel Application and add some extra functions that lacks
+ * Class App Override Laravel App class
+ *
+ * App extends the Laravel Application and add some extra functions that lacks in Laravel
  *
  * @category Core
  * @package  Arx
@@ -123,10 +125,14 @@ class App extends \Illuminate\Foundation\Application
 
 
     /**
-     * Bootstrap define how the app should include his configuratio. By default, it includes file from ../bootstraps folder as Laravel do
+     * Bootstrap define how the app should include his configuration. By default, it includes file from ../bootstraps folder as Laravel do
+     *
+     * You can also override some arx configs too for a special case
      *
      * @see ../bootstraps/default.php
+     * @see ../config/
      *
+     * @param string $config
      * @param string $file
      *
      * @throws \Whoops\Example\Exception
@@ -153,7 +159,12 @@ class App extends \Illuminate\Foundation\Application
 
 
     /**
-     * Autoload an undefined class
+     * Autoload an undefined class and add more resolving case for the workbench environment
+     *
+     * Example : if in your workbench package you call a class with xxxController, xxxModel, xxxClass at the end, it
+     * will try to resolve the class by searching inside the controllers folder
+     *
+     * /!\ you must always add a classmap in your composer.json file !
      *
      * @param       $className
      * @param array $aParam
@@ -245,7 +256,9 @@ class App extends \Illuminate\Foundation\Application
     }
 
     /**
-     * Get the instance of the App
+     * Get the instance of the App in the Singleton way
+     *
+     * Used when is not a laravel structure
      *
      * @return mixed
      */
@@ -259,7 +272,11 @@ class App extends \Illuminate\Foundation\Application
         return self::$_aInstances[$sClass];
     }
 
-
+    /**
+     * resolve a conflict with the Laravel method
+     *
+     * @return null|SymfonyRedirect|void
+     */
     public function redirectIfTrailingSlash()
     {
         if ($this->runningInConsole()) {

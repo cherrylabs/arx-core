@@ -21,8 +21,8 @@ namespace Arx\classes\asset;
  * You can configure the paths by copying the core/config/asset.php
  * config file into your app/config folder and changing the settings.
  *
- * @package     Fuel
- * @subpackage  Core
+ * @todo : cleaning this class
+ * @package     Arx
  */
 class Asset_Instance
 {

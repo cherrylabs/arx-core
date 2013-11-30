@@ -1,60 +1,32 @@
 <?php
-/**
- * Default App config for Arx project
- *
- * You can easily override any
- */
 
 return array(
 
     /*
-     * Variable debug
-     *
-     * If enabled will show error message on your page.
-     * It should be set to false by default in your production url.
-     *
-     * @type bool
+    |--------------------------------------------------------------------------
+    | Application Debug Mode
+    |--------------------------------------------------------------------------
+    |
+    | When your application is in debug mode, detailed error messages with
+    | stack traces will be shown on every error that occurs within your
+    | application. If disabled, a simple generic error page is shown.
+    |
     */
 
     'debug' => false,
 
-    /**
-     * Variable profiler
-     *
-     * If enabled, will show a beautiful profiler on your page.
-     * It should be set to false by default in your production url.
-     *
-     * @type bool
-     */
-    'profiler' => false,
-
     /*
-     * Variable detectEnv
-     *
-     * Check if we should detect environment defined in env.php or not.
-     * The detect environment script is defined in Config::detectEnv()
-     *
-     * @type bool
-     */
-    'detectEnv' => true,
+    |--------------------------------------------------------------------------
+    | Application URL
+    |--------------------------------------------------------------------------
+    |
+    | This URL is used by the console to properly generate URLs when using
+    | the Artisan command line tool. You should set this to the root of
+    | your application so that it is used when running Artisan tasks.
+    |
+    */
 
-    'url' => HTTP_PROTOCOL.getenv('HTTP_HOST'),
-
-    'path' => '/app',
-
-    'controllers' => array(
-        'path' => '/app/views',
-    ),
-
-    'models' => array(
-
-        'path' => '/app/models',
-    ),
-
-    'views' => array(
-       'path' => '/app/views',
-       'engine' => 'Arx\\classes\\View'
-    ),
+    'url' => 'http://localhost',
 
     /*
     |--------------------------------------------------------------------------
@@ -93,7 +65,7 @@ return array(
     |
     */
 
-    'key' => '',
+    'key' => 'gLs7sWzct1YTUgKFlCQ8t4cWX3Uf8ZpK',
 
     /*
     |--------------------------------------------------------------------------
@@ -139,12 +111,36 @@ return array(
         'Illuminate\Foundation\Providers\TinkerServiceProvider',
         'Illuminate\Translation\TranslationServiceProvider',
         'Illuminate\Validation\ValidationServiceProvider',
-        'Illuminate\View\ViewServiceProvider',
-        'Illuminate\Workbench\WorkbenchServiceProvider',
-        'Way\Generators\GeneratorsServiceProvider',
-        'Cartalyst\Sentry\SentryServiceProvider'
 
+        //'Illuminate\View\ViewServiceProvider',
+        'Illuminate\Workbench\WorkbenchServiceProvider',
+
+
+
+        //\rx integrations
+        'Arx\CoreServiceProvider',
+        'Arx\classes\View',
+        'Arxmin\ArxminServiceProvider',
+
+        # Third-party harders
+        'Barryvdh\LaravelIdeHelper\IdeHelperServiceProvider',
+        //'Barryvdh\Debugbar\ServiceProvider',
+        'Way\Generators\GeneratorsServiceProvider',
+        'Cartalyst\Sentry\SentryServiceProvider',
     ),
+
+    /*
+    |--------------------------------------------------------------------------
+    | Service Provider Manifest
+    |--------------------------------------------------------------------------
+    |
+    | The service provider manifest is used by Laravel to lazy load service
+    | providers which are not needed for each request, as well to keep a
+    | list of all of the services. Here, you may set its storage spot.
+    |
+    */
+
+    'manifest' => storage_path().'/meta',
 
     /*
     |--------------------------------------------------------------------------
@@ -159,13 +155,13 @@ return array(
 
     'aliases' => array(
 
-        'App'             => 'Arx\classes\App',
+        'App'             => 'Illuminate\Support\Facades\App',
         'Artisan'         => 'Illuminate\Support\Facades\Artisan',
         'Auth'            => 'Illuminate\Support\Facades\Auth',
         'Blade'           => 'Illuminate\Support\Facades\Blade',
         'Cache'           => 'Illuminate\Support\Facades\Cache',
         'ClassLoader'     => 'Illuminate\Support\ClassLoader',
-        'Config'          => 'Illuminate\Support\Facades\Config',
+        'Config'          => 'Arx\facades\Config',
         'Controller'      => 'Illuminate\Routing\Controllers\Controller',
         'Cookie'          => 'Illuminate\Support\Facades\Cookie',
         'Crypt'           => 'Illuminate\Support\Facades\Crypt',
@@ -174,7 +170,7 @@ return array(
         'Event'           => 'Illuminate\Support\Facades\Event',
         'File'            => 'Illuminate\Support\Facades\File',
         'Form'            => 'Illuminate\Support\Facades\Form',
-        'Hash'            => 'Illuminate\Support\Facades\Hash',
+        'Hash'            => 'Arx\classes\Hash',
         'HTML'            => 'Illuminate\Support\Facades\HTML',
         'Input'           => 'Illuminate\Support\Facades\Input',
         'Lang'            => 'Illuminate\Support\Facades\Lang',
@@ -195,23 +191,8 @@ return array(
         'URL'             => 'Illuminate\Support\Facades\URL',
         'Validator'       => 'Illuminate\Support\Facades\Validator',
         'View'            => 'Illuminate\Support\Facades\View',
-        'Sentry' => 'Cartalyst\Sentry\Facades\Laravel\Sentry'
+        'Sentry' => 'Cartalyst\Sentry\Facades\Laravel\Sentry',
 
     ),
-
-    /*
-    |--------------------------------------------------------------------------
-    | Functions Aliases
-    |--------------------------------------------------------------------------
-    |
-    | This array of functions will register any functions shortcode in your app
-    | some app may require a function helper please refer to their documentation
-    |
-    */
-    'functions' => array(
-
-        'lg' => 'Lang::get'
-
-    )
 
 );

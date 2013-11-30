@@ -5,6 +5,15 @@ use Illuminate\Filesystem\Filesystem;
 
 use Illuminate\View\Compilers\BladeCompiler as ParentClass;
 
+/**
+ * Class TplCompiler
+ *
+ * The same than BladeCompiler but instead of using {{ }} he use <% %> to avoid conflict with Angular, Handlebar and other JS engine
+ *
+ * Extension is tpl.php or tpl.js
+ *
+ * @package Arx\classes\view\engines\tpl
+ */
 class TplCompiler extends ParentClass {
 
     /**
@@ -44,14 +53,14 @@ class TplCompiler extends ParentClass {
      *
      * @var array
      */
-    protected $contentTags = array('{%', '%}');
+    protected $contentTags = array('<%', '%>');
 
     /**
      * Array of opening and closing tags for escaped echos.
      *
      * @var array
      */
-    protected $escapedTags = array('{%%', '%%}');
+    protected $escapedTags = array('<%=', '%>');
 
     /**
      * Compile Blade comments into valid PHP.

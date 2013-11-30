@@ -1,6 +1,7 @@
 <?php
-// --- Aliases configuration
-
+/**
+ * @todo see if it's used or not
+ */
 return array(
 
     'classes' => array(

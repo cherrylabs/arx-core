@@ -1,5 +1,12 @@
 <?php namespace Arx\controllers;
 
+/**
+ * Class TestCase
+ *
+ * extends functions for Unit Testing
+ *
+ * @package Arx\controllers
+ */
 class TestCase extends \Illuminate\Foundation\Testing\TestCase {
 
     /**

@@ -7,6 +7,10 @@ use Illuminate\View\Environment;
 use Illuminate\View\Engines\EngineInterface;
 use Arx\classes\Utils as u;
 
+/**
+ * Class PhpEngine
+ * @package Arx\classes\view\engines
+ */
 class PhpEngine implements EngineInterface {
 
     protected $_data = array();
