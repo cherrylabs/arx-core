@@ -104,26 +104,6 @@ class App extends \Illuminate\Foundation\Application
     protected static $_aInstances = array();
 
 
-    public function __construct($request = null)
-    {
-        $this['request'] = $this->createRequest($request);
-
-        // The exception handler class takes care of determining which of the bound
-        // exception handler Closures should be called for a given exception and
-        // gets the response from them. We'll bind it here to allow overrides.
-        $this->register(new ExceptionServiceProvider($this));
-
-        $this->register(new RoutingServiceProvider($this));
-
-        $this->register(new EventServiceProvider($this));
-    }
-
-    protected function createRequest(Request $request = null)
-    {
-        return $request ?: static::onRequest('createFromGlobals');
-    }
-
-
     /**
      * Bootstrap define how the app should include his configuration. By default, it includes file from ../bootstraps folder as Laravel do
      *
@@ -142,6 +122,7 @@ class App extends \Illuminate\Foundation\Application
 
         $app = $this;
 
+        // Inject special ARX Config to APP
         $this['arxconfig'] = Config::load(__DIR__.'/../config/');
 
         if($config){

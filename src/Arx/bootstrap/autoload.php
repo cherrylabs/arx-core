@@ -1,20 +1,5 @@
 <?php
-/**
- * Default bootstrap autoload resolver for Laravel
- *
- * Override the Laravel Bootstrap to allow developer to handle with a non typycal Laravel structure
- *
- * instead of : only able to working in a /public folder
- *
- * => you can work in any directory folder that you want !
- *
- * @example :
- * If you are working in a workbench environment and you want
- *
- */
-if(!defined('LARAVEL_START')){
-    define('LARAVEL_START', microtime(true));
-}
+define('LARAVEL_START', microtime(true));
 
 /*
 |--------------------------------------------------------------------------
@@ -27,6 +12,22 @@ if(!defined('LARAVEL_START')){
 | loading of any our classes "manually". Feels great to relax.
 |
 */
+
+/*
+|--------------------------------------------------------------------------
+| Include The Compiled Class File
+|--------------------------------------------------------------------------
+|
+| To dramatically increase your application's performance, you may use a
+| compiled class file which contains all of the classes commonly used
+| by a request. The Artisan "optimize" is used to create this file.
+|
+*/
+
+if (file_exists($compiled = __DIR__.'/compiled.php'))
+{
+    require $compiled;
+}
 
 /*
 |--------------------------------------------------------------------------

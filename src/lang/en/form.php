@@ -1,5 +1,5 @@
 <?php //
 
 return array(
-    'signin' => 'Signin'
+    'signin.tpl.php' => 'Signin'
 );
