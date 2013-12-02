@@ -2,5 +2,5 @@
 
 return array(
     'debug' => true,
-    'profiler' => false
+    'profiler' => true
 );

@@ -6,10 +6,11 @@ use Arx\classes\Container;
 use Arx\classes\Finder;
 
 /**
- * Controller Install
+ * Controller Install helper that you can extends
  *
  * A Default controller for installation
  *
+ * @status need workflow
  * @package Arx\controllers
  */
 class Install extends Container {

@@ -3,7 +3,7 @@
 if(!isset($_formLogin)){
     $_formLogin = Array(
         'attributes' => array(
-            'class' => 'form-signin',
+            'class' => 'form-signin.tpl.php',
             'method' => 'POST'
         )
     );
@@ -78,7 +78,7 @@ if(isset($formLogin)){
             <input type="checkbox" value="true" name="remember"> <?php echo Lang::get('Remember me') ?>
         </label>
         @section('buttons')
-            <button class="btn btn-large btn-primary" type="submit"><?php echo Lang::get('arx::form.signin') ?></button>
+            <button class="btn btn-large btn-primary" type="submit"><?php echo Lang::get('arx::form.signin.tpl.php') ?></button>
         @show
     </form>
 

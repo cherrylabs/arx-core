@@ -5,6 +5,14 @@ use Illuminate\Filesystem\Filesystem;
 
 use Illuminate\View\Compilers\BladeCompiler as ParentClass;
 
+/**
+ * Class BladeCompiler
+ *
+ * Extend BladeCompiler
+ *
+ * @see Illuminate\View\Compilers\BladeCompiler
+ * @package Arx\classes\view\engines\blade
+ */
 class BladeCompiler extends ParentClass {
 
     /**

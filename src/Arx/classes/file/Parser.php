@@ -4,6 +4,13 @@ use DOMXPath, DOMDocument;
 use Symfony\Component\CssSelector\CssSelector;
 use Arx\classes\Container;
 
+/**
+ * Class Parser
+ *
+ * Used in Arx\classes\file
+ *
+ * @package Arx\classes\file
+ */
 class Parser extends Container{
 
     public $content;

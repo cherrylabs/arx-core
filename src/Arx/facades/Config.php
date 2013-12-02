@@ -1,17 +1,25 @@
-<?php namespace Arx\interfaces;
+<?php namespace Arx\facades;
 
 use Arx\classes\Facade;
 
+/**
+ * Config Facade of Laravel
+ *
+ * Add some functionnalities like resolving config issue when your package is in the workbench
+ *
+ * @package Arx\facades
+ */
 class Config extends Facade{
 
     /**
-     * Accessing A Configuration Value
+     * Get the specified configuration value.
      *
-     * @param $value
-     * @param $defaultValue
+     * @param string  $key
+     * @param mixed   $default
      * @return mixed
+     * @static
      */
-    public static function get($value, $defaultValue)
+    public static function get($key, $default = null)
     {
         return self::resolve();
     }

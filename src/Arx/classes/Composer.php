@@ -1,5 +1,11 @@
 <?php namespace Arx\classes;
-
+/**
+ * Class Composer
+ *
+ * Helps to resolve Composer paths
+ * @todo cleangin this class !
+ * @package Arx\classes
+ */
 class Composer extends Container
 {
 
@@ -9,22 +15,33 @@ class Composer extends Container
         $this->path = dirname($reflector->getFileName());
     }
 
-    public static function getPath()
+    /**
+     * Get path of used vendors
+     */
+    public static function getPath($vendorPath = null)
     {
         $t = self::getInstance();
-        return $t->path;
+        return $t->path.$vendorPath;
     }
 
-    public static function getVendorPath()
+    public static function getVendorPath($path = null)
     {
         $t = self::getInstance();
         return dirname($t->path);
     }
 
-    public static function getRootPath()
+    public static function getRootPath($path = null)
     {
         $t = self::getInstance();
-        return dirname(dirname($t->path));
+
+        return dirname(dirname($t->path)).$path;
+    }
+
+    public static function resolvePath($path){
+        if(!preg_match('/^\//i', $path)){
+            $path = '/'.$path;
+        }
+        return $path;
     }
 
     /**

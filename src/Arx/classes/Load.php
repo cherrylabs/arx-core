@@ -2,6 +2,13 @@
 
 use Arx\classes\Utils as u;
 
+/**
+ * Class Load
+ *
+ * Load a file or a link and handle the output
+ *
+ * @package Arx\classes
+ */
 class Load {
     private $sJs, $root, $key, $add, $sCSS;
 
@@ -152,7 +159,7 @@ class Load {
             $root = $mContext['root'];
         } else {
             //else load from default CSS repository
-            $root = DIR_CSS;
+            $root = asset('css');
         }
 
         if (!is_array($sFiles)) {

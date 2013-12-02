@@ -22,7 +22,7 @@ class Hook
 
     public function __get($name)
     {
-        return $GLOBALS['hooked_'.$name];
+        return $GLOBALS[self::$pref.$name];
     }
 
     public function __set($name, $value)
@@ -32,6 +32,7 @@ class Hook
 
     public static function add($name, $value)
     {
+
         if (!isset($GLOBALS['hooked_'.$name])) {
             $GLOBALS['hooked_'.$name] = array();
         }
@@ -49,18 +50,6 @@ class Hook
                 return $GLOBALS['hooked_'.$name][] = $value;
         }
 
-    }
-
-    /**
-     * Load PHP CLASSES
-     * @author Daniel Sum
-     * @version 0.1
-     * @package arx
-     * @comments :
-     */
-    public static function info($c = null)
-    {
-        return new c_info();
     }
 
     /**

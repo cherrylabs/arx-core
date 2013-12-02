@@ -13,7 +13,7 @@ return array(
     |
     */
 
-    'app' => realpath('../app'),
+    'app' => \Arx\classes\Composer::getRootPath().'/app',
 
     /*
     |--------------------------------------------------------------------------
@@ -26,7 +26,7 @@ return array(
     |
     */
 
-    'public' => realpath('.'),
+    'public' => \Arx\classes\Composer::getRootPath().'/public',
 
     /*
     |--------------------------------------------------------------------------
@@ -52,7 +52,7 @@ return array(
     |
     */
 
-    'storage' => realpath('../app/storage'),
+    'storage' => \Arx\classes\Composer::getRootPath().'/app/storage',
 
     'workbench' => \Arx\classes\Composer::getRootPath().'/workbench'
 

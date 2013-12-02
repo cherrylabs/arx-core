@@ -8,7 +8,6 @@
 
 namespace Arx\helpers;
 
-
 use Arx\classes\Helper;
 use HTML, Form;
 

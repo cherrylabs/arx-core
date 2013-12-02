@@ -7,6 +7,15 @@ use Assetic\Asset\AssetCollection;
 use Assetic\Asset\FileAsset;
 use Assetic\Asset\GlobAsset;
 
+/**
+ * Class Assets
+ *
+ * Assets controller template that you can extends in your app
+ *
+ * @status in dev
+ * @todo more features
+ * @package Arx\controllers
+ */
 class Assets extends \Controller implements \Arx\interfaces\Assets
 {
 
@@ -58,23 +67,6 @@ class Assets extends \Controller implements \Arx\interfaces\Assets
         });
 
         return App::abort(404, 'Not found');
-    }
-
-    public function js($parameters)
-    {
-        return $this->missingMethod($parameters);
-    }
-
-    public function css($parameters)
-    {
-        return $this->missingMethod($parameters);
-
-    }
-
-    public function img($parameters)
-    {
-        return $this->missingMethod($parameters);
-
     }
 
     public function path($file = null)
