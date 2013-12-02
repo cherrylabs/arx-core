@@ -1,13 +1,12 @@
 <?php
 /**
- * Part of the Fuel framework.
+ * Assets class fork of Fuel
  *
- * @package    Fuel
+ * @package    Arx
  * @version    1.6
  * @author     Fuel Development Team
+ * @author      Daniel Sum <daniel@cherrypulp.com>
  * @license    MIT License
- * @copyright  2010 - 2013 Fuel Development Team
- * @link       http://fuelphp.com
  */
 
 namespace Arx\classes;
