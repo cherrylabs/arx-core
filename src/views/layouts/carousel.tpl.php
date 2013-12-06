@@ -3,36 +3,14 @@
 @section('head')
 <meta http-equiv="Content-Type" content="; charset=utf-8"/>
 <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-
 <title><?= $this->metatitle ?></title>
-
 <?php
-Assets::collection('carousel', function ($collection) {
-    $collection->stylesheet('//netdna.bootstrapcdn.com/bootstrap/3.0.0/css/bootstrap.min.css');
-    $collection->stylesheet('packages/arx/css/carousel.css');
-
-    $collection->javascript('//code.jquery.com/jquery.js');
-    $collection->javascript('packages/bootstrap/dist/js/bootstrap.min.js');
-    $collection->javascript('packages/bootstrap/assets/js/holder.js');
-});
-
-Assets::collection('carousel-ie', function ($collection) {
-    $collection->stylesheet('packages/html5shiv/dist/html5shiv.js');
-    $collection->stylesheet('packages/respond/respond.min.js');
-});
-
-
-
+if (!isset($aStylesheets)) {
+    echo Asset::css(array(
+       '//netdna.bootstrapcdn.com/bootstrap/3.0.2/css/bootstrap.min.css'
+    ));
+}
 ?>
-
-@stylesheets('carousel')
-
-<!--[if lt IE 9]>
-@stylesheets('carousel-ie')
-<![endif]-->
-
-@javascripts('carousel')
-
 @stop
 
 @section('body.content')
