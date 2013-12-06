@@ -9,12 +9,20 @@
 namespace Arx\controllers;
 
 use Controller;
+use View;
 /*
  * Add some basic and usefull function like setContent method
  */
 
 class Base extends Controller {
-    public function setContent(){
-        
+
+    protected $layout;
+
+    public function setContent($layout, $data = array()){
+        return $this->layout->content = View::make($layout, $data);
+    }
+
+    public function viewContent($layout, $data = array()){
+        return $this->layout->content = View::make($layout, $data);
     }
 } 

@@ -1,0 +1,351 @@
+<!DOCTYPE html>
+<html lang="fr" dir="ltr" ng-app="arx">
+<head>
+    <meta charset="UTF-8" />
+
+    <title></title>
+
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+    <link rel="stylesheet" href="../dist/css/arx.min.css?v=1" />
+
+    <!--[if lt IE 9]>
+        <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+        <script src="https://oss.maxcdn.com/libs/respond.js/1.3.0/respond.min.js"></script>
+    <![endif]-->
+</head>
+<body>
+
+    <div class="col-md-3 col-sm-4">
+        <div class="sidebar" data-spy="affix">
+            <h1>Tables</h1>
+            <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam.</p>
+
+            <ul class="nav">
+                <li>
+                    <a href="http://getbootstrap.com/css/#tables" target="_blank"><span class="glyphicon glyphicon-new-window"></span> Bootstrap</a>
+                </li>
+                <li>
+                    <a href="http://datatables.net/api" target="_blank"><span class="glyphicon glyphicon-new-window"></span> Datatables</a>
+                </li>
+            </ul>
+        </div>
+    </div>
+    <div class="col-md-9 col-sm-8">
+        <h2>UI Elements</h2>
+
+        <div class="row">
+            <div class="col-md-6 column">
+                <div class="panel">
+                    <div class="panel-heading">
+                        <h3 class="panel-title">Basic tables</h3>
+
+                        <div class="btn-group">
+                            <button class="btn btn-link" type="button" data-toggle="collapse" data-target="#collapse1"><span class="glyphicon glyphicon-chevron-down"></span><span class="glyphicon glyphicon-chevron-up"></span></button>
+                        </div>
+                    </div>
+                    <div class="panel-body collapse in" id="collapse1">
+                        <pre>.table</pre>
+
+                        <table class="table">
+                            <thead>
+                                <tr>
+                                    <th>#</th>
+                                    <th>First Name</th>
+                                    <th>Last Name</th>
+                                    <th>Username</th>
+                                 </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>1</td>
+                                    <td>Mark</td>
+                                    <td>Otto</td>
+                                    <td>@mdo</td>
+                                </tr>
+                                <tr>
+                                    <td>2</td>
+                                    <td>Jacob</td>
+                                    <td>Thornton</td>
+                                    <td>@fat</td>
+                                </tr>
+                                <tr>
+                                    <td>3</td>
+                                    <td>Larry</td>
+                                    <td>the Bird</td>
+                                    <td>@twitter</td>
+                                </tr>
+                            </tbody>
+                        </table>
+
+
+                        <pre>.table.table-striped</pre>
+
+                        <table class="table table-striped">
+                            <thead>
+                                <tr>
+                                    <th>#</th>
+                                    <th>First Name</th>
+                                    <th>Last Name</th>
+                                    <th>Username</th>
+                                 </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>1</td>
+                                    <td>Mark</td>
+                                    <td>Otto</td>
+                                    <td>@mdo</td>
+                                </tr>
+                                <tr>
+                                    <td>2</td>
+                                    <td>Jacob</td>
+                                    <td>Thornton</td>
+                                    <td>@fat</td>
+                                </tr>
+                                <tr>
+                                    <td>3</td>
+                                    <td>Larry</td>
+                                    <td>the Bird</td>
+                                    <td>@twitter</td>
+                                </tr>
+                            </tbody>
+                        </table>
+
+
+                        <pre>.table.table-bordered</pre>
+
+                        <table class="table table-bordered">
+                            <thead>
+                                <tr>
+                                    <th>#</th>
+                                    <th>First Name</th>
+                                    <th>Last Name</th>
+                                    <th>Username</th>
+                                 </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>1</td>
+                                    <td>Mark</td>
+                                    <td>Otto</td>
+                                    <td>@mdo</td>
+                                </tr>
+                                <tr>
+                                    <td>2</td>
+                                    <td>Jacob</td>
+                                    <td>Thornton</td>
+                                    <td>@fat</td>
+                                </tr>
+                                <tr>
+                                    <td>3</td>
+                                    <td>Larry</td>
+                                    <td>the Bird</td>
+                                    <td>@twitter</td>
+                                </tr>
+                            </tbody>
+                        </table>
+
+
+                        <pre>.table.table-hover</pre>
+
+                        <table class="table table-hover">
+                            <thead>
+                                <tr>
+                                    <th>#</th>
+                                    <th>First Name</th>
+                                    <th>Last Name</th>
+                                    <th>Username</th>
+                                 </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>1</td>
+                                    <td>Mark</td>
+                                    <td>Otto</td>
+                                    <td>@mdo</td>
+                                </tr>
+                                <tr>
+                                    <td>2</td>
+                                    <td>Jacob</td>
+                                    <td>Thornton</td>
+                                    <td>@fat</td>
+                                </tr>
+                                <tr>
+                                    <td>3</td>
+                                    <td>Larry</td>
+                                    <td>the Bird</td>
+                                    <td>@twitter</td>
+                                </tr>
+                            </tbody>
+                        </table>
+
+
+                        <pre>.table.table-condensed</pre>
+
+                        <table class="table table-condensed">
+                            <thead>
+                                <tr>
+                                    <th>#</th>
+                                    <th>First Name</th>
+                                    <th>Last Name</th>
+                                    <th>Username</th>
+                                 </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>1</td>
+                                    <td>Mark</td>
+                                    <td>Otto</td>
+                                    <td>@mdo</td>
+                                </tr>
+                                <tr>
+                                    <td>2</td>
+                                    <td>Jacob</td>
+                                    <td>Thornton</td>
+                                    <td>@fat</td>
+                                </tr>
+                                <tr>
+                                    <td>3</td>
+                                    <td>Larry</td>
+                                    <td>the Bird</td>
+                                    <td>@twitter</td>
+                                </tr>
+                            </tbody>
+                        </table>
+
+
+                        <pre>tr.active, tr.success, tr.warning, tr.danger</pre>
+
+                        <table class="table table-condensed">
+                            <thead>
+                                <tr>
+                                    <th>#</th>
+                                    <th>First Name</th>
+                                    <th>Last Name</th>
+                                    <th>Username</th>
+                                 </tr>
+                            </thead>
+                            <tbody>
+                                <tr class="active">
+                                    <td>1</td>
+                                    <td>Mark</td>
+                                    <td>Otto</td>
+                                    <td>@mdo</td>
+                                </tr>
+                                <tr class="success">
+                                    <td>2</td>
+                                    <td>Jacob</td>
+                                    <td>Thornton</td>
+                                    <td>@fat</td>
+                                </tr>
+                                <tr class="warning">
+                                    <td>3</td>
+                                    <td>Larry</td>
+                                    <td>the Bird</td>
+                                    <td>@twitter</td>
+                                </tr>
+                                <tr class="danger">
+                                    <td>4</td>
+                                    <td>Jeane</td>
+                                    <td>Spleen</td>
+                                    <td>@spleen</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div><!--/ .panel -->
+            </div>
+            <div class="col-md-6 column">
+                <div class="panel panel-inverse">
+                    <div class="panel-heading">
+                        <h3 class="panel-title">Dynamic tables</h3>
+
+                        <div class="btn-group">
+                            <button class="btn btn-link" type="button" data-toggle="collapse" data-target="#collapse2"><span class="glyphicon glyphicon-chevron-down"></span><span class="glyphicon glyphicon-chevron-up"></span></button>
+                        </div>
+                    </div>
+                    <div class="panel-body collapse in" id="collapse2">
+                        <table class="table table-datatable">
+                            <thead>
+                                <tr>
+                                    <th>Column 1</th>
+                                    <th>Column 2</th>
+                                    <th>etc</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>Row 1 Data 1</td>
+                                    <td>Row 1 Data 2</td>
+                                    <td>etc</td>
+                                </tr>
+                                <tr>
+                                    <td>Row 2 Data 1</td>
+                                    <td>Row 2 Data 2</td>
+                                    <td>etc</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div><!--/ .panel -->
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="col-md-6 column">
+                <div class="panel">
+                    <ul class="panel-heading nav nav-tabs">
+                        <li><a href="#home" data-toggle="tab">Home</a></li>
+                        <li><a href="#profile" data-toggle="tab">Profile</a></li>
+                        <li><a href="#messages" data-toggle="tab">Messages</a></li>
+                        <li><a href="#settings" data-toggle="tab">Settings</a></li>
+                    </ul>
+
+                    <div class="panel-body tab-content">
+                        <div class="tab-pane active" id="home">
+                            <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Mollitia, eligendi, dolorum, modi impedit assumenda omnis  nam repudiandae quidem ab?</p>
+                        </div>
+                        <div class="tab-pane" id="profile">
+                            <p>Lorem, modi impedit assumenda omnis ratione officia aliquid corporis eius magnam nisi ut sapiente iste alias nam repudiandae quidem ab?</p>
+                        </div>
+                        <div class="tab-pane" id="messages">
+                            <p>Lorem ipsum dolor sit amet assumenda omnis ratione officia aliquid corporis eius magnam nisi ut sapiente iste alias nam repudiandae quidem ab?</p>
+                        </div>
+                        <div class="tab-pane" id="settings">
+                            <p>Lorem ipsum dolor sit amet, consectetur. Mollitia, eligendi, dolorum, modi impedit officia aliquid corporis eius magnam nisi ut sapiente iste alias nam repudiandae quidem ab?</p>
+                        </div>
+                    </div>
+                </div><!--/ .panel -->
+            </div>
+            <div class="col-md-6 column">
+                <div class="panel panel-inverse">
+                    <ul class="panel-heading nav nav-tabs">
+                        <li><a href="#home2" data-toggle="tab">Home</a></li>
+                        <li><a href="#profile2" data-toggle="tab">Profile</a></li>
+                        <li><a href="#messages2" data-toggle="tab">Messages</a></li>
+                        <li><a href="#settings2" data-toggle="tab">Settings</a></li>
+                    </ul>
+
+                    <div class="panel-body tab-content">
+                        <div class="tab-pane active" id="home2">
+                            <p>Lorem ipsum dolor sit amet impedit assumenda omnis ratione officia aliquid corporis eius magnam nisi ut sapiente iste alias nam repudiandae quidem ab?</p>
+                        </div>
+                        <div class="tab-pane" id="profile2">
+                            <p>Lorem dolorum, modi impedit assumenda omnis ratione officia aliquid corporis eius magnam nisi ut sapiente iste alias nam repudiandae quidem ab?</p>
+                        </div>
+                        <div class="tab-pane" id="messages2">
+                            <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Mollitia, eligendi, dolorum,  nisi ut sapiente iste alias nam repudiandae quidem ab?</p>
+                        </div>
+                        <div class="tab-pane" id="settings2">
+                            <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Mollitia, eligendi, dolorum, modi impedit alias nam repudiandae quidem ab?</p>
+                        </div>
+                    </div>
+                </div><!--/ .panel -->
+            </div>
+        </div>
+    </div>
+
+    <script src="../dist/js/arx.min.js"></script>
+</body>
+</html>

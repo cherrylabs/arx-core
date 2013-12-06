@@ -1,0 +1,128 @@
+// Panels
+
+.panel {
+    border: 0;
+    padding: 0;
+
+    &.ui-sortable-helper {
+        .box-shadow(0 1px 2px rgba(0, 0, 0, 0.2));
+        overflow: hidden;
+    }
+
+    &.ui-sortable-placeholder {
+        background: @gray-light !important;
+        .border-bottom-radius(5px) !important;
+        .border-top-radius(5px) !important;
+        .box-shadow(none) !important;
+        min-height: 42px;
+        visibility: visible !important;
+    }
+
+    &.panel-inverse {
+        .panel-heading {
+            background-color: @gray-darker;
+            color: #fff;
+
+            &.nav-tabs {
+                background-color: @gray-darker;
+            }
+
+            .btn-group {
+                .btn, a {
+                    color: darken(#fff, 40%);
+
+                    &.active, &:hover, &:focus {
+                        color: #fff;
+                    }
+                }
+
+                [data-toggle="collapse"] {
+                    color: darken(#fff, 40%);
+                }
+            }
+        }
+    }
+
+    &.active {
+        .panel-heading {
+            .btn-group {
+                [data-toggle="collapse"] {
+                    .glyphicon-chevron-down {
+                        display: inline-block;
+                    }
+                    .glyphicon-chevron-up {
+                        display: none;
+                    }
+                }
+            }
+        }
+    }
+
+    .panel-heading {
+        background-color: #fff;
+        border: 0;
+        .clearfix;
+        color: @text-color;
+        margin: 0;
+        padding: 10px 15px;
+
+        &.nav-tabs {
+            background-color: @gray-lighter;
+            padding: 0;
+
+            li {
+                a {
+                    border: 0;
+                }
+            }
+        }
+
+        .panel-title {
+            float: left;
+            text-transform: uppercase;
+
+            .accordion-toggle {
+                color: @text-color;
+            }
+        }
+
+        .btn-group {
+            float: right;
+
+            .btn {
+                padding: 0 12px;
+
+                &.btn-link {
+                    margin-left: 5px;
+                    padding: 0;
+                }
+            }
+
+            .btn, a {
+                color: lighten(@text-color, 20%);
+
+                &.active, &:hover, &:focus {
+                    color: @text-color;
+                    text-decoration: none;
+                }
+            }
+
+            [data-toggle="collapse"] {
+                .glyphicon-chevron-down {
+                    display: none;
+                }
+                .glyphicon-chevron-up {
+                    display: inline-block;
+                }
+            }
+        }
+    }
+
+    .panel-body {
+        padding: 10px 15px;
+    }
+
+    .panel-footer {
+        border: 0;
+    }
+}

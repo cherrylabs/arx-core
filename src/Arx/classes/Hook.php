@@ -1,8 +1,11 @@
 <?php namespace Arx\classes;
 
 /**
- * Hook
+ * Hook class
  *
+ * Class helper to manage easily a hook flow
+ * @example
+ *  Hook::add('{name}', array('{link}');
  * @category Hook
  * @package  Arx
  * @author   Daniel Sum <daniel@cherrypulp.com>
@@ -10,15 +13,10 @@
  * @license  http://opensource.org/licenses/MIT MIT License
  * @link     http://arx.xxx/doc/Hook
  */
-class Hook
+
+class Hook extends Container
 {
-
     public static $pref = "hooked_";
-
-    public function __construct()
-    {
-
-    }
 
     public function __get($name)
     {
@@ -30,6 +28,12 @@ class Hook
         return self::add($name, $value);
     }
 
+    /**
+     * @param $name
+     * @param $value
+     *
+     * @return mixed
+     */
     public static function add($name, $value)
     {
 
@@ -59,21 +63,30 @@ class Hook
      * @package arx
      * @comments :
      */
-    public static function js($value)
+    public static function js($name = 'js')
     {
+
+        if(is_string($value)){
+            $value = array($value);
+        }
         return self::add('js', $value);
     }
 
     /**
-     * Load CSS
+     * Load CSS file
      * @author Daniel Sum
      * @version 0.1
      * @package arx
      * @comments :
      */
-    public static function css($value)
+    public static function css($name = 'css')
     {
-        return self::add('css', $value);
+        $t = self::getInstance();
+
+    }
+
+    public static function html($name = 'html'){
+
     }
 
     /**
@@ -152,18 +165,27 @@ class Hook
         echo self::output($c);
     }
 
-    public function start($str){
+    /**
+     * Start method put your output in memory cache until you end
+     * @param $str
+     */
+    public function start($name){
         ob_start();
     }
 
-    public function end($str){
-        $GLOBALS[self::$pref.$str] .= ob_get_contents();
+    /**
+     * End your cached data and save it in a globals
+     * @param $name
+     */
+    public function end($name){
+        $GLOBALS[self::$pref.$name] .= ob_get_contents();
         ob_end_clean();
     }
-
 } // class::Hook
 
-// add a global arx_hook
+/**
+ * Init the global arx_hook
+ */
 if (!isset($GLOBALS['arx_hook'])) {
     $GLOBALS['arx_hook'] = new Hook();
 }

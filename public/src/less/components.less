@@ -1,0 +1,235 @@
+
+iframe.fullsize {
+    display: block;
+    height: 100%;
+    margin: 0 -15px;
+    width: 100%;
+}
+
+
+.background-fixed {
+    bottom: 0;
+    left: 0;
+    overflow: hidden;
+    position: fixed;
+    right: 0;
+    top: 0;
+    z-index: -9999;
+
+    iframe {
+        height: 100%;
+        overflow: hidden;
+        width: 100%;
+    }
+
+    img {
+        display: block;
+        height: 100%;
+        width: 100%;
+    }
+} // .background-fixed
+
+
+.sidebar {
+    background-color: @gray-light;
+    height: 100%;
+
+    &.affix {
+        margin: 0 -15px;
+        padding: 0 15px;
+    }
+
+    &.sidebar-inverse {
+        background-color: @gray-darker;
+        color: #fff;
+
+        .nav {
+            a {
+                color: darken(#fff, 50%);
+                font-size: 13px;
+                text-transform: uppercase;
+
+                &.active, &:hover, &:focus {
+                    background: transparent;
+                    color: #fff;
+                    text-decoration: none;
+                }
+            }
+
+            button {
+                color: darken(#fff, 50%);
+                display: block;
+                font-size: 11px;
+                text-transform: uppercase;
+
+                .icon-caret-down {
+                    display: none;
+                }
+
+                .icon-caret-up {
+                    display: inline-block;
+                }
+
+                &:hover, &.active {
+                    color: #fff;
+                    text-decoration: none;
+                }
+            }
+
+            .active {
+                button, a {
+                    color: #fff;
+
+                    .icon-caret-down {
+                        display: inline-block;
+                    }
+
+                    .icon-caret-up {
+                        display: none;
+                    }
+                }
+            }
+        }
+    }
+
+    // &.sidebar-fixed {
+    //     bottom: 0;
+    //     overflow: auto;
+    //     position: fixed;
+    //     top: 0;
+    //     z-index: 2;
+
+    //     &.pull-left {
+    //         float: none;
+    //         left: 0;
+    //     }
+    // }
+}
+
+@media (max-width: @screen-xs-max) {
+    .sidebar {
+        &.affix {
+            position: static !important;
+        }
+
+    }
+}
+
+@media (min-width: @screen-sm-min) {
+    .col-sm-4 {
+        .sidebar {
+            &.affix {
+                width: 33.33333333333333%;
+            }
+        }
+    }
+}
+
+@media (min-width: @screen-md-min) {
+    .col-md-3 {
+        .sidebar {
+            &.affix {
+                width: 25%;
+            }
+        }
+    }
+}
+
+// .slidepanel {
+//     bottom: 0;
+//     display: none;
+//     left: 0;
+//     position: fixed;
+//     top: 0;
+
+//     &.bottom {
+//         right: 0;
+//         top: auto;
+//     }
+
+//     &.right {
+//         left: auto;
+//         right: 0;
+//     }
+
+//     &.top {
+//         bottom: auto;
+//         right: 0;
+//     }
+
+//     &.in {
+//         display: block;
+
+//         &.fade {
+//             .opacity(1);
+//         }
+//     }
+// } // .slidepanel
+
+
+.calendar {
+    a {
+        .transition(none);
+    }
+} // .calendar
+
+
+.column {
+    min-height: 10px;
+} // .column
+
+
+.preview {
+    background-color: #fafafa;
+    box-shadow: inset 0 3px 6px rgba(0, 0, 0, .05);
+    border-color: #e5e5e5 #eee #eee;
+    border-style: solid;
+    border-width: 1px;
+    position: relative;
+    padding: 45px 15px 15px;
+    margin: 0 0 15px;
+
+    &:after {
+        color: #bbb;
+        content: "Preview";
+        font-size: 12px;
+        font-weight: bold;
+        left: 15px;
+        letter-spacing: 1px;
+        position: absolute;
+        text-transform: uppercase;
+        top: 15px;
+    }
+
+    + .highlight {
+        border-radius: 0;
+        border-width: 0 0 1px;
+        margin: -15px -15px 15px;
+    }
+
+    > p:last-child,
+    > ul:last-child,
+    > ol:last-child,
+    > blockquote:last-child,
+    > .form-control:last-child,
+    > .table:last-child,
+    > .navbar:last-child,
+    > .jumbotron:last-child,
+    > .alert:last-child,
+    > .panel:last-child,
+    > .list-group:last-child,
+    > .well:last-child,
+    > .progress:last-child,
+    > .table-responsive:last-child > .table {
+        margin-bottom: 0;
+    }
+
+    > p > .close {
+        float: none;
+    }
+
+    .container {
+        width: auto;
+    }
+} // .preview
+

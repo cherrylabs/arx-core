@@ -202,11 +202,11 @@ class Utils
     } // getWidth
 
 #H
-    public static function header($type)
+    public static function header($type, $output = false)
     {
-        include_once(__DIR__ . DS . 'utils' . DS . 'header.php');
+        $aHeader = include_once(dirname(__FILE__).'/utils/header.php');
 
-        header($aHeader[$type]);
+       return $aHeader[$type];
     } // header
 
 #I
@@ -322,7 +322,7 @@ class Utils
                 null;
 
         foreach ($aErrors as $key => $error) {
-            if (preg_match('/predie|ddd/i', $error['function']) && !empty($error['line']) && !empty($error['file'])) {
+            if (preg_match('/predie|ddd|de/i', $error['function']) && !empty($error['line']) && !empty($error['file'])) {
                 $line = $error['line'];
                 $file = $error['file'];
             }

@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="fr" dir="ltr" ng-app="arx">
+<head>
+    <meta charset="UTF-8" />
+
+    <title></title>
+
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+    <link rel="stylesheet" href="../dist/css/arx.min.css?v=1" />
+
+    <!--[if lt IE 9]>
+        <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+        <script src="https://oss.maxcdn.com/libs/respond.js/1.3.0/respond.min.js"></script>
+    <![endif]-->
+</head>
+<body>
+
+    <div class="sidebar sidebar-inverse col-lg-2 col-md-3 col-sm-4">
+        <ul class="nav">
+            <li>
+                <button class="btn btn-link" data-toggle="collapse" data-target="#main-navigation">
+                    Your stuff <span class="glyphicon glyphicon-chevron-down"></span> <span class="glyphicon glyphicon-chevron-up"></span>
+                </button>
+
+                <ul class="nav collapse in" id="main-navigation">
+                    <li class="active">
+                        <a href="dashboard.html" target="appiframe"><span class="glyphicon glyphicon-dashboard"></span> Dashboard</a>
+                    </li>
+                    <li>
+                        <a href="forms.html" target="appiframe"><span class="glyphicon glyphicon-adjust"></span> Forms Elements</a>
+                    </li>
+                </ul>
+            </li>
+            <li>
+                <ul class="nav">
+                    <li><a href="index.html">Simple layout</a></li>
+                    <li class="dropdown">
+                        <a href="#" class="dropdown-toggle" data-toggle="dropdown">Dropdown <b class="caret"></b></a>
+                        <ul class="dropdown-menu">
+                            <li><a href="#">Action</a></li>
+                            <li><a href="#">Another action</a></li>
+                            <li><a href="#">Something else here</a></li>
+                            <li class="divider"></li>
+                            <li><a href="#">Separated link</a></li>
+                        </ul>
+                    </li>
+                </ul>
+            </li>
+        </ul>
+    </div>
+
+    <div class="col-lg-10 col-md-9 col-sm-8">
+        <iframe class="fullsize" src="dashboard.html" name="appiframe"></iframe>
+    </div>
+
+    <script src="../dist/js/arx.min.js"></script>
+</body>
+</html>

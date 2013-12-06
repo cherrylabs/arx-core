@@ -10,9 +10,10 @@
     @include('arx::snippets.navbars.top-fixed')
 @show
 
+@section('container')
 <div class="container">
-    @section('container')
-        @yield('content')
     @show
 </div> <!-- /container -->
+@yield('content')
+
 @stop

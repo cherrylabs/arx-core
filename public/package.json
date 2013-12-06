@@ -1,0 +1,21 @@
+{
+  "name": "arx",
+  "version": "0.0.0",
+  "description": "Arx UI package",
+  "main": "css/main.min.css",
+  "scripts": {
+    "test": "grunt test"
+  },
+  "author": "Stéphan Zych",
+  "license": "MIT",
+  "devDependencies": {
+      "grunt": "~0.4.1",
+      "grunt-contrib-clean": "latest",
+      "grunt-contrib-connect": "latest",
+      "grunt-contrib-jshint": "~0.6.4",
+      "grunt-contrib-uglify": "latest",
+      "grunt-contrib-watch": "latest",
+      "grunt-recess": "~0.4.0",
+      "grunt-shell": "~0.3.1"
+  }
+}
