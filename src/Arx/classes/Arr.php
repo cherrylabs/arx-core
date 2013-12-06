@@ -1302,6 +1302,17 @@ class Arr
 
     /**
      * Suckplode : add a value to a string seperated by a separator
+     *
+     * @example :
+     *          Arr::suckplode('e', 'a,b,c,d', ',')
+     *          will return "a,b,c,d,e"
+     *
+     *          Arr::suckplode('e', 'a,b,c,d,e', ',')
+     *          will return "a,b,c,d,e"
+     *
+     *          Arr::suckplode('e', 'a,b,c,d', ',', false)
+     *          will return "a,b,c,d,e,e"
+     *
      * @param  string $value
      * @param  string $string to add
      * @param  string $sep    $separator
@@ -1323,55 +1334,28 @@ class Arr
 
 
     /**
-     * Transform a string to array using json, or lazy encode
-     * @param mix $s mix string
-     * @param array $c options
-     * @return array    array
+     * Trying to transfrom anything to Array
+     *
+     * @param $mValue
      */
-    public static function toArray($s, $c = null)
-    {
-        $array = array();
+    public static function toArray($mValue){
+        return json_decode(json_encode($mValue), true);
+    }
 
-        if (is_string($s)) {
-            switch (true) {
-                case(strpos($s, '{')):
-                    $_type = 'json';
-                    $array = json_decode($s, true);
-                    break;
+    /**
+     * Trying to transform anything to Object
+     * @param $mValue
+     */
+    public static function toObject($mValue){
+        return json_decode(json_encode($mValue));
+    }
 
-                case(preg_match('/,/i', $s) && !preg_match('/=/i', $s)):
-                    $_type = 'explode';
-                    $array = explode(',', $s);
-                    break;
-
-                case(preg_match('/,/i', $s)):
-                    $_type = 'lazy';
-                    $array = self::lazy_decode($s);
-                    predie($array);
-                    break;
-            }
-
-        } elseif (is_object($s)) {
-            return self::objectToArray($s);
-        } else {
-            $array = $s;
-        }
-
-        if ($c == 'DEBUG') {
-            predie($s);
-        }
-
-        switch (true) {
-            case ($c == 'DEBUG'):
-            case ($c == 'debug'):
-                predie(
-                    array($s, $array, $_type)
-                );
-                break;
-        }
-
-        return $array;
-
-    } // toArray
+    /**
+     * Trying to transform anything to Json string
+     * @param $mValue
+     */
+    public static function toJson($mValue){
+        return json_encode($mValue);
+    }
 
 } // class::Arr

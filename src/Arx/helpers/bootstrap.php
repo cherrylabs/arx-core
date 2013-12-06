@@ -13,7 +13,9 @@ use HTML, Form;
 
 class Bootstrap extends Helper
 {
-
+    /**
+     * Navbar helper => generate a navbar helpers
+     */
     public static function nav($data, $params = array())
     {
         $defParams = array(
@@ -25,8 +27,7 @@ class Bootstrap extends Helper
             'link@' => array()
         );
 
-        $params = array_merge_recursive($defParams, $params);
-
+        $params = array_merge($defParams, $params);
 
         $html = '<' . $params['parent'] . ' ' . HTML::attributes($params['parent@']) . '>';
 
