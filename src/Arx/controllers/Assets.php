@@ -10,13 +10,13 @@ use Assetic\Asset\GlobAsset;
 /**
  * Class Assets
  *
- * Assets controller template that you can extends in your app
+ * Assets controller template that you can extends in your Laravel App
  *
  * @status in dev
  * @todo more features
  * @package Arx\controllers
  */
-class Assets extends \Controller implements \Arx\interfaces\Assets
+class Assets extends \Controller
 {
 
     /**

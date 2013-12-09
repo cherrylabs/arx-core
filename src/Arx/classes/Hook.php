@@ -14,9 +14,11 @@
  * @link     http://arx.xxx/doc/Hook
  */
 
-class Hook extends Container
+class Hook
 {
     public static $pref = "hooked_";
+
+    public static $logs = array();
 
     public function __get($name)
     {
@@ -28,30 +30,38 @@ class Hook extends Container
         return self::add($name, $value);
     }
 
+    public function __construct(){
+
+    }
+
+    public static function register($name, $callback = null){
+        $GLOBALS[self::$pref.$name] = array();
+    }
+
     /**
      * @param $name
      * @param $value
      *
      * @return mixed
      */
-    public static function add($name, $value)
+    public static function add($name, $mValue)
     {
 
         if (!isset($GLOBALS['hooked_'.$name])) {
             $GLOBALS['hooked_'.$name] = array();
         }
 
-        if (is_array($value)) {
-            foreach ($value as $v) {
+        if (is_array($mValue)) {
+            foreach ($mValue as $v) {
                 if(!in_array($v, $GLOBALS['hooked_'.$name]))
                     $GLOBALS['hooked_'.$name][] = $v;
             }
 
             return $GLOBALS['hooked_'.$name];
         } else {
-            if(!in_array($value, $GLOBALS['hooked_'.$name]))
+            if(!in_array($mValue, $GLOBALS['hooked_'.$name]))
 
-                return $GLOBALS['hooked_'.$name][] = $value;
+                return $GLOBALS['hooked_'.$name][] = $mValue;
         }
 
     }
@@ -129,20 +139,24 @@ class Hook extends Container
         return $GLOBALS['all_hooked_name'];
     }
 
-    public static function output($c = null)
+    public static function output()
     {
+        
+        $aArgs = func_get_args();
+        $iArgs = func_num_args();
 
+        $c = $aArgs[0];
+        
         if(isset($GLOBALS[self::$pref.$c])){
             switch (true) {
                 case ($c == 'js'):
 
-                    $output = Load::JS($GLOBALS[self::$pref.$c]);
+                    $output = Asset::dump($GLOBALS[self::$pref.$c]);
 
                     break;
                 case ($c == 'css'):
 
-                    $output = Load::CSS($GLOBALS[self::$pref.$c]);
-
+                    $output = Asset::dump($GLOBALS[self::$pref.$c]);
                     break;
                 default:
                     $output = $GLOBALS[self::$pref.$c];
@@ -170,6 +184,7 @@ class Hook extends Container
      * @param $str
      */
     public function start($name){
+        $GLOBALS[self::$pref.$name] = '';
         ob_start();
     }
 

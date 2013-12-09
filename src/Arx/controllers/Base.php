@@ -11,7 +11,7 @@ namespace Arx\controllers;
 use Controller;
 use View;
 /*
- * Add some basic and usefull function like setContent method
+ * Betterbase controller and usefull function like setContent method
  */
 
 class Base extends Controller {

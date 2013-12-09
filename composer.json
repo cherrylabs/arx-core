@@ -25,10 +25,6 @@
         "kriswallsmith/assetic": "dev-master",
         "barryvdh/laravel-ide-helper": "*",
         "barryvdh/laravel-debugbar": "dev-master",
-        "orchestra/foundation": "2.0.*",
-        "orchestra/control": "2.0.*",
-        "orchestra/story": "2.0.*",
-        "cartalyst/sentry": "2.0.*",
         "way/generators": "*"
     },
     "require-dev": {
