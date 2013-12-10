@@ -12,7 +12,7 @@
                     <span class="icon-bar"></span>
                     <span class="icon-bar"></span>
                 </button>
-                <a class="navbar-brand" href="<% $this->project['link'] ?: Lang::get('project.homepage') %>"><% $this->project['name'] ?: Lang::get('project.name') %></a>
+                <a class="navbar-brand" href="<% $this->project['link'] ?: Lang::get('project.link') %>"><% $this->project['name'] ?: Lang::get('project.name') %></a>
             </div>
             <div class="collapse navbar-collapse">
                     @section('nav')

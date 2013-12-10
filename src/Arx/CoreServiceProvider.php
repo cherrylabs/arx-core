@@ -21,12 +21,12 @@ class CoreServiceProvider extends ServiceProvider {
      */
     public function boot()
     {
-        $this->package('arx/core', 'arx');
+        $this->package('arx/core');
 
         // Add namespace package so you can access to views, lang and config with arx::
-        \View::addNamespace('arx', Arx::path('../views'));
-        \Lang::addNamespace('arx', Arx::path('../lang'));
-        \Config::addNamespace('arx', Arx::path('../config'));
+        \View::addNamespace('arx', __DIR__.'/../views');
+        \Lang::addNamespace('arx', __DIR__.'/../lang');
+        \Config::addNamespace('arx', __DIR__.'/../config');
 
         require_once __DIR__.'/helpers.php';
         require_once __DIR__.'/filters.php';

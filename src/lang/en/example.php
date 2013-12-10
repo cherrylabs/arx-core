@@ -4,7 +4,7 @@ return array(
     "project" => array(
         "title" => 'Project name'
     ),
-    "menu" => array(
+    "nav" => array(
         array(
             'name' => 'Home',
             'link' => '#home'
