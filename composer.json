@@ -21,7 +21,7 @@
     "require": {
         "php": ">=5.3.2",
         "raveren/kint" : "dev-master",
-        "laravel/framework" : "4.*",
+        "laravel/framework" : "4.0.*",
         "kriswallsmith/assetic": "dev-master",
         "barryvdh/laravel-ide-helper": "*",
         "barryvdh/laravel-debugbar": "dev-master",
@@ -35,6 +35,8 @@
         "psr-0": {
             "Arx": "src"
         },
+
+
         "files" : ["src/Arx/core.php"]
     },
     "config": {
