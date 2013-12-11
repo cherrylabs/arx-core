@@ -21,14 +21,10 @@
     "require": {
         "php": ">=5.3.2",
         "raveren/kint" : "dev-master",
-        "laravel/framework" : "4.*",
+        "laravel/framework" : "4.0.*",
         "kriswallsmith/assetic": "dev-master",
         "barryvdh/laravel-ide-helper": "*",
         "barryvdh/laravel-debugbar": "dev-master",
-        "orchestra/foundation": "2.0.*",
-        "orchestra/control": "2.0.*",
-        "orchestra/story": "2.0.*",
-        "cartalyst/sentry": "2.0.*",
         "way/generators": "*"
     },
     "require-dev": {
@@ -39,6 +35,8 @@
         "psr-0": {
             "Arx": "src"
         },
+
+
         "files" : ["src/Arx/core.php"]
     },
     "config": {

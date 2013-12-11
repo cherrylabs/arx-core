@@ -15,6 +15,7 @@ class Bootstrap extends Helper
 {
     /**
      * Navbar helper => generate a navbar helpers
+     * @todo better navigation handler
      */
     public static function nav($data, $params = array())
     {

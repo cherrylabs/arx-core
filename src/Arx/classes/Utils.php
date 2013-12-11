@@ -11,6 +11,9 @@
  * @license  http://opensource.org/licenses/MIT MIT License
  * @link     http://arx.xxx/doc/Utils
  */
+
+use ReflectionClass;
+
 class Utils
 {
 
@@ -74,6 +77,11 @@ class Utils
 
         return $return;
     } // curlGet
+
+    public static function call_user_obj_array($sObject, $array = array()){
+       $reflector = new ReflectionClass($sObject);
+       return $reflector->newInstanceArgs($array);
+    }
 
 #E
     public static function epre($v)
@@ -322,9 +330,11 @@ class Utils
                 null;
 
         foreach ($aErrors as $key => $error) {
-            if (preg_match('/predie|ddd|de/i', $error['function']) && !empty($error['line']) && !empty($error['file'])) {
+
+            if (preg_match('/predie|ddd|dd|de/i', $error['function']) && !empty($error['line']) && !empty($error['file'])) {
                 $line = $error['line'];
                 $file = $error['file'];
+                break;
             }
         }
 
