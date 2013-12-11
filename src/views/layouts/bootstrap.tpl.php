@@ -2,8 +2,11 @@
 
 @section('head')
     @parent
+
+    @section('css')
     <link rel="stylesheet" href="/packages/arx/dist/css/arx-combined.css" />
     <% Hook::output('css') %>
+    @show
 @stop
 
 @section('body')
