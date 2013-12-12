@@ -1,8 +1,8 @@
 @extends('arx::layouts.bootstrap')
-
+<?php
+$body['attributes']['class'] = 'page-starter '.$this->body['attributes']['class'];
+?>
 @section('body')
-<body class="page-starter">
-
     <div class="navbar navbar-inverse navbar-fixed-top" role="navigation">
         <div class="container">
             <div class="navbar-header">
@@ -41,5 +41,4 @@
         ?>
         @show
     </div> <!-- /container -->
-</body>
 @stop

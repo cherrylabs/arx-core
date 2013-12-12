@@ -23,19 +23,17 @@ $lang = Lang::getLocale() ?: 'en';
         <![endif]-->
     @show
 </head>
-@section('body')
 <body <% isset($body, $body['attributes']) ? HTML::attributes($body['attributes']) : '' %>>
-    @section('content')
-        @yield('content')
+    @section('body')
+        <%-- 'The section layout define which layout to use : here is the most simple layout it will output just a $content' --%>
+        @section('content')
+            @yield('content')
+        @show
     @show
-
-
     @section('js')
         @yield('js')
     @show
-
 </body>
-@show
 </html>
 @section('appendHtml')
 <!-- Made with Arx @yield('arxBenchmark') -->

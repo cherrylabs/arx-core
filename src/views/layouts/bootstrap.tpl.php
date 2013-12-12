@@ -9,11 +9,7 @@
     @show
 @stop
 
-@section('body')
-    @yield('content')
-@stop
-
 @section('js')
-<script type="text/javascript" src="<% url('/packages/arx/dist/js/arx-combined.js') %>"></script>
-<% Hook::output('js') %>
+    <script type="text/javascript" src="<% url('/packages/arx/dist/js/arx-combined.js') %>"></script>
+    <% Hook::output('js') %>
 @stop
