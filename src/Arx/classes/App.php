@@ -178,7 +178,7 @@ class App extends \Illuminate\Foundation\Application
             $iExplode = count($aExplode);
 
             if($iExplode === 1){
-                $packageName = $aExplode[0];
+                $composerName = $packageName = $aExplode[0];
             } elseif($iExplode === 2){
                 list($vendorName, $packageName) = $aExplode;
                 $composerName = $vendorName.'/'.$packageName;
@@ -189,6 +189,7 @@ class App extends \Illuminate\Foundation\Application
                 $routeName = implode('/', $aExplode);
             }
         }
+        
         $fileName .= str_replace('_', DIRECTORY_SEPARATOR, $className) . '.php';
 
         $aNamespaces = Composer::getNamespaces();
@@ -207,20 +208,21 @@ class App extends \Illuminate\Foundation\Application
             }
         }
 
-        if(isset($aNamespaces[$packageName]) && !empty($aNamespaces[$packageName])){
+        if(isset($aNamespaces[$composerName]) && !empty($aNamespaces[$composerName])){
 
             if(preg_match('/Controller$/', $className)){
 
-                $supposedPath = end($aNamespaces[$packageName]) . DS. str_replace('\\', DS, $namespace) . DS.  'controllers' . DS . $className . '.php';
+                $supposedPath = end($aNamespaces[$composerName]) . DS. str_replace('\\', DS, $namespace) . DS.  'controllers' . DS . $className . '.php';
+
             }
 
             if(preg_match('/Model$/', $className)){
 
-                $supposedPath = end($aNamespaces[$packageName]) . DS . str_replace('\\', DS, $namespace) . DS. 'models' . DS . $className . '.php';
+                $supposedPath = end($aNamespaces[$composerName]) . DS . str_replace('\\', DS, $namespace) . DS. 'models' . DS . $className . '.php';
             }
 
             if(preg_match('/Class$/', $className)){
-                $supposedPath = end($aNamespaces[$packageName]) . DS . str_replace('\\', DS, $namespace) . DS. 'classes' . DS . $className . '.php';
+                $supposedPath = end($aNamespaces[$composerName]) . DS . str_replace('\\', DS, $namespace) . DS. 'classes' . DS . $className . '.php';
             }
 
         }
