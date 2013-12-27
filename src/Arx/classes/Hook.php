@@ -14,6 +14,8 @@
  * @link     http://arx.xxx/doc/Hook
  */
 
+use Debugbar;
+
 class Hook
 {
     public static $pref = "hooked_";
@@ -47,6 +49,7 @@ class Hook
     public static function add($name, $mValue)
     {
 
+        trigger_error();
         if (!isset($GLOBALS['hooked_'.$name])) {
             $GLOBALS['hooked_'.$name] = array();
         }
