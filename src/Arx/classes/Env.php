@@ -1,11 +1,17 @@
 <?php namespace Arx\classes;
-
+/**
+ * Class Env
+ *
+ * Env class helpers
+ *
+ * @package Arx\classes
+ */
 class Env {
     public static function detect(){
         if(class_exists('Config', false)) {
             $config = \Config::get('env');
         } else {
-            $config = include dirname(__DIR__).'/config/env.php';
+            $config = include dirname(__DIR__).'/../config/env.php';
         }
 
         foreach($config as $key => $value){

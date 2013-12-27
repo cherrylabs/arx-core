@@ -3,6 +3,13 @@
 use Illuminate\Container\Container as ParentClass;
 use ArrayAccess, Closure;
 
+/**
+ * Class Container
+ *
+ * extends Illuminate\Container\Container class add possibility to getInstance (Singleton pattern)
+ *
+ * @package Arx\classes
+ */
 class Container extends ParentClass implements ArrayAccess {
 
     protected static $_aInstances = array();

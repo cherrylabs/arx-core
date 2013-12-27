@@ -2,8 +2,8 @@
 /**
  * Class Composer
  *
- * Helps to resolve Composer paths
- * @todo cleangin this class !
+ * Helps to resolve and find Composer paths
+ *
  * @package Arx\classes
  */
 class Composer extends Container

@@ -72,7 +72,7 @@ class Config extends Container
             }
         }
 
-        static::loadEnvironment($env);
+        static::loadEnvironment(static::$env);
 
         return static::$env;
     }

@@ -3,6 +3,14 @@
 use Illuminate\Auth\UserInterface;
 use Illuminate\Auth\Reminders\RemindableInterface;
 
+/**
+ * Class Model
+ *
+ * usable outside Laravel
+ *
+ * @todo make it usable outside a Laravel structure
+ * @package Arx\classes
+ */
 class Model extends \Eloquent implements UserInterface, RemindableInterface{
     /**
      * The database table used by the model.
@@ -51,7 +59,7 @@ class Model extends \Eloquent implements UserInterface, RemindableInterface{
     }
 
     public function crypt($value){
-        return Hash::make($value);
+        return \Hash::make($value);
     }
 
     public static function login($email, $password){
@@ -65,6 +73,6 @@ class Model extends \Eloquent implements UserInterface, RemindableInterface{
      */
     public static function loginPassword($password)
     {
-        return User::where('password', '=', $password)->find(1);
+        return \User::where('password', '=', $password)->find(1);
     }
 }

@@ -1,19 +1,17 @@
 <?php namespace Arx\classes;
-/**
- * Class OpenGraph
- *
- * Adaptation of the Scott MacVicar class
- *
- * @author Scott MacVicar
- * @author Daniel Sum
- * @licence Apache 2.0/MIT
- *
- * @package Arx\classes
- *
- */
 
 use Iterator, DOMXPath, DOMDocument;
 
+/**
+ * Class Opengraph
+ *
+ * Usefull Opengraph class
+ *
+ * @author Scott MacVicar
+ * @author Daniel Sum
+ *
+ * @package Arx\classes
+ */
 class Opengraph implements Iterator
 {
     /**

@@ -1,17 +1,11 @@
-<?php
+<?php namespace Arx\classes;
+
 /**
- * Detect.php.
+ * Class Detect
  *
- * @project : socia
- * @author : Daniel Sum <daniel@cherrypulp.com>
- */
-
-namespace Arx\classes;
-
-/**
- * Holmes
- * Based On http://code.google.com/p/php-mobile-detect/
- * @modified Zack Kitzmiller
+ * Detect which environment information
+ *
+ * @package Arx\classes
  */
 class Detect
 {

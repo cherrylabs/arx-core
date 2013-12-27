@@ -5,12 +5,20 @@
  */
 use Arx\classes\Utils as u;
 
-u::alias('predie', '\Arx\classes\Utils::predie'); # Do a better pre die
+if ( ! function_exists('predie'))
+{
+    u::alias('predie', '\Arx\classes\Utils::predie'); # Do a better pre die
+}
 
-u::alias('de', '\Arx\classes\Utils::predie'); # An other link to Raveren/debug as dd is used by Laravel
+if ( ! function_exists('de'))
+{
+    u::alias('de', '\Arx\classes\Utils::predie'); # A shortcode of Predie
+}
 
-u::alias('k', '\Arx\classes\Utils::k'); # do a debug line
-
+if ( ! function_exists('k'))
+{
+    u::alias('k', '\Arx\classes\Utils::k'); # do a debug line
+}
 /**
  * Part of the Fuel framework.
  *

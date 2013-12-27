@@ -3,7 +3,7 @@
 /**
  * Bag class
  *
- * Override the default undefined behavior by returning smartly a false when a subvariable is not defined
+ * Override the default undefined behavior by returning smartly a false when a variable is not defined
  *
  * @example :
  *

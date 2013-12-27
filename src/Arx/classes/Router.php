@@ -2,8 +2,13 @@
 
 use Illuminate\Routing\Router as ParentClass;
 
+/**
+ * Class Router
+ *
+ * @todo make it compatible outside Laravel
+ * @package Arx\classes
+ */
 class Router extends ParentClass {
-
 
     public function run()
     {

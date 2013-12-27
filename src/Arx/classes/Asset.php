@@ -26,8 +26,6 @@ use Assetic\Filter\Yui;
  * You can configure the paths by copying the core/config/asset.php
  * config file into your app/config folder and changing the settings.
  *
- * @package     Fuel
- * @subpackage  Core
  */
 class Asset
 {
@@ -103,6 +101,10 @@ class Asset
         }
 
         return static::$_instance;
+    }
+
+    public static function dump(){
+        dd(func_get_args());
     }
 
     /**

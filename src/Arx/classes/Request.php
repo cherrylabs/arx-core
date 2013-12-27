@@ -3,6 +3,12 @@
 use Illuminate\Session\Store as SessionStore;
 use Symfony\Component\HttpFoundation\ParameterBag;
 
+/**
+ * Class Request
+ *
+ * @extends the Request class of Symfony
+ * @package Arx\classes
+ */
 class Request extends \Symfony\Component\HttpFoundation\Request {
 
     /**

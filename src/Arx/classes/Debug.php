@@ -4,6 +4,9 @@ use DebugBar\StandardDebugBar;
 
 /**
  * Class Debug handler
+ *
+ * extends the DebugBar\StandardDebugBar class
+ *
  * @todo method according PSR-3 LOGcompos
  * @package Arx\classes
  */

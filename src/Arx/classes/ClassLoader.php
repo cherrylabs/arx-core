@@ -1,5 +1,12 @@
 <?php namespace Arx\classes;
-
+/**
+ * Class ClassLoader
+ * Loads your project classes automatically if they follow some standard PHP conventions.
+ *
+ *
+ * @see : http://symfony.com/fr/doc/current/components/class_loader.html
+ * @package Arx\classes
+ */
 class ClassLoader
 {
     private $namespaces = array();

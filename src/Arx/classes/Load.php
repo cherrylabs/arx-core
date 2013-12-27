@@ -7,9 +7,11 @@ use Arx\classes\Utils as u;
  *
  * Load a file or a link and handle the output
  *
+ * @todo better implementation of this class
  * @package Arx\classes
  */
 class Load {
+
     private $sJs, $root, $key, $add, $sCSS;
 
     public static function loadAll()
@@ -142,6 +144,12 @@ class Load {
      */
     public static function loadCSS($sFiles = 'all' , $mContext = array())
     {
+
+
+    } // loadCSS
+
+    public static function CSS($sFiles = 'all' , $mContext = array())
+    {
         $sCSS = null;
 
         $mContext = u::toArray($mContext);
@@ -189,11 +197,5 @@ class Load {
         }
 
         return $sCSS;
-
-    } // loadCSS
-
-    public static function CSS($sFiles = 'all' , $mContext = array())
-    {
-        return self::loadCSS($sFiles, $mContext);
     } // CSS (alias of loadCSS)
 }

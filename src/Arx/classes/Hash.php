@@ -1,5 +1,11 @@
 <?php namespace Arx\classes;
-
+/**
+ * Class Hash
+ *
+ * compatible with sha1 (used for retro-compatibility 5.3.2)
+ *
+ * @package Arx\classes
+ */
 class Hash implements \Illuminate\Hashing\HasherInterface {
 
     /**

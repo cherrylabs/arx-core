@@ -4,6 +4,7 @@
  * Hook class
  *
  * Class helper to manage easily a hook flow
+ *
  * @example
  *  Hook::add('{name}', array('{link}');
  * @category Hook
@@ -49,7 +50,6 @@ class Hook
     public static function add($name, $mValue)
     {
 
-        trigger_error();
         if (!isset($GLOBALS['hooked_'.$name])) {
             $GLOBALS['hooked_'.$name] = array();
         }
@@ -158,7 +158,6 @@ class Hook
 
                     break;
                 case ($c == 'css'):
-
                     $output = Asset::dump($GLOBALS[self::$pref.$c]);
                     break;
                 default:

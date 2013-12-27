@@ -3,12 +3,14 @@
 /**
  * Convert
  *
+ * Convert helpers to handle Country, fileExtType etc.
+ *
  * @category Utils
  * @package  Arx
  * @author   Daniel Sum <daniel@cherrypulp.com>
  * @author   Stéphan Zych <stephan@cherrypulp.com>
  * @license  http://opensource.org/licenses/MIT MIT License
- * @link     http://arx.xxx/doc/Convert
+ * @link     http://arx.io
  */
 abstract class Convert
 {
