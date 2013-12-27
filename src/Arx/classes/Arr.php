@@ -991,8 +991,20 @@ class Arr
     } // array_diverse
 
 
+    /**
+     * array_filter_keys
+     *
+     * return an array of key
+     *
+     * @param      $array with = regExp to match
+     * @param null $c
+     *
+     * @return array
+     */
     public static function array_filter_keys($array, $c = null)
     {
+
+        $array = self::toArray($array);
 
         $isMultidimensionnal = self::is_multi_array($array);
 
@@ -1004,25 +1016,25 @@ class Arr
             $data = array();
 
             if (!$isMultidimensionnal) {
-                foreach ($array as $key => $v) {
+                foreach ($array as $key => $value) {
                     if (preg_match('/' . $c['with'] . '/i', $key)) {
-                        $data[$key] = $v;
+                        $data[] = $value;
                     }
                 }
             } else {
-                foreach ($array as $k1 => $v1) {
+                foreach ($array as $v1) {
                     foreach ($v1 as $key => $value) {
                         if (preg_match('/' . $c['with'] . '/i', $key)) {
-                            $data[$key] = $v;
+                            $data[] = $value;
                         }
                     }
                 }
             }
 
             return $data;
-        } else {
-            return array_filter($array);
         }
+
+        return array_filter($array);
 
     } // array_filter_keys
 
