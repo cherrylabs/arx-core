@@ -5,10 +5,10 @@
 	<meta name="generator" content="ApiGen 2.8.0" />
 	<meta name="robots" content="noindex" />
 
-	<title>File src/Arx/classes/view/FileViewFinder.php</title>
+	<title>File Arx/classes/view/FileViewFinder.php</title>
 
 	<script type="text/javascript" src="resources/combined.js?3048962811"></script>
-	<script type="text/javascript" src="elementlist.js?3003587550"></script>
+	<script type="text/javascript" src="elementlist.js?1170623095"></script>
 	<link rel="stylesheet" type="text/css" media="all" href="resources/style.css?3505392360" />
 
 </head>
@@ -26,15 +26,17 @@
 						<ul>
 				<li class="active"><a href="namespace-Arx.classes.html">classes<span></span></a>
 						<ul>
-				<li><a href="namespace-Arx.classes.file.html">file</a>
+				<li><a href="namespace-Arx.classes.asset.html">asset</a>
 						</li>
-				<li><a href="namespace-Arx.classes.Filesystem.html">Filesystem</a>
+				<li><a href="namespace-Arx.classes.file.html">file</a>
 						</li>
 				<li class="active"><a href="namespace-Arx.classes.view.html">view<span></span></a>
 						<ul>
 				<li><a href="namespace-Arx.classes.view.engines.html">engines<span></span></a>
 						<ul>
 				<li><a href="namespace-Arx.classes.view.engines.blade.html">blade</a>
+						</li>
+				<li><a href="namespace-Arx.classes.view.engines.tpl.html">tpl</a>
 						</li>
 							</ul></li></ul></li></ul></li>
 				<li><a href="namespace-Arx.controllers.html">controllers</a>
@@ -48,11 +50,6 @@
 				<li><a href="namespace-Arx.modeles.html">modeles</a>
 						</li>
 				<li><a href="namespace-Arx.providers.html">providers</a>
-						</li>
-							</ul></li>
-				<li><a href="namespace-Composer.html">Composer<span></span></a>
-						<ul>
-				<li><a href="namespace-Composer.Autoload.html">Autoload</a>
 						</li>
 							</ul></li>
 				<li><a href="namespace-None.html">None</a>
@@ -123,7 +120,7 @@
 </span><span id="9" class="l"><a class="l" href="#9">  9: </a><span class="php-keyword1">class</span> <a id="FileViewFinder" href="#FileViewFinder">FileViewFinder</a> <span class="php-keyword1">extends</span> ParentClass
 </span><span id="10" class="l"><a class="l" href="#10"> 10: </a>{
 </span><span id="11" class="l"><a class="l" href="#11"> 11: </a>
-</span><span id="12" class="l"><a class="l" href="#12"> 12: </a>    <span class="php-keyword1">protected</span> <span class="php-var"><a id="$extensions" href="#$extensions">$extensions</a></span> = <span class="php-keyword1">array</span>(<span class="php-quote">'blade.php'</span>, <span class="php-quote">'php'</span>,<span class="php-quote">'tmpl.php'</span>,<span class="php-quote">'mustache.php'</span>,<span class="php-quote">'twig.php'</span>);
+</span><span id="12" class="l"><a class="l" href="#12"> 12: </a>    <span class="php-keyword1">protected</span> <span class="php-var"><a id="$extensions" href="#$extensions">$extensions</a></span> = <span class="php-keyword1">array</span>(<span class="php-quote">'blade.php'</span>,<span class="php-quote">'tpl.php'</span>,<span class="php-quote">'tpl.js'</span>,<span class="php-quote">'mustache.php'</span>,<span class="php-quote">'twig.php'</span>, <span class="php-quote">'php'</span>);
 </span><span id="13" class="l"><a class="l" href="#13"> 13: </a>
 </span><span id="14" class="l"><a class="l" href="#14"> 14: </a>    <span class="php-comment">/**
 </span></span><span id="15" class="l"><a class="l" href="#15"> 15: </a><span class="php-comment">     * Find a correct path file

@@ -7,7 +7,7 @@
 	<title>Class Arx\classes\view\engines\CompilerEngine</title>
 
 	<script type="text/javascript" src="resources/combined.js?3048962811"></script>
-	<script type="text/javascript" src="elementlist.js?3003587550"></script>
+	<script type="text/javascript" src="elementlist.js?1170623095"></script>
 	<link rel="stylesheet" type="text/css" media="all" href="resources/style.css?3505392360" />
 
 </head>
@@ -25,15 +25,17 @@
 						<ul>
 				<li class="active"><a href="namespace-Arx.classes.html">classes<span></span></a>
 						<ul>
-				<li><a href="namespace-Arx.classes.file.html">file</a>
+				<li><a href="namespace-Arx.classes.asset.html">asset</a>
 						</li>
-				<li><a href="namespace-Arx.classes.Filesystem.html">Filesystem</a>
+				<li><a href="namespace-Arx.classes.file.html">file</a>
 						</li>
 				<li class="active"><a href="namespace-Arx.classes.view.html">view<span></span></a>
 						<ul>
 				<li class="active"><a href="namespace-Arx.classes.view.engines.html">engines<span></span></a>
 						<ul>
 				<li><a href="namespace-Arx.classes.view.engines.blade.html">blade</a>
+						</li>
+				<li><a href="namespace-Arx.classes.view.engines.tpl.html">tpl</a>
 						</li>
 							</ul></li></ul></li></ul></li>
 				<li><a href="namespace-Arx.controllers.html">controllers</a>
@@ -47,11 +49,6 @@
 				<li><a href="namespace-Arx.modeles.html">modeles</a>
 						</li>
 				<li><a href="namespace-Arx.providers.html">providers</a>
-						</li>
-							</ul></li>
-				<li><a href="namespace-Composer.html">Composer<span></span></a>
-						<ul>
-				<li><a href="namespace-Composer.Autoload.html">Autoload</a>
 						</li>
 							</ul></li>
 				<li><a href="namespace-None.html">None</a>
@@ -114,6 +111,11 @@
 	<h1>Class CompilerEngine</h1>
 
 
+	<div class="description">
+	
+<p>Class CompilerEngine</p>
+
+	</div>
 
 	<dl class="tree">
 		<dd style="padding-left:0px">
@@ -143,9 +145,9 @@
 		
 		
 		<b>Namespace:</b> <a href="namespace-Arx.html">Arx</a>\<a href="namespace-Arx.classes.html">classes</a>\<a href="namespace-Arx.classes.view.html">view</a>\<a href="namespace-Arx.classes.view.engines.html">engines</a><br />
-		
+		<b>Package:</b> Arx\classes\view\engines<br />
 
-		<b>Located at</b> <a href="source-class-Arx.classes.view.engines.CompilerEngine.html#7-63" title="Go to source code">src/Arx/classes/view/engines/CompilerEngine.php</a><br />
+		<b>Located at</b> <a href="source-class-Arx.classes.view.engines.CompilerEngine.html#7-85" title="Go to source code">Arx/classes/view/engines/CompilerEngine.php</a><br />
 	</div>
 
 
@@ -163,7 +165,7 @@
 
 		<td class="name"><div>
 		<a class="anchor" href="#___construct">#</a>
-		<code><a href="source-class-Arx.classes.view.engines.CompilerEngine.html#16-25" title="Go to source code">__construct</a>( <span>Illuminate\View\Compilers\CompilerInterface <var>$compiler</var></span> )</code>
+		<code><a href="source-class-Arx.classes.view.engines.CompilerEngine.html#20-29" title="Go to source code">__construct</a>( <span>Illuminate\View\Compilers\CompilerInterface <var>$compiler</var></span> )</code>
 
 		<div class="description short">
 			
@@ -201,7 +203,7 @@
 
 		<td class="name"><div>
 		<a class="anchor" href="#_get">#</a>
-		<code><a href="source-class-Arx.classes.view.engines.CompilerEngine.html#27-51" title="Go to source code">get</a>( <span>Illuminate\View\Environment <var>$path</var></span>, <span>array <var>$data</var> = <span class="php-keyword1">array</span>()</span> )</code>
+		<code><a href="source-class-Arx.classes.view.engines.CompilerEngine.html#31-55" title="Go to source code">get</a>( <span>Illuminate\View\Environment <var>$path</var></span>, <span>array <var>$data</var> = <span class="php-keyword1">array</span>()</span> )</code>
 
 		<div class="description short">
 			
@@ -247,7 +249,44 @@
 
 		<td class="name"><div>
 		<a class="anchor" href="#_getCompiler">#</a>
-		<code><a href="source-class-Arx.classes.view.engines.CompilerEngine.html#53-61" title="Go to source code">getCompiler</a>( )</code>
+		<code><a href="source-class-Arx.classes.view.engines.CompilerEngine.html#57-65" title="Go to source code">getCompiler</a>( )</code>
+
+		<div class="description short">
+			
+<p>Get the compiler implementation.</p>
+
+		</div>
+
+		<div class="description detailed hidden">
+			
+<p>Get the compiler implementation.</p>
+
+
+
+
+				<h4>Returns</h4>
+				<div class="list">
+					<code>Illuminate\View\Compilers\CompilerInterface</code><br />
+				</div>
+
+
+
+
+		</div>
+		</div></td>
+	</tr>
+	<tr data-order="hook" id="_hook">
+
+		<td class="attributes"><code>
+			 public 
+			Illuminate\View\Compilers\CompilerInterface
+			
+			</code>
+		</td>
+
+		<td class="name"><div>
+		<a class="anchor" href="#_hook">#</a>
+		<code><a href="source-class-Arx.classes.view.engines.CompilerEngine.html#67-83" title="Go to source code">hook</a>( <span>mixed <var>$data</var></span>, <span>mixed <var>$params</var> = <span class="php-keyword1">array</span>()</span> )</code>
 
 		<div class="description short">
 			
@@ -306,7 +345,7 @@
 		</code></td>
 
 		<td class="name">
-				<a href="source-class-Arx.classes.view.engines.CompilerEngine.html#9-14" title="Go to source code"><var>$compiler</var></a>
+				<a href="source-class-Arx.classes.view.engines.CompilerEngine.html#13-18" title="Go to source code"><var>$compiler</var></a>
 		</td>
 		<td class="value"><code></code></td>
 		<td class="description"><div>

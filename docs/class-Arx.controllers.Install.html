@@ -7,7 +7,7 @@
 	<title>Class Arx\controllers\Install</title>
 
 	<script type="text/javascript" src="resources/combined.js?3048962811"></script>
-	<script type="text/javascript" src="elementlist.js?3003587550"></script>
+	<script type="text/javascript" src="elementlist.js?1170623095"></script>
 	<link rel="stylesheet" type="text/css" media="all" href="resources/style.css?3505392360" />
 
 </head>
@@ -25,15 +25,17 @@
 						<ul>
 				<li><a href="namespace-Arx.classes.html">classes<span></span></a>
 						<ul>
-				<li><a href="namespace-Arx.classes.file.html">file</a>
+				<li><a href="namespace-Arx.classes.asset.html">asset</a>
 						</li>
-				<li><a href="namespace-Arx.classes.Filesystem.html">Filesystem</a>
+				<li><a href="namespace-Arx.classes.file.html">file</a>
 						</li>
 				<li><a href="namespace-Arx.classes.view.html">view<span></span></a>
 						<ul>
 				<li><a href="namespace-Arx.classes.view.engines.html">engines<span></span></a>
 						<ul>
 				<li><a href="namespace-Arx.classes.view.engines.blade.html">blade</a>
+						</li>
+				<li><a href="namespace-Arx.classes.view.engines.tpl.html">tpl</a>
 						</li>
 							</ul></li></ul></li></ul></li>
 				<li class="active"><a href="namespace-Arx.controllers.html">controllers</a>
@@ -47,11 +49,6 @@
 				<li><a href="namespace-Arx.modeles.html">modeles</a>
 						</li>
 				<li><a href="namespace-Arx.providers.html">providers</a>
-						</li>
-							</ul></li>
-				<li><a href="namespace-Composer.html">Composer<span></span></a>
-						<ul>
-				<li><a href="namespace-Composer.Autoload.html">Autoload</a>
 						</li>
 							</ul></li>
 				<li><a href="namespace-None.html">None</a>
@@ -68,6 +65,7 @@
 			<h3>Classes</h3>
 			<ul>
 				<li><a href="class-Arx.controllers.Assets.html">Assets</a></li>
+				<li><a href="class-Arx.controllers.Base.html">Base</a></li>
 				<li class="active"><a href="class-Arx.controllers.Install.html">Install</a></li>
 				<li><a href="class-Arx.controllers.TestCase.html">TestCase</a></li>
 			</ul>
@@ -117,7 +115,7 @@
 
 	<div class="description">
 	
-<p>Controller Install</p>
+<p>Controller Install helper that you can extends</p>
 
 <p>A Default controller for installation</p>
 
@@ -159,7 +157,9 @@ Illuminate\Container\Container
 		<b>Namespace:</b> <a href="namespace-Arx.html">Arx</a>\<a href="namespace-Arx.controllers.html">controllers</a><br />
 		<b>Package:</b> Arx\controllers<br />
 
-		<b>Located at</b> <a href="source-class-Arx.controllers.Install.html#8-42" title="Go to source code">src/Arx/controllers/Install.php</a><br />
+				<b>Status:</b>
+				need workflow<br />
+		<b>Located at</b> <a href="source-class-Arx.controllers.Install.html#8-43" title="Go to source code">Arx/controllers/Install.php</a><br />
 	</div>
 
 
@@ -177,7 +177,7 @@ Illuminate\Container\Container
 
 		<td class="name"><div>
 		<a class="anchor" href="#__init">#</a>
-		<code><a href="source-class-Arx.controllers.Install.html#20-28" title="Go to source code">_init</a>( )</code>
+		<code><a href="source-class-Arx.controllers.Install.html#21-29" title="Go to source code">_init</a>( )</code>
 
 		<div class="description short">
 			
@@ -206,7 +206,7 @@ Illuminate\Container\Container
 
 		<td class="name"><div>
 		<a class="anchor" href="#__before">#</a>
-		<code><a href="source-class-Arx.controllers.Install.html#30-32" title="Go to source code">_before</a>( )</code>
+		<code><a href="source-class-Arx.controllers.Install.html#31-33" title="Go to source code">_before</a>( )</code>
 
 		<div class="description short">
 			
@@ -235,7 +235,7 @@ Illuminate\Container\Container
 
 		<td class="name"><div>
 		<a class="anchor" href="#__after">#</a>
-		<code><a href="source-class-Arx.controllers.Install.html#34-36" title="Go to source code">_after</a>( )</code>
+		<code><a href="source-class-Arx.controllers.Install.html#35-37" title="Go to source code">_after</a>( )</code>
 
 		<div class="description short">
 			
@@ -264,7 +264,7 @@ Illuminate\Container\Container
 
 		<td class="name"><div>
 		<a class="anchor" href="#_setup">#</a>
-		<code><a href="source-class-Arx.controllers.Install.html#38-41" title="Go to source code">setup</a>( )</code>
+		<code><a href="source-class-Arx.controllers.Install.html#39-42" title="Go to source code">setup</a>( )</code>
 
 		<div class="description short">
 			
@@ -288,31 +288,18 @@ Illuminate\Container\Container
 	<caption>Methods inherited from <a href="class-Arx.classes.Container.html#methods">Arx\classes\Container</a></caption>
 	<tr>
 		<td><code>
-			<a href="class-Arx.classes.Container.html#_alias">alias()</a>, 
-			<a href="class-Arx.classes.Container.html#_bind">bind()</a>, 
-			<a href="class-Arx.classes.Container.html#_bindIf">bindIf()</a>, 
-			<a href="class-Arx.classes.Container.html#_bound">bound()</a>, 
-			<a href="class-Arx.classes.Container.html#_build">build()</a>, 
-			<a href="class-Arx.classes.Container.html#_extend">extend()</a>, 
-			<a href="class-Arx.classes.Container.html#_extractAlias">extractAlias()</a>, 
-			<a href="class-Arx.classes.Container.html#_fireResolvingCallbacks">fireResolvingCallbacks()</a>, 
-			<a href="class-Arx.classes.Container.html#_getAlias">getAlias()</a>, 
-			<a href="class-Arx.classes.Container.html#_getBindings">getBindings()</a>, 
-			<a href="class-Arx.classes.Container.html#_getConcrete">getConcrete()</a>, 
-			<a href="class-Arx.classes.Container.html#_getDependencies">getDependencies()</a>, 
-			<a href="class-Arx.classes.Container.html#_getInstance">getInstance()</a>, 
-			<a href="class-Arx.classes.Container.html#_instance">instance()</a>, 
-			<a href="class-Arx.classes.Container.html#_isBuildable">isBuildable()</a>, 
-			<a href="class-Arx.classes.Container.html#_isShared">isShared()</a>, 
-			<a href="class-Arx.classes.Container.html#_make">make()</a>, 
-			<a href="class-Arx.classes.Container.html#_offsetExists">offsetExists()</a>, 
-			<a href="class-Arx.classes.Container.html#_offsetGet">offsetGet()</a>, 
-			<a href="class-Arx.classes.Container.html#_offsetSet">offsetSet()</a>, 
-			<a href="class-Arx.classes.Container.html#_offsetUnset">offsetUnset()</a>, 
-			<a href="class-Arx.classes.Container.html#_resolveNonClass">resolveNonClass()</a>, 
-			<a href="class-Arx.classes.Container.html#_resolving">resolving()</a>, 
-			<a href="class-Arx.classes.Container.html#_share">share()</a>, 
-			<a href="class-Arx.classes.Container.html#_singleton">singleton()</a>
+			<a href="class-Arx.classes.Container.html#_getInstance">getInstance()</a>
+		</code></td>
+	</tr>
+	</table>
+	<table class="summary inherited">
+	<caption>Methods inherited from <a href="class-ArrayAccess.html#methods">ArrayAccess</a></caption>
+	<tr>
+		<td><code>
+			<a href="class-ArrayAccess.html#_offsetExists">offsetExists()</a>, 
+			<a href="class-ArrayAccess.html#_offsetGet">offsetGet()</a>, 
+			<a href="class-ArrayAccess.html#_offsetSet">offsetSet()</a>, 
+			<a href="class-ArrayAccess.html#_offsetUnset">offsetUnset()</a>
 		</code></td>
 	</tr>
 	</table>
@@ -336,7 +323,7 @@ Illuminate\Container\Container
 		</code></td>
 
 		<td class="name">
-				<a href="source-class-Arx.controllers.Install.html#18" title="Go to source code"><var>$finderConfig</var></a>
+				<a href="source-class-Arx.controllers.Install.html#19" title="Go to source code"><var>$finderConfig</var></a>
 		</td>
 		<td class="value"><code></code></td>
 		<td class="description"><div>
@@ -358,11 +345,7 @@ Illuminate\Container\Container
 	<caption>Properties inherited from <a href="class-Arx.classes.Container.html#properties">Arx\classes\Container</a></caption>
 	<tr>
 		<td><code>
-			<a href="class-Arx.classes.Container.html#$_aInstances"><var>$_aInstances</var></a>, 
-			<a href="class-Arx.classes.Container.html#$aliases"><var>$aliases</var></a>, 
-			<a href="class-Arx.classes.Container.html#$bindings"><var>$bindings</var></a>, 
-			<a href="class-Arx.classes.Container.html#$instances"><var>$instances</var></a>, 
-			<a href="class-Arx.classes.Container.html#$resolvingCallbacks"><var>$resolvingCallbacks</var></a>
+			<a href="class-Arx.classes.Container.html#$_aInstances"><var>$_aInstances</var></a>
 		</code></td>
 	</tr>
 	</table>

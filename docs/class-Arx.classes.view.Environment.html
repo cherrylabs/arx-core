@@ -7,7 +7,7 @@
 	<title>Class Arx\classes\view\Environment</title>
 
 	<script type="text/javascript" src="resources/combined.js?3048962811"></script>
-	<script type="text/javascript" src="elementlist.js?3003587550"></script>
+	<script type="text/javascript" src="elementlist.js?1170623095"></script>
 	<link rel="stylesheet" type="text/css" media="all" href="resources/style.css?3505392360" />
 
 </head>
@@ -25,15 +25,17 @@
 						<ul>
 				<li class="active"><a href="namespace-Arx.classes.html">classes<span></span></a>
 						<ul>
-				<li><a href="namespace-Arx.classes.file.html">file</a>
+				<li><a href="namespace-Arx.classes.asset.html">asset</a>
 						</li>
-				<li><a href="namespace-Arx.classes.Filesystem.html">Filesystem</a>
+				<li><a href="namespace-Arx.classes.file.html">file</a>
 						</li>
 				<li class="active"><a href="namespace-Arx.classes.view.html">view<span></span></a>
 						<ul>
 				<li><a href="namespace-Arx.classes.view.engines.html">engines<span></span></a>
 						<ul>
 				<li><a href="namespace-Arx.classes.view.engines.blade.html">blade</a>
+						</li>
+				<li><a href="namespace-Arx.classes.view.engines.tpl.html">tpl</a>
 						</li>
 							</ul></li></ul></li></ul></li>
 				<li><a href="namespace-Arx.controllers.html">controllers</a>
@@ -47,11 +49,6 @@
 				<li><a href="namespace-Arx.modeles.html">modeles</a>
 						</li>
 				<li><a href="namespace-Arx.providers.html">providers</a>
-						</li>
-							</ul></li>
-				<li><a href="namespace-Composer.html">Composer<span></span></a>
-						<ul>
-				<li><a href="namespace-Composer.Autoload.html">Autoload</a>
 						</li>
 							</ul></li>
 				<li><a href="namespace-None.html">None</a>
@@ -114,6 +111,14 @@
 	<h1>Class Environment</h1>
 
 
+	<div class="description">
+	
+<p>Class Environment</p>
+
+<p>Add support for tpl Engine and Twig, Mustache template (you need to add and
+resolve yourself the mother)</p>
+
+	</div>
 
 	<dl class="tree">
 		<dd style="padding-left:0px">
@@ -140,13 +145,45 @@ Illuminate\View\Environment
 		
 		
 		<b>Namespace:</b> <a href="namespace-Arx.html">Arx</a>\<a href="namespace-Arx.classes.html">classes</a>\<a href="namespace-Arx.classes.view.html">view</a><br />
-		
+		<b>Package:</b> Arx\classes\view<br />
 
-		<b>Located at</b> <a href="source-class-Arx.classes.view.Environment.html#5-9" title="Go to source code">src/Arx/classes/view/Environment.php</a><br />
+		<b>Located at</b> <a href="source-class-Arx.classes.view.Environment.html#5-25" title="Go to source code">Arx/classes/view/Environment.php</a><br />
 	</div>
 
 
 
+	<table class="summary" id="methods">
+	<caption>Methods summary</caption>
+	<tr data-order="content" id="_content">
+
+		<td class="attributes"><code>
+			 public 
+			
+			
+			</code>
+		</td>
+
+		<td class="name"><div>
+		<a class="anchor" href="#_content">#</a>
+		<code><a href="source-class-Arx.classes.view.Environment.html#15-24" title="Go to source code">content</a>( <span>mixed <var>$view</var></span>, <span>mixed <var>$data</var> = <span class="php-keyword1">array</span>()</span>, <span>mixed <var>$mergeData</var> = <span class="php-keyword1">array</span>()</span> )</code>
+
+		<div class="description short">
+			
+		</div>
+
+		<div class="description detailed hidden">
+			
+
+
+
+
+
+
+
+		</div>
+		</div></td>
+	</tr>
+	</table>
 
 
 
@@ -168,9 +205,9 @@ Illuminate\View\Environment
 		</code></td>
 
 		<td class="name">
-				<a href="source-class-Arx.classes.view.Environment.html#6" title="Go to source code"><var>$extensions</var></a>
+				<a href="source-class-Arx.classes.view.Environment.html#13" title="Go to source code"><var>$extensions</var></a>
 		</td>
-		<td class="value"><code><span class="php-keyword1">array</span>(<span class="php-quote">'blade.php'</span> =&gt; <span class="php-quote">'blade'</span>, <span class="php-quote">'php'</span> =&gt; <span class="php-quote">'php'</span>, <span class="php-quote">'tmpl.php'</span> =&gt; <span class="php-quote">'tmpl'</span>, <span class="php-quote">'mustache.php'</span> =&gt; <span class="php-quote">'mustache'</span>, <span class="php-quote">'twig.php'</span> =&gt; <span class="php-quote">'twig'</span>)</code></td>
+		<td class="value"><code><span class="php-keyword1">array</span>(<span class="php-quote">'blade.php'</span> =&gt; <span class="php-quote">'blade'</span>, <span class="php-quote">'tpl.php'</span> =&gt; <span class="php-quote">'tpl'</span>, <span class="php-quote">'tpl.js'</span> =&gt; <span class="php-quote">'tpl'</span>, <span class="php-quote">'mustache.php'</span> =&gt; <span class="php-quote">'mustache'</span>, <span class="php-quote">'twig.php'</span> =&gt; <span class="php-quote">'twig'</span>, <span class="php-quote">'php'</span> =&gt; <span class="php-quote">'php'</span>)</code></td>
 		<td class="description"><div>
 			<a href="#$extensions" class="anchor">#</a>
 

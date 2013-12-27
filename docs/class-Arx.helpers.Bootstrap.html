@@ -7,7 +7,7 @@
 	<title>Class Arx\helpers\Bootstrap</title>
 
 	<script type="text/javascript" src="resources/combined.js?3048962811"></script>
-	<script type="text/javascript" src="elementlist.js?3003587550"></script>
+	<script type="text/javascript" src="elementlist.js?1170623095"></script>
 	<link rel="stylesheet" type="text/css" media="all" href="resources/style.css?3505392360" />
 
 </head>
@@ -25,15 +25,17 @@
 						<ul>
 				<li><a href="namespace-Arx.classes.html">classes<span></span></a>
 						<ul>
-				<li><a href="namespace-Arx.classes.file.html">file</a>
+				<li><a href="namespace-Arx.classes.asset.html">asset</a>
 						</li>
-				<li><a href="namespace-Arx.classes.Filesystem.html">Filesystem</a>
+				<li><a href="namespace-Arx.classes.file.html">file</a>
 						</li>
 				<li><a href="namespace-Arx.classes.view.html">view<span></span></a>
 						<ul>
 				<li><a href="namespace-Arx.classes.view.engines.html">engines<span></span></a>
 						<ul>
 				<li><a href="namespace-Arx.classes.view.engines.blade.html">blade</a>
+						</li>
+				<li><a href="namespace-Arx.classes.view.engines.tpl.html">tpl</a>
 						</li>
 							</ul></li></ul></li></ul></li>
 				<li><a href="namespace-Arx.controllers.html">controllers</a>
@@ -47,11 +49,6 @@
 				<li><a href="namespace-Arx.modeles.html">modeles</a>
 						</li>
 				<li><a href="namespace-Arx.providers.html">providers</a>
-						</li>
-							</ul></li>
-				<li><a href="namespace-Composer.html">Composer<span></span></a>
-						<ul>
-				<li><a href="namespace-Composer.Autoload.html">Autoload</a>
 						</li>
 							</ul></li>
 				<li><a href="namespace-None.html">None</a>
@@ -113,6 +110,14 @@
 	<h1>Class Bootstrap</h1>
 
 
+	<div class="description">
+	
+<p>Class Container</p>
+
+<p>extends Illuminate\Container\Container class add possibility to getInstance
+(Singleton pattern)</p>
+
+	</div>
 
 	<dl class="tree">
 		<dd style="padding-left:0px">
@@ -155,9 +160,9 @@ Illuminate\Container\Container
 		
 		
 		<b>Namespace:</b> <a href="namespace-Arx.html">Arx</a>\<a href="namespace-Arx.helpers.html">helpers</a><br />
-		
+		<b>Package:</b> Arx\classes<br />
 
-		<b>Located at</b> <a href="source-class-Arx.helpers.Bootstrap.html#15-30" title="Go to source code">src/Arx/helpers/bootstrap.php</a><br />
+		<b>Located at</b> <a href="source-class-Arx.helpers.Bootstrap.html#14-150" title="Go to source code">Arx/helpers/Bootstrap.php</a><br />
 	</div>
 
 
@@ -175,7 +180,40 @@ Illuminate\Container\Container
 
 		<td class="name"><div>
 		<a class="anchor" href="#_nav">#</a>
-		<code><a href="source-class-Arx.helpers.Bootstrap.html#17-29" title="Go to source code">nav</a>( <span>mixed <var>$data</var></span>, <span>mixed <var>$active</var> = <span class="php-keyword1">null</span></span>, <span>mixed <var>$attributes</var> = <span class="php-keyword1">array</span>(<span class="php-quote">'class'</span> =&gt; <span class="php-quote">'nav'</span>)</span>, <span>mixed <var>$tag</var> = <span class="php-quote">'ul'</span></span> )</code>
+		<code><a href="source-class-Arx.helpers.Bootstrap.html#16-44" title="Go to source code">nav</a>( <span>mixed <var>$data</var></span>, <span>mixed <var>$params</var> = <span class="php-keyword1">array</span>()</span> )</code>
+
+		<div class="description short">
+			
+<p>Navbar helper =&gt; generate a navbar helpers</p>
+
+		</div>
+
+		<div class="description detailed hidden">
+			
+<p>Navbar helper =&gt; generate a navbar helpers</p>
+
+
+
+
+
+
+
+
+		</div>
+		</div></td>
+	</tr>
+	<tr data-order="table" id="_table">
+
+		<td class="attributes"><code>
+			 public static
+			
+			
+			</code>
+		</td>
+
+		<td class="name"><div>
+		<a class="anchor" href="#_table">#</a>
+		<code><a href="source-class-Arx.helpers.Bootstrap.html#46-87" title="Go to source code">table</a>( <span>mixed <var>$data</var></span>, <span>mixed <var>$params</var> = <span class="php-keyword1">array</span>()</span> )</code>
 
 		<div class="description short">
 			
@@ -193,37 +231,105 @@ Illuminate\Container\Container
 		</div>
 		</div></td>
 	</tr>
+	<tr data-order="breadcrumb" id="_breadcrumb">
+
+		<td class="attributes"><code>
+			 public static
+			string
+			
+			</code>
+		</td>
+
+		<td class="name"><div>
+		<a class="anchor" href="#_breadcrumb">#</a>
+		<code><a href="source-class-Arx.helpers.Bootstrap.html#89-125" title="Go to source code">breadcrumb</a>( <span>mixed <var>$data</var></span>, <span>array <var>$params</var> = <span class="php-keyword1">array</span>()</span> )</code>
+
+		<div class="description short">
+			
+<p>Breadcrumb helper for bootstrap</p>
+
+		</div>
+
+		<div class="description detailed hidden">
+			
+<p>Breadcrumb helper for bootstrap</p>
+
+
+
+				<h4>Parameters</h4>
+				<div class="list"><dl>
+					<dt><var>$data</var></dt>
+					<dd><code>mixed</code><br>$data</dd>
+					<dt><var>$params</var></dt>
+					<dd><code>array</code><br>$params</dd>
+				</dl></div>
+
+				<h4>Returns</h4>
+				<div class="list">
+					<code>string</code><br />
+				</div>
+
+
+
+
+		</div>
+		</div></td>
+	</tr>
+	<tr data-order="formGroup" id="_formGroup">
+
+		<td class="attributes"><code>
+			 public static
+			string
+			
+			</code>
+		</td>
+
+		<td class="name"><div>
+		<a class="anchor" href="#_formGroup">#</a>
+		<code><a href="source-class-Arx.helpers.Bootstrap.html#127-149" title="Go to source code">formGroup</a>( )</code>
+
+		<div class="description short">
+			
+<p>Form helper for Bootstrap</p>
+
+		</div>
+
+		<div class="description detailed hidden">
+			
+<p>Form helper for Bootstrap</p>
+
+
+
+
+				<h4>Returns</h4>
+				<div class="list">
+					<code>string</code><br />
+				</div>
+
+
+
+
+		</div>
+		</div></td>
+	</tr>
 	</table>
 
 	<table class="summary inherited">
 	<caption>Methods inherited from <a href="class-Arx.classes.Container.html#methods">Arx\classes\Container</a></caption>
 	<tr>
 		<td><code>
-			<a href="class-Arx.classes.Container.html#_alias">alias()</a>, 
-			<a href="class-Arx.classes.Container.html#_bind">bind()</a>, 
-			<a href="class-Arx.classes.Container.html#_bindIf">bindIf()</a>, 
-			<a href="class-Arx.classes.Container.html#_bound">bound()</a>, 
-			<a href="class-Arx.classes.Container.html#_build">build()</a>, 
-			<a href="class-Arx.classes.Container.html#_extend">extend()</a>, 
-			<a href="class-Arx.classes.Container.html#_extractAlias">extractAlias()</a>, 
-			<a href="class-Arx.classes.Container.html#_fireResolvingCallbacks">fireResolvingCallbacks()</a>, 
-			<a href="class-Arx.classes.Container.html#_getAlias">getAlias()</a>, 
-			<a href="class-Arx.classes.Container.html#_getBindings">getBindings()</a>, 
-			<a href="class-Arx.classes.Container.html#_getConcrete">getConcrete()</a>, 
-			<a href="class-Arx.classes.Container.html#_getDependencies">getDependencies()</a>, 
-			<a href="class-Arx.classes.Container.html#_getInstance">getInstance()</a>, 
-			<a href="class-Arx.classes.Container.html#_instance">instance()</a>, 
-			<a href="class-Arx.classes.Container.html#_isBuildable">isBuildable()</a>, 
-			<a href="class-Arx.classes.Container.html#_isShared">isShared()</a>, 
-			<a href="class-Arx.classes.Container.html#_make">make()</a>, 
-			<a href="class-Arx.classes.Container.html#_offsetExists">offsetExists()</a>, 
-			<a href="class-Arx.classes.Container.html#_offsetGet">offsetGet()</a>, 
-			<a href="class-Arx.classes.Container.html#_offsetSet">offsetSet()</a>, 
-			<a href="class-Arx.classes.Container.html#_offsetUnset">offsetUnset()</a>, 
-			<a href="class-Arx.classes.Container.html#_resolveNonClass">resolveNonClass()</a>, 
-			<a href="class-Arx.classes.Container.html#_resolving">resolving()</a>, 
-			<a href="class-Arx.classes.Container.html#_share">share()</a>, 
-			<a href="class-Arx.classes.Container.html#_singleton">singleton()</a>
+			<a href="class-Arx.classes.Container.html#_getInstance">getInstance()</a>
+		</code></td>
+	</tr>
+	</table>
+	<table class="summary inherited">
+	<caption>Methods inherited from <a href="class-ArrayAccess.html#methods">ArrayAccess</a></caption>
+	<tr>
+		<td><code>
+			<a href="class-ArrayAccess.html#_offsetExists">offsetExists()</a>, 
+			<a href="class-ArrayAccess.html#_offsetGet">offsetGet()</a>, 
+			<a href="class-ArrayAccess.html#_offsetSet">offsetSet()</a>, 
+			<a href="class-ArrayAccess.html#_offsetUnset">offsetUnset()</a>
 		</code></td>
 	</tr>
 	</table>
@@ -243,11 +349,7 @@ Illuminate\Container\Container
 	<caption>Properties inherited from <a href="class-Arx.classes.Container.html#properties">Arx\classes\Container</a></caption>
 	<tr>
 		<td><code>
-			<a href="class-Arx.classes.Container.html#$_aInstances"><var>$_aInstances</var></a>, 
-			<a href="class-Arx.classes.Container.html#$aliases"><var>$aliases</var></a>, 
-			<a href="class-Arx.classes.Container.html#$bindings"><var>$bindings</var></a>, 
-			<a href="class-Arx.classes.Container.html#$instances"><var>$instances</var></a>, 
-			<a href="class-Arx.classes.Container.html#$resolvingCallbacks"><var>$resolvingCallbacks</var></a>
+			<a href="class-Arx.classes.Container.html#$_aInstances"><var>$_aInstances</var></a>
 		</code></td>
 	</tr>
 	</table>

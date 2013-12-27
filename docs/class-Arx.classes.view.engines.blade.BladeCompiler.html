@@ -7,7 +7,7 @@
 	<title>Class Arx\classes\view\engines\blade\BladeCompiler</title>
 
 	<script type="text/javascript" src="resources/combined.js?3048962811"></script>
-	<script type="text/javascript" src="elementlist.js?3003587550"></script>
+	<script type="text/javascript" src="elementlist.js?1170623095"></script>
 	<link rel="stylesheet" type="text/css" media="all" href="resources/style.css?3505392360" />
 
 </head>
@@ -25,15 +25,17 @@
 						<ul>
 				<li class="active"><a href="namespace-Arx.classes.html">classes<span></span></a>
 						<ul>
-				<li><a href="namespace-Arx.classes.file.html">file</a>
+				<li><a href="namespace-Arx.classes.asset.html">asset</a>
 						</li>
-				<li><a href="namespace-Arx.classes.Filesystem.html">Filesystem</a>
+				<li><a href="namespace-Arx.classes.file.html">file</a>
 						</li>
 				<li class="active"><a href="namespace-Arx.classes.view.html">view<span></span></a>
 						<ul>
 				<li class="active"><a href="namespace-Arx.classes.view.engines.html">engines<span></span></a>
 						<ul>
 				<li class="active"><a href="namespace-Arx.classes.view.engines.blade.html">blade</a>
+						</li>
+				<li><a href="namespace-Arx.classes.view.engines.tpl.html">tpl</a>
 						</li>
 							</ul></li></ul></li></ul></li>
 				<li><a href="namespace-Arx.controllers.html">controllers</a>
@@ -47,11 +49,6 @@
 				<li><a href="namespace-Arx.modeles.html">modeles</a>
 						</li>
 				<li><a href="namespace-Arx.providers.html">providers</a>
-						</li>
-							</ul></li>
-				<li><a href="namespace-Composer.html">Composer<span></span></a>
-						<ul>
-				<li><a href="namespace-Composer.Autoload.html">Autoload</a>
 						</li>
 							</ul></li>
 				<li><a href="namespace-None.html">None</a>
@@ -113,6 +110,13 @@
 	<h1>Class BladeCompiler</h1>
 
 
+	<div class="description">
+	
+<p>Class BladeCompiler</p>
+
+<p>Extend BladeCompiler</p>
+
+	</div>
 
 	<dl class="tree">
 		<dd style="padding-left:0px">
@@ -139,9 +143,11 @@ Illuminate\View\Compilers\BladeCompiler
 		
 		
 		<b>Namespace:</b> <a href="namespace-Arx.html">Arx</a>\<a href="namespace-Arx.classes.html">classes</a>\<a href="namespace-Arx.classes.view.html">view</a>\<a href="namespace-Arx.classes.view.engines.html">engines</a>\<a href="namespace-Arx.classes.view.engines.blade.html">blade</a><br />
-		
+		<b>Package:</b> Arx\classes\view\engines\blade<br />
 
-		<b>Located at</b> <a href="source-class-Arx.classes.view.engines.blade.BladeCompiler.html#8-56" title="Go to source code">src/Arx/classes/view/engines/blade/BladeCompiler.php</a><br />
+				<b>See:</b>
+				Illuminate\View\Compilers\BladeCompiler<br />
+		<b>Located at</b> <a href="source-class-Arx.classes.view.engines.blade.BladeCompiler.html#8-64" title="Go to source code">Arx/classes/view/engines/blade/BladeCompiler.php</a><br />
 	</div>
 
 
@@ -167,7 +173,7 @@ Illuminate\View\Compilers\BladeCompiler
 		</code></td>
 
 		<td class="name">
-				<a href="source-class-Arx.classes.view.engines.blade.BladeCompiler.html#10-15" title="Go to source code"><var>$extensions</var></a>
+				<a href="source-class-Arx.classes.view.engines.blade.BladeCompiler.html#18-23" title="Go to source code"><var>$extensions</var></a>
 		</td>
 		<td class="value"><code><span class="php-keyword1">array</span>()</code></td>
 		<td class="description"><div>
@@ -194,7 +200,7 @@ Illuminate\View\Compilers\BladeCompiler
 		</code></td>
 
 		<td class="name">
-				<a href="source-class-Arx.classes.view.engines.blade.BladeCompiler.html#17-40" title="Go to source code"><var>$compilers</var></a>
+				<a href="source-class-Arx.classes.view.engines.blade.BladeCompiler.html#25-48" title="Go to source code"><var>$compilers</var></a>
 		</td>
 		<td class="value"><code><span class="php-keyword1">array</span>(
     <span class="php-quote">'Extensions'</span>,
@@ -239,7 +245,7 @@ Illuminate\View\Compilers\BladeCompiler
 		</code></td>
 
 		<td class="name">
-				<a href="source-class-Arx.classes.view.engines.blade.BladeCompiler.html#42-47" title="Go to source code"><var>$contentTags</var></a>
+				<a href="source-class-Arx.classes.view.engines.blade.BladeCompiler.html#50-55" title="Go to source code"><var>$contentTags</var></a>
 		</td>
 		<td class="value"><code><span class="php-keyword1">array</span>(<span class="php-quote">'{{'</span>, <span class="php-quote">'}}'</span>)</code></td>
 		<td class="description"><div>
@@ -266,7 +272,7 @@ Illuminate\View\Compilers\BladeCompiler
 		</code></td>
 
 		<td class="name">
-				<a href="source-class-Arx.classes.view.engines.blade.BladeCompiler.html#49-54" title="Go to source code"><var>$escapedTags</var></a>
+				<a href="source-class-Arx.classes.view.engines.blade.BladeCompiler.html#57-62" title="Go to source code"><var>$escapedTags</var></a>
 		</td>
 		<td class="value"><code><span class="php-keyword1">array</span>(<span class="php-quote">'{{{'</span>, <span class="php-quote">'}}}'</span>)</code></td>
 		<td class="description"><div>
