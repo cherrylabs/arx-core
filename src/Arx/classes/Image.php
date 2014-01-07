@@ -607,7 +607,7 @@ class Image
     {
 
         // Load overlay image
-        $overlay = new c_image($overlay_file);
+        $overlay = new self($overlay_file);
 
         // Convert opacity
         $opacity = $opacity * 100;
