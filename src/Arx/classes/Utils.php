@@ -40,7 +40,7 @@ class Utils
         $err = false;
 
         if (!is_callable($callback, false, $realfunc)) {
-            $err = 'This function is not callable';
+            $err = func_get_args();
         }
 
         $bodyFunc = 'function ' . $aliasName . '() {
