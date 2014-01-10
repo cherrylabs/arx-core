@@ -3,16 +3,94 @@
  * bootstrap helper class
  *
  * @project : arx-contrib
- * @author  : Daniel Sum <daniel@cherrypulp.com>
+ * @author  : Daniel Sum <daniel@cherrypulp.com>, Stéphan Zych <stephan@cherrypulp.com>
  */
 
 namespace Arx\helpers;
 
 use Arx\classes\Helper;
+use Arx\classes\Strings;
 use HTML, Form;
 
 class Bootstrap extends Helper
 {
+    /**
+     * Carousel helper => generate a carousel helpers
+     * @todo child attributes handler
+     *
+     * @param       $data
+     * @param array $params
+     * @param null  $formatContent
+     *
+     * @return string
+     */
+    public static function carousel($data, $params = array(), $formatContent = null) {
+        $defaults = array(
+            'parent@' => array(
+                'id' => 'carousel',
+                'class' => 'carousel slide',
+                'data-interval' => 'false',
+                'data-wrap' => 'true',
+            ),
+            'child@' => array(
+                'class' => 'item'
+            ),
+            'item_per_slide' => '1',
+            'icon_prev' => 'icon-prev',
+            'icon_next' => 'icon-next',
+        );
+
+        $params = array_merge_recursive($defaults, $params);
+
+        if (is_array($params['parent@']['id'])) {
+            $params['parent@']['id'] = end($params['parent@']['id']);
+        }
+
+
+        $pagination = '<li data-target="#'.$params['parent@']['id'].'" data-slide-to="0" class="active"></li>';
+        $slides = '<div class="'.$params['child@']['class'].' active">';
+
+        $hideNav = ($params['item_per_slide'] >= count($data) ? true : false);
+
+        if (!is_array($data)) {
+            return;
+        }
+
+        $i = 0;
+        foreach ($data as $key => $post) {
+            if ($i > 0 && $i % $params['item_per_slide'] === 0) {
+                $pagination .= '<li data-target="#'.$params['parent@']['id'].'" data-slide-to="'.($i / $params['item_per_slide']).'"></li>';
+                $slides .= '</div><div '.HTML::attributes($params['child@']).'>';
+            }
+
+            if (is_null($formatContent)) {
+                $slides .= '<div class="'.HTML::attributes($params['child@']).'">'.$post.'</div>';
+            } else {
+                $slides .= $formatContent($post, $params, $i);
+            }
+
+            $i++;
+        }
+
+        $slides .= '</div>';
+
+        if ($hideNav) {
+            $output =  '<div '.HTML::attributes($params['parent@']).'><div class="carousel-inner">'.$slides.'</div></div><!--/ #'.$params['parent@']['id'].' -->';
+        } else {
+            $output = '<div '.HTML::attributes($params['parent@']).'>
+                <ol class="carousel-indicators">'.$pagination.'</ol>
+
+                <div class="carousel-inner">'.$slides.'</div>
+
+                <a class="left carousel-control" href="#'.$params['parent@']['id'].'" data-slide="prev"><span class="'.$params['icon_prev'].'"></span></a>
+                <a class="right carousel-control" href="#'.$params['parent@']['id'].'" data-slide="next"><span class="'.$params['icon_next'].'"></span></a>
+            </div><!--/ #'.$params['parent@']['id'].' -->';
+        }
+
+        return $output;
+    } // carousel
+
+
     /**
      * Navbar helper => generate a navbar helpers
      * @todo better navigation handler
