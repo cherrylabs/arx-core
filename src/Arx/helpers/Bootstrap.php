@@ -75,7 +75,7 @@ class Bootstrap extends Helper
         $slides .= '</div>';
 
         if ($hideNav) {
-            $output =  '<div '.HTML::attributes($params['parent@']).'><div class="carousel-inner">'.$slides.'</div></div><!--/ #'.$params['parent@']['id'].' -->';
+            $output = '<div '.HTML::attributes($params['parent@']).'><div class="carousel-inner">'.$slides.'</div></div><!--/ #'.$params['parent@']['id'].' -->';
         } else {
             $output = '<div '.HTML::attributes($params['parent@']).'>
                 <ol class="carousel-indicators">'.$pagination.'</ol>
@@ -89,6 +89,56 @@ class Bootstrap extends Helper
 
         return $output;
     } // carousel
+
+
+    public static function columns($data, $params = array(), $formatContent = null) {
+        $defaults = array(
+            'parent@' => array(
+                'class' => 'row',
+            ),
+            'child@' => array(
+                'class' => 'col-sm-'
+            ),
+            'size' => 12
+        );
+
+        if (!is_array($data)) {
+            return;
+        }
+
+        $params = array_merge_recursive($defaults, $params);
+
+        if (is_array($params['parent@']['class'])) {
+            $params['parent@']['class'] = end($params['parent@']['class']);
+        }
+
+        if (is_array($params['child@']['class'])) {
+            $params['child@']['class'] = end($params['child@']['class']);
+        }
+
+        $output = '';
+
+        $columns = count($data);
+        $size = round($params['size'] / $columns);
+
+        $i = 0;
+        foreach ($data as $key => $column) {
+            if ($i > 0 && $i % $columns === 0) {
+                $output .= '</div><!--/ #'.$params['parent@']['class'].' --><div '.HTML::attributes($params['parent@']).'>';
+            }
+
+            if (is_null($formatContent)) {
+                $params['child@']['class'] = $params['child@']['class'].$size;
+                $output .= '<div '.HTML::attributes($params['child@']).'>'.$column.'</div>';
+            } else {
+                $output .= $formatContent($column, $params, $size);
+            }
+
+            $i++;
+        }
+
+        return '<div '.HTML::attributes($params['parent@']).'>'.$output.'</div>';
+    } // columns
 
 
     /**

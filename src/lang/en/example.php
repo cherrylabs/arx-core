@@ -1,13 +1,16 @@
 <?php //
 
 return array(
-    "project" => array(
+    'project' => array(
         "title" => 'Project name'
     ),
-    "nav" => array(
+    'nav' => array(
         array(
             'name' => 'Home',
             'link' => '#home'
         )
+    ),
+    'carousel' => array(
+
     )
 );

@@ -2,16 +2,18 @@
 /**
  * @todo better way to handle html lang and NgApp
  */
-$ngApp = isset($ngApp) ? ($ngApp === true ? 'ng-app' : 'ng-app="'.$ngApp.'"') : '';
+
+
+$ngApp = $this->ngApp ? ($this->ngApp === true ? 'ng-app' : 'ng-app="'.$this->ngApp.'"') : '';
 $lang = Lang::getLocale() ?: 'en';
 ?>
 @section('doctype')
 <!DOCTYPE html>
-<!--[if IEMobile 7]><html class="iem7" lang="<% $lang %>" dir="ltr" <% $this->ngApp %><![endif]-->
-<!--[if lt IE 7]><html class="ie6" lang="<% $lang %>" dir="ltr" <% $this->ngApp %><![endif]-->
-<!--[if (IE 7)&(!IEMobile)]><html class="ie7" lang="<% $lang %>" dir="ltr" <% $this->ngApp %><![endif]-->
-<!--[if IE 8]><html class="ie8" lang="<% $lang %>" dir="ltr" <% $this->ngApp %>><![endif]-->
-<!--[if (gte IE 9)|!(IE)]><!--><html lang="<% $lang %>" dir="ltr" <% $this->ngApp %>><!--<![endif]-->
+<!--[if IEMobile 7]><html class="iem7" lang="<% $lang %>" dir="ltr" <% $ngApp %>><![endif]-->
+<!--[if lt IE 7]><html class="ie6" lang="<% $lang %>" dir="ltr" <% $ngApp %>><![endif]-->
+<!--[if (IE 7)&(!IEMobile)]><html class="ie7" lang="<% $lang %>" dir="ltr" <% $ngApp %>><![endif]-->
+<!--[if IE 8]><html class="ie8" lang="<% $lang %>" dir="ltr" <% $ngApp %>><![endif]-->
+<!--[if (gte IE 9)|!(IE)]><!--><html lang="<% $lang %>" dir="ltr" <% $ngApp %>><!--<![endif]-->
 @show
 <head>
     @section('head')
