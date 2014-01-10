@@ -1,7 +1,6 @@
 <?php namespace Arx\classes;
 
-use Illuminate\Html\HtmlBuilder as ParentClass;
-use Illuminate\Html\HtmlBuilder;
+use Illuminate\Html\FormBuilder as ParentClass;
 use Illuminate\Support\Facades\Facade;
 
 /**
@@ -11,12 +10,12 @@ use Illuminate\Support\Facades\Facade;
  *
  * @package Arx\classes
  */
-class Html extends Singleton {
+class Form extends Singleton {
 
     protected $html;
 
     public function __construct(){
-        $this->html = new HtmlBuilder();
+        $this->html = new ParentClass();
     }
     
     function __callStatic($name, $args){
