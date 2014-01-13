@@ -35,7 +35,7 @@ class Bootstrap extends Helper
             'child@' => array(
                 'class' => 'item'
             ),
-            'item_per_slide' => '1',
+            'item_per_slide' => 1,
             'icon_prev' => 'icon-prev',
             'icon_next' => 'icon-next',
         );
@@ -46,6 +46,9 @@ class Bootstrap extends Helper
             $params['parent@']['id'] = end($params['parent@']['id']);
         }
 
+        if (is_array($params['item_per_slide'])) {
+            $params['item_per_slide'] = end($params['item_per_slide']);
+        }
 
         $pagination = '<li data-target="#'.$params['parent@']['id'].'" data-slide-to="0" class="active"></li>';
         $slides = '<div class="'.$params['child@']['class'].' active">';
@@ -58,8 +61,8 @@ class Bootstrap extends Helper
 
         $i = 0;
         foreach ($data as $key => $post) {
-            if ($i > 0 && $i % $params['item_per_slide'] === 0) {
-                $pagination .= '<li data-target="#'.$params['parent@']['id'].'" data-slide-to="'.($i / $params['item_per_slide']).'"></li>';
+            if ($i > 0 && $i % $params['item_per_slide'] == 0) {
+                $pagination .= '<li data-target="#'.$params['parent@']['id'].'" data-slide-to="'.($i / intval($params['item_per_slide'])).'"></li>';
                 $slides .= '</div><div '.HTML::attributes($params['child@']).'>';
             }
 
@@ -212,7 +215,70 @@ class Bootstrap extends Helper
 
             return $html;
         }
-    }
+    } // table
+
+    /**
+     * @param       $data
+     * @param array $params
+     * @param null  $formatContent
+     */
+    public static function tabs($data, $params = array(), $formatContent = null) {
+        $defaults = array(
+            'nav' => array(
+                'parent@' => array(),
+                'child@' => array(
+                    'data-toggle' => 'tab'
+                ),
+            ),
+            'content' => array(
+                'parent@' => array(
+                    'class' => 'tab-content'
+                ),
+                'child@' => array(
+                    'class' => 'tab-pane fade'
+                ),
+            ),
+        );
+
+        $params = array_merge_recursive($defaults, $params);
+
+        $output = '';
+
+        if (is_null($formatContent)) {
+            $nav = '<ul '.HTML::attributes($params['nav']['parent@']).'>';
+            $content = '<div '.HTML::attributes($params['content']['parent@']).'>';
+
+            foreach ($data as $key => $tab) {
+
+                // nav
+                $nav .= '<li'.($key === 0 ? ' class="active"' : '').'>'
+                    .'<a '.HTML::attributes($params['nav']['child@']).' href="#tab-'.$key.'">'.$tab['title'].'</a>'
+                .'</li>';
+
+
+                // tabs
+                $contentAttr = $params['content']['child@'];
+
+                if ($key === 0) {
+                    $contentAttr['class'] .= ' in active';
+                }
+
+                $content .= '<div '.HTML::attributes($contentAttr).' id="tab-'.$key.'">'
+                    .$tab['content']
+                .'</div>';
+
+            }
+
+            $nav .= '</ul>';
+            $content .= '</div>';
+
+            $output .= $nav.$content;
+        } else {
+            $output .= $formatContent($data, $tab, $key);
+        }
+
+        return $output;
+    } // tabs
 
     /**
      * Breadcrumb helper for bootstrap
