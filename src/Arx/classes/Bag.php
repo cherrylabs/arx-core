@@ -23,7 +23,7 @@ class Bag implements \ArrayAccess, \Iterator {
      * Auto constructor
      * @param $data
      */
-    public function __construct($data) {
+    public function __construct($data = array()) {
         $this->__var = $data;
         return $data;
     }
