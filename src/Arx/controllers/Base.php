@@ -14,7 +14,5 @@ use Controller;
  */
 
 class Base extends Controller {
-    public function setContent(){
-        
-    }
+
 } 
