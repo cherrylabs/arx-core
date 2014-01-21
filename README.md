@@ -18,9 +18,15 @@ For more information about Composer
 
 # Install Arx-core only
 
-add "arx-core" : "*" to your composer.json file then run
+Install Composer on your machine then : 
 
-composer install or update
+    composer require arx/core
+
+add 
+    "arx-core" : "*"
+to your composer.json file then run
+
+    composer install or update
 
 # What's new ? :
 
