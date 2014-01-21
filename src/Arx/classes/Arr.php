@@ -1058,6 +1058,74 @@ class Arr
 
 
     /**
+     * Transform a CSV file to array
+     *
+     * @param $file
+     * @param array $param
+     * @return array
+     */
+    public static function csvToArray($file, $param = array(
+        'length' => 0,
+        'delimiter' => ';',
+        'enclosure' => '"',
+        'escape' => '\\',
+        'skipFirstRow' => false,
+        'indexFromFirstRow' => false
+    )){
+
+        $defParam = array(
+            'length' => 0,
+            'delimiter' => ';',
+            'enclosure' => '"',
+            'escape' => '\\',
+            'skipFirstRow' => false,
+            'indexFromFirstRow' => false
+        );
+
+        $param = array_merge($defParam, $param);
+
+        $handle = fopen($file, 'r');
+
+        $data = array();
+
+        $first = true;
+        $index = false;
+
+        while (($line = fgetcsv($handle, $param['length'], $param['delimiter'], $param['enclosure'], $param['escape'])) !== FALSE) {
+            if($first){
+                if($param['indexFromFirstRow']){
+                    $index = $line;
+                }
+            }
+
+            if($param['indexFromFirstRow'] && !$first || ($param['indexFromFirstRow'] && $param['skipFirstRow'] !== true)){
+
+                $newline = array();
+
+                foreach($line as $key => $value){
+                    if(isset($index[$key])){
+                        $newline[$index[$key]] = $value;
+                    } else {
+                        $newline[] = $value;
+                    }
+                }
+                $data[] = $newline;
+            } elseif(!$first || ($first && $param['skipFirstRow'] !== true)) {
+                $data[] = $line;
+            }
+
+            $first = false;
+        }
+
+        fclose($handle);
+
+        return $data;
+
+
+    }
+
+
+    /**
      * return the next element of a specific key
      *
      * @param $
