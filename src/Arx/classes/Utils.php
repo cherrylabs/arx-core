@@ -39,18 +39,47 @@ class Utils
     {
         $err = false;
 
-        if (!is_callable($callback, false, $realfunc)) {
-            $err = func_get_args();
+        if (function_exists($aliasName)) {
+            $err = 'This function already' . $aliasName . ' exists';
         }
 
-        $bodyFunc = 'function ' . $aliasName . '() {
-            $args = func_get_args();
-            return call_user_func_array("' . $realfunc . '", $args);
-        }';
+        if (!is_callable($callback, false, $realfunc)) {
+            $err = $callback.' is not callable';
+        }
 
-        eval($bodyFunc);
+        if($err === false){
+            try {
+                $bodyFunc = 'function ' . $aliasName . '() {
+                    $args = func_get_args();
+                    return call_user_func_array("' . $realfunc . '", $args);
+                }';
 
-        return $err;
+                eval($bodyFunc);
+
+                return array('result' => true, 'msg' => "function $aliasName created from $callback");
+
+            } catch (\Exception $e) {
+
+                $trace = debug_backtrace();
+
+                $msg = sprintf(
+                    '%s(): %s in %s on line %d',
+                    $trace[0]['function'],
+                    $err,
+                    $trace[0]['file'],
+                    $trace[0]['line']
+                );
+
+                trigger_error($msg,
+                    E_USER_WARNING
+                );
+
+                return array('result' => false, 'msg' => $err);
+            }
+
+        } else {
+            return array('result' => false, 'msg' => $err);
+        }
     } // alias
 
 #B

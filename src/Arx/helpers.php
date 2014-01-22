@@ -3,19 +3,25 @@
  * Helper loader for functions
  * @todo : better helper integrations via autoload functions
  */
-use Arx\classes\Utils as u;
+use Arx\classes\Utils;
 
 if ( ! function_exists('\predie'))
 {
-    u::alias('\predie', '\Arx\classes\Utils::predie'); # Do a better pre die
+    function predie(){
+        return call_user_func_array('Arx\classes\Utils::predie', func_get_args());
+    }
 }
 
 if ( ! function_exists('\de'))
 {
-    u::alias('\de', '\Arx\classes\Utils::predie'); # A shortcode of Predie
+    function de(){
+        return call_user_func_array('Arx\classes\Utils::de', func_get_args());
+    }
 }
 
 if ( ! function_exists('\k'))
 {
-    u::alias('\k', '\Arx\classes\Utils::k'); # do a debug line
+    function k(){
+        return call_user_func_array('Arx\classes\Utils::k', func_get_args());
+    }
 }
