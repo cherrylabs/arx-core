@@ -148,7 +148,7 @@ class Kint_Decorators_Rich extends Kint
 	 *
 	 * @return string
 	 */
-	protected static function _wrapStart( $callee )
+	public static function _wrapStart( $callee )
 	{
 		// colors looping outputs the same (i.e. if same line in code dumps variables multiple time,
 		// we assume it's in a loop)
@@ -177,7 +177,7 @@ class Kint_Decorators_Rich extends Kint
 	 *
 	 * @return string
 	 */
-	protected static function _wrapEnd( $callee, $prevCaller )
+	public static function _wrapEnd( $callee, $prevCaller )
 	{
 		if ( !Kint::$displayCalledFrom ) {
 			return '</div>';

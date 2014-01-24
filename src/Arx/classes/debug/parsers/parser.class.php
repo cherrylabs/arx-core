@@ -171,7 +171,7 @@ abstract class kintParser extends kintVariableData
 	 * @param null $name
 	 *
 	 * @throws Exception
-	 * @return \kintParser
+	 * @return \Arx\classes\debug\KintParser
 	 */
 	public final static function factory( & $variable, $name = null )
 	{
