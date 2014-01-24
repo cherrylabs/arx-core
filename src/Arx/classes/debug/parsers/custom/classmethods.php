@@ -72,7 +72,7 @@ class Kint_Parsers_ClassMethods extends kintParser
                     $params[] = $paramString;
                 }
 
-                $output = new \kintVariableData();
+                $output = new \Arx\classes\debug\kintVariableData();
 
                 // Simple DocBlock parser, look for @return
                 if(($docBlock = $method->getDocComment())) {
@@ -116,7 +116,7 @@ class Kint_Parsers_ClassMethods extends kintParser
                     $output->extendedValue .= "<small>Inherited from <i>{$declaringClassName}</i></small>\n";
                 }
 
-                $fileName = \Kint::shortenPath($method->getFileName(), $method->getStartLine());
+                $fileName = \Arx\classes\debug\Kint::shortenPath($method->getFileName(), $method->getStartLine());
 
                 if($fileName) {
                     $output->extendedValue .= "<small>Defined in {$fileName}</small>";

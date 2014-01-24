@@ -9,7 +9,7 @@ class Kint_Parsers_ClassStatics extends kintParser
 
 		$reflection = new \ReflectionClass( $variable );
 		// first show static values
-		foreach ( $reflection->getProperties( ReflectionProperty::IS_STATIC ) as $property ) {
+		foreach ( $reflection->getProperties( \ReflectionProperty::IS_STATIC ) as $property ) {
 			if ( $property->isPrivate() ) {
 				if ( !method_exists( $property, 'setAccessible' ) ) {
 					break;
