@@ -256,7 +256,7 @@ class Utils
     public static function getIpInfos($ip = null)
     {
 
-        $response = self::getJSON('http://ip-api.com/json');
+        $response = self::getJSON('http://freegeoip.net/json');
 
         return $response;
 
