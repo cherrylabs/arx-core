@@ -12,7 +12,7 @@ namespace Arx\helpers;
 use Arx\classes\Arr;
 use Arx\classes\Form;
 use Arx\classes\Helper;
-use Arx\classes\HTML;
+use Arx\classes\Html;
 use Arx\classes\Strings;
 
 
@@ -59,11 +59,11 @@ class Bootstrap extends Helper
         foreach ($data as $key => $post) {
             if ($i > 0 && $i % $params['item_per_slide'] == 0) {
                 $pagination .= '<li data-target="#'.$params['parent@']['id'].'" data-slide-to="'.($i / intval($params['item_per_slide'])).'"></li>';
-                $slides .= '</div><div'.HTML::attributes($params['child@']).'>';
+                $slides .= '</div><div'.Html::attributes($params['child@']).'>';
             }
 
             if (is_null($formatContent)) {
-                $slides .= '<div'.HTML::attributes($params['child@']).'>'.$post.'</div>';
+                $slides .= '<div'.Html::attributes($params['child@']).'>'.$post.'</div>';
             } else {
                 $slides .= $formatContent($post, $params, $i);
             }
@@ -74,9 +74,9 @@ class Bootstrap extends Helper
         $slides .= '</div>';
 
         if ($hideNav) {
-            $output = '<div '.HTML::attributes($params['parent@']).'><div class="carousel-inner">'.$slides.'</div></div><!--/ #'.$params['parent@']['id'].' -->';
+            $output = '<div '.Html::attributes($params['parent@']).'><div class="carousel-inner">'.$slides.'</div></div><!--/ #'.$params['parent@']['id'].' -->';
         } else {
-            $output = '<div '.HTML::attributes($params['parent@']).'>
+            $output = '<div '.Html::attributes($params['parent@']).'>
                 <ol class="carousel-indicators">'.$pagination.'</ol>
 
                 <div class="carousel-inner">'.$slides.'</div>
@@ -123,12 +123,12 @@ class Bootstrap extends Helper
         $i = 0;
         foreach ($data as $key => $column) {
             if ($i > 0 && $i % $columns === 0) {
-                $output .= '</div><!--/ #'.$params['parent@']['class'].' --><div '.HTML::attributes($params['parent@']).'>';
+                $output .= '</div><!--/ #'.$params['parent@']['class'].' --><div '.Html::attributes($params['parent@']).'>';
             }
 
             if (is_null($formatContent)) {
                 $params['child@']['class'] = $params['child@']['class'].$size;
-                $output .= '<div '.HTML::attributes($params['child@']).'>'.$column.'</div>';
+                $output .= '<div '.Html::attributes($params['child@']).'>'.$column.'</div>';
             } else {
                 $output .= $formatContent($column, $params, $size);
             }
@@ -136,7 +136,7 @@ class Bootstrap extends Helper
             $i++;
         }
 
-        return '<div '.HTML::attributes($params['parent@']).'>'.$output.'</div>';
+        return '<div '.Html::attributes($params['parent@']).'>'.$output.'</div>';
     } // columns
 
 
@@ -157,11 +157,11 @@ class Bootstrap extends Helper
 
         $params = array_merge($defParams, $params);
 
-        $html = '<' . $params['parent'] . ' ' . HTML::attributes($params['parent@']) . '>';
+        $html = '<' . $params['parent'] . ' ' . Html::attributes($params['parent@']) . '>';
 
         foreach ($data as $key => $value) {
-            $html .= '<' . $params['child'] . ' ' . HTML::attributes($params['child@']) . '>';
-            $html .= '<a href="' . $value['link'] . '"' . HTML::attributes($params['link@']) . '>' . $value['name'] . '</a>';
+            $html .= '<' . $params['child'] . ' ' . Html::attributes($params['child@']) . '>';
+            $html .= '<a href="' . $value['link'] . '"' . Html::attributes($params['link@']) . '>' . $value['name'] . '</a>';
             $html .= '</' . $params['child'] . '>';
         }
 
@@ -186,7 +186,7 @@ class Bootstrap extends Helper
 
         if (is_array($data)) {
 
-            $html = '<table ' . HTML::attributes($params['table@']) . '><thead ' . HTML::attributes($params['thead@']) . '><tr>';
+            $html = '<table ' . Html::attributes($params['table@']) . '><thead ' . Html::attributes($params['thead@']) . '><tr>';
             foreach (reset($data) as $key => $name) {
                 $html .= '<th>' . $key . '</th>';
             }
@@ -241,14 +241,14 @@ class Bootstrap extends Helper
         $output = '';
 
         if (is_null($formatContent)) {
-            $nav = '<ul '.HTML::attributes($params['nav']['parent@']).'>';
-            $content = '<div '.HTML::attributes($params['content']['parent@']).'>';
+            $nav = '<ul '.Html::attributes($params['nav']['parent@']).'>';
+            $content = '<div '.Html::attributes($params['content']['parent@']).'>';
 
             foreach ($data as $key => $tab) {
 
                 // nav
                 $nav .= '<li'.($key === 0 ? ' class="active"' : '').'>'
-                    .'<a '.HTML::attributes($params['nav']['child@']).' href="#tab-'.$key.'">'.$tab['title'].'</a>'
+                    .'<a '.Html::attributes($params['nav']['child@']).' href="#tab-'.$key.'">'.$tab['title'].'</a>'
                 .'</li>';
 
 
@@ -259,7 +259,7 @@ class Bootstrap extends Helper
                     $contentAttr['class'] .= ' in active';
                 }
 
-                $content .= '<div '.HTML::attributes($contentAttr).' id="tab-'.$key.'">'
+                $content .= '<div '.Html::attributes($contentAttr).' id="tab-'.$key.'">'
                     .$tab['content']
                 .'</div>';
 
@@ -296,7 +296,7 @@ class Bootstrap extends Helper
 
         $params = array_merge_recursive($defParams, $params);
 
-        $msg = '<' . $params['parent'] . ' ' . HTML::attributes($params['parent@']) . '>';
+        $msg = '<' . $params['parent'] . ' ' . Html::attributes($params['parent@']) . '>';
 
         foreach ($data as $key => $value) {
             $attr = $params['li'];
@@ -307,7 +307,7 @@ class Bootstrap extends Helper
                 $params['child@']['class'] = $params['child@']['class'] . ' last';
             }
 
-            $msg .= '<' . $params['child'] . ' ' . HTML::attributes($params['child@']) . '><a href="' . $value['link'] . '">' . $value['name'] . '</a>' . $params['divider'] . '</' . $params['child'] . '>';
+            $msg .= '<' . $params['child'] . ' ' . Html::attributes($params['child@']) . '><a href="' . $value['link'] . '">' . $value['name'] . '</a>' . $params['divider'] . '</' . $params['child'] . '>';
         }
         $msg .= '</' . $params['parent'] . '>';
 
