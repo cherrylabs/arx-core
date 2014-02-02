@@ -1,9 +1,4 @@
 <?php
-/**
- * @todo better way to handle html lang and NgApp
- */
-
-
 $ngApp = $this->ngApp ? ($this->ngApp === true ? 'ng-app' : 'ng-app="'.$this->ngApp.'"') : '';
 $lang = Lang::getLocale() ?: 'en';
 ?>
