@@ -18,7 +18,12 @@ class Utils
 {
 
     // --- Magic methods
-
+    /**
+     * Magic method to call Strings and Arr methods
+     * @param $sName
+     * @param $aArgs
+     * @return mixed
+     */
     public static function __callStatic($sName, $aArgs)
     {
 
@@ -35,6 +40,12 @@ class Utils
     // --- Public methods
 
 #A
+    /**
+     * Create an Alias of a function check if it's exist
+     * @param $aliasName
+     * @param $callback
+     * @return array
+     */
     public static function alias($aliasName, $callback)
     {
         $err = false;
@@ -94,7 +105,10 @@ class Utils
     } // benchIt
 
 #C
-
+    /**
+     * @param $url
+     * @return mixed
+     */
     public static function curlGet($url)
     {
         $curl = curl_init($url);
@@ -107,11 +121,16 @@ class Utils
         return $return;
     } // curlGet
 
-    public static function call_user_obj_array($sObject, $array = array()){
+    /**
+     * Call an abstract object with param
+     * @param $sObject
+     * @param array $array
+     * @return object
+     */
+    public static function call_user_obj_array($sObject, $param = array()){
        $reflector = new ReflectionClass($sObject);
-       return $reflector->newInstanceArgs($array);
+       return $reflector->newInstanceArgs($param);
     }
-
 
 
     /**
