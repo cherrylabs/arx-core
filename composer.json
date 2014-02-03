@@ -21,8 +21,7 @@
     ],
     "require": {
         "php": ">=5.3.2",
-        "illuminate/support": "4.1.x",
-        "symfony/finder" : "*",
+        "laravel/laravel": "4.1.x",
         "Illuminate/Container" : "*",
         "kriswallsmith/assetic" : "*"
     },
