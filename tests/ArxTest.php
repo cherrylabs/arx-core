@@ -22,7 +22,7 @@ class ArxTest extends \PHPUnit_Framework_TestCase
 
     public function testConfig()
     {
-        
+
     }
 
     public function testInstance()
