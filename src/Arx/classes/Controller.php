@@ -1,6 +1,6 @@
 <?php namespace Arx\classes;
 
-use Illuminate\Routing\Controllers\Controller as ParentClass;
+use Illuminate\Routing\Controller as ParentClass;
 
 /**
  * Class Controller

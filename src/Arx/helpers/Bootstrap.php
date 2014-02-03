@@ -8,9 +8,13 @@
 
 namespace Arx\helpers;
 
+
+use Arx\classes\Arr;
+use Arx\classes\Form;
 use Arx\classes\Helper;
+use Arx\classes\HTML;
 use Arx\classes\Strings;
-use HTML, Form;
+
 
 class Bootstrap extends Helper
 {
@@ -40,15 +44,7 @@ class Bootstrap extends Helper
             'icon_next' => 'icon-next',
         );
 
-        $params = array_merge_recursive($defaults, $params);
-
-        if (is_array($params['parent@']['id'])) {
-            $params['parent@']['id'] = end($params['parent@']['id']);
-        }
-
-        if (is_array($params['item_per_slide'])) {
-            $params['item_per_slide'] = end($params['item_per_slide']);
-        }
+        $params = Arr::merge($defaults, $params);
 
         $pagination = '<li data-target="#'.$params['parent@']['id'].'" data-slide-to="0" class="active"></li>';
         $slides = '<div class="'.$params['child@']['class'].' active">';
@@ -63,11 +59,11 @@ class Bootstrap extends Helper
         foreach ($data as $key => $post) {
             if ($i > 0 && $i % $params['item_per_slide'] == 0) {
                 $pagination .= '<li data-target="#'.$params['parent@']['id'].'" data-slide-to="'.($i / intval($params['item_per_slide'])).'"></li>';
-                $slides .= '</div><div '.HTML::attributes($params['child@']).'>';
+                $slides .= '</div><div'.HTML::attributes($params['child@']).'>';
             }
 
             if (is_null($formatContent)) {
-                $slides .= '<div class="'.HTML::attributes($params['child@']).'">'.$post.'</div>';
+                $slides .= '<div'.HTML::attributes($params['child@']).'>'.$post.'</div>';
             } else {
                 $slides .= $formatContent($post, $params, $i);
             }
