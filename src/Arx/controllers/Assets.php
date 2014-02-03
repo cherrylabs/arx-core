@@ -31,7 +31,7 @@ class Assets extends \Controller
      *
      * @return mixed|void
      */
-    public function missingMethod($parameters)
+    public function missingMethod($parameters = array())
     {
         $parameters = implode('/', $parameters);
 

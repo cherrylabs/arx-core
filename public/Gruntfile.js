@@ -10,8 +10,7 @@ module.exports = function(grunt) {
         // -- Tasks
         clean: {
             dist: [
-                'dist/css/arx.css',
-                'dist/js/arx.js'
+
             ]
         }, // clean
 
@@ -22,7 +21,7 @@ module.exports = function(grunt) {
                     compress: true
                 },
                 files: {
-                    'dist/css/arx.css': [
+                    '../../../../public/packages/arx/core/dist/css/arx.css': [
                         'src/less/arx.less'
                     ]
                 }
@@ -34,7 +33,7 @@ module.exports = function(grunt) {
                     compress: true
                 },
                 files: {
-                    'dist/css/arx-combined.css': [
+                    '../../../../public/packages/arx/core/dist/css/arx-combined.css': [
                         'src/less/plugins.less',
                         'src/less/arx-combined.less'
                     ]
@@ -59,7 +58,7 @@ module.exports = function(grunt) {
                     banner: ''
                 },
                 files: {
-                    'dist/js/arx.js': [
+                    '../../../../public/packages/arx/core/dist/js/arx.js': [
                         'src/js/arx.js'
                     ]
                 }
@@ -70,38 +69,14 @@ module.exports = function(grunt) {
                     banner: ''
                 },
                 files: {
-                    'dist/js/arx-combined.js': [
-                        '../jquery/jquery.min.js',
-                        '../history.js/scripts/bundled/html4+html5/jquery.history.js',
-                        '../jquery-ui/ui/jquery-ui.js',
-                        '../bootstrap/dist/js/bootstrap.min.js',
-                        '../bootstrap-multiselect/js/bootstrap-multiselect.js',
-                        '../select2/select2.min.js',
-                        '../datatables/media/js/jquery.dataTables.js',
-                        // '../datatables-tabletools/media/js/ZeroClipboard.js',
-                        // '../datatables-tabletools/media/js/TableTools.js',
-
-                        '../angular/angular.min.js',
-                        '../angular-ui-utils/modules/event/event.js',
-                        '../angular-ui-utils/modules/format/format.js',
-                        '../angular-ui-utils/modules/highlight/highlight.js',
-                        '../angular-ui-utils/modules/ie-shiv/ie-shiv.js',
-                        '../angular-ui-utils/modules/indeterminate/indeterminate.js',
-                        '../angular-ui-utils/modules/inflector/inflector.js',
-                        '../angular-ui-utils/modules/jq/jq.js',
-                        '../angular-ui-utils/modules/keypress/keypress.js',
-                        '../angular-ui-utils/modules/mask/mask.js',
-                        '../angular-ui-utils/modules/reset/reset.js',
-                        '../angular-ui-utils/modules/route/route.js',
-                        '../angular-ui-utils/modules/scrollfix/scrollfix.js',
-                        '../angular-ui-utils/modules/showhide/showhide.js',
-                        '../angular-ui-utils/modules/unique/unique.js',
-                        '../angular-ui-utils/modules/validate/validate.js',
-                        '../angular-ui-utils/modules/utils.js',
-                        '../angular-bootstrap/ui-bootstrap-tpls.min.js',
-
-                        // '../jquery-pageslide/jquery.pageslide.min.js',
-
+                    '../../../../public/packages/arx/core/dist/js/arx-combined.js': [
+                        '../../../../public/packages/jquery/jquery.min.js',
+                        '../../../../public/packages/jquery-ui/ui/jquery-ui.js',
+                        '../../../../public/packages/bootstrap/dist/js/bootstrap.min.js',
+                        '../../../../public/packages/angular/angular.min.js',
+                        '../../../../public/packages/bootstrap-multiselect/js/bootstrap-multiselect.js',
+                        '../../../../public/packages/select2/select2.min.js',
+                        '../../../../public/packages/datatables/media/js/jquery.dataTables.js',
                         'src/js/utils.js',
                         'src/js/arx.js'
                     ]

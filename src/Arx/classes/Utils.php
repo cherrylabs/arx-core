@@ -184,7 +184,7 @@ class Utils
 #E
     public static function epre($v)
     {
-        return d($v);
+        return Debug::dump($v);
     } // epre
 
 #F
@@ -256,7 +256,7 @@ class Utils
     public static function getIpInfos($ip = null)
     {
 
-        $response = self::getJSON('http://ip-api.com/json');
+        $response = self::getJSON('http://freegeoip.net/json');
 
         return $response;
 
@@ -441,7 +441,7 @@ class Utils
         $time = microtime(true);
         $total_time = ($time - $start);
 
-        \Kint::dump($aArgs);
+        Debug::dump($aArgs);
 
         die("Predie called @ $file line $line loaded in " . $total_time . " seconds");
     } // predie
