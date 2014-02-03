@@ -4,6 +4,7 @@
     "description": "Arx core is a boosted web development kit based on Laravel",
     "homepage": "http://www.arx.io",
     "license": "MIT",
+    "version" : "4.1",
     "authors": [
         {
             "name": "Daniel Sum",
@@ -20,8 +21,8 @@
     ],
     "require": {
         "php": ">=5.3.2",
-        "raveren/kint" : "dev-master",
-        "illuminate/support": "4.0.x",
+        "illuminate/support": "4.1.x",
+        "Illuminate/Container" : "*",
         "kriswallsmith/assetic" : "*"
     },
     "require-dev": {

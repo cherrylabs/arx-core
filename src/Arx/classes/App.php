@@ -131,7 +131,7 @@ class App extends \Illuminate\Foundation\Application
 
         if(is_file($file)){
             require_once $file;
-        } elseif(is_file($file = __DIR__.'/../bootstrap/'.$file)){
+        } elseif(is_file($file = __DIR__.'/../../bootstrap/'.$file)){
             require_once $file;
         } else{
             Throw new Exception('Whoops, there is no file boot');
@@ -227,14 +227,18 @@ class App extends \Illuminate\Foundation\Application
 
         }
 
-        if(is_file($fileName = Config::get('paths.workbench') . DS . strtolower($composerName) .DS. 'src' . DS . $fileName)){
-            include $fileName;
-        } elseif(is_file($fileName = Config::get('paths.workbench') . DS . $fileName)){
-            include $fileName;
-        } elseif (is_array($aAutoload) and array_key_exists($className, $aAutoload) and is_file($aAutoload[$className])) {
-            include $aAutoload[$className];
-        } elseif(is_file($supposedPath) ) {
-            include $supposedPath;
+        try {
+            if(is_file($fileName = Config::get('paths.workbench') . DS . strtolower($composerName) .DS. 'src' . DS . $fileName)){
+                include $fileName;
+            } elseif(is_file($fileName = Config::get('paths.workbench') . DS . $fileName)){
+                include $fileName;
+            } elseif (is_array($aAutoload) and array_key_exists($className, $aAutoload) and is_file($aAutoload[$className])) {
+                include $aAutoload[$className];
+            } elseif(is_file($supposedPath) ) {
+                include $supposedPath;
+            }
+        } catch (Exception $e) {
+            trigger_error($e);
         }
     }
 

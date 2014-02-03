@@ -8,6 +8,7 @@
  */
 class Env {
     public static function detect(){
+
         if(class_exists('Config', false)) {
             $config = \Config::get('env');
         } else {

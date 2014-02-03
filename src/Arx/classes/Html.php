@@ -18,8 +18,8 @@ class Html extends Singleton {
     public function __construct(){
         $this->html = new HtmlBuilder();
     }
-    
-    function __callStatic($name, $args){
+
+    public static function __callStatic($name, $args){
         $html = self::getInstance()->html;
         return call_user_func_array(array($html, $name), $args);
     }

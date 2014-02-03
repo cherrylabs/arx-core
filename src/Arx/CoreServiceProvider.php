@@ -28,7 +28,7 @@ class CoreServiceProvider extends ServiceProvider {
         \Lang::addNamespace('arx', __DIR__.'/../lang');
         \Config::addNamespace('arx', __DIR__.'/../config');
 
-        #require_once __DIR__.'/helpers.php';
+        require_once __DIR__.'/helpers.php';
         require_once __DIR__.'/filters.php';
         require_once __DIR__.'/routes.php';
 
