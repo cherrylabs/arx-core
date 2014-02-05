@@ -103,7 +103,7 @@ if(!class_exists('Arx')){
         /**
          * init some functions like helpers or configuration
          */
-        public static function init()
+        public static function ignite()
         {
             require_once __DIR__ . DIRECTORY_SEPARATOR .'helpers.php';
         }
