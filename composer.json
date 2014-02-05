@@ -1,7 +1,7 @@
 {
     "name": "arx/core",
     "type" : "library",
-    "description": "Arx core is a boosted web development kit for Laravel and also for non Laravel project bringing light and conventions !",
+    "description": "Arx core is a boosted web development kit for Laravel and also for non Laravel project including usefull classes, starter template, starter assets !",
     "homepage": "http://www.arx.io",
     "license": "MIT",
     "authors": [
