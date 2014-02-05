@@ -1,8 +1,8 @@
 {
-  "name": "arx",
-  "version": "0.0.0",
+  "name": "arx/core",
+  "version": "4.1.0",
   "description": "Arx UI package",
-  "main": "css/main.min.css",
+  "main": "dist/css/arx.css",
   "scripts": {
     "test": "grunt test"
   },
