@@ -50,6 +50,16 @@ abstract class Date
     } // daysInMonth
 
 
+    public static function findMonday($d = null,$format="Y-m-d") {
+
+        if(!$d){
+            $d = date('Y-m-d');
+        }
+
+        return date($format, strtotime("last monday", strtotime($d)));
+    }
+
+
     public static function diffMicrotime($mt_old, $mt_new) {
         list($old_usec, $old_sec) = explode(' ', $mt_old);
         list($new_usec, $new_sec) = explode(' ', $mt_new);
