@@ -5,17 +5,31 @@
  */
 use Arx\classes\Utils;
 
-if ( ! function_exists('\predie'))
+if ( ! function_exists('\dd'))
 {
-    function predie(){
+    function dd(){
         return call_user_func_array('Arx\classes\Utils::predie', func_get_args());
+    }
+}
+
+if ( ! function_exists('\d'))
+{
+    function d(){
+        return call_user_func_array('Arx\classes\Utils::pre', func_get_args());
     }
 }
 
 if ( ! function_exists('\de'))
 {
     function de(){
-        return call_user_func_array('Arx\classes\Utils::de', func_get_args());
+        return call_user_func_array('Arx\classes\Utils::predie', func_get_args());
+    }
+}
+
+if ( ! function_exists('\pre'))
+{
+    function pre(){
+        return call_user_func_array('Arx\classes\Utils::pre', func_get_args());
     }
 }
 
