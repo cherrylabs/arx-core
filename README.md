@@ -24,6 +24,9 @@ Install Composer on your project root put then :
 
 or
     "arx-core" : "4.1.*"
+or
+    "arx-core" : "dev-master"
+
 to your composer.json file then run
 
     composer install or update
@@ -33,6 +36,26 @@ to your composer.json file then run
 You can contribute to the Arx project here :
 
 [https://github.com/cherrylabs/arx/issues](https://github.com/cherrylabs/arx/issues)
+
+You can also contribute directly in your project !
+
+Just checkout this repository inside : workbench/arx/core folder then add to your composer.json this :
+
+    "require": {
+        "php": ">=5.3.2",
+        "laravel/laravel": "4.1.x",
+        "kriswallsmith/assetic" : "*"
+    },
+    "require-dev": {
+        "phpunit/phpunit": "3.7.*",
+        "mockery/mockery": "0.7.2"
+    },
+    "autoload": {
+        "psr-0": {
+            "Arx": "workbench/arx/core/src"
+        },
+        "files" : ["workbench/arx/core/src/Arx/core.php"]
+    },
 
 # What's new ? :
 
