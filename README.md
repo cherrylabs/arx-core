@@ -78,7 +78,8 @@ For a complete list of available classes in Arx go to :
 
 ## 3. How to use other folders ?
 
-    /!\ The rest are for now only available for Laravel but we are working hard to make it compatible with other popular project like Wordpress, Drupal, Prestashop with their respective adapter.
+    /!\ The rest are for now only available for Laravel but we are working hard to make it compatible 
+    with other popular project like Wordpress, Drupal, Prestashop with their respective adapter.
 
 ### 3.1 Arx/config
 
