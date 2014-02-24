@@ -39,9 +39,9 @@ If you want you can enable debug helpers functions with
     Arx::ignite();
 
 This will give you a better debug view than classic var_dump adding function (only if they doesn't exist) : 
-    
-    d(xx) function make a better var_dump with the time and the line of code where it's called
-    dd(xx) do the same with a die at the end
+
+    d($XXX); function make a better var_dump with the time and the line of code where it's called
+    de($XXX); do the same with a die at the end
     k(); => will output a die with execution time info and the line of code where it's called
 
 ## 2. How to use Arx classes ?
@@ -50,11 +50,11 @@ To use an arx class, simply refer to the files starting with the Arx namespace.
 
 Example : 
 
-Arx\classes\Utils => refers to /vendor/arx/core/src/Arx/classes/Utils.php
-Arx\classes\Dummy => refers to /vendor/arx/core/src/Arx/classes/Dummy.php
-Arx\helpers\Bootstrap => refers to /vendor/arx/core/src/Arx/helpers/Bootstrap.php etc...
+    Arx\classes\Utils => refers to /vendor/arx/core/src/Arx/classes/Utils.php
+    Arx\classes\Dummy => refers to /vendor/arx/core/src/Arx/classes/Dummy.php
+    Arx\helpers\Bootstrap => refers to /vendor/arx/core/src/Arx/helpers/Bootstrap.php etc...
 
-You can also make a reference in your php like this : 
+You can also make a reference in your php file like this : 
 
     <?php
     
@@ -62,7 +62,7 @@ You can also make a reference in your php like this :
     
     use Arx\classes\Dummy; // this will create a class alias Dummy refering to Arx\classes\Dummy
     use Arx\classes\Utils as u; // this will create a class alias u refering to Arx\classes\Utils
-    use Arx\classes\Arr; // You can add as much class as your want
+    use Arx\classes\Arr; // You can add as much class as your want !
     
     $test = array(
             'content' =>  Dummy::text(256), // => generate a dummy text of 256 character
@@ -73,14 +73,99 @@ You can also make a reference in your php like this :
     u::jsonDie($test); // refers to Arx\classes\Utils.php @ method jsonDie will output a json with the array
 
 
-For a complete list of available classes in Arx : 
+For a complete list of available classes in Arx go to : 
+[Github link](https://github.com/cherrylabs/arx-core/tree/master/src/Arx/classes)
 
-Please see : https://github.com/cherrylabs/arx-core/tree/master/src/Arx/classes
+## 3. How to use other folders ?
 
+    /!\ The rest are for now only available for Laravel but we are working hard to make it compatible with other popular project like Wordpress, Drupal, Prestashop with their respective adapter.
+
+### 3.1 Arx/config
+
+This folder contains some default and usually used config for Arx and Laravel project (example ide-helper generator, way generator, debugbar etc.). In your new project you can copy paste any configuration suggestion if you want or make a array_merge with config and your config.
+
+### 3.2 Arx/controllers
+
+This folder contains some usefull default controller for your project example : default asset controller, user controller etc. => it still in work in progress => don't hesitate to suggest your default controller or needs here.
+
+### 3.3 Arx/facades
+
+This folder contains Facade design pattern class, typically they're the class that can be called statically but refers to an instanciated class inside the App constructor classes (like in Laravel Route class, Auth, Mail etc...).
+
+We've added a little resolver helper method so you can manipulate data before sending to the facadeAccessor or simply give the ability to have information to the method with CodeIntel.
+
+Example : 
+
+    <?php namespace Arx\facades;
+    
+    use Arx\classes\Facade;
+    
+    class Config extends Facade{
+    
+    /**
+     * Get the specified configuration value.
+     *
+     * @param string  $key
+     * @param mixed   $default
+     * @return mixed
+     * @static
+     */
+    public static function get($key, $default = null)
+    {
+        return self::resolve();
+    }
+    
+    /**
+     * Get the registered name of the component instanciate by the app
+     *
+     * @return string
+     */
+    protected static function getFacadeAccessor() { return 'config'; }
+    }
+
+### 3.4 Arx/helpers
+
+Contains some class Helpers for HTML construct (like Bootstrap structure helper)
+
+### 3.5 Arx/providers
+
+Define providers class according to Laravel and Symfony standards.
+
+### 3.6 Arx/traits
+
+Contains some traits that you can use in your project (/!\ > 5.4 only !)
+
+## 4. Using default bootstrap starter views 
+
+For fast page prototyping in a Laravel project, we have included some usefull default HTML template and assets to build quickly a prototype page (typically the default bootstrap example pages).
+
+To use it, first with need to copy paste the assets to the public folder => in command line you can do this : 
+
+    php artisan assets:publish arx/core
+    # or if arx/core is in the workbench
+    php artisan assets:publish --bench=arx/core
+    
+
+in your Laravel views :
+
+    @extends('arx::layouts.bootstrap')
+    
+    @section('content')
+        Your CONTENT !
+    @stop
+    
+    @section('js')
+        @parent
+        <script src="xxxyour other scripts"></script>
+    @stop
+    
+/!\ The template use our Temple Engine which is almost the same than Blade engine, the only differences are : 
+- the extension file is tpl.php instead of blade.php
+- we use <% %> instead of {{ }} to avoid any conflicts with Angular, Mustache or other javascript engine and also because with <% %> it will proper considered as PHP script in your editor :-)
 
 # How to contribute ?
 
-Some classes are missing documentation or still buggy => don't hesitate to fix this !
+Some classes are missing documentation or still buggy => don't hesitate to fix this to help us !
 
 You can contribute to the Arx project here :
 
