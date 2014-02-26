@@ -22,17 +22,7 @@ class ArxTest extends \PHPUnit_Framework_TestCase
 
     public function testConfig()
     {
-        $this->assertNotNull(\Arx\classes\Config::get(), 'Config::get() should return an array with all the configuration!');
 
-        \Arx\classes\Config::set('level1.level2.level3.level4.level5', 'arg5');
-        \Arx\classes\Config::load(__DIR__.'/../src/config/');
-
-        $config = \Arx\classes\Config::get();
-
-        $this->assertSame(
-            $config["level1"]["level2"]['level3']['level4']['level5'],
-            \Arx\classes\Config::get('level1.level2.level3.level4.level5')
-        );
     }
 
     public function testInstance()
@@ -51,6 +41,3 @@ class ArxTest extends \PHPUnit_Framework_TestCase
         // $this->assertTrue(is_object($app->c_finder()), "c_finder test is not an object");
     }
 }
-
-/*$test = new ArxTest();
-$test->testLoading();*/

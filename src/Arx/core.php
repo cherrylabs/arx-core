@@ -5,7 +5,7 @@
  *
  * The MIT License (MIT)
  *
- * Copyright (c) <year> <copyright holders>
+ * Copyright (c) 2014 Cherry Labs
  *
  * Permission is hereby granted, free of charge, to any person obtaining a copy
  * of this software and associated documentation files (the "Software"), to deal
@@ -30,7 +30,7 @@
  * @author   Daniel Sum <daniel@cherrypulp.com>
  * @author   Stéphan Zych <stephan@cherrypulp.com>
  * @license  http://opensource.org/licenses/MIT MIT License
- * @link     http://arx.xxx
+ * @link     http://www.arx.io
  */
 
 /**
