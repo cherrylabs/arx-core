@@ -79,6 +79,18 @@ For a complete list of available classes in Arx go to :
 
 ## 2.1 How to use Config class like in Laravel ?
 
+The Config class works like in Laravel except that you need to load a folder to have the config example :
+
+    <?php
+
+        require_once __DIR__.'/vendor/autoload.php';
+
+        Arx::ignite();
+
+        Config::load('{your config folder or file}');
+
+        Config::get('yourarrayorfile.keyofarray');
+
 
 
 ## 2.2 How to use Laravel ORM class and Eloquent Model ?
@@ -87,7 +99,7 @@ The Db class wrap the beautiful Db and Eloquent Laravel class. To use it outside
 
     <?php
 
-    require_once __DIR__.'/../../vendor/autoload.php';
+    require_once __DIR__.'/vendor/autoload.php';
 
     Arx::ignite();
 
@@ -130,6 +142,48 @@ The Db class wrap the beautiful Db and Eloquent Laravel class. To use it outside
     $user->save();
 
     de(Db::table('users')->get());
+
+## 2.3 How to use Mail class ?
+
+The mail class works almost like in Laravel, you need to config the class before to use it :
+
+    <?php
+
+    require_once __DIR__.'/vendor/autoload.php';
+
+    Arx::ignite();
+
+    use Arx\classes\Mail;
+
+    Mail::config(array(
+
+        'driver' => 'smtp',
+
+        'host' => 'in.mailjet.com',
+
+        'port' => 587,
+
+        'from' => array('address' => '{your_adress}', 'name' => '{your_name}'),
+
+        'encryption' => 'tls',
+
+        'username' => '{yourusername}',
+
+        'password' => '{yourpassword}',
+
+        'sendmail' => '/usr/sbin/sendmail -bs',
+
+        'pretend' => false,
+
+    ));
+
+    Mail::send(
+        // Send message like the SwiftMessage : http://swiftmailer.org/docs/messages.html
+        Mail::message()
+        ->setFrom('daniel@cherrypulp.com', 'TEST')
+        ->setTo(array('daniel.sum86@gmail.com'))
+        ->setBody('TEST')
+    );
 
 ## 3. How to use other folders ?
 
