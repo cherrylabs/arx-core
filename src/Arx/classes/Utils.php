@@ -396,10 +396,23 @@ class Utils
     }
 
 #J
-    public static function json_die($array)
+
+    /**
+     * Simple json Die with correct header
+     * @param $array
+     */
+    public static function jsonDie($array)
     {
         header("content-type: application/json");
         die(json_encode($array, true));
+    } // json_die
+
+    /**
+     * @deprecated non PSR-1 standard use jsonDie instead !
+     */
+    public static function json_die($array)
+    {
+        self::jsonDie($array);
     } // json_die
 
 #K
@@ -467,20 +480,21 @@ class Utils
 
 
     /**
-     * put_json
      *
-     * @param $
-     *
-     * @return
-     *
-     * @code
-     *
-     * @endcode
+     * @deprecated not PSR-1 standard !
+     * @param $dest
+     * @param $value
+     * @param bool $type
+     * @return int
      */
     public static function put_json($dest, $value, $type = false)
     {
-        return @file_put_contents($dest, json_encode($value));
+        return self::putJson($dest, $value, $type = false);
     } // put_json
+
+    public static function putJson($dest, $value, $type = false){
+        return @file_put_contents($dest, json_encode($value));
+    }
 
 #R
     public static function randGen($numb = 10, $c = '')
@@ -731,13 +745,16 @@ class Utils
     }
 
 #S
+
     /**
-     * SendEmail
+     * SendMail
      *
+     * @deprected use Mail class instead !
      * @param $recipient
-     *
-     * @return
-     * @todo make more customisable !
+     * @param null $subject
+     * @param $html
+     * @param null $c
+     * @return bool
      */
     public static function sendMail($recipient, $subject = null, $html, $c = null)
     {
@@ -750,6 +767,15 @@ class Utils
 
         return $success;
     } // sendMail
+
+    /**
+     * Fastest template ever !
+     * @deprecated use Strings::strtr instead !
+     * @return mixed
+     */
+    public static function smrtr() {
+        return call_user_func_array(array('Strings', 'strtr'), func_get_args());
+    } // smrtr
 
 } // class::Utils
 
