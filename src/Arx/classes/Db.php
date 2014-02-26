@@ -50,7 +50,7 @@ class Db extends ParentClass {
     }
 
     public static function configMysql($param = array()){
-        $default = [
+        $default = array(
             'driver'    => 'mysql',
             'host'      => 'localhost',
             'database'  => 'database',
@@ -59,7 +59,7 @@ class Db extends ParentClass {
             'charset'   => 'utf8',
             'collation' => 'utf8_unicode_ci',
             'prefix'    => '',
-        ];
+        );
         return Arr::merge($default, $param);
     }
 
