@@ -40,16 +40,16 @@ class Db extends ParentClass {
 
     }
 
-    public static function configSqlite($param = []){
-        $default = [
+    public static function configSqlite($param = array()){
+        $default = array(
             'driver'   => 'sqlite',
             'database' => '/database/production.sqlite',
             'prefix'   => ''
-        ];
+        );
         return Arr::merge($default, $param);
     }
 
-    public static function configMysql($param = []){
+    public static function configMysql($param = array()){
         $default = [
             'driver'    => 'mysql',
             'host'      => 'localhost',

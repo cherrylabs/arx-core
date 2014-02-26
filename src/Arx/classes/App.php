@@ -44,7 +44,7 @@ class App extends \Illuminate\Foundation\Application
 
     // --- Constants
 
-    const VERSION = '1.0';
+    const VERSION = '4.1';
 
     const CODENAME = 'Lupa';
 
