@@ -7,7 +7,7 @@ Arx core is the base of the [Arx project](http://www.arx.io). It gives some usef
 
 # Getting Started
 
-## 1. Install Composer (skip this if you know it)
+## 1. Install Composer (skip this if you know how)
 
 Arx uses Composer to manage its dependencies. First, download a copy of the composer.phar. Once you have the PHAR archive, you can either keep it in your local project directory or move to usr/local/bin to use it globally on your system. On Windows, you can use the Composer Windows installer.
 
