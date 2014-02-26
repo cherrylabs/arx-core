@@ -5,6 +5,13 @@
  */
 use Arx\classes\Utils;
 
+if ( ! function_exists('\dd'))
+{
+    function dd(){
+        return call_user_func_array('Arx\classes\Utils::predie', func_get_args());
+    }
+}
+
 if ( ! function_exists('\d'))
 {
     function d(){
@@ -19,10 +26,10 @@ if ( ! function_exists('\de'))
     }
 }
 
-if ( ! function_exists('\dd'))
+if ( ! function_exists('\pre'))
 {
-    function dd(){
-        return call_user_func_array('Arx\classes\Utils::predie', func_get_args());
+    function pre(){
+        return call_user_func_array('Arx\classes\Utils::pre', func_get_args());
     }
 }
 

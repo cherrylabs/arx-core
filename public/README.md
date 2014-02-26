@@ -1,20 +1,10 @@
 # arx-ui
 
-UI elements for ARX
+Arx UI
 
+Include :
 
-
-
-## Installation
-
-Install Dev dependencies:
-
-    $ npm install
-
-Install Plugins dependencies:
-
-    $ bower install
-
-Use [grunt](http://gruntjs.com/ "Grunt") to compile less and js:
-
-    $ grunt dev
+- Bootstrap
+- Font-Awesome
+- Angular
+- And some cool scripts and utilities

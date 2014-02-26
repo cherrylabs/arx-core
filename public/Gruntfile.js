@@ -74,6 +74,7 @@ module.exports = function(grunt) {
                         '../../../../public/packages/jquery-ui/ui/jquery-ui.js',
                         '../../../../public/packages/bootstrap/dist/js/bootstrap.min.js',
                         '../../../../public/packages/angular/angular.min.js',
+                        '../../../../public/packages/angular-sanitize/angular-sanitize.min.js',
                         '../../../../public/packages/bootstrap-multiselect/js/bootstrap-multiselect.js',
                         '../../../../public/packages/select2/select2.min.js',
                         '../../../../public/packages/datatables/media/js/jquery.dataTables.js',

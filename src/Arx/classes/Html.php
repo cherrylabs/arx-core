@@ -1,8 +1,6 @@
 <?php namespace Arx\classes;
 
-use Illuminate\Html\HtmlBuilder as ParentClass;
 use Illuminate\Html\HtmlBuilder;
-use Illuminate\Support\Facades\Facade;
 
 /**
  * Class Html
