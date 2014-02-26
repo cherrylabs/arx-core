@@ -77,9 +77,63 @@ You can also make a reference in your php file like this :
 For a complete list of available classes in Arx go to : 
 [Github link](https://github.com/cherrylabs/arx-core/tree/master/src/Arx/classes)
 
+## 2.1 How to use Config class like in Laravel ?
+
+
+
+## 2.2 How to use Laravel ORM class and Eloquent Model ?
+
+The Db class wrap the beautiful Db and Eloquent Laravel class. To use it outside a Laravel project simply config the class with Arx\classes\Db::config({CONFIG LIKE IN LARAVEL}) :
+
+    <?php
+
+    require_once __DIR__.'/../../vendor/autoload.php';
+
+    Arx::ignite();
+
+    // Using Database
+
+    use Arx\classes\Db;
+
+    Db::config(
+        array(
+          'driver'    => 'mysql',
+          'host'      => 'localhost',
+          'database'  => 'database',
+          'username'  => 'root',
+          'password'  => '',
+          'charset'   => 'utf8',
+          'collation' => 'utf8_unicode_ci',
+          'prefix'    => '',
+        )
+    );
+
+    // Example of Table Schema creation
+    if(!Db::schema()->hasTable('users')){
+        Db::schema()->create('users', function($table){
+            $table->increments('id');
+            $table->string('email')->unique();
+            $table->timestamps();
+        });
+    }
+
+    // Example of EloquentModel
+    class User extends Arx\EloquentModel{
+
+    }
+
+    $user = new User;
+
+    // Generate a random email for demo
+    $user->email = \Arx\classes\Utils::randEmail();
+
+    $user->save();
+
+    de(Db::table('users')->get());
+
 ## 3. How to use other folders ?
 
-    /!\ The rest are for now only available for Laravel but we are working hard to make it compatible 
+    /!\ The rest are for now *only available for Laravel* but we are working hard to make it compatible
     with other popular project like Wordpress, Drupal, Prestashop with their respective adapter.
 
 ### 3.1 Arx/config

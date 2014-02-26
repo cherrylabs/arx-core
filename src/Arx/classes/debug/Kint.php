@@ -389,7 +389,7 @@ class Kint
 		$previousCaller = array();
 		while ( $callee = array_pop( $trace ) ) {
 			if ( strtolower( $callee['function'] ) === 'd' ||
-				strtolower( $callee['function'] ) === 'dd' ||
+				preg_match('/dd|de|predie/i', $callee['function'] ) ||
 				( isset( $callee['class'] ) && strtolower( $callee['class'] ) === strtolower( __CLASS__ )
 					&& strtolower( $callee['function'] ) === 'dump' )
 			) {

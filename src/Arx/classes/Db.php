@@ -1,15 +1,77 @@
 <?php namespace Arx\classes;
 
-use Illuminate\Support\Facades\DB as ParentClass;
+use Illuminate\Database\Capsule\Manager as ParentClass;
+use Illuminate\Events\Dispatcher;
 
 /**
  * Class DB
  *
- * @todo make it works outside Laravel
  * @package Arx\classes
  */
-class DB extends ParentClass {
-    public function __construct( $opts = array() ){
-        
+class Db extends ParentClass {
+
+    private static $_aInstances = array();
+
+    public static function config($config = array(
+        'driver'    => 'mysql',
+        'host'      => 'localhost',
+        'database'  => 'test',
+        'username'  => 'test',
+        'password'  => '',
+        'charset'   => 'utf8',
+        'collation' => 'utf8_unicode_ci',
+        'prefix'    => ''
+    ), $name = 'default'){
+
+        $t = self::getInstance();
+
+        $t->addConnection($config, $name);
+
+        $t->setEventDispatcher(new Dispatcher(new Container));
+
+        // Set the cache manager instance used by connections... (optional)
+        //$capsule->setCacheManager(...);
+
+        // Make this Capsule instance available globally via static methods... (optional)
+        $t->setAsGlobal();
+
+        // Setup the Eloquent ORM... (optional; unless you've used setEventDispatcher())
+        $t->bootEloquent();
+
     }
+
+    public static function configSqlite($param = []){
+        $default = [
+            'driver'   => 'sqlite',
+            'database' => '/database/production.sqlite',
+            'prefix'   => ''
+        ];
+        return Arr::merge($default, $param);
+    }
+
+    public static function configMysql($param = []){
+        $default = [
+            'driver'    => 'mysql',
+            'host'      => 'localhost',
+            'database'  => 'database',
+            'username'  => 'root',
+            'password'  => '',
+            'charset'   => 'utf8',
+            'collation' => 'utf8_unicode_ci',
+            'prefix'    => '',
+        ];
+        return Arr::merge($default, $param);
+    }
+
+    public static function getInstance(){
+
+        $sClass = get_called_class();
+
+        if (!isset(self::$_aInstances[$sClass])) {
+            self::$_aInstances[$sClass] = new $sClass;
+        }
+
+        return self::$_aInstances[$sClass];
+    }
+
 } // class::DB
