@@ -19,7 +19,7 @@ Install Composer on your project root put then :
 
     php composer.phar require arx/core
 
-or in your composer.json file
+or add in your existing composer.json file
 
     "arx-core" : "dev-master"
 
@@ -53,6 +53,7 @@ Example :
 
     Arx\classes\Utils => refers to /vendor/arx/core/src/Arx/classes/Utils.php
     Arx\classes\Dummy => refers to /vendor/arx/core/src/Arx/classes/Dummy.php
+    Arx\classes\Image => refers to /vendor/arx/core/src/Arx/classes/Image.php
     Arx\helpers\Bootstrap => refers to /vendor/arx/core/src/Arx/helpers/Bootstrap.php etc...
 
 You can also make a reference in your php file like this : 
@@ -196,7 +197,7 @@ This folder contains some default and usually used config for Arx and Laravel pr
 
 ### 3.2 Arx/controllers
 
-This folder contains some usefull default controller for your project example : default asset controller, user controller etc. => it still in work in progress => don't hesitate to suggest your default controller or needs here.
+This folder contains some usefull default controller for your project example : default asset controller, user controller etc. => /!\ it still in work in progress => don't hesitate to suggest your default controller or needs [here](https://github.com/cherrylabs/arx/issues).
 
 ### 3.3 Arx/facades
 
@@ -222,7 +223,8 @@ Example :
      */
     public static function get($key, $default = null)
     {
-        return self::resolve();
+        // here you can manipulate the variable before resolve this with the Facade Accessor
+        return self::resolve($key, $default = null);
     }
     
     /**
@@ -235,7 +237,7 @@ Example :
 
 ### 3.4 Arx/helpers
 
-Contains some class Helpers for HTML construct (like Bootstrap structure helper)
+Contains some class Helpers for HTML construct (like Bootstrap structure helper) => W.I.P.
 
 ### 3.5 Arx/providers
 
@@ -247,7 +249,7 @@ Contains some traits that you can use in your project (/!\ > 5.4 only !)
 
 ## 4. Using default bootstrap starter views 
 
-For fast page prototyping in a Laravel project, we have included some usefull default HTML template and assets to build quickly a prototype page (typically the default bootstrap example pages).
+For fast page prototyping in a Laravel project, we have also included some usefull default HTML template and assets to build quickly a prototype page (typically the default bootstrap example pages) or a page for your package documentation.
 
 To use it, first with need to copy paste the assets to the public folder => in command line you can do this : 
 
@@ -264,26 +266,31 @@ in your Laravel views :
         Your CONTENT !
     @stop
     
+    @section('css')
+        @parent
+        <link href="{YOUR CUSTOM CSS}" rel="stylesheet">
+    @stop
+    
     @section('js')
         @parent
         <script src="xxxyour other scripts"></script>
     @stop
     
-/!\ The template use our Temple Engine which is almost the same than Blade engine, the only differences are : 
-- the extension file is tpl.php instead of blade.php
-- we use <% %> instead of {{ }} to avoid any conflicts with Angular, Mustache or other javascript engine and also because with <% %> it will proper considered as PHP script in your editor :-)
+/!\ The template use our "Temple Engine" which is almost the same than Blade engine, the only differences are : 
+- the extension file is tpl.php instead of blade.php (better standard outside laravel)
+- we use <% %> instead of {{ }} to avoid any conflicts with Angular, Mustache or other javascript engine and also because with <% %> it will proper considered as PHP script in your editor like PHPStorm or Sublime Text :-)
 
 # How to contribute ?
 
-Some classes are missing documentation or still buggy => don't hesitate to fix this to help us !
+Some classes are missing documentation or still buggy => so don't hesitate to fix this to help us !
 
-You can contribute to the Arx project here :
+You can contribute to the Arx project here by posting your bugs, suggestions, ideas here :
 
 [https://github.com/cherrylabs/arx/issues](https://github.com/cherrylabs/arx/issues)
 
 You can also contribute directly in your project if you want by pushing directly to the Git repos !
 
-To make this : just checkout this repository inside : workbench/arx/core folder then add to your composer.json this :
+To use Arx directly from the repo just checkout this repository inside a workbench/arx/core folder then add to your composer.json this configuration :
 
     "require": {
         "php": ">=5.3.2",
@@ -308,7 +315,9 @@ To make this : just checkout this repository inside : workbench/arx/core folder 
 - Compatibility with Laravel 4.1
 - Documentation has moved to his own repository for better download performance
 - The version will follows the Laravel version number to avoid complications so we skip the 3 version !
-- Config classes from Arx are now usable outside Laravel ! Just call new Arx\classes\Config() see
+- Config classes from Arx are now usable outside Laravel ! Just call new Arx\classes\Config()
+- Database class from Laravel are now available outside laravel
+- Add a Mail class helper from laravel and SwiftMailer
 
 ## 3.x
 
