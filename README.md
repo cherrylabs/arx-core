@@ -190,7 +190,8 @@ The mail class works almost like in Laravel, you need to config the class before
 
     /!\ The rest are for now *only available for a Laravel Project* but we are working hard to make it most 
     compatible with other popular project like Wordpress, Drupal, Prestashop with their respective adapter package.
-    If you are starting a *new project*, you may want to use our complete and ready to start 
+    If you are starting a *new project*, you may want to use our complete and ready to start
+    
     [Arx complete starter project](https://github.com/cherrylabs/arx)
 
 ### 3.1 Arx/config
