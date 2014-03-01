@@ -316,8 +316,8 @@ To use Arx directly from the repo just checkout this repository inside a workben
 - Documentation has moved to his own repository for better download performance
 - The version will follows the Laravel version number to avoid complications so we skip the 3 version !
 - Config classes from Arx are now usable outside Laravel ! Just call new Arx\classes\Config()
-- Database class from Laravel are now available outside laravel
-- Add a Mail class helper from laravel and SwiftMailer
+- Database class from Laravel are now available outside Laravel
+- Add a Mail class helper from laravel and SwiftMailer usable outside Laravel too !
 
 ## 3.x
 
