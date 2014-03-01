@@ -190,7 +190,7 @@ The mail class works almost like in Laravel, you need to config the class before
 
 **/!\** The rest are for now **only available for a Laravel Project** but we are working hard to make it most 
 compatible with other popular project like Wordpress, Drupal, Prestashop with their respective adapter package.
-If you are starting a **new project**, you may want to **use our complete and ready to start package**
+If you are starting a **new project**, you may want to **use our complete and ready to start package** including Laravel, Arx Core, Bootstrap, Font-Awesome, Bower and Grunt config and AngularJS.
     
 => **Go to our [Arx complete starter project](https://github.com/cherrylabs/arx)**
 
