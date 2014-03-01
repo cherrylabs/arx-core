@@ -151,11 +151,10 @@ The mail class works almost like in Laravel, you need to config the class before
     <?php
 
     require_once __DIR__.'/vendor/autoload.php';
-
-    Arx::ignite();
-
+    
     use Arx\classes\Mail;
-
+    
+    #1. Config the Mail class
     Mail::config(array(
 
         'driver' => 'smtp',
@@ -177,7 +176,8 @@ The mail class works almost like in Laravel, you need to config the class before
         'pretend' => false,
 
     ));
-
+    
+    # Send and email
     Mail::send(
         // Send message like the SwiftMessage : http://swiftmailer.org/docs/messages.html
         Mail::message()
