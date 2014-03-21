@@ -480,7 +480,6 @@ class Utils
 
 
     /**
-     *
      * @deprecated not PSR-1 standard !
      * @param $dest
      * @param $value
