@@ -1,6 +1,13 @@
-<?php namespace Arx\providers;
+<?php namespace Arx;
 
-class Hash extends \Illuminate\Support\ServiceProvider {
+/**
+ * Class HashServiceProvider
+ *
+ * For downgrading Laravel compatibility to 5.3.2
+ *
+ * @package Arx
+ */
+class HashServiceProvider extends \Illuminate\Support\ServiceProvider {
 
     /**
      * Register the service provider.
