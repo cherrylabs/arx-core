@@ -117,7 +117,7 @@ class App extends \Illuminate\Foundation\Application
      *
      * @throws \Whoops\Example\Exception
      */
-    public function bootstrap($config = null, $file = 'default.php'){
+    public function bootstrap($config = null, $file = 'start.php'){
         global $app;
 
         $app = $this;
