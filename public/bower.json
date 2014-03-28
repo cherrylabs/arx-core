@@ -1,5 +1,5 @@
 {
-  "name": "arx-ui",
+  "name": "arx-core",
   "version": "0.0.1",
   "main": "css/main.min.css",
   "ignore": [

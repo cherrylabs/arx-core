@@ -1,5 +1,5 @@
 {
-  "name": "arx/core",
+  "name": "arx-core",
   "version": "4.1.0",
   "description": "Arx UI package",
   "main": "dist/css/arx.css",

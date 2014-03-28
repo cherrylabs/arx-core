@@ -291,7 +291,7 @@ class Utils
                 $id = isset($args['v']) ? $args['v'] : false;
 
                 if (!empty($id)) {
-                    return '<iframe width="' . $width . '" height="' . $height . '" src="http://www.youtube.com/embed/' . $id . '?rel=0" frameborder="0" allowfullscreen></iframe>';
+                    return '<iframe width="' . $width . '" height="' . $height . '" src="//www.youtube.com/embed/' . $id . '?rel=0" frameborder="0" allowfullscreen></iframe>';
                 }
 
                 return false;
@@ -301,7 +301,7 @@ class Utils
                 $id = filter_var($url, FILTER_SANITIZE_NUMBER_INT);
 
                 if (!empty($id)) {
-                    return '<iframe src="http://player.vimeo.com/video/' . $id . '?portrait=0" width="' . $width . '" height="' . $height . '" frameborder="0" webkitAllowFullScreen mozallowfullscreen allowFullScreen></iframe>';
+                    return '<iframe src="//player.vimeo.com/video/' . $id . '?portrait=0" width="' . $width . '" height="' . $height . '" frameborder="0" webkitAllowFullScreen mozallowfullscreen allowFullScreen></iframe>';
                 }
 
                 return false;
@@ -310,7 +310,7 @@ class Utils
                 $id = str_replace('/video/', '', parse_url($url, PHP_URL_PATH));
 
                 if (!empty($id)) {
-                    return '<iframe frameborder="0" width="' . $width . '" height="' . $height . '" src="http://www.dailymotion.com/embed/video/' . $id . '"></iframe>';
+                    return '<iframe frameborder="0" width="' . $width . '" height="' . $height . '" src="//www.dailymotion.com/embed/video/' . $id . '"></iframe>';
                 }
 
                 return false;
