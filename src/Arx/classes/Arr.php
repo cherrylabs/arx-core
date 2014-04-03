@@ -1343,6 +1343,34 @@ class Arr
 
 
     /**
+     * Overwrite value
+     *
+     * @param $array1
+     * @param $array2
+     * @return mixed
+     */
+    public static function overwrite($array1, $array2)
+    {
+        foreach (array_intersect_key($array2, $array1) as $key => $value)
+        {
+            $array1[$key] = $value;
+        }
+
+        if (func_num_args() > 2)
+        {
+            foreach (array_slice(func_get_args(), 2) as $array2)
+            {
+                foreach (array_intersect_key($array2, $array1) as $key => $value)
+                {
+                    $array1[$key] = $value;
+                }
+            }
+        }
+
+        return $array1;
+    }
+
+    /**
      * Set an array item (dot-notated) to the value.
      *
      * @param array &$aArray The array to insert it into
