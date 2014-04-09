@@ -181,7 +181,7 @@ The mail class works almost like in Laravel, you need to config the class before
     Mail::send(
         // Send message like the SwiftMessage : http://swiftmailer.org/docs/messages.html
         Mail::message()
-        ->setFrom('xxx@xxx.com', 'TEST')
+        ->setFrom('test@{your url}.com', 'TEST')
         ->setTo(array('{your_EMAIL}'))
         ->setBody('TEST')
     );
