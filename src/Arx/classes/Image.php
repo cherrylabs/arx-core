@@ -682,6 +682,10 @@ class Image
         die();
     }
 
+    public function outputBase64(){
+        return 'data:image/jpeg;'.$this->original_info['format'].',' . base64_encode($this->image);
+    }
+
     //
     // Text (adds text to an image)
     //
