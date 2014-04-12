@@ -1,4 +1,4 @@
-<?php namespace Arx;
+<?php namespace Arx\providers;
 
 /**
  * Class ViewProvider

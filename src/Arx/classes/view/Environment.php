@@ -10,6 +10,7 @@ use Illuminate\View\Environment as ParentClass;
  * @package Arx\classes\view
  */
 class Environment extends ParentClass{
+
     protected $extensions = array('blade.php' => 'blade', 'tpl.php' => 'tpl', 'tpl.js' => 'tpl', 'mustache.php' => 'mustache', 'twig.php' => 'twig', 'php' => 'php');
 
     public function content($view, $data = array(), $mergeData = array())
