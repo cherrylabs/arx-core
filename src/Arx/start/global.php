@@ -1,5 +1,7 @@
 <?php
 
+use Illuminate\Support\ClassLoader;
+
 ClassLoader::addDirectories(array(
-    dirname(__FILE__).'/../providers'
+    realpath(dirname(__FILE__).'/../providers')
 ));

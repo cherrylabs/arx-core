@@ -6,7 +6,6 @@ global $app;
 
 if(!$app){
     $app = Arx::getInstance();
-
     $app->bootstrap();
 }
 

@@ -11,7 +11,5 @@
 |
 */
 
-Artisan::add(new Arx\CopyCommand);
-
 
 

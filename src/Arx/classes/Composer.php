@@ -27,7 +27,7 @@ class Composer extends Container
     public static function getVendorPath($path = null)
     {
         $t = self::getInstance();
-        return dirname($t->path);
+        return dirname($t->path).$path;
     }
 
     public static function getRootPath($path = null)
@@ -58,13 +58,21 @@ class Composer extends Container
         $t = self::getInstance();
         $response = (array) include $t->path . DS . 'autoload_namespaces.php';
 
-        $flip = true;
-
         if($flip){
-            return $response;
+            return array_flip($response);
         } else {
             return $response;
         }
+    }
+
+    public static function getPathByNamespace($namespace){
+        $namespaces = self::getNamespaces();
+
+        if(isset($namespaces[$namespace])){
+            return $namespaces[$namespace][0].'/'.$namespace;
+        }
+
+        return false;
     }
 
     public static function getClassmap()
