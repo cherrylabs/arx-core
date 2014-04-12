@@ -12,8 +12,250 @@
  * @license  http://opensource.org/licenses/MIT MIT License
  * @link     http://arx.io
  */
-abstract class Convert
+class Convert
 {
+
+    public static $aCountries = array(
+        "AF" => "Afghanistan",
+        "AL" => "Albania",
+        "DZ" => "Algeria",
+        "AS" => "American Samoa",
+        "AD" => "Andorra",
+        "AO" => "Angola",
+        "AI" => "Anguilla",
+        "AQ" => "Antarctica",
+        "AG" => "Antigua And Barbuda",
+        "AR" => "Argentina",
+        "AM" => "Armenia",
+        "AW" => "Aruba",
+        "AU" => "Australia",
+        "AT" => "Austria",
+        "AZ" => "Azerbaijan",
+        "BS" => "Bahamas",
+        "BH" => "Bahrain",
+        "BD" => "Bangladesh",
+        "BB" => "Barbados",
+        "BY" => "Belarus",
+        "BE" => "Belgium",
+        "BZ" => "Belize",
+        "BJ" => "Benin",
+        "BM" => "Bermuda",
+        "BT" => "Bhutan",
+        "BO" => "Bolivia",
+        "BA" => "Bosnia And Herzegowina",
+        "BW" => "Botswana",
+        "BV" => "Bouvet Island",
+        "BR" => "Brazil",
+        "IO" => "British Indian Ocean Territory",
+        "BN" => "Brunei Darussalam",
+        "BG" => "Bulgaria",
+        "BF" => "Burkina Faso",
+        "BI" => "Burundi",
+        "KH" => "Cambodia",
+        "CM" => "Cameroon",
+        "CA" => "Canada",
+        "CV" => "Cape Verde",
+        "KY" => "Cayman Islands",
+        "CF" => "Central African Republic",
+        "TD" => "Chad",
+        "CL" => "Chile",
+        "CN" => "China",
+        "CX" => "Christmas Island",
+        "CC" => "Cocos (Keeling) Islands",
+        "CO" => "Colombia",
+        "KM" => "Comoros",
+        "CG" => "Congo",
+        "CD" => "Congo, The Democratic Republic Of The",
+        "CK" => "Cook Islands",
+        "CR" => "Costa Rica",
+        "CI" => "Cote D'Ivoire",
+        "HR" => "Croatia (Local Name: Hrvatska)",
+        "CU" => "Cuba",
+        "CY" => "Cyprus",
+        "CZ" => "Czech Republic",
+        "DK" => "Denmark",
+        "DJ" => "Djibouti",
+        "DM" => "Dominica",
+        "DO" => "Dominican Republic",
+        "TP" => "East Timor",
+        "EC" => "Ecuador",
+        "EG" => "Egypt",
+        "SV" => "El Salvador",
+        "GQ" => "Equatorial Guinea",
+        "ER" => "Eritrea",
+        "EE" => "Estonia",
+        "ET" => "Ethiopia",
+        "FK" => "Falkland Islands (Malvinas)",
+        "FO" => "Faroe Islands",
+        "FJ" => "Fiji",
+        "FI" => "Finland",
+        "FR" => "France",
+        "FX" => "France, Metropolitan",
+        "GF" => "French Guiana",
+        "PF" => "French Polynesia",
+        "TF" => "French Southern Territories",
+        "GA" => "Gabon",
+        "GM" => "Gambia",
+        "GE" => "Georgia",
+        "DE" => "Germany",
+        "GH" => "Ghana",
+        "GI" => "Gibraltar",
+        "GR" => "Greece",
+        "GL" => "Greenland",
+        "GD" => "Grenada",
+        "GP" => "Guadeloupe",
+        "GU" => "Guam",
+        "GT" => "Guatemala",
+        "GN" => "Guinea",
+        "GW" => "Guinea-Bissau",
+        "GY" => "Guyana",
+        "HT" => "Haiti",
+        "HM" => "Heard And Mc Donald Islands",
+        "VA" => "Holy See (Vatican City State)",
+        "HN" => "Honduras",
+        "HK" => "Hong Kong",
+        "HU" => "Hungary",
+        "IS" => "Iceland",
+        "IN" => "India",
+        "ID" => "Indonesia",
+        "IR" => "Iran (Islamic Republic Of)",
+        "IQ" => "Iraq",
+        "IE" => "Ireland",
+        "IL" => "Israel",
+        "IT" => "Italy",
+        "JM" => "Jamaica",
+        "JP" => "Japan",
+        "JO" => "Jordan",
+        "KZ" => "Kazakhstan",
+        "KE" => "Kenya",
+        "KI" => "Kiribati",
+        "KP" => "Korea, Democratic People's Republic Of",
+        "KR" => "Korea, Republic Of",
+        "KW" => "Kuwait",
+        "KG" => "Kyrgyzstan",
+        "LA" => "Lao People's Democratic Republic",
+        "LV" => "Latvia",
+        "LB" => "Lebanon",
+        "LS" => "Lesotho",
+        "LR" => "Liberia",
+        "LY" => "Libyan Arab Jamahiriya",
+        "LI" => "Liechtenstein",
+        "LT" => "Lithuania",
+        "LU" => "Luxembourg",
+        "MO" => "Macau",
+        "MK" => "Macedonia, Former Yugoslav Republic Of",
+        "MG" => "Madagascar",
+        "MW" => "Malawi",
+        "MY" => "Malaysia",
+        "MV" => "Maldives",
+        "ML" => "Mali",
+        "MT" => "Malta",
+        "MH" => "Marshall Islands",
+        "MQ" => "Martinique",
+        "MR" => "Mauritania",
+        "MU" => "Mauritius",
+        "YT" => "Mayotte",
+        "MX" => "Mexico",
+        "FM" => "Micronesia, Federated States Of",
+        "MD" => "Moldova, Republic Of",
+        "MC" => "Monaco",
+        "MN" => "Mongolia",
+        "MS" => "Montserrat",
+        "MA" => "Morocco",
+        "MZ" => "Mozambique",
+        "MM" => "Myanmar",
+        "NA" => "Namibia",
+        "NR" => "Nauru",
+        "NP" => "Nepal",
+        "NL" => "Netherlands",
+        "AN" => "Netherlands Antilles",
+        "NC" => "New Caledonia",
+        "NZ" => "New Zealand",
+        "NI" => "Nicaragua",
+        "NE" => "Niger",
+        "NG" => "Nigeria",
+        "NU" => "Niue",
+        "NF" => "Norfolk Island",
+        "MP" => "Northern Mariana Islands",
+        "NO" => "Norway",
+        "OM" => "Oman",
+        "PK" => "Pakistan",
+        "PW" => "Palau",
+        "PA" => "Panama",
+        "PG" => "Papua New Guinea",
+        "PY" => "Paraguay",
+        "PE" => "Peru",
+        "PH" => "Philippines",
+        "PN" => "Pitcairn",
+        "PL" => "Poland",
+        "PT" => "Portugal",
+        "PR" => "Puerto Rico",
+        "QA" => "Qatar",
+        "RE" => "Reunion",
+        "RO" => "Romania",
+        "RU" => "Russian Federation",
+        "RW" => "Rwanda",
+        "KN" => "Saint Kitts And Nevis",
+        "LC" => "Saint Lucia",
+        "VC" => "Saint Vincent And The Grenadines",
+        "WS" => "Samoa",
+        "SM" => "San Marino",
+        "ST" => "Sao Tome And Principe",
+        "SA" => "Saudi Arabia",
+        "SN" => "Senegal",
+        "SC" => "Seychelles",
+        "SL" => "Sierra Leone",
+        "SG" => "Singapore",
+        "SK" => "Slovakia (Slovak Republic)",
+        "SI" => "Slovenia",
+        "SB" => "Solomon Islands",
+        "SO" => "Somalia",
+        "ZA" => "South Africa",
+        "GS" => "South Georgia, South Sandwich Islands",
+        "ES" => "Spain",
+        "LK" => "Sri Lanka",
+        "SH" => "St. Helena",
+        "PM" => "St. Pierre And Miquelon",
+        "SD" => "Sudan",
+        "SR" => "Suriname",
+        "SJ" => "Svalbard And Jan Mayen Islands",
+        "SZ" => "Swaziland",
+        "SE" => "Sweden",
+        "CH" => "Switzerland",
+        "SY" => "Syrian Arab Republic",
+        "TW" => "Taiwan",
+        "TJ" => "Tajikistan",
+        "TZ" => "Tanzania, United Republic Of",
+        "TH" => "Thailand",
+        "TG" => "Togo",
+        "TK" => "Tokelau",
+        "TO" => "Tonga",
+        "TT" => "Trinidad And Tobago",
+        "TN" => "Tunisia",
+        "TR" => "Turkey",
+        "TM" => "Turkmenistan",
+        "TC" => "Turks And Caicos Islands",
+        "TV" => "Tuvalu",
+        "UG" => "Uganda",
+        "UA" => "Ukraine",
+        "AE" => "United Arab Emirates",
+        "GB" => "United Kingdom",
+        "US" => "United States",
+        "UM" => "United States Minor Outlying Islands",
+        "UY" => "Uruguay",
+        "UZ" => "Uzbekistan",
+        "VU" => "Vanuatu",
+        "VE" => "Venezuela",
+        "VN" => "Viet Nam",
+        "VG" => "Virgin Islands (British)",
+        "VI" => "Virgin Islands (U.S.)",
+        "WF" => "Wallis And Futuna Islands",
+        "EH" => "Western Sahara",
+        "YE" => "Yemen",
+        "YU" => "Yugoslavia",
+        "ZM" => "Zambia",
+        "ZW" => "Zimbabwe",
+    );
 
     /**
      * Convert a 2 digit ISO country code to a country name.
@@ -21,1005 +263,37 @@ abstract class Convert
      * @param string $sCode The country code (2 characters)
      *
      * @return string The country name (in english)
-     *
-     * @todo    - use locale !
      */
     public static function countryName($sCode)
     {
         $sCode = strtolower($sCode);
-        $sCountry = '';
 
-        switch ($sCode) {
-        case 'af':
-            $sCountry = 'Afghanistan';
-            break;
-
-        case 'ax':
-            $sCountry = 'Aland Islands';
-            break;
-
-        case 'al':
-            $sCountry = 'Albania';
-            break;
-
-        case 'dz':
-            $sCountry = 'Algeria';
-            break;
-
-        case 'as':
-            $sCountry = 'American Samoa';
-            break;
-
-        case 'ad':
-            $sCountry = 'Andorra';
-            break;
-
-        case 'ao':
-            $sCountry = 'Angola';
-            break;
-
-        case 'ai':
-            $sCountry = 'Anguilla';
-            break;
-
-        case 'aq':
-            $sCountry = 'Antarctica';
-            break;
-
-        case 'ag':
-            $sCountry = 'Antigua and Barbuda';
-            break;
-
-        case 'ar':
-            $sCountry = 'Argentina';
-            break;
-
-        case 'am':
-            $sCountry = 'Armenia';
-            break;
-
-        case 'aw':
-            $sCountry = 'Aruba';
-            break;
-
-        case 'au':
-            $sCountry = 'Australia';
-            break;
-
-        case 'at':
-            $sCountry = 'Austria';
-            break;
-
-        case 'az':
-            $sCountry = 'Azerbaijan';
-            break;
-
-        case 'bs':
-            $sCountry = 'Bahamas the';
-            break;
-
-        case 'bh':
-            $sCountry = 'Bahrain';
-            break;
-
-        case 'bd':
-            $sCountry = 'Bangladesh';
-            break;
-
-        case 'bb':
-            $sCountry = 'Barbados';
-            break;
-
-        case 'by':
-            $sCountry = 'Belarus';
-            break;
-
-        case 'be':
-            $sCountry = 'Belgium';
-            break;
-
-        case 'bz':
-            $sCountry = 'Belize';
-            break;
-
-        case 'bj':
-            $sCountry = 'Benin';
-            break;
-
-        case 'bm':
-            $sCountry = 'Bermuda';
-            break;
-
-        case 'bt':
-            $sCountry = 'Bhutan';
-            break;
-
-        case 'bo':
-            $sCountry = 'Bolivia';
-            break;
-
-        case 'ba':
-            $sCountry = 'Bosnia and Herzegovina';
-            break;
-
-        case 'bw':
-            $sCountry = 'Botswana';
-            break;
-
-        case 'bv':
-            $sCountry = 'Bouvet Island (Bouvetoya)';
-            break;
-
-        case 'br':
-            $sCountry = 'Brazil';
-            break;
-
-        case 'io':
-            $sCountry = 'British Indian Ocean Territory (Chagos Archipelago)';
-            break;
-
-        case 'vg':
-            $sCountry = 'British Virgin Islands';
-            break;
-
-        case 'bn':
-            $sCountry = 'Brunei Darussalam';
-            break;
-
-        case 'bg':
-            $sCountry = 'Bulgaria';
-            break;
-
-        case 'bf':
-            $sCountry = 'Burkina Faso';
-            break;
-
-        case 'bi':
-            $sCountry = 'Burundi';
-            break;
-
-        case 'kh':
-            $sCountry = 'Cambodia';
-            break;
-
-        case 'cm':
-            $sCountry = 'Cameroon';
-            break;
-
-        case 'ca':
-            $sCountry = 'Canada';
-            break;
-
-        case 'cv':
-            $sCountry = 'Cape Verde';
-            break;
-
-        case 'ky':
-            $sCountry = 'Cayman Islands';
-            break;
-
-        case 'cf':
-            $sCountry = 'Central African Republic';
-            break;
-
-        case 'td':
-            $sCountry = 'Chad';
-            break;
-
-        case 'cl':
-            $sCountry = 'Chile';
-            break;
-
-        case 'cn':
-            $sCountry = 'China';
-            break;
-
-        case 'cx':
-            $sCountry = 'Christmas Island';
-            break;
-
-        case 'cc':
-            $sCountry = 'Cocos (Keeling) Islands';
-            break;
-
-        case 'co':
-            $sCountry = 'Colombia';
-            break;
-
-        case 'km':
-            $sCountry = 'Comoros the';
-            break;
-
-        case 'cd':
-            $sCountry = 'Congo';
-            break;
-
-        case 'cg':
-            $sCountry = 'Congo the';
-            break;
-
-        case 'ck':
-            $sCountry = 'Cook Islands';
-            break;
-
-        case 'cr':
-            $sCountry = 'Costa Rica';
-            break;
-
-        case 'ci':
-            $sCountry = 'Cote d\'Ivoire';
-            break;
-
-        case 'hr':
-            $sCountry = 'Croatia';
-            break;
-
-        case 'cu':
-            $sCountry = 'Cuba';
-            break;
-
-        case 'cy':
-            $sCountry = 'Cyprus';
-            break;
-
-        case 'cz':
-            $sCountry = 'Czech Republic';
-            break;
-
-        case 'dk':
-            $sCountry = 'Denmark';
-            break;
-
-        case 'dj':
-            $sCountry = 'Djibouti';
-            break;
-
-        case 'dm':
-            $sCountry = 'Dominica';
-            break;
-
-        case 'do':
-            $sCountry = 'Dominican Republic';
-            break;
-
-        case 'ec':
-            $sCountry = 'Ecuador';
-            break;
-
-        case 'eg':
-            $sCountry = 'Egypt';
-            break;
-
-        case 'sv':
-            $sCountry = 'El Salvador';
-            break;
-
-        case 'gq':
-            $sCountry = 'Equatorial Guinea';
-            break;
-
-        case 'er':
-            $sCountry = 'Eritrea';
-            break;
-
-        case 'ee':
-            $sCountry = 'Estonia';
-            break;
-
-        case 'et':
-            $sCountry = 'Ethiopia';
-            break;
-
-        case 'fo':
-            $sCountry = 'Faroe Islands';
-            break;
-
-        case 'fk':
-            $sCountry = 'Falkland Islands (Malvinas)';
-            break;
-
-        case 'fj':
-            $sCountry = 'Fiji the Fiji Islands';
-            break;
-
-        case 'fi':
-            $sCountry = 'Finland';
-            break;
-
-        case 'fr':
-            $sCountry = 'France, French Republic';
-            break;
-
-        case 'gf':
-            $sCountry = 'French Guiana';
-            break;
-
-        case 'pf':
-            $sCountry = 'French Polynesia';
-            break;
-
-        case 'tf':
-            $sCountry = 'French Southern Territories';
-            break;
-
-        case 'ga':
-            $sCountry = 'Gabon';
-            break;
-
-        case 'gm':
-            $sCountry = 'Gambia the';
-            break;
-
-        case 'ge':
-            $sCountry = 'Georgia';
-            break;
-
-        case 'de':
-            $sCountry = 'Germany';
-            break;
-
-        case 'gh':
-            $sCountry = 'Ghana';
-            break;
-
-        case 'gi':
-            $sCountry = 'Gibraltar';
-            break;
-
-        case 'gr':
-            $sCountry = 'Greece';
-            break;
-
-        case 'gl':
-            $sCountry = 'Greenland';
-            break;
-
-        case 'gd':
-            $sCountry = 'Grenada';
-            break;
-
-        case 'gp':
-            $sCountry = 'Guadeloupe';
-            break;
-
-        case 'gu':
-            $sCountry = 'Guam';
-            break;
-
-        case 'gt':
-            $sCountry = 'Guatemala';
-            break;
-
-        case 'gg':
-            $sCountry = 'Guernsey';
-            break;
-
-        case 'gn':
-            $sCountry = 'Guinea';
-            break;
-
-        case 'gw':
-            $sCountry = 'Guinea-Bissau';
-            break;
-
-        case 'gy':
-            $sCountry = 'Guyana';
-            break;
-
-        case 'ht':
-            $sCountry = 'Haiti';
-            break;
-
-        case 'hm':
-            $sCountry = 'Heard Island and McDonald Islands';
-            break;
-
-        case 'va':
-            $sCountry = 'Holy See (Vatican City State)';
-            break;
-
-        case 'hn':
-            $sCountry = 'Honduras';
-            break;
-
-        case 'hk':
-            $sCountry = 'Hong Kong';
-            break;
-
-        case 'hu':
-            $sCountry = 'Hungary';
-            break;
-
-        case 'is':
-            $sCountry = 'Iceland';
-            break;
-
-        case 'in':
-            $sCountry = 'India';
-            break;
-
-        case 'id':
-            $sCountry = 'Indonesia';
-            break;
-
-        case 'ir':
-            $sCountry = 'Iran';
-            break;
-
-        case 'iq':
-            $sCountry = 'Iraq';
-            break;
-
-        case 'ie':
-            $sCountry = 'Ireland';
-            break;
-
-        case 'im':
-            $sCountry = 'Isle of Man';
-            break;
-
-        case 'il':
-            $sCountry = 'Israel';
-            break;
-
-        case 'it':
-            $sCountry = 'Italy';
-            break;
-
-        case 'jm':
-            $sCountry = 'Jamaica';
-            break;
-
-        case 'jp':
-            $sCountry = 'Japan';
-            break;
-
-        case 'je':
-            $sCountry = 'Jersey';
-            break;
-
-        case 'jo':
-            $sCountry = 'Jordan';
-            break;
-
-        case 'kz':
-            $sCountry = 'Kazakhstan';
-            break;
-
-        case 'ke':
-            $sCountry = 'Kenya';
-            break;
-
-        case 'ki':
-            $sCountry = 'Kiribati';
-            break;
-
-        case 'kp':
-            $sCountry = 'Korea';
-            break;
-
-        case 'kr':
-            $sCountry = 'Korea';
-            break;
-
-        case 'kw':
-            $sCountry = 'Kuwait';
-            break;
-
-        case 'kg':
-            $sCountry = 'Kyrgyz Republic';
-            break;
-
-        case 'la':
-            $sCountry = 'Lao';
-            break;
-
-        case 'lv':
-            $sCountry = 'Latvia';
-            break;
-
-        case 'lb':
-            $sCountry = 'Lebanon';
-            break;
-
-        case 'ls':
-            $sCountry = 'Lesotho';
-            break;
-
-        case 'lr':
-            $sCountry = 'Liberia';
-            break;
-
-        case 'ly':
-            $sCountry = 'Libyan Arab Jamahiriya';
-            break;
-
-        case 'li':
-            $sCountry = 'Liechtenstein';
-            break;
-
-        case 'lt':
-            $sCountry = 'Lithuania';
-            break;
-
-        case 'lu':
-            $sCountry = 'Luxembourg';
-            break;
-
-        case 'mo':
-            $sCountry = 'Macao';
-            break;
-
-        case 'mk':
-            $sCountry = 'Macedonia';
-            break;
-
-        case 'mg':
-            $sCountry = 'Madagascar';
-            break;
-
-        case 'mw':
-            $sCountry = 'Malawi';
-            break;
-
-        case 'my':
-            $sCountry = 'Malaysia';
-            break;
-
-        case 'mv':
-            $sCountry = 'Maldives';
-            break;
-
-        case 'ml':
-            $sCountry = 'Mali';
-            break;
-
-        case 'mt':
-            $sCountry = 'Malta';
-            break;
-
-        case 'mh':
-            $sCountry = 'Marshall Islands';
-            break;
-
-        case 'mq':
-            $sCountry = 'Martinique';
-            break;
-
-        case 'mr':
-            $sCountry = 'Mauritania';
-            break;
-
-        case 'mu':
-            $sCountry = 'Mauritius';
-            break;
-
-        case 'yt':
-            $sCountry = 'Mayotte';
-            break;
-
-        case 'mx':
-            $sCountry = 'Mexico';
-            break;
-
-        case 'fm':
-            $sCountry = 'Micronesia';
-            break;
-
-        case 'md':
-            $sCountry = 'Moldova';
-            break;
-
-        case 'mc':
-            $sCountry = 'Monaco';
-            break;
-
-        case 'mn':
-            $sCountry = 'Mongolia';
-            break;
-
-        case 'me':
-            $sCountry = 'Montenegro';
-            break;
-
-        case 'ms':
-            $sCountry = 'Montserrat';
-            break;
-
-        case 'ma':
-            $sCountry = 'Morocco';
-            break;
-
-        case 'mz':
-            $sCountry = 'Mozambique';
-            break;
-
-        case 'mm':
-            $sCountry = 'Myanmar';
-            break;
-
-        case 'na':
-            $sCountry = 'Namibia';
-            break;
-
-        case 'nr':
-            $sCountry = 'Nauru';
-            break;
-
-        case 'np':
-            $sCountry = 'Nepal';
-            break;
-
-        case 'an':
-            $sCountry = 'Netherlands Antilles';
-            break;
-
-        case 'nl':
-            $sCountry = 'Netherlands the';
-            break;
-
-        case 'nc':
-            $sCountry = 'New Caledonia';
-            break;
-
-        case 'nz':
-            $sCountry = 'New Zealand';
-            break;
-
-        case 'ni':
-            $sCountry = 'Nicaragua';
-            break;
-
-        case 'ne':
-            $sCountry = 'Niger';
-            break;
-
-        case 'ng':
-            $sCountry = 'Nigeria';
-            break;
-
-        case 'nu':
-            $sCountry = 'Niue';
-            break;
-
-        case 'nf':
-            $sCountry = 'Norfolk Island';
-            break;
-
-        case 'mp':
-            $sCountry = 'Northern Mariana Islands';
-            break;
-
-        case 'no':
-            $sCountry = 'Norway';
-            break;
-
-        case 'om':
-            $sCountry = 'Oman';
-            break;
-
-        case 'pk':
-            $sCountry = 'Pakistan';
-            break;
-
-        case 'pw':
-            $sCountry = 'Palau';
-            break;
-
-        case 'ps':
-            $sCountry = 'Palestinian Territory';
-            break;
-
-        case 'pa':
-            $sCountry = 'Panama';
-            break;
-
-        case 'pg':
-            $sCountry = 'Papua New Guinea';
-            break;
-
-        case 'py':
-            $sCountry = 'Paraguay';
-            break;
-
-        case 'pe':
-            $sCountry = 'Peru';
-            break;
-
-        case 'ph':
-            $sCountry = 'Philippines';
-            break;
-
-        case 'pn':
-            $sCountry = 'Pitcairn Islands';
-            break;
-
-        case 'pl':
-            $sCountry = 'Poland';
-            break;
-
-        case 'pt':
-            $sCountry = 'Portugal, Portuguese Republic';
-            break;
-
-        case 'pr':
-            $sCountry = 'Puerto Rico';
-            break;
-
-        case 'qa':
-            $sCountry = 'Qatar';
-            break;
-
-        case 're':
-            $sCountry = 'Reunion';
-            break;
-
-        case 'ro':
-            $sCountry = 'Romania';
-            break;
-
-        case 'ru':
-            $sCountry = 'Russian Federation';
-            break;
-
-        case 'rw':
-            $sCountry = 'Rwanda';
-            break;
-
-        case 'bl':
-            $sCountry = 'Saint Barthelemy';
-            break;
-
-        case 'sh':
-            $sCountry = 'Saint Helena';
-            break;
-
-        case 'kn':
-            $sCountry = 'Saint Kitts and Nevis';
-            break;
-
-        case 'lc':
-            $sCountry = 'Saint Lucia';
-            break;
-
-        case 'mf':
-            $sCountry = 'Saint Martin';
-            break;
-
-        case 'pm':
-            $sCountry = 'Saint Pierre and Miquelon';
-            break;
-
-        case 'vc':
-            $sCountry = 'Saint Vincent and the Grenadines';
-            break;
-
-        case 'ws':
-            $sCountry = 'Samoa';
-            break;
-
-        case 'sm':
-            $sCountry = 'San Marino';
-            break;
-
-        case 'st':
-            $sCountry = 'Sao Tome and Principe';
-            break;
-
-        case 'sa':
-            $sCountry = 'Saudi Arabia';
-            break;
-
-        case 'sn':
-            $sCountry = 'Senegal';
-            break;
-
-        case 'rs':
-            $sCountry = 'Serbia';
-            break;
-
-        case 'sc':
-            $sCountry = 'Seychelles';
-            break;
-
-        case 'sl':
-            $sCountry = 'Sierra Leone';
-            break;
-
-        case 'sg':
-            $sCountry = 'Singapore';
-            break;
-
-        case 'sk':
-            $sCountry = 'Slovakia (Slovak Republic)';
-            break;
-
-        case 'si':
-            $sCountry = 'Slovenia';
-            break;
-
-        case 'sb':
-            $sCountry = 'Solomon Islands';
-            break;
-
-        case 'so':
-            $sCountry = 'Somalia, Somali Republic';
-            break;
-
-        case 'za':
-            $sCountry = 'South Africa';
-            break;
-
-        case 'gs':
-            $sCountry = 'South Georgia and the South Sandwich Islands';
-            break;
-
-        case 'es':
-            $sCountry = 'Spain';
-            break;
-
-        case 'lk':
-            $sCountry = 'Sri Lanka';
-            break;
-
-        case 'sd':
-            $sCountry = 'Sudan';
-            break;
-
-        case 'sr':
-            $sCountry = 'Suriname';
-            break;
-
-        case 'sj':
-            $sCountry = 'Svalbard & Jan Mayen Islands';
-            break;
-
-        case 'sz':
-            $sCountry = 'Swaziland';
-            break;
-
-        case 'se':
-            $sCountry = 'Sweden';
-            break;
-
-        case 'ch':
-            $sCountry = 'Switzerland, Swiss Confederation';
-            break;
-
-        case 'sy':
-            $sCountry = 'Syrian Arab Republic';
-            break;
-
-        case 'tw':
-            $sCountry = 'Taiwan';
-            break;
-
-        case 'tj':
-            $sCountry = 'Tajikistan';
-            break;
-
-        case 'tz':
-            $sCountry = 'Tanzania';
-            break;
-
-        case 'th':
-            $sCountry = 'Thailand';
-            break;
-
-        case 'tl':
-            $sCountry = 'Timor-Leste';
-            break;
-
-        case 'tg':
-            $sCountry = 'Togo';
-            break;
-
-        case 'tk':
-            $sCountry = 'Tokelau';
-            break;
-
-        case 'to':
-            $sCountry = 'Tonga';
-            break;
-
-        case 'tt':
-            $sCountry = 'Trinidad and Tobago';
-            break;
-
-        case 'tn':
-            $sCountry = 'Tunisia';
-            break;
-
-        case 'tr':
-            $sCountry = 'Turkey';
-            break;
-
-        case 'tm':
-            $sCountry = 'Turkmenistan';
-            break;
-
-        case 'tc':
-            $sCountry = 'Turks and Caicos Islands';
-            break;
-
-        case 'tv':
-            $sCountry = 'Tuvalu';
-            break;
-
-        case 'ug':
-            $sCountry = 'Uganda';
-            break;
-
-        case 'ua':
-            $sCountry = 'Ukraine';
-            break;
-
-        case 'ae':
-            $sCountry = 'United Arab Emirates';
-            break;
-
-        case 'gb':
-            $sCountry = 'United Kingdom';
-            break;
-
-        case 'us':
-            $sCountry = 'United States of America';
-            break;
-
-        case 'um':
-            $sCountry = 'United States Minor Outlying Islands';
-            break;
-
-        case 'vi':
-            $sCountry = 'United States Virgin Islands';
-            break;
-
-        case 'uy':
-            $sCountry = 'Uruguay, Eastern Republic of';
-            break;
-
-        case 'uz':
-            $sCountry = 'Uzbekistan';
-            break;
-
-        case 'vu':
-            $sCountry = 'Vanuatu';
-            break;
-
-        case 've':
-            $sCountry = 'Venezuela';
-            break;
-
-        case 'vn':
-            $sCountry = 'Vietnam';
-            break;
-
-        case 'wf':
-            $sCountry = 'Wallis and Futuna';
-            break;
-
-        case 'eh':
-            $sCountry = 'Western Sahara';
-            break;
-
-        case 'ye':
-            $sCountry = 'Yemen';
-            break;
-
-        case 'zm':
-            $sCountry = 'Zambia';
-            break;
-
-        case 'zw':
-            $sCountry = 'Zimbabwe';
-            break;
-
-        default:
-                $sCountry = $sCode;
+        if(isset(self::$aCountries[$sCode])){
+            return self::$aCountries[$sCode];
         }
 
-        return $sCountry;
+        return false;
     } // countryName
+
+    /**
+     * Convert a 2 digit ISO country code to a country name.
+     *
+     * @param string $sCode The country code (2 characters)
+     *
+     * @return string The country name (in english)
+     */
+    public static function countryCode($sCountryName)
+    {
+        $sCountryName = strtolower($sCountryName);
+
+        $aCountries = array_flip(self::$aCountries);
+
+        if(isset($aCountries[$sCountryName])){
+            return $aCountries[$sCountryName];
+        }
+
+        return false;
+    } // countryCode
 
 
     /**
@@ -1029,7 +303,6 @@ abstract class Convert
      *
      * @return string       The continent name
      *
-     * @todo    - use locale !
      */
     public static function countryToContinent($sCountry)
     {
@@ -2069,7 +1342,7 @@ abstract class Convert
      */
     public static function httpStatusDesc($iCode)
     {
-        $iCode = absint($iCode);
+        $iCode = intval($iCode);
 
         $aCode_to_desc = array(
             100 => 'Continue',
