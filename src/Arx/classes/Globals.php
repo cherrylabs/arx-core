@@ -11,8 +11,6 @@
  * @license  http://opensource.org/licenses/MIT MIT License
  * @link     http://arx.xxx/doc/Globals
  *
- * @todo
- * Configure Exception (make the custom classe first)...
  */
 abstract class Globals
 {
