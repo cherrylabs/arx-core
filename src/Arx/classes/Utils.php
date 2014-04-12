@@ -450,11 +450,14 @@ class Utils
     } // json_die
 
 #K
-    public static function k($string = '')
+    public static function k()
     {
         $aErrors = debug_backtrace();
 
-        foreach ($aErrors as $key => $error) {
+        $file = 'undefined';
+        $line = 'undefined';
+
+        foreach ($aErrors as $error) {
             if (preg_match('/k/i', $error['function']) && !empty($error['line']) && !empty($error['file'])) {
                 $line = $error['line'];
                 $file = $error['file'];
