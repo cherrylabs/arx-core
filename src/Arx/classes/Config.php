@@ -57,8 +57,6 @@ class Config extends Container
 
         $rules = self::get('env');
 
-        $host = getenv('SERVER_NAME');
-
         $request = $request ? $request : Request::createFromGlobals();
 
         $host = $request->getHost();

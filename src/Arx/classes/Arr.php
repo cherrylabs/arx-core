@@ -58,7 +58,7 @@ class Arr
      * @return  array|null  the new array or null
      * @throws  \BadMethodCallException
      */
-    public static function convert($arr)
+    public static function convert(array $arr)
     {
         if (($count = count($arr)) % 2 > 0) {
             throw new \BadMethodCallException('Number of values in to_assoc must be even.');
