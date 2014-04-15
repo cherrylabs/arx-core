@@ -230,8 +230,8 @@ module.exports = function (grunt) {
                     'app/*.less',
                     'app/*.php',
                     'Grunt.js',
-                    'app/*/*.php',
-                    'app/views/*.php'
+                    'app/**/*.php',
+                    'workbench/**/*.php'
                 ]
             }
         }, // watch

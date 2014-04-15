@@ -83,6 +83,7 @@ require_once __DIR__ . DS . 'classes' . DS . 'App.php';
  */
 
 if(!class_exists('Arx')){
+
     class Arx extends \Arx\classes\App{
 
         public static function path($value = null){
@@ -101,12 +102,13 @@ if(!class_exists('Arx')){
             require_once __DIR__ . DIRECTORY_SEPARATOR .'helpers.php';
         }
     }
+
 }
 
 /**
  * Spl class register
  *
- * If a class is not found will trigger this function defined in classes/app.php
+ * If a class is not found it will trigger arx::autoload method defined in classes/app.php
  *
  */
 spl_autoload_register('Arx::autoload');

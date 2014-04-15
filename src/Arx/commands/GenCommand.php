@@ -61,13 +61,13 @@ class GenCommand extends Command {
 
             # copy .bowerrc & Gruntfile
 
-            copy(__DIR__.'/../../views/generators/app/grunt/.bowerrc', base_path('.bowerrc'));
+            copy(__DIR__.'/../../views/generators/.bowerrc', base_path('.bowerrc'));
 
-            copy(__DIR__.'/../../views/generators/app/grunt/Gruntfile.js', base_path('Gruntfile.js'));
+            copy(__DIR__.'/../../views/generators/Gruntfile.js', base_path('Gruntfile.js'));
 
             # Generate bower.json
 
-            $bower = Str::smrtr(file_get_contents(__DIR__.'/../../views/generators/app/grunt/bower.json.stub'), $info, array('<%=', '%>'));
+            $bower = Str::smrtr(file_get_contents(__DIR__.'/../../views/generators/bower.json.stub'), $info, array('<%=', '%>'));
 
             if(file_put_contents(base_path('bower.json'), $bower)){
                 $this->info('bower.json copied');
@@ -75,7 +75,7 @@ class GenCommand extends Command {
 
             # Generate package.json.tpl.php
 
-            $package = Str::smrtr(file_get_contents(__DIR__.'/../../views/generators/app/grunt/package.json.stub'), $info, array('<%=', '%>'));
+            $package = Str::smrtr(file_get_contents(__DIR__.'/../../views/generators/package.json.stub'), $info, array('<%=', '%>'));
 
             if(file_put_contents(base_path('package.json'), $package)){
                 $this->info('package.json copied');
