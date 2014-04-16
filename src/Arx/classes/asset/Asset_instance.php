@@ -63,7 +63,7 @@ class Asset_Instance
     /**
      * @var  string  prefix for generated output to provide proper indentation
      */
-    protected $_ident = '';
+    protected $_indent = '';
 
     /**
      * @var  bool  if true, directly renders the output of no group name is given

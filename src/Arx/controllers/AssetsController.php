@@ -59,7 +59,6 @@ class Assets extends \Controller
             } elseif (preg_match('/.js/i', $parameters)) {
                 header('Content-Type: text/javascript');
             }
-            die($response);
         }
 
         App::missing(function ($exception) {

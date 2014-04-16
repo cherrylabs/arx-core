@@ -169,17 +169,25 @@ class Str
 
 
     /**
-     * Same function as strtr but add a { matches }
-     *
-     * @param $
-     *
-     * @return
-     *
-     * @code
-     *
-     * @endcode
+     * @param $haystack
+     * @param $aMatch
+     * @param array $aDelimiter
+     * @deprected please use smrtr
+     * @return mixed
      */
     public static function strtr($haystack, $aMatch, $aDelimiter = array("{","}")) {
+        return call_user_func_array(array(self, 'smrtr'), func_get_args());
+    } // strtr
+
+    /**
+     * Smrtr the smartest micro template engine
+     *
+     * @param $haystack
+     * @param $aMatch
+     * @param array $aDelimiter
+     * @return string
+     */
+    public static function smrtr($haystack, $aMatch, $aDelimiter = array("{","}")) {
         $aCleaned = array();
 
         foreach ($aMatch as $key => $v) {
@@ -187,10 +195,6 @@ class Str
         }
 
         return strtr($haystack, $aCleaned);
-    } // strtr
-
-    public static function smrtr() {
-        return call_user_func_array(array(self, 'strtr'), func_get_args());
     } // smrtr
 
     /**

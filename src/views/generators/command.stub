@@ -1,24 +1,24 @@
-<?php namespace Arx;
+<?php <%=namespace%>
 
 use Illuminate\Console\Command;
 use Symfony\Component\Console\Input\InputOption;
 use Symfony\Component\Console\Input\InputArgument;
 
-class CopyCommand extends Command {
+class <%=name%> extends Command {
 
 	/**
 	 * The console command name.
 	 *
 	 * @var string
 	 */
-	protected $name = 'arx:copy';
+	protected $name = 'command:name';
 
 	/**
 	 * The console command description.
 	 *
 	 * @var string
 	 */
-	protected $description = 'Copy commands.';
+	protected $description = 'Command description.';
 
 	/**
 	 * Create a new command instance.
