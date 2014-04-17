@@ -384,11 +384,19 @@ class Utils
     }
 
     /**
-     * Simple isJson check
+     * check if string is json
+     *
+     * @param $string
      * @return bool
      */
-    public static function isJson(){
-        return (!empty($_SERVER['HTTP_X_REQUESTED_WITH']) && strtolower($_SERVER['HTTP_X_REQUESTED_WITH']) == 'xmlhttprequest');
+    public static function isJson($string){
+
+        if(!is_string($string)) return false;
+
+        if(empty($string)) return false;
+
+        json_decode($string);
+        return (json_last_error() == JSON_ERROR_NONE);
     }
 
     /**
@@ -424,9 +432,47 @@ class Utils
         return $response;
     }
 
+    /**
+     * Check if it's a closure string
+     *
+     * @param $var
+     * @return bool
+     */
     public static function isClosure($var)
     {
         return is_object($var) && ($var instanceof \Closure);
+    }
+
+    /**
+     * Check if data is serialized string
+     *
+     * @param $data
+     * @return bool
+     */
+    public static function isSerialized($data){
+        // if it isn't a string, it isn't serialized
+        if ( !is_string( $data ) )
+            return false;
+        $data = trim( $data );
+        if ( 'N;' == $data )
+            return true;
+        if ( !preg_match( '/^([adObis]):/', $data, $badions ) )
+            return false;
+        switch ( $badions[1] ) {
+            case 'a' :
+            case 'O' :
+            case 's' :
+                if ( preg_match( "/^{$badions[1]}:[0-9]+:.*[;}]\$/s", $data ) )
+                    return true;
+                break;
+            case 'b' :
+            case 'i' :
+            case 'd' :
+                if ( preg_match( "/^{$badions[1]}:[0-9.E-]+;\$/", $data ) )
+                    return true;
+                break;
+        }
+        return false;
     }
 
 #J
