@@ -202,24 +202,24 @@ class App extends ParentClass
                 $supposedPath = end($aNamespaces[$composerName]) . DS . str_replace('\\', DS, $namespace) . DS. 'classes' . DS . $className . '.php';
             }
 
-            if(preg_match('/Command/', $className)){
+            if(preg_match('/Command$/', $className)){
                 $supposedPath = end($aNamespaces[$composerName]) . DS . str_replace('\\', DS, $namespace) . DS. 'commands' . DS . $className . '.php';
             }
 
-            if(preg_match('/Provider/', $className)){
+            if(preg_match('/Provider$/', $className)){
                 $supposedPath = end($aNamespaces[$composerName]) . DS . str_replace('\\', DS, $namespace) . DS. 'providers' . DS . $className . '.php';
             }
 
-            if(preg_match('/Facade/', $className)){
+            if(preg_match('/Facade$/', $className)){
                 $supposedPath = end($aNamespaces[$composerName]) . DS . str_replace('\\', DS, $namespace) . DS. 'facades' . DS . $className . '.php';
             }
 
-            if(preg_match('/Helper/', $className)){
+            if(preg_match('/Helper$/', $className)){
                 $supposedPath = end($aNamespaces[$composerName]) . DS . str_replace('\\', DS, $namespace) . DS. 'helpers' . DS . $className . '.php';
             }
 
-            if(preg_match('/Interface/', $className)){
-                $supposedPath = end($aNamespaces[$composerName]) . DS . str_replace('\\', DS, $namespace) . DS. 'interface' . DS . $className . '.php';
+            if(preg_match('/Interface$/', $className)){
+                $supposedPath = end($aNamespaces[$composerName]) . DS . str_replace('\\', DS, $namespace) . DS. 'interfaces' . DS . $className . '.php';
             }
 
         }
