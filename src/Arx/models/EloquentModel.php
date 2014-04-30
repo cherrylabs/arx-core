@@ -40,6 +40,23 @@ class EloquentModel extends ParentClass {
     }
 
     /**
+     * Decode JsonModel
+     *
+     * @return $this
+     */
+    public function decodeJson(){
+
+        foreach(self::$jsonable as $key){
+
+            if(isset($this->{$key}) && Utils::isJson($$this->{$key})){
+                $this->{$key} = json_decode($this->{$key});
+            }
+        }
+
+        return $this;
+    }
+
+    /**
      * Transform to Array even Data encoded
      *
      * @return array
