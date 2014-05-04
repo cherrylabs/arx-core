@@ -840,7 +840,7 @@ class Utils
      */
     public static function sendMail($recipient, $subject = null, $html, $c = null)
     {
-        $c = u::toArray($c);
+        $c = self::toArray($c);
         $headers = 'From: ' . stripslashes($c['exp_nom']) . ' <' . $c['exp_mail'] . '>' . "\r\n";
         $headers .= 'MIME-version: 1.0' . "\n";
         $headers .= 'Content-type: text/html; charset=UTF-8' . "\n";
@@ -851,13 +851,23 @@ class Utils
     } // sendMail
 
     /**
-     * Fastest template ever !
-     * @deprecated use Strings::strtr instead !
+     * Fastest template engine ever !
+     *
      * @return mixed
      */
-    public static function smrtr() {
-        return call_user_func_array(array('Strings', 'strtr'), func_get_args());
+    public static function smrtr($haystack, $aMatch, $aDelimiter = array("{","}")) {
+        return Str::smrtr($haystack, $aMatch, $aDelimiter);
     } // smrtr
+
+    /**
+     * Transform any value to Array
+     *
+     * @param $mValue
+     * @return mixed
+     */
+    public static function toArray($mValue){
+        return Arr::toArray($mValue);
+    }
 
 } // class::Utils
 
