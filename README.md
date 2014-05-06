@@ -313,7 +313,7 @@ To use Arx directly from the repo just checkout this repository inside a workben
 
 # What's new ? :
 
-## Arx 4.1.5 :
+## 4.1.5 :
 
 - introduce Arx Command Line Interface ! New Command will come soon...
 - add Grunt generator for Laravel now you can generate a grunt file with
@@ -322,6 +322,7 @@ To use Arx directly from the repo just checkout this repository inside a workben
 
 - add a better Command:make for workbench (auto resolve with --path autoresolve function and --namespace auto resolve
 - move Arx\classes\View to Arx/providers/ViewServiceProvider.php and clean some View logic so now the class View can be usable outside a Laravel Project (still W.I.P)
+- clean some class with scruttinizer
 
 ## 4.1.x
 
