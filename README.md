@@ -5,6 +5,8 @@
 
 Arx core is the base of the [Arx project](http://www.arx.io). It gives some usefull classes, templates, assets for Laravel but some classes are usable in every kind of project like Wordpress, Drupal, Prestashop or even your custom PHP project !
 
+It is highly maintened by a [dedicated agency](http://www.cherrypulp.com), so don't hesitate to make your comments or bug fixes.
+
 # Getting Started
 
 ## 1. Install Composer (skip this if you know how)
