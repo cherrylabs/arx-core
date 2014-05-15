@@ -19,12 +19,12 @@ class EloquentModel extends ParentClass {
 
         static::creating(function($model)
         {
-            $model = self::forceJsonable($model);
+            $model = $model->forceJsonable($model);
         });
 
         static::updating(function($model)
         {
-            $model = self::forceJsonable($model);
+            $model = $model->forceJsonable($model);
         });
     }
 
