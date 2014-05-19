@@ -19,9 +19,7 @@ if(!$app){
 | given environment, then we will automatically detect it for you.
 |
 */
-/**
- * @todo : detectEnvironment script
- */
+
 $env = $app->detectEnvironment(function(){
     return Arx::env();
 });

@@ -3,11 +3,12 @@
 use Illuminate\Database\Eloquent\Model as ParentClass;
 
 use Arx\classes\Utils;
+use DB;
 
 class EloquentModel extends ParentClass {
 
     /**
-     * Define field which can be a json
+     * Define fields which can be a json
      *
      * @var array
      */
@@ -57,7 +58,7 @@ class EloquentModel extends ParentClass {
     }
 
     /**
-     * Transform to Array even Data encoded
+     * Transform to Array even Json Data encoded
      *
      * @return array
      */
@@ -73,6 +74,93 @@ class EloquentModel extends ParentClass {
         }
 
         return $data;
+    }
+
+    /**
+     * Get Structure of the Current Table
+     *
+     */
+    public static function getStructure($withGuarded = false, $asKey = false)
+    {
+        $t = new self;
+
+        $table = $t->getTable();
+
+        switch (DB::connection()->getConfig('driver')) {
+            case 'pgsql':
+                $query = "SELECT column_name FROM information_schema.columns WHERE table_name = '".$table."'";
+                $column_name = 'column_name';
+                $reverse = true;
+                break;
+
+            case 'mysql':
+                $query = 'SHOW COLUMNS FROM '.$table;
+                $column_name = 'Field';
+                $reverse = false;
+                break;
+
+            case 'sqlsrv':
+                $parts = explode('.', $table);
+                $num = (count($parts) - 1);
+                $table = $parts[$num];
+                $query = "SELECT column_name FROM ".DB::connection()->getConfig('database').".INFORMATION_SCHEMA.COLUMNS WHERE TABLE_NAME = N'".$table."'";
+                $column_name = 'column_name';
+                $reverse = false;
+                break;
+
+            default:
+                $error = 'Database driver not supported: '.DB::connection()->getConfig('driver');
+                throw new \Exception($error);
+                break;
+        }
+
+        $columns = array();
+
+        foreach(DB::select($query) as $column)
+        {
+            $columns[] = $column->$column_name;
+        }
+
+        if($reverse)
+        {
+            $columns = array_reverse($columns);
+        }
+
+        if($withGuarded){
+
+            $kColumns = array_flip($columns);
+
+            foreach($t->guarded as $key){
+
+                if(isset($kColumns[$key])){
+
+                    unset($columns[$kColumns[$key]]);
+                }
+            }
+
+            # Switch keys if we want column name as key
+            if($asKey)
+            {
+                $columns = array_flip($columns);
+            }
+
+            # remove timestamp
+
+            $updated_at = array_search('updated_at', $columns);
+
+            if($updated_at !== false){
+                unset($columns['updated_at']);
+            }
+
+            $created_at = array_search('created_at', $columns);
+
+            if($created_at !== false){
+                unset($columns['created_at']);
+            }
+
+        }
+
+        return $columns;
     }
 
 } 

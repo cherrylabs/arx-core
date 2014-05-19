@@ -21,7 +21,7 @@ class Lang extends Facade{
         }
 
         if(!$lang){
-            //@todo fix default local !
+
             $app = include app_path('config/app.php');
 
             $default = Lang::get($key, array(), $app['locale']);

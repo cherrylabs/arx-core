@@ -1,7 +1,7 @@
 <?php
 /**
  * Helper loader for functions
- * @todo : better helper integrations via autoload functions
+ *
  */
 use Arx\classes\Utils;
 
