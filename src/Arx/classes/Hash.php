@@ -8,6 +8,8 @@
  */
 class Hash implements \Illuminate\Hashing\HasherInterface {
 
+    protected static $_algo = 'sha1';
+
     /**
      * Hash the given value.
      *
@@ -16,7 +18,7 @@ class Hash implements \Illuminate\Hashing\HasherInterface {
      * @return string
      */
     public function make($value, array $options = array()) {
-        return hash('sha1', $value);
+        return hash(self::$_algo, $value);
     }
 
     /**

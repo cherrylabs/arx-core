@@ -6,13 +6,13 @@
  * @author : Daniel Sum <daniel@cherrypulp.com>
  */
 
-namespace Arx\controllers;
+namespace Arx;
 
 use Controller;
 /*
  * Add some basic and usefull function like setContent method
  */
 
-class Base extends Controller {
+class BaseController extends Controller {
 
 } 
