@@ -8,7 +8,8 @@ use Illuminate\Filesystem;
  * extends Illuminate\Filesystem class
  * @see http://laravel.com/api/4.1/Illuminate/Filesystem/Filesystem.html
  * @package Arx\classes
+ * @todo better method implementation
  */
-class File {
+class File extends Filesystem{
     
 }

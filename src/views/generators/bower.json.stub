@@ -1,7 +1,7 @@
 {
-  "name": "arx-core",
+  "name": "<%=$project_name%>",
   "version": "0.0.1",
-  "main": "css/main.min.css",
+  "main": "public/css/main.css",
   "ignore": [
     "**/.*",
     "node_modules",
@@ -11,20 +11,20 @@
   ],
   "dependencies": {
     "jquery": "~2.0.3",
+    "angular" : "1.2.14",
     "bootstrap": "~3.0.0-rc1",
     "bootstrap-multiselect": "*",
-    "font-awesome": "4.0.3",
+    "font-awesome": "~3.2.1",
     "select2": "~3.4.1",
     "jquery-ui": "~1.10.3",
     "bootstrap-colorpicker": "*",
     "bootstrap-datepicker": "~1.2.0-rc.1",
     "bootstrap-timepicker": "~0.2.3",
-    "jquery-validation": "git://github.com/jzaefferer/jquery-validation.git#~1.11.1",
+    "jquery-validation": "https://github.com/jzaefferer/jquery-validation.git#~1.11.1",
     "x-editable": "~1.4.6",
-    "fullcalendar": "~1.6.3",
     "history.js": "~1.8.0",
     "jquery.loader.js": "https://github.com/monkeymonk/jquery.loader.js.git",
-    "angular-bootstrap": "~0.7.0",
+    "angular-bootstrap": "~0.6.0",
     "jquery-pageslide": "https://github.com/srobbin/jquery-pageslide.git",
     "requirejs-domready": "~2.0.1",
     "angular-ui-utils": "~0.0.4",
@@ -33,6 +33,8 @@
     "tinymce": "~4.0.10",
     "jquery.tinymce": "*",
     "sidr": "~1.2.1",
-    "datatables-tabletools": "*"
+    "datatables-tabletools": "*",
+    "angular-form-builder": "~0.0.2",
+    "angular-validator": "*"
   }
 }

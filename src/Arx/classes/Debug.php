@@ -2,7 +2,6 @@
 
 use DebugBar\StandardDebugBar;
 use App;
-use ReflectionMethod;
 use Arx\classes\debug\Kint;
 
 /**
@@ -48,8 +47,11 @@ class Debug extends Singleton
         return Kint::dump($data);
     }
 
+    /**
+     * @param null $data
+     */
     public static function trace($data = null){
-        return Kint::trace($data);
+        Kint::trace($data);
     }
 
 } // class::Debug

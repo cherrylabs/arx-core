@@ -94,7 +94,7 @@ class Image
     //
     //		The resulting format will be determined by the file extension.
     //
-    public function save($filename = null, $quality = null)
+    public function save($filename = null, $quality = null, $returnRaw = false)
     {
 
         if (!$filename) $filename = $this->filename;
@@ -130,6 +130,10 @@ class Image
         }
 
         if (!$result) throw new Exception('Unable to save image: ' . $filename);
+
+        if($returnRaw){
+            return $result;
+        }
 
         return $this;
 
@@ -673,13 +677,31 @@ class Image
 
     }
 
+    /**
+     * output the Data as image
+     * @param null $quality
+     * @throws Exception
+     */
     public function output($quality = null)
     {
-
         header('Content-type: image/' . $this->original_info['format']);
         $this->save(-1, $quality);
         //die to stop execution
         die();
+    }
+
+    /**
+     * Output the data in Base64 on the supafly
+     * @param null $quality
+     * @return string
+     * @throws Exception
+     */
+    public function outputBase64($quality = null){
+        ob_start ();
+        $this->save(-1, $quality);
+        $image_data = ob_get_contents();
+        ob_end_clean ();
+        return 'data:'.$this->original_info['mime'].';base64,' . base64_encode($image_data);
     }
 
     //

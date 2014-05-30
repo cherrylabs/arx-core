@@ -1,30 +1,8 @@
 <?php namespace Arx\classes;
 
-use Closure;
-use Illuminate\Foundation\Application;
-use Illuminate\Http\Request;
-use Illuminate\Http\Response;
-use Illuminate\Routing\Router;
-use Illuminate\Config\FileLoader;
-use Illuminate\Filesystem\Filesystem;
-use Illuminate\Support\Facades\Facade;
-use Illuminate\Support\ServiceProvider;
-use Illuminate\Events\EventServiceProvider;
-use Illuminate\Foundation\ProviderRepository;
-use Illuminate\Routing\RoutingServiceProvider;
-use Illuminate\Exception\ExceptionServiceProvider;
-use Symfony\Component\HttpFoundation\JsonResponse;
-use Symfony\Component\HttpKernel\HttpKernelInterface;
-use Symfony\Component\HttpFoundation\StreamedResponse;
-use Symfony\Component\HttpKernel\Exception\HttpException;
-use Illuminate\Support\Contracts\ResponsePreparerInterface;
-use Symfony\Component\Debug\Exception\FatalErrorException;
-use Symfony\Component\HttpFoundation\Request as SymfonyRequest;
-use Symfony\Component\HttpFoundation\Response as SymfonyResponse;
-use Symfony\Component\HttpKernel\Exception\NotFoundHttpException;
+use \Illuminate\Foundation\Application as ParentClass;
 use Symfony\Component\HttpFoundation\RedirectResponse as SymfonyRedirect;
 use Exception;
-use Arx\classes\Config;
 
 
 /**
@@ -39,7 +17,7 @@ use Arx\classes\Config;
  * @license  http://opensource.org/licenses/MIT MIT License
  * @link     http://www.arx.io/arx/core/src/Arx/classes
  */
-class App extends \Illuminate\Foundation\Application
+class App extends ParentClass
 {
 
     // --- Constants
@@ -117,7 +95,7 @@ class App extends \Illuminate\Foundation\Application
      *
      * @throws \Whoops\Example\Exception
      */
-    public function bootstrap($config = null, $file = 'default.php'){
+    public function bootstrap($config = null, $file = 'start.php'){
         global $app;
 
         $app = $this;
@@ -134,7 +112,7 @@ class App extends \Illuminate\Foundation\Application
         } elseif(is_file($file = __DIR__.'/../../bootstrap/'.$file)){
             require_once $file;
         } else{
-            Throw new Exception('Whoops, there is no file boot');
+            Throw new Exception('Whoops, there is no file boot...');
         }
     }
 
@@ -145,14 +123,13 @@ class App extends \Illuminate\Foundation\Application
      * Example : if in your workbench package you call a class with xxxController, xxxModel, xxxClass at the end, it
      * will try to resolve the class by searching inside the controllers folder
      *
-     * /!\ you must always add a classmap in your composer.json file !
+     * /!\ But you must always add a classmap in your composer.json file for better performance !
      *
      * @param       $className
      * @param array $aParam
      *
      * @return void
      *
-     * @todo clean this function
      */
     static function autoload($className, $aParam = array())
     {
@@ -223,6 +200,26 @@ class App extends \Illuminate\Foundation\Application
 
             if(preg_match('/Class$/', $className)){
                 $supposedPath = end($aNamespaces[$composerName]) . DS . str_replace('\\', DS, $namespace) . DS. 'classes' . DS . $className . '.php';
+            }
+
+            if(preg_match('/Command$/', $className)){
+                $supposedPath = end($aNamespaces[$composerName]) . DS . str_replace('\\', DS, $namespace) . DS. 'commands' . DS . $className . '.php';
+            }
+
+            if(preg_match('/Provider$/', $className)){
+                $supposedPath = end($aNamespaces[$composerName]) . DS . str_replace('\\', DS, $namespace) . DS. 'providers' . DS . $className . '.php';
+            }
+
+            if(preg_match('/Facade$/', $className)){
+                $supposedPath = end($aNamespaces[$composerName]) . DS . str_replace('\\', DS, $namespace) . DS. 'facades' . DS . $className . '.php';
+            }
+
+            if(preg_match('/Helper$/', $className)){
+                $supposedPath = end($aNamespaces[$composerName]) . DS . str_replace('\\', DS, $namespace) . DS. 'helpers' . DS . $className . '.php';
+            }
+
+            if(preg_match('/Interface$/', $className)){
+                $supposedPath = end($aNamespaces[$composerName]) . DS . str_replace('\\', DS, $namespace) . DS. 'interfaces' . DS . $className . '.php';
             }
 
         }
