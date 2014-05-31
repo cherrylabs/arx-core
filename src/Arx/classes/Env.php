@@ -8,6 +8,11 @@
  */
 class Env {
 
+    /**
+     * Smarter way to get config env
+     *
+     * @return int|string
+     */
     public static function detect(){
 
         $file = Composer::getRootPath('/app/config/env.php');
@@ -36,9 +41,16 @@ class Env {
                 if(is_callable($value) && $value instanceof \Closure && $value()){
                     $env = $key;
                 } elseif(is_string($value)) {
-                    // Not the safest way !
-                    if(preg_match($value, getenv('HTTP_HOST') )){
-                        $env = $key;
+
+                    if(preg_match('/\//i', $value)){
+                        // Not the safest way !
+                        if(preg_match($value, getenv('HTTP_HOST') )){
+                            $env = $key;
+                        }
+                    } else {
+                        if(preg_match('/'.$value.'/i', getenv('HTTP_HOST') )){
+                            $env = $key;
+                        }
                     }
                 }
             }
@@ -46,9 +58,42 @@ class Env {
             define('ZE_ENV', $env);
 
             return ZE_ENV;
-
-
         }
     }
 
+    /**
+     * Define level environment
+     *
+     * @return int
+     */
+    public static function level()
+    {
+        if(defined('ZE_LEVEL_ENV')){
+            return ZE_LEVEL_ENV;
+        } else {
+            $env = self::detect();
+
+            switch($env){
+                case 'console':
+                    $level_env = 0;
+                    break;
+                case 'local':
+                    $level_env = 1;
+                    break;
+                case 'dev':
+                    $level_env = 2;
+                    break;
+                case 'demo':
+                    $level_env = 3;
+                    break;
+                default :
+                    $level_env = 4;
+                    break;
+            }
+
+            define('ZE_LEVEL_ENV', $level_env);
+        }
+
+        return ZE_LEVEL_ENV;
+    }
 }
