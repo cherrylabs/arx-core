@@ -94,6 +94,10 @@ if(!class_exists('Arx')){
             return Arx\classes\Env::detect();
         }
 
+        public static function levelEnv(){
+            return Arx\classes\Env::detect();
+        }
+
         /**
          * init some functions like helpers or configuration
          */

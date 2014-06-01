@@ -27,17 +27,12 @@ class ArxTest extends \PHPUnit_Framework_TestCase
 
     public function testInstance()
     {
-        // $app = new \Arx\classes\App();
-        // $this->assertObjectHasAttribute("_oTpl", $app);
-        // $this->assertTrue(is_object($app->tpl), "tpl is not an object");
-        // $this->assertTrue(is_object($app->route), "route is not an object");
+
     }
 
 
     public function testLoading()
     {
-        // $app = new \Arx\classes\App();
 
-        // $this->assertTrue(is_object($app->c_finder()), "c_finder test is not an object");
     }
 }

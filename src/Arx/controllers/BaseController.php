@@ -17,6 +17,17 @@ class BaseController extends Controller {
     protected $data = array();
 
     /**
+     * Assign data to template and controller
+     *
+     * @param $key
+     * @param $value
+     */
+    public function assign($key, $value){
+        $this->{$key} = $this->data[$key] = $value;
+        return $this->data[$key];
+    }
+
+    /**
      * @param array $otherDataToMerge
      * @param bool $addToCommon
      * @return mixed

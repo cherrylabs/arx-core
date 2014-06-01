@@ -1,6 +1,6 @@
 # arx-ui
 
-Arx UI
+Arx UI = all you need to start a project
 
 Include :
 
