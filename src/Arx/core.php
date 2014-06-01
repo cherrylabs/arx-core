@@ -105,6 +105,12 @@ if(!class_exists('Arx')){
         {
             require_once __DIR__ . DIRECTORY_SEPARATOR .'helpers.php';
         }
+
+        public static function needs($class){
+            if(!is_callable($class)){
+                Throw new Exception('Arx needs '.$class.' to be instanciated !');
+            }
+        }
     }
 
 }
