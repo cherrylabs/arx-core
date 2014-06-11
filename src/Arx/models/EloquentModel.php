@@ -14,6 +14,8 @@ class EloquentModel extends ParentClass {
      */
     protected static $jsonable = array();
 
+    private static $_aInstances = array();
+
     public static function boot()
     {
         parent::boot();
@@ -45,12 +47,12 @@ class EloquentModel extends ParentClass {
      *
      * @return $this
      */
-    public function decodeJson(){
+    public function decodeJson($assoc = false){
 
         foreach(self::$jsonable as $key){
 
             if(isset($this->{$key}) && Utils::isJson($$this->{$key})){
-                $this->{$key} = json_decode($this->{$key});
+                $this->{$key} = json_decode($this->{$key}, $assoc);
             }
         }
 
@@ -76,9 +78,23 @@ class EloquentModel extends ParentClass {
         return $data;
     }
 
+    public static function getInstance(){
+        $sClass = get_called_class();
+
+        if (!isset(self::$_aInstances[$sClass])) {
+            self::$_aInstances[$sClass] = new $sClass;
+        }
+
+        return self::$_aInstances[$sClass];
+    }
+
     /**
-     * Get Structure of the Current Table
+     * Get Structure of the current table
      *
+     * @param bool $withGuarded
+     * @param bool $asKey
+     * @return array
+     * @throws \Exception
      */
     public static function getStructure($withGuarded = false, $asKey = false)
     {
