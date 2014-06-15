@@ -1,5 +1,7 @@
 <?php namespace Arx\classes;
 
+use Exception;
+
 /**
  * Class Image
  * @package Arx\classes
@@ -60,7 +62,7 @@ class Image
                 break;
 
             default:
-                throw new Exception('Invalid image: ' . $instance->filename);
+                throw new \Exception('Invalid image: ' . $instance->filename);
                 break;
 
         }
@@ -69,10 +71,19 @@ class Image
             'width' => $info[0],
             'height' => $info[1],
             'orientation' => $instance->get_orientation(),
-            'exif' => function_exists('exif_read_data') ? $instance->exif = @exif_read_data($instance->filename) : null,
             'format' => preg_replace('/^image\//', '', $info['mime']),
             'mime' => $info['mime']
         );
+
+        if(function_exists('exif_read_data')){
+            try {
+                $instance->original_info['exif'] = exif_read_data($instance->filename);
+            } catch (\Exception $e) {
+                $instance->original_info['exif'] = null;
+            }
+        } else {
+            $instance->original_info['exif'] = null;
+        }
 
         $instance->width = $info[0];
         $instance->height = $info[1];
