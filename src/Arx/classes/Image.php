@@ -1,7 +1,5 @@
 <?php namespace Arx\classes;
 
-use Exception;
-
 /**
  * Class Image
  * @package Arx\classes
@@ -17,7 +15,7 @@ class Image
     function __construct($filename = null)
     {
         if ($filename) {
-            $this->load($filename);
+            return $this->load($filename);
         }
     }
 
@@ -62,7 +60,7 @@ class Image
                 break;
 
             default:
-                throw new \Exception('Invalid image: ' . $instance->filename);
+                throw new Exception('Invalid image: ' . $instance->filename);
                 break;
 
         }
@@ -71,19 +69,10 @@ class Image
             'width' => $info[0],
             'height' => $info[1],
             'orientation' => $instance->get_orientation(),
+            'exif' => function_exists('exif_read_data') ? $instance->exif = @exif_read_data($instance->filename) : null,
             'format' => preg_replace('/^image\//', '', $info['mime']),
             'mime' => $info['mime']
         );
-
-        if(function_exists('exif_read_data')){
-            try {
-                $instance->original_info['exif'] = exif_read_data($instance->filename);
-            } catch (\Exception $e) {
-                $instance->original_info['exif'] = null;
-            }
-        } else {
-            $instance->original_info['exif'] = null;
-        }
 
         $instance->width = $info[0];
         $instance->height = $info[1];
@@ -622,7 +611,7 @@ class Image
     {
 
         // Load overlay image
-        $overlay = new self($overlay_file);
+        $overlay = self::load($overlay_file);
 
         // Convert opacity
         $opacity = $opacity * 100;
@@ -803,6 +792,7 @@ class Image
     private function imagecopymerge_alpha($dst_im, $src_im, $dst_x, $dst_y, $src_x, $src_y, $src_w, $src_h, $pct)
     {
         $pct /= 100;
+
         // Get image width and height
         $w = imagesx($src_im);
         $h = imagesy($src_im);
