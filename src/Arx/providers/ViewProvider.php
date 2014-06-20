@@ -106,3 +106,7 @@ class ViewProvider extends ViewServiceProvider{
         });
     }
 }
+
+namespace Arx\providers;
+
+class ViewProvider extends \Arx\ViewProvider{}
