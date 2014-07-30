@@ -32,7 +32,7 @@ You can by the way only download what you need. We try to do our best to make ev
 
 Example : 
 
-curl -O https://raw.github.com/cherrylabs/arx-core/master/src/Arx/classes/\{Arr.php,Str.php,Utils.php\}
+curl -O https://raw.githubusercontent.com/cherrylabs/arx-core/master/src/Arx/classes/Utils.php
 
 Unfortunately some classes need Laravel to work so you must install the full bundle.
 
