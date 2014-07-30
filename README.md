@@ -26,13 +26,17 @@ or add in your existing composer.json file
 
     php composer.phar install or update
 
-# Install only one class
+# Install only one file class
 
 You can by the way only download what you need. We try to do our best to make every class usable as stand-alone.
 
 Example : 
 
 curl -O https://raw.githubusercontent.com/cherrylabs/arx-core/master/src/Arx/classes/Utils.php
+
+curl -O https://raw.githubusercontent.com/cherrylabs/arx-core/master/src/Arx/classes/Image.php
+
+curl -O https://raw.githubusercontent.com/cherrylabs/arx-core/master/src/Arx/classes/Arr.php
 
 Unfortunately some classes need Laravel to work so you must install the full bundle.
 
