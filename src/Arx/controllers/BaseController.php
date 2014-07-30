@@ -1,18 +1,81 @@
-<?php
+<?php namespace Arx;
+
+use Controller, View;
+use Arx\classes\Arr;
+
 /**
- * Base.php.
+ * Class BaseController
  *
- * @project : cherrylabs
- * @author : Daniel Sum <daniel@cherrypulp.com>
+ * Better BaseController with tpl Handler
+ *
+ * @package Arx
  */
-
-namespace Arx;
-
-use Controller;
-/*
- * Add some basic and usefull function like setContent method
- */
-
 class BaseController extends Controller {
 
-} 
+    protected $layout;
+
+    protected $data = array();
+
+    /**
+     * @param array $otherDataToMerge
+     * @param bool $addToCommon
+     * @return mixed
+     */
+    public function getCommonVars($otherDataToMerge = array(), $addToCommon = false)
+    {
+
+        $data = Arr::merge($this->data, $otherDataToMerge);
+
+        if ($addToCommon) {
+            $this->data = $data;
+        }
+
+        return $data;
+    } // getCommonVars
+
+    /**
+     * Assign data to template and controller
+     *
+     * @param $key
+     * @param $value
+     */
+    public function assign($key, $value){
+        $this->{$key} = $this->data[$key] = $value;
+    }
+
+    /**
+     * Same than View make but injects common vars
+     *
+     * @param $layout
+     * @param array $data
+     * @return \Illuminate\View\View
+     */
+    public function viewMake($layout, $data = array())
+    {
+        $data = array_merge($data, array('body' => array(
+            'attributes' => array('class' => 'tpl-' . $layout)
+        )));
+
+        $data = $this->getCommonVars($data);
+
+        return View::make($layout, $data);
+    } // viewMake
+
+
+    /**
+     * Auto-assign element to the layout content
+     *
+     * @param $layout
+     * @param array $data
+     * @return \Illuminate\View\View
+     */
+    public function viewContent($layout, $data = array())
+    {
+        $data = array_merge($data, array('body' => array(
+            'attributes' => array('class' => 'tpl-' . $layout)
+        )));
+
+        return $this->layout->content = View::make($layout, $this->getCommonVars($data));
+    } // viewContent
+
+}
