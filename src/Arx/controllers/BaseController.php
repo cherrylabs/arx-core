@@ -1,20 +1,45 @@
 <?php namespace Arx;
 
-use Controller, View;
 use Arx\classes\Arr;
+use Controller, View;
 
 /**
  * Class BaseController
  *
- * Better BaseController with tpl Handler
+ * Better BaseController inspired by CodeIgniter Data flow (merge data value)
  *
  * @package Arx
  */
 class BaseController extends Controller {
 
-    protected $layout;
 
-    protected $data = array();
+    public $data = array();
+
+    /**
+     * Setup the layout used by the controller.
+     *
+     * @return void
+     */
+    protected function setupLayout()
+    {
+        if (!is_null($this->layout)) {
+            $data = array();
+
+            // Enter here data that have to be accessible everywhere
+
+            $this->layout = View::make($this->layout, $data);
+        }
+    } // setupLayout
+
+    /**
+     * Assign data to template and controller
+     *
+     * @param $key
+     * @param $value
+     */
+    public function assign($key, $value){
+        $this->{$key} = $this->data[$key] = $value;
+    }
 
     /**
      * @param array $otherDataToMerge
@@ -32,16 +57,6 @@ class BaseController extends Controller {
 
         return $data;
     } // getCommonVars
-
-    /**
-     * Assign data to template and controller
-     *
-     * @param $key
-     * @param $value
-     */
-    public function assign($key, $value){
-        $this->{$key} = $this->data[$key] = $value;
-    }
 
     /**
      * Same than View make but injects common vars
@@ -62,13 +77,6 @@ class BaseController extends Controller {
     } // viewMake
 
 
-    /**
-     * Auto-assign element to the layout content
-     *
-     * @param $layout
-     * @param array $data
-     * @return \Illuminate\View\View
-     */
     public function viewContent($layout, $data = array())
     {
         $data = array_merge($data, array('body' => array(
@@ -77,5 +85,4 @@ class BaseController extends Controller {
 
         return $this->layout->content = View::make($layout, $this->getCommonVars($data));
     } // viewContent
-
 }

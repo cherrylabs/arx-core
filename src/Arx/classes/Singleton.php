@@ -14,13 +14,8 @@
  */
 class Singleton
 {
-    // --- Private members
 
     private static $_aInstances = array();
-
-    // --- Constructor
-
-    protected function __construct() {} // __construct
 
     public static function getInstance(){
         $sClass = get_called_class();
