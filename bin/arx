@@ -49,7 +49,7 @@ $app = require_once Arx::path().'/../bootstrap/console.php';
 
 $app->setRequestForConsoleEnvironment();
 
-$artisan = Illuminate\Console\Application::start($app);
+$artisan = Arx::start($app);
 
 /*
 |--------------------------------------------------------------------------

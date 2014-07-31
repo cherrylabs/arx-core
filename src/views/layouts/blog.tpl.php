@@ -17,7 +17,7 @@
             <div class="collapse navbar-collapse">
                 @section('nav')
                 <?php
-                echo  \Arx\helpers\Bootstrap::nav(
+                echo  \Arx\BootstrapHelper::nav(
                     $nav,
                     array('parent@' => array('class' => 'nav navbar-nav')));
                 ?>

@@ -1,11 +1,7 @@
-<?php namespace Arx\controllers;
+<?php namespace Arx;
 
 use Response;
 use App;
-
-use Assetic\Asset\AssetCollection;
-use Assetic\Asset\FileAsset;
-use Assetic\Asset\GlobAsset;
 
 /**
  * Class Assets
@@ -13,11 +9,9 @@ use Assetic\Asset\GlobAsset;
  * Assets controller template that you can extends in your Laravel App
  *
  * @status in dev
- * @todo more features
  * @package Arx\controllers
  */
-class Assets extends \Controller
-{
+class AssetsController extends \Controller {
 
     /**
      * Path should be always relative to the class
@@ -68,6 +62,7 @@ class Assets extends \Controller
         return App::abort(404, 'Not found');
     }
 
+
     public function path($file = null)
     {
 
@@ -89,11 +84,14 @@ class Assets extends \Controller
 
 }
 
-namespace Arx;
+namespace Arx\controllers;
 
-use Arx\controllers\Assets;
+use Arx\AssetsController;
 
-class AssetsController extends Assets
-{
-
-}
+/**
+ * Class Assets
+ *
+ * @deprecated please use Arx\AssetsController !
+ * @package Arx\controllers
+ */
+class Assets extends AssetsController{}
