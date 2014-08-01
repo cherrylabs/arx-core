@@ -938,10 +938,10 @@ class Arr
      * Array_assign_key assign the key
      *
      * @param $arr
-     * @param array $context
+     * @param mixed $data
      * @return array
      */
-    public static function array_assign_subkey($arr, $context = array())
+    public static function array_assign_subkey($arr, $sKeyOrArray = 'id')
     {
         $aNew = array();
 
@@ -950,15 +950,18 @@ class Arr
             "old_key" => "_key"
         );
 
-        if (is_string($context)) {
-            $c['key'] = $context;
-        } elseif (is_array($context)) {
-            $c = array_merge($c, $context);
+        if (is_string($sKeyOrArray)) {
+            $c['key'] = $sKeyOrArray;
+        } elseif (is_array($sKeyOrArray)) {
+            $c = array_merge($c, $sKeyOrArray);
         }
 
         foreach ($arr as $key => $v) {
             if (is_object($v)) {
-
+                if (isset($v->$c['key'])) {
+                    if (!isset($c['delete_old_key'])) $v->{$c['old_key']} = $key;
+                    $aNew[$v->{$c['key']}] = $v;
+                }
             } elseif (is_array($v)) {
                 if (isset($v[$c['key']])) {
                     if (!isset($c['delete_old_key'])) $v[$c['old_key']] = $key;
