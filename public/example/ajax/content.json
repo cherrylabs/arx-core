@@ -1,0 +1,3 @@
+Content Loaded from the But please retry
+
+<a ng-click="loadAjax('#loaderContent')" href="#load">Reload Ajax content</a>

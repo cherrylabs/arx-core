@@ -5,11 +5,7 @@
  * @package : Arx
  *
  */
-use Arx\classes\App;
-use Arx\classes\Router;
-use Illuminate\Support\Facades\Facade;
-
-class Asset extends \Arx\classes\Facade implements \Arx\interfaces\Route {
+class Asset extends \Arx\classes\Facade {
 
     /**
      * Get the registered name of the component.

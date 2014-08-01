@@ -2,7 +2,7 @@
 
 return array(
     'project' => array(
-        "title" => 'Project name'
+        "name" => 'Your Project name'
     ),
     'nav' => array(
         array(

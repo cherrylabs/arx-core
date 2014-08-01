@@ -1,6 +1,6 @@
-# arx-ui
+# ARX UI
 
-Arx UI = all you need to start a project
+Arx UI include all you need to start a project.
 
 Include :
 

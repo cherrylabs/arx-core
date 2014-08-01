@@ -28,6 +28,15 @@
         "mockery/mockery": "0.7.2"
     },
     "autoload": {
+        "classmap": [
+            "src/Arx/commands",
+            "src/Arx/controllers",
+            "src/Arx/facades",
+            "src/Arx/helpers",
+            "src/Arx/interfaces",
+            "src/Arx/models",
+            "src/Arx/providers"
+        ],
         "psr-0": {
             "Arx": "src"
         },

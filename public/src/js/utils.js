@@ -1,5 +1,3 @@
-
-
 var Util = {
     load: function (callback) {
         callback();
@@ -9,5 +7,5 @@ var Util = {
     resize: function (callback) {
         callback();
         $(window).on('resize', callback);
-    }, // resize
+    } // resize
 }; // Util
