@@ -9,5 +9,5 @@ use Arx;
  * @package Arx\classes
  */
 class Assets extends Asset {
-    
+
 } 
