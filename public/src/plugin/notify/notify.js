@@ -1,1 +1,0 @@
-var notify = humane.create({ timeout: 4000, baseCls: 'humane-bigbox' });

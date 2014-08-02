@@ -1,7 +1,4 @@
-*~
 .git
-*.diff
-*.patch
 vendor
 composer.phar
 composer.lock

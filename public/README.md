@@ -1,10 +1,7 @@
-# ARX UI
+# Arx-ui 
 
-Arx UI include all you need to start a project.
+Dist and examples only to minimize arx/core size.
 
-Include :
+If you want the full source file see : 
 
-- Bootstrap
-- Font-Awesome
-- Angular
-- And some cool scripts and utilities
+[https://github.com/cherrylabs/arx-ui](https://github.com/cherrylabs/arx-ui)
