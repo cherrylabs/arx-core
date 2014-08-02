@@ -37,8 +37,17 @@ class BaseController extends Controller {
      * @param $key
      * @param $value
      */
-    public function assign($key, $value){
-        $this->{$key} = $this->data[$key] = $value;
+    public function assign($key, $value = null){
+
+        if (is_array($key)) {
+            $this->data = array_merge($this->data, $key);
+        } else {
+            $this->data[$key] = $value;
+
+            if(!isset($this->{$key})){
+                $this->{$key} = $this->data[$key];
+            }
+        }
     }
 
     /**

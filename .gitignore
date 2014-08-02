@@ -8,3 +8,7 @@ composer.lock
 .DS_Store
 .svn
 .idea
+
+public/src
+public/bower_components
+public/node_modules
