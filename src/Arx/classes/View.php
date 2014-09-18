@@ -8,7 +8,7 @@ use Arx\classes\view\engines\PhpEngine;
 use Arx\classes\view\engines\blade\BladeCompiler;
 use Arx\classes\view\engines\tpl\TplCompiler;
 
-class View extends ViewServiceProvider{
+class View extends ViewServiceProvider {
 
     /**
      * Register the PHP engine implementation.

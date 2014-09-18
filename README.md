@@ -38,7 +38,7 @@ curl -O https://raw.githubusercontent.com/cherrylabs/arx-core/master/src/Arx/cla
 
 curl -O https://raw.githubusercontent.com/cherrylabs/arx-core/master/src/Arx/classes/Arr.php
 
-Unfortunately some classes need Laravel to work so you must install the full bundle.
+Unfortunately some classes need some dependencies that you have to include in your Composer.
 
 # How to use it ?
 
@@ -100,6 +100,8 @@ The Config class works like in Laravel except that you need to load a folder to 
     <?php
 
         require_once __DIR__.'/vendor/autoload.php';
+        
+        use Arx\classes\Config;
 
         Arx::ignite();
 
@@ -146,7 +148,7 @@ The Db class wrap the beautiful Db and Eloquent Laravel class. To use it outside
     }
 
     // Example of EloquentModel
-    class User extends Arx\EloquentModel{
+    class User extends Arx\EloquentModel {
 
     }
 

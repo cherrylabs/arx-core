@@ -95,16 +95,17 @@ class App extends ParentClass
      *
      * @throws \Whoops\Example\Exception
      */
-    public function bootstrap($config = null, $file = 'start.php'){
+    public function bootstrap($file = 'start.php', $config = null){
+
         global $app;
 
         $app = $this;
 
-        // Inject special ARX Config to APP
-        $this['arxconfig'] = Config::load(__DIR__.'/../config/');
-
         if($config){
             $this['arxconfig'] = Config::load($config);
+        } else {
+            // Inject special ARX Config to APP
+            $this['arxconfig'] = Config::load(__DIR__.'/../config/');
         }
 
         if(is_file($file)){
@@ -112,7 +113,7 @@ class App extends ParentClass
         } elseif(is_file($file = __DIR__.'/../../bootstrap/'.$file)){
             require_once $file;
         } else{
-            Throw new Exception('Whoops, there is no file boot...');
+            Throw new Exception('Whoops, there is no file to boot...');
         }
     }
 

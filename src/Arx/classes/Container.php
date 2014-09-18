@@ -1,7 +1,7 @@
 <?php namespace Arx\classes;
 
 use Illuminate\Container\Container as ParentClass;
-use ArrayAccess, Closure;
+use ArrayAccess;
 
 /**
  * Class Container

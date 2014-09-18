@@ -77,7 +77,7 @@ class BaseController extends Controller {
     public function viewMake($layout, $data = array())
     {
         $data = array_merge($data, array('body' => array(
-            'attributes' => array('class' => 'tpl-' . $layout)
+            'attributes' => array('class' => 'tpl-' . str_replace('::', '-', $layout))
         )));
 
         $data = $this->getCommonVars($data);
@@ -89,7 +89,7 @@ class BaseController extends Controller {
     public function viewContent($layout, $data = array())
     {
         $data = array_merge($data, array('body' => array(
-            'attributes' => array('class' => 'tpl-' . $layout)
+            'attributes' => array('class' => 'tpl-' . str_replace('::', '-', $layout))
         )));
 
         return $this->layout->content = View::make($layout, $this->getCommonVars($data));

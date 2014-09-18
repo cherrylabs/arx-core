@@ -6,6 +6,5 @@ composer.lock
 .svn
 .idea
 
-public/src
 public/bower_components
 public/node_modules

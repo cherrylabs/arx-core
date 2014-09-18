@@ -150,6 +150,7 @@ class Config extends Container
         }
 
         foreach ($aFiles as $sFilePath) {
+
             $pathinfo = pathinfo($sFilePath);
             $key = !is_null($sNamespace) ? $sNamespace . '.' . $pathinfo['filename'] : $pathinfo['filename'];
 

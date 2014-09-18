@@ -12,6 +12,6 @@ class Asset extends \Arx\classes\Facade {
      *
      * @return string
      */
-    protected static function getFacadeAccessor() { return '\\Arx\\classes\\Asset'; }
+    protected static function getFacadeAccessor() { return 'asset'; }
 
 }

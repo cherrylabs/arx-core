@@ -3,6 +3,8 @@
 /**
  * Arr
  *
+ * Array Class Helper, you can use it as stand-alone
+ *
  * @category Utils
  * @package  Arx
  * @author   Daniel Sum <daniel@cherrypulp.com>
@@ -12,8 +14,6 @@
  */
 class Arr
 {
-
-#__
 
 #A
 
@@ -40,6 +40,42 @@ class Arr
         }
 
         return $output;
+    }
+
+    /**
+     * Set an array item to a given value using "dot" notation.
+     *
+     * If no key is given to the method, the entire array will be replaced.
+     *
+     * @param  array   $array
+     * @param  string  $key
+     * @param  mixed   $value
+     * @return array
+     */
+    function array_set(&$array, $key, $value)
+    {
+        if (is_null($key)) return $array = $value;
+
+        $keys = explode('.', $key);
+
+        while (count($keys) > 1)
+        {
+            $key = array_shift($keys);
+
+            // If the key doesn't exist at this depth, we will just create an empty array
+            // to hold the next value, allowing us to create the arrays to hold final
+            // values at the correct depth. Then we'll keep digging into the array.
+            if ( ! isset($array[$key]) || ! is_array($array[$key]))
+            {
+                $array[$key] = array();
+            }
+
+            $array =& $array[$key];
+        }
+
+        $array[array_shift($keys)] = $value;
+
+        return $array;
     }
 
 #B
@@ -1207,15 +1243,36 @@ class Arr
     } // array_prev_element
 
 
-    public static function arrayToCSV($data)
+    public static function arrayToCSV($array, $downloadFile = null)
     {
-        $outstream = fopen("php://temp", 'r+');
-        fputcsv($outstream, $data, ',', '"');
-        rewind($outstream);
-        $csv = fgets($outstream);
-        fclose($outstream);
 
-        return $csv;
+        if ($downloadFile)
+        {
+            header('Content-Type: application/csv');
+            header('Content-Disposition: attachement; filename="' . $downloadFile . '"');
+        }
+
+        ob_start();
+        $f = fopen('php://output', 'w') or ("Can't open php://output");
+        $n = 0;
+        foreach ($array as $line)
+        {
+            $n++;
+            if ( ! fputcsv($f, $line))
+            {
+                ("Can't write line $n: $line");
+            }
+        }
+        fclose($f) or ("Can't close php://output");
+        $str = ob_get_contents();
+        ob_end_clean();
+
+        if (!$downloadFile)
+        {
+            return $str;
+        }
+
+        echo $str;
     } // arrayToCSV
 
 
@@ -1301,7 +1358,12 @@ class Arr
         return $aSearch;
     } // get
 
-
+    /**
+     * Check if an array is multidimensionnal
+     *
+     * @param $arr
+     * @return bool
+     */
     public static function is_multi_array($arr)
     {
         if (count($arr) == count($arr, COUNT_RECURSIVE)) {
@@ -1362,7 +1424,13 @@ class Arr
         return $msg;
     } // multiexplode
 
-
+    /**
+     * Transform an Object to Array
+     *
+     * @param $object
+     * @deprecated please use toArray instead
+     * @return mixed
+     */
     public static function objectToArray($object)
     {
         return json_decode(json_encode($object), true);
@@ -1493,6 +1561,25 @@ class Arr
     public static function toJson($mValue)
     {
         return json_encode($mValue);
+    }
+
+
+    public static function array_to_dot($key){
+        return str_replace(array('][', '[', ']'), array('.', '.', ''), $key);
+    }
+
+    /**
+     * Transform an ArrayDotted to an array
+     * @param $arrayDotted
+     * @return array
+     */
+    public static function dot_array($arrayDotted)
+    {
+        $array = array();
+        foreach ($arrayDotted as $key => $value) {
+            self::array_set($array, $key, $value);
+        }
+        return $array;
     }
 
 } // class::Arr

@@ -2,9 +2,8 @@
 
 use Arx\classes\Facade;
 use Arx\classes\Arr;
-use Config;
 
-class Lang extends Facade{
+class Lang extends Facade {
     /**
      * Merge functions
      *

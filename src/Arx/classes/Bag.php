@@ -9,69 +9,62 @@
  *
  * $bag = new Bag(array('title', 'array' => 'array value'))
  *
- * print $bag['falsevar'] ?: 'title by default';
+ * print $bag['falsevar'] or 'title by default';
  *
  */
 
-use Closure;
-
 class Bag implements \ArrayAccess, \Iterator {
 
-    public $__var = array();
+    public $_var = array();
 
     /**
      * Auto constructor
      * @param $data
      */
-    public function __construct($data = array()) {
-        $this->__var = $data;
+    public function __construct(array $data = array()) {
+        $this->_var = $data;
         return $data;
     }
 
     public function __get($key){
-        if(is_object($this->__var) && isset($this->__var->{$key})){
-            return new self($this->__var->{$key});
+
+        if(is_object($this->_var) && isset($this->_var->{$key})){
+            return new self($this->_var->{$key});
         }
 
         return false;
     }
 
     public function __set($key, $value){
-
+        $this->_var[$key] = $value;
     }
-
-    public function __toString()
-    {
-        return $this->__var;
-    }
-
 
     public function rewind()
     {
-        reset($this->__var);
+        reset($this->_var);
     }
 
     public function current()
     {
-        $var = current($this->__var);
+        $var = current($this->_var);
         return $var;
     }
 
     public function key()
     {
-        $var = key($this->__var);
+        $var = key($this->_var);
         return $var;
     }
 
     public function next()
     {
-        $var = next($this->__var);
+        $var = next($this->_var);
         return $var;
     }
 
     public function valid()
     {
-        $key = key($this->__var);
+        $key = key($this->_var);
         $var = ($key !== NULL && $key !== FALSE);
         return $var;
     }
@@ -84,8 +77,8 @@ class Bag implements \ArrayAccess, \Iterator {
      */
     public function offsetExists($key)
     {
-        if(isset($this->__var[$key])){
-            return new self($this->__var[$key]);
+        if(isset($this->_var[$key])){
+            return new self($this->_var[$key]);
         }
 
         return false;
@@ -100,8 +93,8 @@ class Bag implements \ArrayAccess, \Iterator {
     public function offsetGet($key)
     {
 
-        if(is_array($this->__var) && isset($this->__var[$key])){
-            return new self($this->__var[$key]);
+        if(is_array($this->_var) && isset($this->_var[$key])){
+            return $this->_var[$key];
         }
 
         return false;
@@ -116,7 +109,7 @@ class Bag implements \ArrayAccess, \Iterator {
      */
     public function offsetSet($key, $value)
     {
-        $this->__var[$key] = $value;
+        $this->_var[$key] = $value;
     }
 
     /**
@@ -127,6 +120,6 @@ class Bag implements \ArrayAccess, \Iterator {
      */
     public function offsetUnset($key)
     {
-        unset($this->__var[$key]);
+        unset($this->_var[$key]);
     }
 }

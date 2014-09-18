@@ -20,11 +20,6 @@ class ArxTest extends \PHPUnit_Framework_TestCase
         unset($_SERVER['CONTENT_TYPE'], $_SERVER['CONTENT_LENGTH']);
     }
 
-    public function testConfig()
-    {
-
-    }
-
     public function testInstance()
     {
 

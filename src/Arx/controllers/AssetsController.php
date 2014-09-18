@@ -1,24 +1,24 @@
 <?php namespace Arx;
 
-use Response;
-use App;
+use Assetic\Asset\FileAsset, Assetic\Asset\AssetCollection;
+use Response, App, View, Arx\classes\Composer;
+use Symfony\Component\HttpFoundation\File\File;
 
 /**
- * Class Assets
+ * Class AssetsController
  *
- * Assets controller template that you can extends in your Laravel App
+ * Can resolve assets access when assets come from vendors or workbench or when you need to protect your assets
  *
- * @status in dev
- * @package Arx\controllers
+ * @package Arx
  */
-class AssetsController extends \Controller {
+class AssetsController extends BaseController {
 
     /**
-     * Path should be always relative to the class
+     * Path should be always relative to the root path
      *
      * @var string
      */
-    public $path = '/../../public/assets';
+    public $_paths = array('workbench','vendor', 'app/assets');
 
     /**
      * @param array $parameters
@@ -34,10 +34,7 @@ class AssetsController extends \Controller {
             $response = \with(new AssetCollection(array(
                 new FileAsset($file)
             )))->dump();
-        }
-
-        # If parament is in json format
-        if ($aParameters = json_decode($parameters, TRUE)) {
+        } elseif ($aParameters = json_decode($parameters, TRUE)) {
 
             array_walk($aParameters, function (&$item) {
                 $item = new FileAsset($this->path($item));
@@ -48,50 +45,58 @@ class AssetsController extends \Controller {
 
         if (isset($response)) {
 
+            $headers = array();
+
             if (preg_match('/.css/i', $parameters)) {
-                header('Content-Type: text/css');
+                $headers['Content-Type'] = 'text/css';
             } elseif (preg_match('/.js/i', $parameters)) {
-                header('Content-Type: text/javascript');
+                $headers['Content-Type'] = 'text/javascript';
+            } else {
+                $file = new \Symfony\Component\HttpFoundation\File\File($file);
+                $mime = $file->getMimeType();
+                $headers['Content-Type'] = $mime;
             }
+
+            return Response::make($response, 200, $headers);
         }
 
-        App::missing(function ($exception) {
-            return Response::view('arx::404', array('message' => 'Not found'), 404);
-        });
-
-        return App::abort(404, 'Not found');
+        return Response::make('', 404);
     }
 
 
+    /**
+     * Check file from registered path
+     *
+     * @todo better way to handle paths
+     * @param null $file
+     * @return string
+     */
     public function path($file = null)
     {
+        $base_path = Composer::getRootPath();
 
-        $reflector = new \ReflectionClass(get_class($this));
+        $pieces = explode('/', $file);
 
-        $response = realpath(dirname($reflector->getFileName()) . '/' . $this->path);
+        # Add public to the path
 
-        if (!$response) {
-            App::abort(404, 'Path not found');
-        } elseif ($file) {
-            $response .= '/' . $file;
-            if (!is_file($response)) {
-                return false;
+        array_splice($pieces, 2, 0, 'public');
+
+        $vendor_path = implode('/', $pieces);
+
+        if(is_file($base_path.'/workbench/'. $vendor_path)){
+            return $base_path.'/workbench/'. $vendor_path;
+        } elseif(is_file($base_path.'/vendor/'. $vendor_path)){
+            return $base_path.'/vendor/'. $vendor_path;
+        } else {
+            foreach($this->_paths as $path){
+                $currentPath = $base_path.'/'.$path.'/'. $file;
+                if (is_file($currentPath)) {
+                    return $currentPath;
+                }
             }
         }
 
-        return $response;
+        return false;
     }
 
 }
-
-namespace Arx\controllers;
-
-use Arx\AssetsController;
-
-/**
- * Class Assets
- *
- * @deprecated please use Arx\AssetsController !
- * @package Arx\controllers
- */
-class Assets extends AssetsController{}

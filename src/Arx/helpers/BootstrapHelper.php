@@ -1,6 +1,5 @@
 <?php namespace Arx;
 
-
 use Arx\classes\Arr;
 use Arx\classes\Form;
 use Arx\classes\Helper;
@@ -258,12 +257,13 @@ class BootstrapHelper extends Helper
      *
      * @return string
      */
-    public static function formGroup(){
+    public static function formGroup($label = null, $type = 'text', $name = null){
 
         $aParams = func_get_args();
+
         $label = $aParams[0];
         $type = $aParams[1];
-        $name = $aParams[2];
+        $name = $aParams[2] or $label;
 
         unset($aParams[0], $aParams[1]);
 
