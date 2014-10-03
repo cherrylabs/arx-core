@@ -83,6 +83,7 @@ require_once __DIR__ . DS . 'classes' . DS . 'App.php';
  */
 
 use Arx\classes\Composer;
+use Arx\classes\Config;
 
 if(!class_exists('Arx')){
 
