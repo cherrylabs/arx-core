@@ -23,7 +23,7 @@
                     <div class="navbar-collapse collapse">
                         @section('nav')
                         <?php
-                        echo  \Arx\helpers\Bootstrap::nav(
+                        echo  \Arx\BootstrapHelper::nav(
                             $this->nav ?: Lang::get('arx::example.nav'),
                             array('parent@' => array('class' => 'nav navbar-nav')));
                         ?>

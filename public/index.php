@@ -1,3 +1,1 @@
-<?php
-
-//no direct access
+// prevent direct access

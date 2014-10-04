@@ -30,7 +30,7 @@ if (!isset($aStylesheets)) {
                     <img src="<?= Arx\classes\Dummy::image('100x50') ?>" alt=""/>
                 </div>
                 <div class="navbar-collapse collapse pull-right">
-                    <?php echo \Arx\helpers\Bootstrap::nav(Lang::get('arx::example.menu')) ?>
+                    <?php echo \Arx\BootstrapHelper::nav(Lang::get('arx::example.menu')) ?>
                 </div>
             </div>
         </div>

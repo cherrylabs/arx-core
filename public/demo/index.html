@@ -1,0 +1,369 @@
+<!DOCTYPE html>
+<html ng-app="mainApp">
+<head lang="en">
+    <meta charset="UTF-8">
+    <title>Arx UI : Demo page</title>
+    <link rel="stylesheet" href="../dist/css/arx-combined.css"/>
+
+    <!-- COMPONENTS THAT YOU CAN CALL SEPARATELY -->
+
+    <link rel="stylesheet" href="../dist/plugins/modal/modal.css"/>
+    <link rel="stylesheet" href="../dist/plugins/tree/tree.css"/>
+    <link rel="stylesheet" href="../dist/plugins/notify/notify.css"/>
+    <link rel="stylesheet" href="../dist/plugins/jquery-ui/jquery-ui.min.css"/>
+
+    <style>
+        .navbar-example {
+            position: fixed;
+        }
+
+        body {
+            position: relative;
+        }
+    </style>
+</head>
+<body ng-controller="mainCtrl" data-spy="scroll" data-target=".navbar-example">
+<div class="container">
+    <div class="row">
+        <div class="col-sm-3 col-md-1 navbar-example">
+            <ul class="nav nav-sidebar">
+                <li class="active"><a href="#">Overview</a></li>
+                <li><a href="#">Reports</a></li>
+                <li><a href="#">Analytics</a></li>
+                <li><a href="#">Export</a></li>
+            </ul>
+        </div>
+        <div class="col-sm-9 col-sm-offset-3 col-md-9 col-md-offset-2">
+
+            <h1>Welcome to the Arx Demo page, <span
+                    ng-hide="name">Mmh sorry... what's your name ?</span><span>{{ name }} !</span>
+            </h1>
+
+            <input type="text" ng-model="name" ng-model-onblur ng-change="setCookie()"
+                   placeholder="Enter your name here"/> <br/>
+
+
+            <p class="well margin-vertical-20 text-center">
+                Arx, is a complete Web Startup Kit to help every dreamers to develop awesome web app project with
+                next
+                gen
+                tools.
+            </p>
+
+            <h2>1. Arx is Bootstrap 3, Font Awesome, Bower and Grunt ready!</h2>
+
+            <div class="row">
+                <div class="arx-fadein col-md-4">
+
+                    <p>Bootstrap is the most popular HTML, CSS, and JS framework for developing responsive, mobile
+                        first
+                        projects on the web.</p>
+                </div>
+                <div class="arx-fadein col-md-4">
+
+                    Font Awesome gives you scalable vector icons that can instantly be customized — size, color,
+                    drop
+                    shadow, and anything that can be done with the power of CSS.
+                    <br/>
+                </div>
+                <div class="arx-fadein col-md-4">
+                    We had also a few bunch of usefull css and config script too like :
+
+                    <img src="" alt=""/>
+
+                </div>
+            </div>
+            <div class="row margin-top-20">
+                <div class="arx-fadein col-md-4">
+                    <a class="btn btn-default" href="http://getbootstrap.com/getting-started#download"
+                       target="_blank">
+                        <i class="fa fa-twitter"></i> Get more info about Bootstrap
+                    </a>
+                </div>
+                <div class="arx-fadein col-md-4">
+                    <a class="btn btn-default" href="http://getbootstrap.com/getting-started#download"
+                       target="_blank">
+                        <i class="fa fa-flag"></i> Get more info about Font-Awesome
+                    </a>
+                </div>
+                <div class="arx-fadein col-md-4">
+                    <a class="btn btn-default" href="http://getbootstrap.com/getting-started#download"
+                       target="_blank">
+                        <i class="fa fa-adn"></i> Discover Arx features
+                    </a>
+                </div>
+            </div>
+
+            <h2>2. Arx is jQuery & Angular friendly</h2>
+
+            <div class="row">
+                <div class="col-md-4">
+                    <p>AngularJS is an open-source web application framework, maintained by Google and community,
+                        that
+                        assists with creating single-page applications, one-page web applications that only require
+                        HTML,
+                        CSS, and JavaScript on the client side.</p>
+                    <a class="btn btn-default" href="http://getbootstrap.com/getting-started#download"
+                       target="_blank">Download
+                        Bootstrap
+                    </a>
+                </div>
+                <div class="col-md-4">This is a 3 colum row {{ DEMO }}</div>
+                <div class="col-md-4" id="loaderContent" data-loader='{ "url" : "ajax/content.json"}'>
+                    <i ng-show="q1.load" class="fa fa-circle-o-notch fa-spin"></i>
+                    <a ng-hide="q1.load" ng-click="loadAjax('#loaderContent')" href="#load">Load Ajax content</a>
+                </div>
+            </div>
+
+
+            <h1>Components</h1>
+
+            <p>Compoents are available plugins that you need to call separately</p>
+
+            <h2>Lightbox</h2>
+
+            <a class="btn btn-default" href="#object"
+               onclick="$.colorbox({html:'<h1>Welcome</h1>', open : true, reposition:true});">Modal</a>
+            <a class="btn btn-default" href="#object">Modal gallery</a>
+            <a class="btn btn-default" href="#object" arx-lightbox>Modal iframe</a>
+
+            <a class="btn btn-default arx-dialog" href="#dialog">Dialog</a>
+            <a class="btn btn-default arx-dialog" href="#dialog-iframe" arx-lightbox>Dialog iframe</a>
+
+            <!-- When Dialog don't forget to call an iframe like this -->
+
+            <div id="dialog" class="dialog" title="Dialog Title">
+                <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut
+                    labore
+                    et
+                    dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut
+                    aliquip ex
+                    ea commodo consequat.</p>
+            </div>
+
+            <div id="dialog-iframe" class="dialog" title="Dialog Title">
+                <iframe src="http://www.arx.io" frameborder="0" height="100%" width="100%"></iframe>
+            </div>
+
+
+            <a class="btn btn-default" href="#object" arx-fullbox>Full box</a>
+            <a class="btn btn-default" href="#object" arx-fullbox>Full box iframe</a>
+            <a class="btn btn-default" href="#object" arx-fullbox>Full box gallery</a>
+
+            <h2>Notification</h2>
+
+            <a class="btn btn-default" ng-click="notifTrigger()">Notify example</a>
+            <input type="text" ng-model="notif_example" value="Notif example"/>
+
+            <h2>Table</h2>
+
+            <div ng-controller="tableCtrl">
+                <smart-table class="table table-bordered" columns="columnCollection" rows="rowCollection"></smart-table>
+            </div>
+
+            <br/><br/><br/><br/><br/>
+        </div>
+    </div>
+</div>
+<!--/.content -->
+<script src="../dist/js/arx-combined.js"></script>
+
+<!-- EXTENDED JS THAT YOU CAN CALL SEPARATELY -->
+<script src="../dist/js/utils/cookie.js"></script>
+
+<!-- Available plugin -->
+<script src="../dist/plugins/modal/modal.js"></script>
+<script src="../dist/plugins/table/table.js"></script>
+<script src="../dist/plugins/notify/notify.js"></script>
+<script src="../dist/plugins/jquery-ui/jquery-ui.js"></script>
+
+<script type="application/javascript">
+    var app = angular.module('mainApp', ['arx', 'smartTable.table']);
+
+    app.controller('mainCtrl', ['$scope', '$http', function ($scope, $http) {
+
+        $scope.step = 1;
+
+        $scope.q1 = {load: false};
+
+        $scope.notif_example = "This is a notification example";
+
+        $scope.notifTrigger = function(e) {
+            humane.log($scope.notif_example);
+        }
+
+        $scope.loadAjax = function (e) {
+
+            var data = $(e).data('loader');
+            
+            var defParam = {
+                method : "GET",
+                delay: 2000,
+                cache: false
+            };
+
+            $.extend(data, defParam);
+
+            $(e).spin();
+
+            console.log('load ', data);
+
+            $http(data).success(function(response, data){
+                $(e).delay(data.delay).spin(false).html(response);
+            }).error(function(response){
+                $(e).delay(data.delay).spin(false).html(response);
+            });
+        }
+
+        // if Cookie is already defined !
+
+        if ($.cookie('arx_test_name')) {
+            $scope.name = $.cookie('arx_test_name');
+        }
+
+        $scope.setCookie = function () {
+
+            console.log('You have just enter : ', $scope.name);
+
+            $.cookie('arx_test_name', $scope.name)
+        }
+
+    }]);
+
+    app.controller('tableCtrl', ['$scope', '$http', function ($scope, $http) {
+
+        $scope.rowCollection = [
+            {
+                firstName: 'Laurent',
+                lastName: 'Renard',
+                birthDate: new Date('1987-05-21'),
+                balance: 102,
+                email: 'whatever@gmail.com'
+            },
+            {
+                firstName: 'Blandine',
+                lastName: 'Faivre',
+                birthDate: new Date('1987-04-25'),
+                balance: -2323.22,
+                email: 'oufblandou@gmail.com'
+            },
+            {
+                firstName: 'Francoise',
+                lastName: 'Frere',
+                birthDate: new Date('1955-08-27'),
+                balance: 42343,
+                email: 'raymondef@gmail.com'
+            }
+        ];
+
+        $scope.columnCollection = [
+            {label: 'First Name', map: 'firstName'},
+            {label: 'same same but different', map: 'firstName'},
+            {label: 'Last Name', map: 'lastName'}
+        ];
+
+    }]);
+
+    app.controller('treeCtrl', ['$scope', '$http', function ($scope, $http) {
+
+        $scope.list = [
+            {
+                "id": 1,
+                "title": "1. dragon-breath",
+                "items": []
+            },
+            {
+                "id": 2,
+                "title": "2. moiré-vision",
+                "items": [
+                    {
+                        "id": 21,
+                        "title": "2.1. tofu-animation",
+                        "items": [
+                            {
+                                "id": 211,
+                                "title": "2.1.1. spooky-giraffe",
+                                "items": []
+                            },
+                            {
+                                "id": 212,
+                                "title": "2.1.2. bubble-burst",
+                                "items": []
+                            }
+                        ],
+                    },
+                    {
+                        "id": 22,
+                        "title": "2.2. barehand-atomsplitting",
+                        "items": []
+                    }
+                ],
+            },
+            {
+                "id": 3,
+                "title": "3. unicorn-zapper",
+                "items": []
+            },
+            {
+                "id": 4,
+                "title": "4. romantic-transclusion",
+                "items": []
+            }
+        ];
+
+        $scope.selectedItem = {};
+
+        $scope.options = {
+        };
+
+        $scope.remove = function (scope) {
+            scope.remove();
+        };
+
+        $scope.toggle = function (scope) {
+            scope.toggle();
+        };
+
+        $scope.newSubItem = function (scope) {
+            var nodeData = scope.$modelValue;
+            nodeData.items.push({
+                id: nodeData.id * 10 + nodeData.items.length,
+                title: nodeData.title + '.' + (nodeData.items.length + 1),
+                items: []
+            });
+        };
+
+    }]);
+
+    $(function(){
+
+        $('.dialog').dialog({
+            autoOpen: false,
+            width: 400,
+            buttons: [
+                {
+                    text: "Ok",
+                    click: function () {
+                        $(this).dialog("close");
+                    }
+                },
+                {
+                    text: "Cancel",
+                    click: function () {
+                        $(this).dialog("close");
+                    }
+                }
+            ]
+        });
+
+        $(".arx-dialog").on('click', function (event) {
+
+            console.log($(this).attr('href'));
+
+            $($(this).attr('href')).dialog("open");
+            event.preventDefault();
+        });
+    })
+</script>
+</body>
+</html>

@@ -1,10 +1,10 @@
-*~
 .git
-*.diff
-*.patch
 vendor
 composer.phar
 composer.lock
 .DS_Store
 .svn
 .idea
+
+public/bower_components
+public/node_modules

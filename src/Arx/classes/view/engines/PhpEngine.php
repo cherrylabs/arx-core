@@ -66,6 +66,11 @@ class PhpEngine implements EngineInterface {
         return ob_get_clean();
     }
 
+    /**
+     * Transform Data variable to a Bag object
+     *
+     * @param $data
+     */
     protected function bag($data){
         $this->_data = new Bag($data);
     }

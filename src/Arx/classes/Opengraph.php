@@ -59,6 +59,8 @@ class Opengraph implements Iterator
         curl_close($curl);
 
         if (!empty($response)) {
+
+            $response = utf8_decode($response);
             return self::_parse($response);
         } else {
             return false;

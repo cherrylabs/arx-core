@@ -15,7 +15,7 @@ class Image
     function __construct($filename = null)
     {
         if ($filename) {
-            $this->load($filename);
+            return $this->load($filename);
         }
     }
 
@@ -94,7 +94,7 @@ class Image
     //
     //		The resulting format will be determined by the file extension.
     //
-    public function save($filename = null, $quality = null)
+    public function save($filename = null, $quality = null, $returnRaw = false)
     {
 
         if (!$filename) $filename = $this->filename;
@@ -130,6 +130,10 @@ class Image
         }
 
         if (!$result) throw new Exception('Unable to save image: ' . $filename);
+
+        if($returnRaw){
+            return $result;
+        }
 
         return $this;
 
@@ -607,7 +611,7 @@ class Image
     {
 
         // Load overlay image
-        $overlay = new self($overlay_file);
+        $overlay = self::load($overlay_file);
 
         // Convert opacity
         $opacity = $opacity * 100;
@@ -673,13 +677,31 @@ class Image
 
     }
 
+    /**
+     * output the Data as image
+     * @param null $quality
+     * @throws Exception
+     */
     public function output($quality = null)
     {
-
         header('Content-type: image/' . $this->original_info['format']);
         $this->save(-1, $quality);
         //die to stop execution
         die();
+    }
+
+    /**
+     * Output the data in Base64 on the supafly
+     * @param null $quality
+     * @return string
+     * @throws Exception
+     */
+    public function outputBase64($quality = null){
+        ob_start ();
+        $this->save(-1, $quality);
+        $image_data = ob_get_contents();
+        ob_end_clean ();
+        return 'data:'.$this->original_info['mime'].';base64,' . base64_encode($image_data);
     }
 
     //
@@ -770,6 +792,7 @@ class Image
     private function imagecopymerge_alpha($dst_im, $src_im, $dst_x, $dst_y, $src_x, $src_y, $src_w, $src_h, $pct)
     {
         $pct /= 100;
+
         // Get image width and height
         $w = imagesx($src_im);
         $h = imagesy($src_im);

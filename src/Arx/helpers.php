@@ -1,9 +1,8 @@
 <?php
 /**
  * Helper loader for functions
- * @todo : better helper integrations via autoload functions
+ *
  */
-use Arx\classes\Utils;
 
 if ( ! function_exists('\dd'))
 {
@@ -21,7 +20,6 @@ if ( ! function_exists('\d'))
 
 if ( ! function_exists('\de'))
 {
-    // Try to put de to avoid conflict with Laravel
     function de(){
         return call_user_func_array('Arx\classes\Utils::predie', func_get_args());
     }

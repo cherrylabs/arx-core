@@ -13,6 +13,32 @@
  */
 abstract class Date
 {
+     /**
+     * Differences in days between to date
+     *
+     * Takes a month/year as input and returns the number of days
+     * for the given month/year. Takes leap years into consideration.
+     *
+     * Credit: http://codeigniter.com/user_guide/helpers/date_helper.html
+     * License: http://codeigniter.com/user_guide/license.html
+     *
+     * @param int $month Month
+     * @param int $year  Year
+     *
+     * @return int
+     */
+    public static function daysDifference($start, $end = null) {
+        $start = strtotime($start);
+        
+        if(!$end){
+            $end = strtotime('today');
+        } else {
+            $end = strtotime($end);
+        }
+        
+        $diff = $end - $start;
+        return round($diff / 86400);
+    }
 
     /**
      * Number of days in a month
@@ -50,7 +76,22 @@ abstract class Date
     } // daysInMonth
 
 
-    public static function findMonday($d = null,$format="Y-m-d") {
+    /**
+     * Find last monday from a date if monday => return the monday before
+     *
+     * @deprecated please use lastMonday !
+     */
+    public static function findMonday($d = null, $format = "Y-m-d") {
+        return self::lastMonday($d, $format);
+    }
+
+    /**
+     * Find last monday from a date if monday => return the monday before
+     * @param null $d
+     * @param string $format
+     * @return bool|string
+     */
+    public static function lastMonday($d = null, $format = "Y-m-d") {
 
         if(!$d){
             $d = date('Y-m-d');
@@ -59,7 +100,131 @@ abstract class Date
         return date($format, strtotime("last monday", strtotime($d)));
     }
 
+    /**
+     * Find next monday from a date if monday => return the monday before
+     * @param null $d
+     * @param string $format
+     * @return bool|string
+     */
+    public static function nextMonday($d = null, $format = "Y-m-d") {
 
+        if(!$d){
+            $d = date('Y-m-d');
+        }
+
+        return date($format, strtotime("next monday", strtotime($d)));
+    }
+
+    public static function lastWeek($week = null){
+
+        $days = array();
+
+        $week = \Arx\classes\Date::lastMonday($week);
+
+        for($i=0;$i<7;$i++){
+            $days[] = date('Y-m-d', strtotime("+ $i day", strtotime($week)));
+        }
+
+        return $days;
+    }
+
+    public static function thisWeek($week = null){
+
+        $days = array();
+
+        $week = \Arx\classes\Date::thisMonday($week);
+
+        for($i=0;$i<7;$i++){
+            $days[] = date('Y-m-d', strtotime("+ $i day", strtotime($week)));
+        }
+
+        return $days;
+    }
+
+    /**
+     * Get next week from a date
+     *
+     * @param null $week
+     * @return array
+     */
+    public static function nextWeek($week = null){
+
+        $days = array();
+
+        $week = \Arx\classes\Date::nextMonday($week);
+
+        for($i=0;$i<7;$i++){
+            $days[] = date('Y-m-d', strtotime("+ $i day", strtotime($week)));
+        }
+
+        return $days;
+    }
+
+    /**
+     * Return current monday if monday => return current date
+     * @param null $d
+     * @param string $format
+     * @return bool|string
+     */
+    public static function thisMonday($d = null, $format = "Y-m-d") {
+
+        # If not defined return the current monday using tomorrow trick
+        if(!$d){
+            $d = 'tomorrow';
+        }
+        // If date is defined and it's monday => return monday
+        elseif(date('N', strtotime($d)) == 1){
+            return date($format, strtotime($d));
+        }
+
+        // else retturn the previous monday
+        return date($format, strtotime("last monday", strtotime($d)));
+
+    }
+
+    /**
+     * Find last sunday from a date if sunday => return the sunday before
+     * @param null $d
+     * @param string $format
+     * @return bool|string
+     */
+    public static function nextSunday($date = null, $format = "Y-m-d") {
+
+        if(!$date){
+            $date = date('Y-m-d');
+        }
+
+        return date($format, strtotime("next sunday", strtotime($date)));
+    }
+
+    /**
+     * Return current sunday if sunday => return current date
+     * @param null $d
+     * @param string $format
+     * @return bool|string
+     */
+    public static function thisSunday($d = null, $format = "Y-m-d") {
+
+        # If not defined return the current sunday using yesterday trick
+        if(!$d){
+            $d = 'yesterday';
+        }
+        // If date is defined and it's sunday => return sunday
+        elseif(date('N', strtotime($d)) == 7){
+            return date($format, strtotime($d));
+        }
+
+        // else retturn the previous sunday
+        return date($format, strtotime("next sunday", strtotime($d)));
+    }
+
+    /**
+     * Return diff between 2 microtime
+     *
+     * @param $mt_old
+     * @param $mt_new
+     * @return float
+     */
     public static function diffMicrotime($mt_old, $mt_new) {
         list($old_usec, $old_sec) = explode(' ', $mt_old);
         list($new_usec, $new_sec) = explode(' ', $mt_new);
@@ -179,51 +344,54 @@ abstract class Date
      */
     public static function humanToUnix($datestr = '')
     {
-        if (empty($datestr)) {
-            return false;
+        if ($datestr == '')
+        {
+            return FALSE;
         }
 
         $datestr = trim($datestr);
-        $datestr = preg_replace("/\040+/", "\040", $datestr);
+        $datestr = preg_replace("/\040+/", ' ', $datestr);
 
-        if (!preg_match('/^[0-9]{2,4}\-[0-9]{1,2}\-[0-9]{1,2}\s[0-9]{1,2}:[0-9]{1,2}(?::[0-9]{1,2})?(?:\s[AP]M)?$/i', $datestr)) {
-            return false;
+        if ( ! preg_match('/^[0-9]{2,4}\-[0-9]{1,2}\-[0-9]{1,2}\s[0-9]{1,2}:[0-9]{1,2}(?::[0-9]{1,2})?(?:\s[AP]M)?$/i', $datestr))
+        {
+            return FALSE;
         }
 
-        $split = preg_split("/\040/", $datestr);
+        $split = explode(' ', $datestr);
 
         $ex = explode("-", $split['0']);
 
-        $year  = (strlen($ex['0']) === 2) ? '20'.$ex['0'] : $ex['0'];
-        $month = (strlen($ex['1']) === 1) ? '0'.$ex['1']  : $ex['1'];
-        $day   = (strlen($ex['2']) === 1) ? '0'.$ex['2']  : $ex['2'];
+        $year  = (strlen($ex['0']) == 2) ? '20'.$ex['0'] : $ex['0'];
+        $month = (strlen($ex['1']) == 1) ? '0'.$ex['1']  : $ex['1'];
+        $day   = (strlen($ex['2']) == 1) ? '0'.$ex['2']  : $ex['2'];
 
         $ex = explode(":", $split['1']);
 
-        $hour = (strlen($ex['0']) === 1) ? '0'.$ex['0'] : $ex['0'];
-        $min  = (strlen($ex['1']) === 1) ? '0'.$ex['1'] : $ex['1'];
+        $hour = (strlen($ex['0']) == 1) ? '0'.$ex['0'] : $ex['0'];
+        $min  = (strlen($ex['1']) == 1) ? '0'.$ex['1'] : $ex['1'];
 
-        if (isset($ex['2']) && preg_match('/[0-9]{1,2}/', $ex['2'])) {
-            $sec  = (strlen($ex['2']) === 1) ? '0'.$ex['2'] : $ex['2'];
-        } else {
+        if (isset($ex['2']) && preg_match('/[0-9]{1,2}/', $ex['2']))
+        {
+            $sec  = (strlen($ex['2']) == 1) ? '0'.$ex['2'] : $ex['2'];
+        }
+        else
+        {
             // Unless specified, seconds get set to zero.
             $sec = '00';
         }
 
-        if (isset($split['2'])) {
+        if (isset($split['2']))
+        {
             $ampm = strtolower($split['2']);
 
-            if (substr($ampm, 0, 1) === 'p' AND $hour < 12) {
+            if (substr($ampm, 0, 1) == 'p' AND $hour < 12)
                 $hour = $hour + 12;
-            }
 
-            if (substr($ampm, 0, 1) === 'a' AND $hour == 12) {
+            if (substr($ampm, 0, 1) == 'a' AND $hour == 12)
                 $hour =  '00';
-            }
 
-            if (strlen($hour) === 1) {
+            if (strlen($hour) == 1)
                 $hour = '0'.$hour;
-            }
         }
 
         return mktime($hour, $min, $sec, $month, $day, $year);

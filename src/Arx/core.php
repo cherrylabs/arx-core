@@ -64,19 +64,12 @@ require_once __DIR__ . DS .'classes/Composer.php';
 
 
 /**
- * Classes that needs to be include and can't be include with autoload
+ * Classes that needs to be include and can't be include with autoload or CoreServiceProvider
  */
-require_once __DIR__ . DS . 'classes' . DS . 'Asset.php';
-require_once __DIR__ . DS . 'classes' . DS . 'Cache.php';
-require_once __DIR__ . DS . 'classes' . DS . 'Convert.php';
-require_once __DIR__ . DS . 'classes' . DS . 'Date.php';
+
 require_once __DIR__ . DS . 'classes' . DS . 'Debug.php';
 require_once __DIR__ . DS . 'classes' . DS . 'Finder.php';
-require_once __DIR__ . DS . 'classes' . DS . 'Globals.php';
 require_once __DIR__ . DS . 'classes' . DS . 'Hook.php';
-require_once __DIR__ . DS . 'classes' . DS . 'Db.php';
-require_once __DIR__ . DS . 'classes' . DS . 'Route.php';
-require_once __DIR__ . DS . 'classes' . DS . 'Valid.php';
 require_once __DIR__ . DS . 'classes' . DS . 'Config.php';
 require_once __DIR__ . DS . 'classes' . DS . 'Env.php';
 require_once __DIR__ . DS . 'classes' . DS . 'App.php';
@@ -89,31 +82,171 @@ require_once __DIR__ . DS . 'classes' . DS . 'App.php';
  *
  */
 
-if(!class_exists('Arx')){
-    class Arx extends \Arx\classes\App{
+use Arx\classes\Composer;
+use Arx\classes\Config;
 
+if(!class_exists('Arx')){
+
+    class Arx extends \Arx\classes\App {
+
+        /**
+         * Get path from Arx
+         * @param null $value
+         * @return string
+         */
         public static function path($value = null){
             return __DIR__.($value ? DS. $value : '');
         }
 
+        /**
+         * Auto-detect environment
+         *
+         * @return int|string
+         */
         public static function env(){
             return Arx\classes\Env::detect();
         }
 
         /**
-         * init some functions like helpers or configuration
+         * Get level of env
+         *
+         * @return int|string
+         */
+        public static function levelEnv(){
+            return Arx\classes\Env::level();
+        }
+
+        /**
+         * Init some helpers or configuration
          */
         public static function ignite()
         {
             require_once __DIR__ . DIRECTORY_SEPARATOR .'helpers.php';
         }
+
+        /**
+         * Check if a class exist
+         *
+         * @param $class
+         * @throws Exception
+         */
+        public static function needs($class, $autoload = true){
+            if(!class_exists($class, $autoload)){
+                Throw new Exception('Arx needs '.$class.' to be instanciated first !');
+            }
+        }
+
+        /**
+         * Autoload an undefined class and add more resolving case for the workbench environment
+         *
+         * Example : if in your workbench package you call a class with xxxController, xxxModel, xxxClass at the end, it
+         * will try to resolve the class by searching inside the controllers folder
+         *
+         * /!\ But you must always add a classmap in your composer.json file for better performance !
+         *
+         * @param       $className
+         * @param array $aParam
+         *
+         * @return void
+         *
+         */
+        static function autoload($className, $aParam = array())
+        {
+
+            $className = ltrim($className, '\\');
+            $fileName = '';
+            $namespace = '';
+            $composerName = '';
+            $supposedPath = ''; # Supposed path if class have a autoload structure in workbench
+
+            if ($lastNsPos = strrpos($className, '\\')) {
+                $namespace = substr($className, 0, $lastNsPos);
+                $className = substr($className, $lastNsPos + 1);
+                $fileName = str_replace('\\', DIRECTORY_SEPARATOR, $namespace) . DIRECTORY_SEPARATOR;
+
+                $aExplode = explode('\\', $namespace);
+                $iExplode = count($aExplode);
+
+                if($iExplode === 1){
+                    $composerName = $packageName = $aExplode[0];
+                } elseif($iExplode === 2){
+                    list($vendorName, $packageName) = $aExplode;
+                    $composerName = $vendorName.'/'.$packageName;
+                } elseif($iExplode >= 3){
+                    $vendorName = array_shift($aExplode);
+                    $packageName = array_shift($aExplode);
+                    $composerName = $vendorName.'/'.$packageName;
+                }
+            }
+
+            $fileName .= str_replace('_', DIRECTORY_SEPARATOR, $className) . '.php';
+
+            $aNamespaces = Arx\classes\Composer::getNamespaces();
+
+
+            if (in_array($namespace, array_keys($aNamespaces))) {
+
+            } elseif(in_array($composerName, array_keys($aNamespaces))){
+
+                $paths = $aNamespaces[$composerName];
+
+                foreach($paths as $path){
+                    if(is_file($fileName = $path.'/'.$fileName)){
+                        include $fileName;
+                    }
+                }
+            }
+
+            if(isset($aNamespaces[$composerName]) && !empty($aNamespaces[$composerName])){
+
+                if(preg_match('/Controller$/', $className)){
+                    $supposedPath = end($aNamespaces[$composerName]) . DS. str_replace('\\', DS, $namespace) . DS.  'controllers' . DS . $className . '.php';
+                } elseif(preg_match('/Model$/', $className)){
+                    $supposedPath = end($aNamespaces[$composerName]) . DS . str_replace('\\', DS, $namespace) . DS. 'models' . DS . $className . '.php';
+                } elseif(preg_match('/Class$/', $className)){
+                    $supposedPath = end($aNamespaces[$composerName]) . DS . str_replace('\\', DS, $namespace) . DS. 'classes' . DS . $className . '.php';
+                } elseif(preg_match('/Command$/', $className)){
+                    $supposedPath = end($aNamespaces[$composerName]) . DS . str_replace('\\', DS, $namespace) . DS. 'commands' . DS . $className . '.php';
+                } elseif(preg_match('/Provider$/', $className)){
+                    $supposedPath = end($aNamespaces[$composerName]) . DS . str_replace('\\', DS, $namespace) . DS. 'providers' . DS . $className . '.php';
+                } elseif(preg_match('/Facade$/', $className)){
+                    $supposedPath = end($aNamespaces[$composerName]) . DS . str_replace('\\', DS, $namespace) . DS. 'facades' . DS . $className . '.php';
+                } elseif(preg_match('/Helper$/', $className)){
+                    $supposedPath = end($aNamespaces[$composerName]) . DS . str_replace('\\', DS, $namespace) . DS. 'helpers' . DS . $className . '.php';
+                } elseif(preg_match('/Interface$/', $className)){
+                    $supposedPath = end($aNamespaces[$composerName]) . DS . str_replace('\\', DS, $namespace) . DS. 'interfaces' . DS . $className . '.php';
+                }
+
+            }
+
+            $pathsWorkbench = Composer::getRootPath('workbench');
+
+            if (class_exists('Config', false)) {
+                $pathsWorkbench = Config::get('paths.workbench');
+            }
+
+            try {
+                if(is_file($fileName = $pathsWorkbench . DS . strtolower($composerName) .DS. 'src' . DS . $fileName)){
+                    include $fileName;
+                } elseif(is_file($fileName = $pathsWorkbench . DS . $fileName)){
+                    include $fileName;
+                } elseif(is_file($supposedPath) ) {
+                    include $supposedPath;
+                } elseif(isset($aNamespaces[$composerName]) && is_file(end($aNamespaces[$composerName]) . DS . str_replace('\\', DS, $namespace) . DS. 'models' . DS . $className . '.php')){
+                    include end($aNamespaces[$composerName]) . DS . str_replace('\\', DS, $namespace) . DS. 'models' . DS . $className . '.php';
+                }
+            } catch (Exception $e) {
+                #trigger_error($e);
+            }
+        }
     }
+
 }
 
 /**
  * Spl class register
  *
- * If a class is not found will trigger this function defined in classes/app.php
+ * If a class is not found it will trigger arx::autoload method defined in classes/app.php
  *
  */
 spl_autoload_register('Arx::autoload');

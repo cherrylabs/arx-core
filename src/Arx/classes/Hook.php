@@ -1,31 +1,23 @@
 <?php namespace Arx\classes;
 
+if(!defined('ARX_HOOK')) define('ARX_HOOK', 'ARX_HOOK');
+
 /**
- * Hook class
+ * Class Hook
  *
- * Class helper to manage easily a hook flow
- *
- * @example
- *  Hook::add('{name}', array('{link}');
- * @category Hook
- * @package  Arx
- * @author   Daniel Sum <daniel@cherrypulp.com>
- * @author   Stéphan Zych <stephan@cherrypulp.com>
- * @license  http://opensource.org/licenses/MIT MIT License
- * @link     http://arx.xxx/doc/Hook
+ * @package Arx\classes
  */
-
-use Debugbar;
-
-class Hook
+class Hook extends \ArrayObject
 {
-    public static $pref = "hooked_";
+    public static $pref = "";
 
     public static $logs = array();
 
+    public static $callback = array();
+
     public function __get($name)
     {
-        return $GLOBALS[self::$pref.$name];
+        return $GLOBALS[ARX_HOOK][$name];
     }
 
     public function __set($name, $value)
@@ -33,12 +25,9 @@ class Hook
         return self::add($name, $value);
     }
 
-    public function __construct(){
-
-    }
-
     public static function register($name, $callback = null){
-        $GLOBALS[self::$pref.$name] = array();
+        $GLOBALS[ARX_HOOK][$name] = array();
+        self::$callback[$name] = array($callback);
     }
 
     /**
@@ -50,22 +39,34 @@ class Hook
     public static function add($name, $mValue)
     {
 
-        if (!isset($GLOBALS['hooked_'.$name])) {
-            $GLOBALS['hooked_'.$name] = array();
+        if (!isset($GLOBALS[ARX_HOOK][$name])) {
+            $GLOBALS[ARX_HOOK][$name] = array();
         }
 
         if (is_array($mValue)) {
             foreach ($mValue as $v) {
-                if(!in_array($v, $GLOBALS['hooked_'.$name]))
-                    $GLOBALS['hooked_'.$name][] = $v;
+                if(!in_array($v, $GLOBALS[ARX_HOOK][$name]))
+                    $GLOBALS[ARX_HOOK][$name][] = $v;
             }
 
-            return $GLOBALS['hooked_'.$name];
+            return $GLOBALS[ARX_HOOK][$name];
         } else {
-            if(!in_array($mValue, $GLOBALS['hooked_'.$name]))
-
-                return $GLOBALS['hooked_'.$name][] = $mValue;
+            if(!in_array($mValue, $GLOBALS[ARX_HOOK][$name])){
+                return $GLOBALS[ARX_HOOK][$name][] = $mValue;
+            }
         }
+
+        return $GLOBALS[ARX_HOOK][$name];
+
+    }
+
+    /**
+     * Set a new hook
+     *
+     * @param $name
+     * @param array $mValue
+     */
+    public static function set($name, $mValue = array()){
 
     }
 
@@ -76,13 +77,9 @@ class Hook
      * @package arx
      * @comments :
      */
-    public static function js($name = 'js')
+    public static function js($name)
     {
-
-        if(is_string($value)){
-            $value = array($value);
-        }
-        return self::add('js', $value);
+        return Asset::css(Hook::get($name));
     }
 
     /**
@@ -94,10 +91,14 @@ class Hook
      */
     public static function css($name = 'css')
     {
-        $t = self::getInstance();
-
+        return Asset::css(Hook::get($name));
     }
 
+    /**
+     * Output content as HTML
+     *
+     * @param string $name
+     */
     public static function html($name = 'html'){
 
     }
@@ -109,9 +110,9 @@ class Hook
      * @package arx
      * @comments :
      */
-    public static function get_js($value)
+    public static function getJs($name)
     {
-        $output = Load::JS($GLOBALS[self::$pref.$c]);
+        $output = Load::JS($GLOBALS[self::$pref.$name]);
 
         return $output;
     }
@@ -123,9 +124,9 @@ class Hook
      * @package arx
      * @comments :
      */
-    public static function get_css($value)
+    public static function getCss($name)
     {
-        $output = Load::CSS($GLOBALS[self::$pref.$c]);
+        $output = Load::CSS($GLOBALS[self::$pref.$name]);
 
         return $output;
     }
@@ -137,11 +138,16 @@ class Hook
      * @package arx
      * @comments :
      */
-    public static function getAll($c = null)
+    public static function getAll()
     {
-        return $GLOBALS['all_hooked_name'];
+        return $GLOBALS[ARX_HOOK];
     }
 
+    /**
+     * Output hook
+     *
+     * @return bool
+     */
     public static function output()
     {
         
@@ -173,11 +179,17 @@ class Hook
         return $output;
     }
 
-    public function get($c){
-        return self::output($c);
+    public static function get($name){
+
+        if(isset($GLOBALS[ARX_HOOK][$name])){
+
+            return $GLOBALS[ARX_HOOK][$name];
+        }
+
+        return false;
     }
 
-    public function eput($c){
+    public static function eput($c){
         echo self::output($c);
     }
 
@@ -185,8 +197,8 @@ class Hook
      * Start method put your output in memory cache until you end
      * @param $str
      */
-    public function start($name){
-        $GLOBALS[self::$pref.$name] = '';
+    public static  function start($name){
+        $GLOBALS[ARX_HOOK][$name] = '';
         ob_start();
     }
 
@@ -194,8 +206,8 @@ class Hook
      * End your cached data and save it in a globals
      * @param $name
      */
-    public function end($name){
-        $GLOBALS[self::$pref.$name] .= ob_get_contents();
+    public static function end($name){
+        $GLOBALS[ARX_HOOK][$name] .= ob_get_contents();
         ob_end_clean();
     }
 } // class::Hook
@@ -203,6 +215,6 @@ class Hook
 /**
  * Init the global arx_hook
  */
-if (!isset($GLOBALS['arx_hook'])) {
-    $GLOBALS['arx_hook'] = new Hook();
+if (!isset($GLOBALS[ARX_HOOK])) {
+    //$GLOBALS[ARX_HOOK] = new Hook();
 }

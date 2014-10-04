@@ -1,7 +1,5 @@
 <?php namespace Arx\classes;
 
-use Illuminate\Routing\Controller as ParentClass;
-
 /**
  * Class Controller
  *
@@ -10,9 +8,10 @@ use Illuminate\Routing\Controller as ParentClass;
  * @todo make it usable outside Laravel
  * @package Arx\classes
  */
-class Controller extends ParentClass {
+class Controller extends \Illuminate\Routing\Controller {
 
     public function display($file, $data = array()){
         $this['app']['view']->display($file, $data);
     }
+
 }

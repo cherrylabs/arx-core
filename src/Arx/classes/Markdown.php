@@ -1,6 +1,7 @@
-<?php
+<?php namespace Arx\classes;
+
 /**
- * Markdown class
+ * Markdown class parser
  *
  * Based on the Emanuil Rusev parsedown class
  *
@@ -10,8 +11,6 @@
  * @project : Arx
  * @author : Daniel Sum <daniel@cherrypulp.com>
  */
-
-namespace Arx\classes;
 
 class Markdown
 {

@@ -1,5 +1,6 @@
 <?php namespace Arx\classes\view\engines;
 
+use Arx\classes\Arr;
 use Illuminate\View\Engines\CompilerEngine as ParentClass;
 use Illuminate\View\Compilers\CompilerInterface;
 use Illuminate\View\EngineInterface;
@@ -28,6 +29,23 @@ class CompilerEngine extends PhpEngine {
         $this->compiler = $compiler;
     }
 
+    public function angularApp($ngApp){
+        $this->ngApp = $ngApp;
+    }
+
+    public function angularCtrl($ngCtrl){
+        $this->ngCtrl = $ngCtrl;
+    }
+
+    public function bodyAttribute($attr, $value){
+
+        if (!isset($this->body['attributes'])) {
+            $this->body['attributes'] = array();
+        }
+
+        $this->body['attributes'][$attr] = $value;
+    }
+
     /**
      * Get the evaluated contents of the view.
      *
@@ -47,7 +65,7 @@ class CompilerEngine extends PhpEngine {
         }
 
         # SAVE VIEWS INFO IN SERVER DATA
-        $_SERVER['view_used'] = $path;
+        $_SERVER['view_used'] = realpath($path);
 
         $compiled = $this->compiler->getCompiledPath($path);
 
