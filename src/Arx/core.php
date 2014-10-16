@@ -50,6 +50,7 @@ defined('DS') or define('DS', DIRECTORY_SEPARATOR);
 require_once __DIR__ . DS . 'classes' . DS . 'Singleton.php';
 require_once __DIR__ . DS . 'classes' . DS . 'Container.php';
 require_once __DIR__ . DS . 'classes' . DS . 'Arr.php';
+require_once __DIR__ . DS . 'classes' . DS . 'Config.php';
 require_once __DIR__ . DS . 'classes' . DS . 'Strings.php';
 require_once __DIR__ . DS . 'classes' . DS . 'Utils.php';
 
@@ -82,12 +83,11 @@ require_once __DIR__ . DS . 'classes' . DS . 'App.php';
  *
  */
 
-use Arx\classes\Composer;
 use Arx\classes\Config;
 
 if(!class_exists('Arx')){
 
-    class Arx extends \Arx\classes\App {
+    class Arx extends \Arx\classes\App{
 
         /**
          * Get path from Arx
@@ -152,10 +152,16 @@ if(!class_exists('Arx')){
          */
         static function autoload($className, $aParam = array())
         {
+            $instance = self::getInstance();
+
+            $aAutoload = Config::get('autoload');
 
             $className = ltrim($className, '\\');
             $fileName = '';
             $namespace = '';
+            $vendorName = '';
+            $packageName = '';
+            $routeName = '';
             $composerName = '';
             $supposedPath = ''; # Supposed path if class have a autoload structure in workbench
 
@@ -176,6 +182,7 @@ if(!class_exists('Arx')){
                     $vendorName = array_shift($aExplode);
                     $packageName = array_shift($aExplode);
                     $composerName = $vendorName.'/'.$packageName;
+                    $routeName = implode('/', $aExplode);
                 }
             }
 
@@ -200,43 +207,55 @@ if(!class_exists('Arx')){
             if(isset($aNamespaces[$composerName]) && !empty($aNamespaces[$composerName])){
 
                 if(preg_match('/Controller$/', $className)){
+
                     $supposedPath = end($aNamespaces[$composerName]) . DS. str_replace('\\', DS, $namespace) . DS.  'controllers' . DS . $className . '.php';
-                } elseif(preg_match('/Model$/', $className)){
+
+                }
+
+                if(preg_match('/Model$/', $className)){
+
                     $supposedPath = end($aNamespaces[$composerName]) . DS . str_replace('\\', DS, $namespace) . DS. 'models' . DS . $className . '.php';
-                } elseif(preg_match('/Class$/', $className)){
+                }
+
+                if(preg_match('/Class$/', $className)){
                     $supposedPath = end($aNamespaces[$composerName]) . DS . str_replace('\\', DS, $namespace) . DS. 'classes' . DS . $className . '.php';
-                } elseif(preg_match('/Command$/', $className)){
+                }
+
+                if(preg_match('/Command$/', $className)){
                     $supposedPath = end($aNamespaces[$composerName]) . DS . str_replace('\\', DS, $namespace) . DS. 'commands' . DS . $className . '.php';
-                } elseif(preg_match('/Provider$/', $className)){
+                }
+
+                if(preg_match('/Provider$/', $className)){
                     $supposedPath = end($aNamespaces[$composerName]) . DS . str_replace('\\', DS, $namespace) . DS. 'providers' . DS . $className . '.php';
-                } elseif(preg_match('/Facade$/', $className)){
+                }
+
+                if(preg_match('/Facade$/', $className)){
                     $supposedPath = end($aNamespaces[$composerName]) . DS . str_replace('\\', DS, $namespace) . DS. 'facades' . DS . $className . '.php';
-                } elseif(preg_match('/Helper$/', $className)){
+                }
+
+                if(preg_match('/Helper$/', $className)){
+
                     $supposedPath = end($aNamespaces[$composerName]) . DS . str_replace('\\', DS, $namespace) . DS. 'helpers' . DS . $className . '.php';
-                } elseif(preg_match('/Interface$/', $className)){
+                }
+
+                if(preg_match('/Interface$/', $className)){
                     $supposedPath = end($aNamespaces[$composerName]) . DS . str_replace('\\', DS, $namespace) . DS. 'interfaces' . DS . $className . '.php';
                 }
 
             }
 
-            $pathsWorkbench = Composer::getRootPath('workbench');
-
-            if (class_exists('Config', false)) {
-                $pathsWorkbench = Config::get('paths.workbench');
-            }
-
             try {
-                if(is_file($fileName = $pathsWorkbench . DS . strtolower($composerName) .DS. 'src' . DS . $fileName)){
+                if(is_file($fileName = Config::get('paths.workbench') . DS . strtolower($composerName) .DS. 'src' . DS . $fileName)){
                     include $fileName;
-                } elseif(is_file($fileName = $pathsWorkbench . DS . $fileName)){
+                } elseif(is_file($fileName = Config::get('paths.workbench') . DS . $fileName)){
                     include $fileName;
+                } elseif (is_array($aAutoload) and array_key_exists($className, $aAutoload) and is_file($aAutoload[$className])) {
+                    include $aAutoload[$className];
                 } elseif(is_file($supposedPath) ) {
                     include $supposedPath;
-                } elseif(isset($aNamespaces[$composerName]) && is_file(end($aNamespaces[$composerName]) . DS . str_replace('\\', DS, $namespace) . DS. 'models' . DS . $className . '.php')){
-                    include end($aNamespaces[$composerName]) . DS . str_replace('\\', DS, $namespace) . DS. 'models' . DS . $className . '.php';
                 }
             } catch (Exception $e) {
-                #trigger_error($e);
+                trigger_error($e);
             }
         }
     }
