@@ -12,7 +12,7 @@ class EloquentModel extends ParentClass {
      *
      * @var array
      */
-    protected static $jsonable = array();
+    public static $jsonable = array();
 
     private static $_aInstances = array();
 
@@ -22,12 +22,12 @@ class EloquentModel extends ParentClass {
 
         static::creating(function($model)
         {
-            $model = $model->forceJsonable($model);
+            $model->forceJsonable($model);
         });
 
         static::updating(function($model)
         {
-            $model = $model->forceJsonable($model);
+            $model->forceJsonable($model);
         });
     }
 
