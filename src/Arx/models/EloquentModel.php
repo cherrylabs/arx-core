@@ -8,7 +8,7 @@ use DB;
 class EloquentModel extends ParentClass {
 
     /**
-     * Define fields which can be a json
+     * Define which fields can be a json
      *
      * @var array
      */
@@ -31,6 +31,12 @@ class EloquentModel extends ParentClass {
         });
     }
 
+    /**
+     *
+     *
+     * @param $model
+     * @return mixed
+     */
     public static function forceJsonable($model){
 
         foreach($model::$jsonable as $key){
@@ -78,6 +84,11 @@ class EloquentModel extends ParentClass {
         return $data;
     }
 
+    /**
+     * Allow to return an Instance
+     *
+     * @return mixed
+     */
     public static function getInstance(){
         $sClass = get_called_class();
 
