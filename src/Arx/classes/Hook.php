@@ -79,7 +79,7 @@ class Hook extends \ArrayObject
      */
     public static function js($name)
     {
-        return Asset::css(Hook::get($name));
+        return self::add('js', $name);
     }
 
     /**

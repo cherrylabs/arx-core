@@ -12,7 +12,14 @@ use Arx\classes\Html;
  */
 class Load {
 
-    public static function js(array $array, $param = array())
+    /**
+     * Load a js file and output html script
+     *
+     * @param $array
+     * @param array $param
+     * @return string
+     */
+    public static function js($array, $param = array())
     {
 
         $out = "\n";
@@ -29,7 +36,15 @@ class Load {
         return $out;
     }
 
-    public static function css(array $array , $param = array())
+
+    /**
+     * Load a css file and output html script
+     *
+     * @param $array
+     * @param array $param
+     * @return string
+     */
+    public static function css($array , $param = array())
     {
 
         $out = "\n";
@@ -45,9 +60,15 @@ class Load {
         return $out;
     }
 
-    public static function image(array $array , $param = array())
+    /**
+     * Load a css file and output html script
+     *
+     * @param $array
+     * @param array $param
+     * @return string
+     */
+    public static function image($array , $param = array())
     {
-
         $out = "\n";
 
         foreach($array as $key => $item){
