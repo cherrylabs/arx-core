@@ -200,6 +200,21 @@ class Utils
 
     }
 
+    /**
+     * Debug method
+     */
+    public static function debug(){
+        $args = func_get_args();
+
+        foreach($args as $item){
+            echo '<pre>';
+            print_r($item);
+            echo '</pre>';
+        }
+
+        die();
+    }
+
 #E
     public static function epre($v)
     {
