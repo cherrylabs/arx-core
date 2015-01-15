@@ -59,7 +59,7 @@ class Hook extends \ArrayObject
     public static function add($name, $mValue, $merge = null)
     {
         if (is_string($mValue)) {
-            $mValue = [$mValue];
+            $mValue = array($mValue);
         }
 
         if ($pos = strpos($name, '.')) {
