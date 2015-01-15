@@ -146,25 +146,6 @@ class Arr
 #L
 
 #M
-    /**
-     * Recursive version of array_map
-     *
-     * @param $callback
-     * @param $array
-     * @return mixed
-     */
-    public static function map_recursive($callback, $array) {
-
-        foreach ($array as $key => $value) {
-            if (is_array($array[$key])) {
-                $array[$key] = self::map_recursive($callback, $array[$key]);
-            }
-            else {
-                $array[$key] = call_user_func($callback, $array[$key]);
-            }
-        }
-        return $array;
-    }
 
 #N
 
@@ -236,11 +217,39 @@ class Arr
 
         $counter = 0;
         foreach ($arr as $key => $unused) {
-            if (!is_int($key) or $key !== $counter++) {
+
+            if (!is_int($key) || $key !== $counter) {
                 return true;
             }
+
+            $counter++;
         }
         return false;
+    }
+
+    /**
+     * Checks if the given array is an assoc array.
+     *
+     * @param   array $arr the array to check
+     * @throws \InvalidArgumentException
+     * @return  bool   true if its an assoc array, false if not
+     */
+    public static function is_sequential($arr)
+    {
+        if (!is_array($arr)) {
+            throw new \InvalidArgumentException('The parameter must be an array.');
+        }
+
+        $counter = 0;
+
+        foreach ($arr as $key => $unused) {
+            if (!is_int($key) || $key != $counter) {
+                return false;
+            }
+            $counter++;
+        }
+
+        return true;
     }
 
     /**
