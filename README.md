@@ -330,6 +330,12 @@ To use Arx directly from the repo just checkout this repository inside a workben
 
 # What's new ? :
 
+## 4.2 :
+
+- remove 5.3 compatibility to use Trait like in Laravel 4.2
+- Request and Validator class is now available outside Laravel !
+- add a Hook class
+
 ## 4.1.5 :
 
 - introduce Arx Command Line Interface ! New Command will come soon...
