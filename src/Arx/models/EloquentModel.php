@@ -15,11 +15,11 @@ use DB;
 class EloquentModel extends ParentClass {
 
     /**
-     * Define fields which can be a json
+     * Define which fields can be a json
      *
      * @var array
      */
-    protected static $jsonable = array();
+    public static $jsonable = array();
 
     private static $_aInstances = array();
 
@@ -29,15 +29,21 @@ class EloquentModel extends ParentClass {
 
         static::creating(function($model)
         {
-            $model = $model->forceJsonable($model);
+            $model->forceJsonable($model);
         });
 
         static::updating(function($model)
         {
-            $model = $model->forceJsonable($model);
+            $model->forceJsonable($model);
         });
     }
 
+    /**
+     *
+     *
+     * @param $model
+     * @return mixed
+     */
     public static function forceJsonable($model){
 
         foreach($model::$jsonable as $key){
@@ -85,6 +91,11 @@ class EloquentModel extends ParentClass {
         return $data;
     }
 
+    /**
+     * Allow to return an Instance
+     *
+     * @return mixed
+     */
     public static function getInstance(){
         $sClass = get_called_class();
 

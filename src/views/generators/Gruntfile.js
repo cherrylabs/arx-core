@@ -9,7 +9,22 @@ module.exports = function (grunt) {
         // Variables
         src: 'app/_assets', // src packages
         dist: 'public/assets', // Change this to publish where you want !
-        packages : 'public/packages', // Change the packages repository to suit your needs
+        packages: 'public/packages',// Change the packages repository to suit your needs
+
+        main_files: {
+            sass: [],
+            less: [],
+            uglify: [],
+            fonts: []
+        },
+
+        plugins_files: {
+            concat_css: [],
+            concat_js: [],
+            copy_fonts: [],
+            copy_img: [],
+            copy_media: []
+        },
 
         // Javascript compiler
         uglify: {
@@ -18,87 +33,72 @@ module.exports = function (grunt) {
             },
 
             // Main
-            main : {
+            main: {
                 files: {
-                    '<%= dist %>/js/main.js' : [
-                        "<%= dist %>/assets/main.js"
-                    ]
+                    '<%= dist %>/js/main.js': '<%= main_files.uglify %>'
                 }
-            }, // main JS
+            } // main JS
 
-            // Admin
-            admin : {
-                files: {
-                    '<%= dist %>/js/admin.js' : [
-                        "<%= src %>/js/admin.js"
-                    ]
-                }
-            } // admin JS
         }, // uglify
 
         // Less Compiler
         less: {
 
             // Main
-            main : {
+            main: {
                 options: {
                     separator: '\n',
                     compress: true
                 },
                 files: {
-                    '<%= dist %>/css/main.css': [
-                        "<%= src %>/less/main.less"
-                    ]
+                    '<%= dist %>/css/main.css': '<%= main_files.less %>'
                 }
-            }, // main
+            } // main
 
-            // Admin
-            admin : {
-                options: {
-                    separator: '\n',
-                    compress: true
-                },
-                files: {
-                    '<%= dist %>/css/admin.css': [
-                        "<%= src %>/less/admin.less"
-                    ]
-                }
-            } // admin
         }, // less
 
-        // Plugins concatainer
+        // Sass Compiler
+        sass: {
+
+            // Main
+            main: {
+                options: {
+                    separator: '\n',
+                    compress: true
+                },
+                files: {
+                    '<%= dist %>/css/main.css': '<%= main_files.sass %>'
+                }
+            } // main
+        }, // sass
+
+        // Plugins concatenations
 
         concat: {
-            
-            // Main Concat
 
             // main plugins
 
-            main_plugins_js : {
+            main_plugins_js: {
                 options: {
                     separator: ';\n',
                     stripBanners: true
                 },
-                src: [
-                    // plugins goes here
-                ],
+                src: '<%= plugins_files.concat_js %>',
                 dest: '<%= dist %>/js/main-plugins.js'
-            }, 
+            },
 
-            main_plugins_css : {
+            main_plugins_css: {
                 options: {
                     separator: ';\n',
                     stripBanners: true
                 },
-                src: [
-                    // plugins goes here
-                ],
+                src: '<%= plugins_files.concat_css %>',
                 dest: '<%= dist %>/css/main-plugins.css'
             },
 
             // Main combine
 
-            main_combined_css : {
+            main_combined_css: {
                 options: {
                     separator: '\n',
                     stripBanners: true
@@ -110,7 +110,7 @@ module.exports = function (grunt) {
                 dest: '<%= dist %>/css/main-combined.css'
             },
 
-            main_combined_js : {
+            main_combined_js: {
                 options: {
                     separator: '\n',
                     stripBanners: true
@@ -120,74 +120,31 @@ module.exports = function (grunt) {
                     '<%= dist %>/js/main.js'
                 ],
                 dest: '<%= dist %>/css/main-combined.css'
-            },
-            
-            // Admin Concatenation
-
-
-            // Admin Plugins
-
-            admin_plugins_js : {
-                options: {
-                    separator: ';\n',
-                    stripBanners: false
-                },
-                src: [
-                    //'public/packages/jquery/jquery.js',
-                    //'public/packages/angular/angular.js',
-                    //'public/packages/bootstrap/dist/js/bootstrap.min.js',
-
-                    'public/packages/arx/core/dist/js/arx-combined.js',
-                    'public/packages/datatables/media/js/jquery.dataTables.js',
-                    'public/packages/angular-bootstrap/ui-bootstrap.min.js',
-                    'public/packages/angular-bootstrap/ui-bootstrap-tpls.min.js',
-                    'public/packages/angular-validator/dist/angular-validator.js',
-                    'public/packages/angular-validator/dist/angular-validator-rules.js',
-                    'public/packages/angular-form-builder/dist/angular-form-builder.js',
-                    'public/packages/angular-form-builder/dist/angular-form-builder-components.js'
-                ],
-                dest: '<%= dist %>/js/admin-plugins.js'
-            }, 
-
-            admin_plugins_css : {
-                options: {
-                    separator: ';\n',
-                    stripBanners: true
-                },
-                src: [
-                    // plugins goes here
-                    '<%= packages %>/arxmin/dist/css/arxmin-combined.css',
-                    'public/packages/angular-form-builder/dist/angular-form-builder.css'
-                ],
-                dest: '<%= dist %>/css/admin-plugins.css'
-            },
-
-            // Admin Combine
-
-            admin_combined_css : {
-                options: {
-                    separator: '\n',
-                    stripBanners: true
-                },
-                src: [
-                    '<%= dist %>/css/admin-plugins.css',
-                    '<%= dist %>/css/admin.css'
-                ],
-                dest: '<%= dist %>/css/admin-combined.css'
-            },
-
-            admin_combined_js : {
-                options: {
-                    separator: '\n',
-                    stripBanners: true
-                },
-                src: [
-                    '<%= dist %>/js/admin-plugins.js',
-                    '<%= dist %>/js/admin.js'
-                ],
-                dest: '<%= dist %>/js/admin-combined.js'
             }
         }, // concat
+
+        copy: {
+            plugins: {
+                files: [{
+                    expand: true,
+                    src: '<%= plugins_files.copy_img %>',
+                    dest: '<%= dist %>/img',
+                    filter: 'isFile'
+                },
+                {
+                    expand: true,
+                    src: '<%= plugins_files.copy_fonts %>',
+                    dest: '<%= dist %>/fonts',
+                    filter: 'isFile'
+                },
+                {
+                    expand: true,
+                    src: '<%= plugins_files.copy_media %>',
+                    dest: '<%= dist %>/media',
+                    filter: 'isFile'
+                }]
+            }
+        },
 
         jshint: {
             options: {
@@ -200,11 +157,21 @@ module.exports = function (grunt) {
         }, // jshint
 
         watch: {
+
             less: {
                 files: [
                     '<%= src %>/less/*.less'
                 ],
 
+                tasks: [
+                    'css'
+                ]
+            },
+
+            sass: {
+                files: [
+                    '<%= src %>/scss/*.scss'
+                ],
                 tasks: [
                     'css'
                 ]
@@ -220,17 +187,16 @@ module.exports = function (grunt) {
             },
 
             // Everything in that should trigger LiveReload
-
             livereload: {
                 options: {
                     livereload: true
                 },
                 files: [
-                    'app/*.js',
-                    'app/*.less',
                     'app/*.php',
                     'Grunt.js',
                     'app/**/*.php',
+                    'public/**/*.js',
+                    'app/**/*.css',
                     'workbench/**/*.php'
                 ]
             }
@@ -265,6 +231,7 @@ module.exports = function (grunt) {
      */
     grunt.registerTask('css', [
         'less',
+        'sass',
         'shell:done'
     ]);
 
@@ -286,8 +253,7 @@ module.exports = function (grunt) {
     ]);
 
 
-    grunt.event.on('watch', function(action, filepath, target) {
+    grunt.event.on('watch', function (action, filepath, target) {
         grunt.log.writeln(target + ': ' + filepath + ' has ' + action);
     });
-
 };

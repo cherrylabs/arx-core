@@ -25,6 +25,14 @@ if ( ! function_exists('\de'))
     }
 }
 
+
+if ( ! function_exists('\deb'))
+{
+    function deb(){
+        return call_user_func_array('Arx\classes\Utils::debug', func_get_args());
+    }
+}
+
 if ( ! function_exists('\pre'))
 {
     function pre(){

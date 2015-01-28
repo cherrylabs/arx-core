@@ -1,5 +1,5 @@
 filter:
-    excluded_paths: [tests/*, src/Arx/classes/asset/*, src/Arx/core.php]
+    excluded_paths: [tests/*,src/Arx/classes/debug/*]
 checks:
     php:
         code_rating: true
