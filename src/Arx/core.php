@@ -138,7 +138,7 @@ if(!class_exists('Arx')){
          */
         public static function needs($class, $autoload = true){
             if(!class_exists($class, $autoload)){
-                Throw new Exception('Arx needs '.$class.' to be instanciated first !');
+                throw new Exception('Arx needs '.$class.' to be instanciated first !');
             }
         }
 
@@ -156,7 +156,7 @@ if(!class_exists('Arx')){
          * @return void
          *
          */
-        static function autoload($className, $aParam = array())
+        public static function autoload($className, $aParam = array())
         {
 
             $className = ltrim($className, '\\');
