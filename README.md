@@ -1,4 +1,4 @@
-# Arx Core v. 4.1
+# Arx Core v. 4.2
 
 [![Latest Stable Version](https://poser.pugx.org/arx/core/v/stable.svg)](https://packagist.org/packages/arx/core) [![Total Downloads](https://poser.pugx.org/arx/core/downloads.svg)](https://packagist.org/packages/arx/core) [![Latest Unstable Version](https://poser.pugx.org/arx/core/v/unstable.svg)](https://packagist.org/packages/arx/core) [![License](https://poser.pugx.org/arx/core/license.svg)](https://packagist.org/packages/arx/core)
 
@@ -22,7 +22,7 @@ Install Composer on your project root put then :
 
 or add in your existing composer.json file
 
-    "arx-core" : "dev-master"
+    "arx-core" : "4.2.x"
 
     php composer.phar install or update
 

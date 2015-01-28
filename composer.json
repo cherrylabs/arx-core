@@ -7,20 +7,32 @@
     "authors": [
         {
             "name": "Daniel Sum",
-            "email": "daniel@cherrylabs.net",
-            "homepage": "http://www.cherrylabs.net",
+            "email": "daniel@cherrypulp.com",
+            "homepage": "http://www.cherrypulp.com",
+            "role": "Back-end developer"
+        },
+        {
+            "name": "Joachim Corbay",
+            "email": "joachim@cherrypulp.com",
+            "homepage": "http://www.cherrypulp.com",
             "role": "Back-end developer"
         },
         {
             "name": "Stephan Zych",
-            "email": "stephan@cherrylabs.net",
-            "homepage": "http://www.cherrylabs.net",
+            "email": "stephan@cherrypulp.com",
+            "homepage": "http://www.cherrypulp.com",
+            "role": "Front-end developer"
+        },
+        {
+            "name": "Simon Vreux",
+            "email": "simon@cherrypulp.com",
+            "homepage": "http://www.cherrypulp.com",
             "role": "Front-end developer"
         }
     ],
     "require": {
-        "php": ">=5.3.2",
-        "laravel/laravel": "4.1.x",
+        "php": ">=5.4",
+        "laravel/laravel": "4.2.x",
         "kriswallsmith/assetic" : "*",
         "fzaninotto/faker" : "*"
     },

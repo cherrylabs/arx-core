@@ -1,4 +1,17 @@
+<?php
+
+/**
+ * Class Validator
+ */
 class Validator {
+
+	/**
+	 * User Validator outside Laravel
+	 *
+	 * @param $name
+	 * @param $args
+	 * @return mixed
+	 */
 	public static function __callStatic($name, $args){
 		$filesystem = new \Illuminate\Filesystem\Filesystem();
 		$loader = new \Illuminate\Translation\FileLoader($filesystem, Arx::path('../lang/'));
