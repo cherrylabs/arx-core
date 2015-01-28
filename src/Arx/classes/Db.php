@@ -6,6 +6,8 @@ use Illuminate\Events\Dispatcher;
 /**
  * Class DB
  *
+ * Works exactly as the Laravel Class DB but it's easily usable outside a Laravel Project
+ *
  * @package Arx\classes
  */
 class Db extends ParentClass {

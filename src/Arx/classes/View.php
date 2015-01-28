@@ -8,6 +8,13 @@ use Arx\classes\view\engines\PhpEngine;
 use Arx\classes\view\engines\blade\BladeCompiler;
 use Arx\classes\view\engines\tpl\TplCompiler;
 
+/**
+ * Class View
+ *
+ * @todo make it usable outside a Laravel Project
+ *
+ * @package Arx\classes
+ */
 class View extends ViewServiceProvider {
 
     /**

@@ -677,20 +677,35 @@ class Utils
         return $c['prepend'] . substr(str_shuffle(str_repeat($chaine, $numb)), 0, $numb) . $c['append'] . '@' . $domain;
     } // randEmail
 
-    public static function randArray($a, $c = '')
+    /**
+     * Random an array
+     *
+     * @param array $array
+     * @param array $param
+     * @return string
+     */
+    public static function randArray(array $array, $param = array())
     {
-        if (!is_array($c)) {
-            $c = json_decode($c, true);
+        if (!is_array($param)) {
+            $param = json_decode($param, true);
         }
 
-        if (!empty($c['num'])) {
-            for ($i = 1; $i <= $c['num']; $i++) {
-                $r .= $c['prepend'] . $a[array_rand($input, 1)] . $c['append'];
+        $defParam = array();
+
+        $param = Arr::merge($defParam, $param);
+
+        # Define the number of element to take
+        if (!empty($param['take'])) {
+            $response = [];
+
+            for ($i = 1; $i <= $param['take']; $i++) {
+                $response []= $array[array_rand($array, 1)];
             }
 
-            return $r;
+            return $response;
         } else {
-            return $a[array_rand($a, 1)];
+            # Return randomly only 1 element value of the array
+            return $array[array_rand($array, 1)];
         }
     } // randArray
 

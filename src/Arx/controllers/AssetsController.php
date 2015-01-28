@@ -51,8 +51,10 @@ class AssetsController extends BaseController {
                 $headers['Content-Type'] = 'text/css';
             } elseif (preg_match('/.js/i', $parameters)) {
                 $headers['Content-Type'] = 'text/javascript';
+            } elseif (preg_match('/.html|.htm|.php/i', $parameters)) {
+                $headers['Content-Type'] = 'text/html';
             } else {
-                $file = new \Symfony\Component\HttpFoundation\File\File($file);
+                $file = new File($file);
                 $mime = $file->getMimeType();
                 $headers['Content-Type'] = $mime;
             }

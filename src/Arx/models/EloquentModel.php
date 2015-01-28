@@ -5,6 +5,13 @@ use Illuminate\Database\Eloquent\Model as ParentClass;
 use Arx\classes\Utils;
 use DB;
 
+/**
+ * Class EloquentModel
+ *
+ * Extends the EloquentModel by adding a Json value handler
+ *
+ * @package Arx
+ */
 class EloquentModel extends ParentClass {
 
     /**
@@ -96,11 +103,19 @@ class EloquentModel extends ParentClass {
      * @return array
      * @throws \Exception
      */
-    public static function getStructure($withGuarded = false, $asKey = false)
+    public static function getStructure($withoutGuarded = false, $asKey = false)
     {
         $t = new self;
 
+	    # if structure is defined => return structure
+
+	    if(isset(static::$_structure)){
+		    return static::$_structure;
+	    }
+
         $table = $t->getTable();
+
+        $columns = array();
 
         switch (DB::connection()->getConfig('driver')) {
             case 'pgsql':
@@ -125,24 +140,33 @@ class EloquentModel extends ParentClass {
                 break;
 
             default:
-                $error = 'Database driver not supported: '.DB::connection()->getConfig('driver');
-                throw new \Exception($error);
+                # Try to guess structure with first Element
+                $table = self::where('id', '!=', 'x')->first();
+
+                if($table){
+                    $columns = array_keys($table->getAttributes());
+                } else {
+                    $error = 'Database driver not supported: you must define a static _structure variable '.DB::connection()->getConfig('driver');
+                    throw new \Exception($error);
+                }
                 break;
         }
 
-        $columns = array();
+        if (!$columns) {
+            $columns = array();
 
-        foreach(DB::select($query) as $column)
-        {
-            $columns[] = $column->$column_name;
+            foreach(DB::select($query) as $column)
+            {
+                $columns[] = $column->$column_name;
+            }
+
+            if($reverse)
+            {
+                $columns = array_reverse($columns);
+            }
         }
 
-        if($reverse)
-        {
-            $columns = array_reverse($columns);
-        }
-
-        if($withGuarded){
+        if($withoutGuarded){
 
             $kColumns = array_flip($columns);
 
@@ -152,12 +176,6 @@ class EloquentModel extends ParentClass {
 
                     unset($columns[$kColumns[$key]]);
                 }
-            }
-
-            # Switch keys if we want column name as key
-            if($asKey)
-            {
-                $columns = array_flip($columns);
             }
 
             # remove timestamp
@@ -174,6 +192,12 @@ class EloquentModel extends ParentClass {
                 unset($columns['created_at']);
             }
 
+        }
+
+        # Switch keys if we want column name as key
+        if($asKey)
+        {
+            $columns = array_flip($columns);
         }
 
         return $columns;

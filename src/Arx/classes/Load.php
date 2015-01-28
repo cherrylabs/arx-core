@@ -5,23 +5,25 @@ use Arx\classes\Html;
 /**
  * Class Load
  *
- * Load a file or a link and handle the output
+ * Load media helper to handle array the output
  *
- * @todo better implementation of this class
  * @package Arx\classes
  */
 class Load {
 
-    public static function js(array $array, $param = array())
+    public static function js(array $array, $param = array(
+		    'attributes' => array(),
+		    'secure' => null
+	    ))
     {
 
         $out = "\n";
 
         foreach($array as $key => $item){
             if(is_array($item)){
-                $out .= Html::script($item[0], $item[1])."\n";
+                $out .= Html::script($item[0], $item[1], $item[2])."\n";
             } else {
-                $out .= Html::script($item)."\n";
+                $out .= Html::script($item, $param['attributes'], $param['secure'])."\n";
             }
         }
 
@@ -36,7 +38,7 @@ class Load {
 
         foreach($array as $key => $item){
             if(is_array($item)){
-                $out .= Html::style($item[0], $item[1])."\n";
+                $out .= Html::style($item[0], $item[1], $item[2])."\n";
             } else {
                 $out .= Html::style($item)."\n";
             }

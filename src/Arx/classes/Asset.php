@@ -7,6 +7,8 @@ use Arx;
  *
  * Smarter assets handler => if production js and css will be compiled on the fly
  *
+ * @todo choose compilation flow
+ *
  * @package Arx\classes
  */
 class Asset extends singleton {

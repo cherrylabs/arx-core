@@ -14,6 +14,18 @@ use Iterator, DOMXPath, DOMDocument;
  */
 class Opengraph implements Iterator
 {
+
+
+	/**
+	 * Iterator code
+	 */
+	private $_position = 0;
+	public function rewind() { reset($this->_values); $this->_position = 0; }
+	public function current() { return current($this->_values); }
+	public function key() { return key($this->_values); }
+	public function next() { next($this->_values); ++$this->_position; }
+	public function valid() { return $this->_position < sizeof($this->_values); }
+
     /**
      * There are base schema's based on type, this is just
      * a map so that the schema can be obtained
@@ -209,14 +221,4 @@ class Opengraph implements Iterator
         }
         return $valid_address;
     }
-
-    /**
-     * Iterator code
-     */
-    private $_position = 0;
-    public function rewind() { reset($this->_values); $this->_position = 0; }
-    public function current() { return current($this->_values); }
-    public function key() { return key($this->_values); }
-    public function next() { next($this->_values); ++$this->_position; }
-    public function valid() { return $this->_position < sizeof($this->_values); }
 }

@@ -9,7 +9,7 @@ use Arx\classes\debug\Kint;
  *
  * extends the DebugBar\StandardDebugBar class
  *
- * @todo method according PSR-3 LOGcompos
+ * @todo method according PSR-3 LOG
  * @package Arx\classes
  */
 class Debug extends Singleton

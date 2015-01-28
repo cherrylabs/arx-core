@@ -22,7 +22,7 @@ class ArxTest extends \PHPUnit_Framework_TestCase
 
     public function testInstance()
     {
-
+		$arx = new Arx();
     }
 
 

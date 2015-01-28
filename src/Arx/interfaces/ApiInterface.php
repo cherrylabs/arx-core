@@ -2,6 +2,14 @@
 
 interface ApiInterface {
 
-    public function call($search, $param = array());
+	/**
+	 * Api should have a basic call methods
+	 *
+	 * @param $search
+	 * @param array $param
+	 *
+	 * @return mixed
+	 */
+    public function call($endpoint, $param = array(), $method = 'GET');
 
 }

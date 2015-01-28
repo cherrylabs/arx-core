@@ -23,6 +23,7 @@ class Detect
         "windowsphone"      => "windows phone os",
         "generic"           => "(kindle|mobile|mmp|midp|pocket|psp|symbian|smartphone|treo|up.browser|up.link|vodafone|wap|opera mini)"
     );
+
     public static function __callStatic($name, $arguments)
     {
         $device = array_pop(explode('_', $name));
@@ -55,6 +56,7 @@ class Detect
         }
         return false;
     }
+
     public static function get_device()
     {
         foreach (array_keys(self::$devices) as $device)
@@ -62,6 +64,7 @@ class Detect
             if (self::is_device($device)) return $device;
         }
     }
+
     protected static function is_device($device)
     {
         $ua = $_SERVER['HTTP_USER_AGENT'];

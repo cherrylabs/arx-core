@@ -102,4 +102,13 @@ class Dummy
 
     }
 
+	/**
+	 * Generate random email
+	 *
+	 * @return string
+	 */
+	public static function email(){
+		return Utils::randEmail();
+	}
+
 }

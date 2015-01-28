@@ -9,6 +9,7 @@ use Illuminate\Routing\UrlGenerator;
  * Class Html adapted from Laravel HTML
  *
  * @needs Illuminate\Html, Illuminate\Routing, Illuminate\Http to work as stand-alone
+ * @see http://laravel.com/api/4.2/Illuminate/Html/HtmlBuilder.html
  *
  * @package Arx\classes
  */

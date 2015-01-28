@@ -1,4 +1,7 @@
 <?php namespace Arx\classes;
+
+use Illuminate\Hashing\HasherInterface;
+
 /**
  * Class Hash
  *
@@ -6,7 +9,7 @@
  *
  * @package Arx\classes
  */
-class Hash implements \Illuminate\Hashing\HasherInterface {
+class Hash implements HasherInterface {
 
     protected static $_algo = 'sha1';
 

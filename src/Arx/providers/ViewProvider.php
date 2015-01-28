@@ -3,6 +3,6 @@
 /**
  * Class ViewProvider
  * @package Arx
- * @deprecated please use ViewServiceProvider instead !
+ * @deprecated since 4.2 please use ViewServiceProvider instead !
  */
 class ViewProvider extends ViewServiceProvider {}

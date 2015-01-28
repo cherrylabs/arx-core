@@ -87,6 +87,12 @@ use Arx\classes\Config;
 
 if(!class_exists('Arx')){
 
+	/**
+	 * Class Arx
+	 *
+	 * Needs to be loaded at very first level to make things happen
+	 *
+	 */
     class Arx extends \Arx\classes\App {
 
         /**

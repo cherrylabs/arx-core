@@ -1,13 +1,14 @@
 <?php namespace Arx\classes;
 
 /**
- * Class Html
+ * Class Form
  *
- * Extends Illuminate HTML class
+ * Extends Illuminate Form class
+ *
+ * @todo make it usable outside Laravel
  *
  * @package Arx\classes
  */
 class Form extends \Illuminate\Support\Facades\Form {
-
 
 }

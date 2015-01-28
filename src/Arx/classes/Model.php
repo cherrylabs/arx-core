@@ -1,23 +1,19 @@
 <?php namespace Arx\classes;
 
-use Illuminate\Auth\UserInterface;
-use Illuminate\Auth\Reminders\RemindableInterface;
-
 /**
  * Class Model
  *
  * usable outside Laravel
  *
- * @todo make it usable outside a Laravel structure
  * @package Arx\classes
  */
-class Model extends \Eloquent implements UserInterface, RemindableInterface{
+class Model extends \Eloquent {
     /**
      * The database table used by the model.
      *
      * @var string
      */
-    protected $table = '';
+    protected $table;
 
     /**
      * The attributes excluded from the model's JSON form.
@@ -62,9 +58,20 @@ class Model extends \Eloquent implements UserInterface, RemindableInterface{
         return \Hash::make($value);
     }
 
-    public static function login($email, $password){
+	public function getRememberToken()
+	{
+		return $this->remember_token;
+	}
 
-    }
+	public function setRememberToken($value)
+	{
+		$this->remember_token = $value;
+	}
+
+	public function getRememberTokenName()
+	{
+		return 'remember_token';
+	}
 
     /**
      * Display a listing of the resource.

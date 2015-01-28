@@ -22,7 +22,7 @@ class App extends ParentClass
 
     // --- Constants
 
-    const VERSION = '4.1';
+    const VERSION = '4.2';
 
     const CODENAME = 'Lupa';
 
@@ -132,23 +132,6 @@ class App extends ParentClass
         }
 
         return self::$_aInstances[$sClass];
-    }
-
-    /**
-     * resolve a conflict with the Laravel method
-     *
-     * @return null|SymfonyRedirect|void
-     */
-    public function redirectIfTrailingSlash()
-    {
-        if ($this->runningInConsole()) {
-            return;
-        }
-        $path = $this['request']->getPathInfo();
-        if ($path != '/' and ends_with($path, '/') and !ends_with($path, '//')) {
-            with(new SymfonyRedirect($this['request']->fullUrl(), 301))->send();
-            die;
-        }
     }
 
 } // class::App

@@ -8,6 +8,4 @@ use Arx;
  * @deprecated since 1.4.1 please use Asset instead !
  * @package Arx\classes
  */
-class Assets extends Asset {
-
-} 
+class Assets extends Asset { }

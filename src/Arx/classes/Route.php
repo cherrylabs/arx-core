@@ -7,6 +7,7 @@ use Illuminate\Routing\Route as ParentClass;
  *
  * extends Laravel Route class
  *
+ * @todo make it compatible outside Laravel
  * @package Arx\classes
  */
 class Route extends ParentClass {
