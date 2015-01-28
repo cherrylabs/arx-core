@@ -711,7 +711,7 @@ class Utils
 
         # Define the number of element to take
         if (!empty($param['take'])) {
-            $response = [];
+            $response = array();
 
             for ($i = 1; $i <= $param['take']; $i++) {
                 $response []= $array[array_rand($array, 1)];
