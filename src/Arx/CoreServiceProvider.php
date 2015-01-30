@@ -49,6 +49,11 @@ class CoreServiceProvider extends ServiceProvider {
         });
 
         $this->commands('command.arx.gen');
+
+        $this->app['shortcode'] = $this->app->share(function($app)
+        {
+            return new Arx\classes\Shortcode();
+        });
     }
 
     /**
@@ -59,7 +64,7 @@ class CoreServiceProvider extends ServiceProvider {
     public function provides()
     {
         return array(
-
+            'shortcode'
         );
     }
 
