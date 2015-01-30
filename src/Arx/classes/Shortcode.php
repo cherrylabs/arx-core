@@ -1,8 +1,6 @@
 <?php namespace Arx\classes;
 
-use \Countable;
-use Illuminate\Support\Str;
-use Illuminate\Container\Container;
+use Countable;
 
 /**
  * Class Shortcode
@@ -261,8 +259,9 @@ class Shortcode implements Countable {
     /**
      * Compile the gived content.
      *
-     * @param  string  $content
-     * @return void
+     * @param  string $content
+     *
+     * @return mixed|string
      */
     public function compile($content)
     {
@@ -276,8 +275,8 @@ class Shortcode implements Countable {
     /**
      * Render the current calld shortcode.
      *
-     * @param  array  $matches
-     * @return void
+     * @param  array $matches
+     * @return mixed
      */
     public function render($matches)
     {
@@ -324,9 +323,9 @@ class Shortcode implements Countable {
 
         if(is_string($callback))
         {
-            if(Str::contains($callback, '@'))
+            if(\Str::contains($callback, '@'))
             {
-                $parsedCallback = Str::parseCallback($callback, 'register');
+                $parsedCallback = \Str::parseCallback($callback, 'register');
 
                 $instance = $this->container->make($parsedCallback[0]);
 
