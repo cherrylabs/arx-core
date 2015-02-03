@@ -1,4 +1,4 @@
-# Arx Core v. 4.2
+# Arx Core v. 4.2.3
 
 [![Latest Stable Version](https://poser.pugx.org/arx/core/v/stable.svg)](https://packagist.org/packages/arx/core) [![Total Downloads](https://poser.pugx.org/arx/core/downloads.svg)](https://packagist.org/packages/arx/core) [![Latest Unstable Version](https://poser.pugx.org/arx/core/v/unstable.svg)](https://packagist.org/packages/arx/core) [![License](https://poser.pugx.org/arx/core/license.svg)](https://packagist.org/packages/arx/core)
 
