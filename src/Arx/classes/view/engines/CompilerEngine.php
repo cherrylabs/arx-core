@@ -37,13 +37,19 @@ class CompilerEngine extends PhpEngine {
         $this->ngCtrl = $ngCtrl;
     }
 
-    public function bodyAttribute($attr, $value){
+    public function bodyAttribute($attr, $value = null){
 
         if (!isset($this->body['attributes'])) {
             $this->body['attributes'] = array();
         }
 
-        $this->body['attributes'][$attr] = $value;
+        if (is_array($attr)) {
+            foreach ($attr as $k => $value) {
+                $this->body['attributes'][$k] = $value;
+            }
+        } else {
+            $this->body['attributes'][$attr] = $value;
+        }
     }
 
     /**

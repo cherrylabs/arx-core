@@ -22,6 +22,14 @@ class PhpEngine implements EngineInterface {
     }
 
     /**
+     * Help debug method
+     */
+    public function help()
+    {
+        ddd($this->_data->__var);
+    }
+
+    /**
      * Get the evaluated contents of the view.
      *
      * @param  string  $path
