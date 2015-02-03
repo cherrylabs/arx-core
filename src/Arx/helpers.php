@@ -11,6 +11,13 @@ if ( ! function_exists('\dd'))
     }
 }
 
+if ( ! function_exists('\ddd'))
+{
+    function ddd(){
+        return call_user_func_array('Arx\classes\Utils::predie', func_get_args());
+    }
+}
+
 if ( ! function_exists('\d'))
 {
     function d(){

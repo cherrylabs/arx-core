@@ -8,7 +8,7 @@ use Illuminate\View\Engines\EngineInterface;
  * Class PhpEngine
  * @package Arx\classes\view\engines
  */
-class PhpEngine implements EngineInterface {
+class TplEngine implements EngineInterface {
 
     protected $_data = array();
 

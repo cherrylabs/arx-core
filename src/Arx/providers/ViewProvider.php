@@ -1,5 +1,7 @@
 <?php namespace Arx\providers;
 
+use Arx\ViewServiceProvider;
+
 /**
  * Class ViewProvider
  * @package Arx

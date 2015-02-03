@@ -2,10 +2,9 @@
 
 use Illuminate\View\ViewServiceProvider;
 use Arx\classes\view\FileViewFinder;
-use Arx\classes\view\Environment;
 use Arx\classes\view\engines\CompilerEngine;
 use Arx\classes\view\engines\PhpEngine;
-use Arx\classes\view\engines\blade\BladeCompiler;
+use Illuminate\View\Compilers\BladeCompiler;
 use Arx\classes\view\engines\tpl\TplCompiler;
 
 /**

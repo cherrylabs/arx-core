@@ -1,8 +1,5 @@
 <?php namespace Arx\classes\view\engines\tpl;
 
-use Closure;
-use Illuminate\Filesystem\Filesystem;
-
 use Illuminate\View\Compilers\BladeCompiler as ParentClass;
 
 /**
