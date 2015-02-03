@@ -73,6 +73,15 @@ class Globals
         return $_SERVER['REMOTE_ADDR'];
     } // getIp
 
+    /**
+     * Get Global mymetypes per extension
+     *
+     */
+    public static function mimetypes()
+    {
+        return include_once __DIR__ . '/utils/header-without-content-type.php';
+    }
+
 
     /**
     * Parses a user agent string into its important parts

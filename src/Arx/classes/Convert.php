@@ -1330,6 +1330,21 @@ class Convert
         return false;
     } // fileExtType
 
+    /**
+     * Return Extension to correct mimetype
+     *
+     * @param $ext
+     * @return string
+     */
+    public static function extToMimeType($ext){
+
+        if(isset(Globals::mimetypes()[$ext])){
+            return Globals::mimetypes()[$ext];
+        }
+
+        return "text/html";
+    }
+
 
     /**
      * Convert Http status code to description.
