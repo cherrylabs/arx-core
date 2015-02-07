@@ -1,9 +1,7 @@
 <?php namespace Arx;
 
-use Illuminate\Database\Eloquent\Model as ParentClass;
-
 use Arx\classes\Utils;
-use DB;
+use DB, Eloquent;
 
 /**
  * Class EloquentModel
@@ -12,7 +10,7 @@ use DB;
  *
  * @package Arx
  */
-class EloquentModel extends ParentClass {
+class EloquentModel extends Eloquent {
 
     /**
      * Define which fields can be a json

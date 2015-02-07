@@ -4,7 +4,6 @@ use Arx\classes\view\engines\PhpEngine;
 use Illuminate\Support\ServiceProvider;
 use Arx\classes\view\engines\CompilerEngine;
 use Illuminate\View\Engines\EngineResolver;
-use Arx\classes\view\engines\PhpEngine;
 use Illuminate\View\Compilers\BladeCompiler;
 use Arx\classes\view\FileViewFinder;
 use Illuminate\View\Factory;
