@@ -1,10 +1,12 @@
-# Arx Core v. 4.2.3
+# Arx Core v. 5.0.0
 
 [![Latest Stable Version](https://poser.pugx.org/arx/core/v/stable.svg)](https://packagist.org/packages/arx/core) [![Total Downloads](https://poser.pugx.org/arx/core/downloads.svg)](https://packagist.org/packages/arx/core) [![Latest Unstable Version](https://poser.pugx.org/arx/core/v/unstable.svg)](https://packagist.org/packages/arx/core) [![License](https://poser.pugx.org/arx/core/license.svg)](https://packagist.org/packages/arx/core)
 
 Arx core is the base of the [Arx project](http://www.arx.io). It gives some usefull classes, templates, assets for Laravel but some classes are usable in every kind of project like Wordpress, Drupal, Prestashop or even your custom PHP project !
 
 It is highly maintened by a [dedicated agency](http://www.cherrypulp.com), so don't hesitate to make your comments or bug fixes.
+
+** This is a package for Laravel 5.x project **
 
 # Getting Started
 
