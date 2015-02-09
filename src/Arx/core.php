@@ -100,9 +100,10 @@ if(!class_exists('Arx')){
          * @param null $value
          * @return string
          */
-        public static function path($value = null){
+        public static function getPath($value = null){
             return __DIR__.($value ? DS. $value : '');
         }
+
 
         /**
          * Auto-detect environment

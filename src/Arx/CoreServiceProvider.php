@@ -23,12 +23,12 @@ class CoreServiceProvider extends ServiceProvider {
     {
         Arx::ignite();
 
-        $this->package('arx/core');
+        #$this->package('arx/core');
 
         // Add namespace package so you can access to views, lang and config with arx::
-        \View::addNamespace('arx', __DIR__.'/../views');
-        \Lang::addNamespace('arx', __DIR__.'/../lang');
-        \Config::addNamespace('arx', __DIR__.'/../config');
+        #\View::addNamespace('arx', __DIR__.'/../views');
+        #\Lang::addNamespace('arx', __DIR__.'/../lang');
+        #\Config::addNamespace('arx', __DIR__.'/../config');
 
         require_once __DIR__.'/start/artisan.php';
         require_once __DIR__.'/start/global.php';
@@ -46,12 +46,12 @@ class CoreServiceProvider extends ServiceProvider {
     {
         $app = $this->app;
 
-        $this->app['command.arx.gen'] = $this->app->share(function()
+        /*$this->app['command.arx.gen'] = $this->app->share(function()
         {
             return new GenCommand();
-        });
+        });*/
 
-        $this->commands('command.arx.gen');
+        #$this->commands('command.arx.gen');
 
         $app['view']->addExtension('tpl.php', 'tpl', function() use ($app)
         {
