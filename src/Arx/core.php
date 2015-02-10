@@ -188,7 +188,12 @@ if(!class_exists('Arx')){
 
             $fileName .= str_replace('_', DIRECTORY_SEPARATOR, $className) . '.php';
 
+            $aNamespacesPSR4 = Arx\classes\Composer::getNamespacesPSR4();
             $aNamespaces = Arx\classes\Composer::getNamespaces();
+
+            foreach($aNamespacesPSR4 as $name => $path){
+                $aNamespaces[str_replace('\\', '', $name)] = str_replace(str_replace('\\', '', $name), '', $path);
+            }
 
 
             if (in_array($namespace, array_keys($aNamespaces))) {
