@@ -32,7 +32,8 @@
     ],
     "require": {
         "php": ">=5.4",
-        "laravel/laravel": "4.2.x",
+        "laravel/framework": "5.x",
+        "illuminate/html" : "5.x",
         "kriswallsmith/assetic" : "*",
         "fzaninotto/faker" : "*"
     },
