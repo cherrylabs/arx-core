@@ -54,4 +54,13 @@ class Debug extends Singleton
         Kint::trace($data);
     }
 
+    /**
+     * Define Debug deep level
+     *
+     * @param $i
+     */
+    public static function level($level){
+        Kint::$maxLevels = $level;
+    }
+
 } // class::Debug

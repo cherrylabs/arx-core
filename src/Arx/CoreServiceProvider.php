@@ -1,5 +1,7 @@
 <?php namespace Arx;
 
+require_once __DIR__ . '/core.php';
+
 use Arx\classes\view\engines\CompilerEngine;
 use View,Config,Lang,Arx;
 
@@ -33,11 +35,6 @@ class CoreServiceProvider extends ServiceProvider {
 
         $this->loadViewsFrom(__DIR__.'/../views', 'arx');
         $this->loadTranslationsFrom(__DIR__.'/../lang', 'arx');
-
-        $this->publishes([
-            __DIR__.'/../views' => base_path('resources/views/vendor/arx/core'),
-
-        ]);
 
         require_once __DIR__.'/start/artisan.php';
         require_once __DIR__.'/start/global.php';

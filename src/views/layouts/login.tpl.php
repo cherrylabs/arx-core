@@ -20,10 +20,10 @@ if(isset($formLogin)){
 <html lang="en">
 <head>
     <meta charset="utf-8">
-    <title><% $this->headtitle ?: Config::get('project.name') %></title>
+    <title><?= $this->headtitle ?: Config::get('project.name') ?></title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="description" content="<% $this->meta['description'] ?: Config::get('project.description') %>">
-    <meta name="author" content="<% $this->meta['author'] ?: Config::get('project.author') %>">
+    <meta name="description" content="<?= $this->meta['description'] ?: Config::get('project.description') ?>">
+    <meta name="author" content="<?= $this->meta['author'] ?: Config::get('project.author') ?>">
 
     <!-- Fav and touch icons -->
     <link href="//netdna.bootstrapcdn.com/twitter-bootstrap/2.3.2/css/bootstrap-combined.min.css" rel="stylesheet">

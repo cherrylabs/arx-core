@@ -9,6 +9,6 @@
  *
  * @package Arx\classes
  */
-class Form extends \Illuminate\Support\Facades\Form {
+class Form extends \Illuminate\Html\FormFacade {
 
 }

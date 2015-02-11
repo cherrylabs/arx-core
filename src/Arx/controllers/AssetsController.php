@@ -1,5 +1,6 @@
 <?php namespace Arx;
 
+use Arx\classes\Convert;
 use Assetic\Asset\FileAsset, Assetic\Asset\AssetCollection;
 use Response, App, View, Arx\classes\Composer;
 use Symfony\Component\HttpFoundation\File\File;
@@ -27,7 +28,10 @@ class AssetsController extends BaseController {
      */
     public function missingMethod($parameters = array())
     {
-        $parameters = implode('/', $parameters);
+
+        if (is_array($parameters)) {
+            $parameters = implode('/', $parameters);
+        }
 
         # If parameters is a file
         if ($file = $this->path($parameters)) {
@@ -56,7 +60,11 @@ class AssetsController extends BaseController {
             } else {
                 $file = new File($file);
                 $mime = $file->getMimeType();
-                $headers['Content-Type'] = $mime;
+                if ($mime) {
+                    $headers['Content-Type'] = $mime;
+                } else {
+                    $headers['Content-Type'] = 'text/html';
+                }
             }
 
             return Response::make($response, 200, $headers);

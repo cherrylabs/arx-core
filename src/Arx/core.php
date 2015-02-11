@@ -258,7 +258,7 @@ if(!class_exists('Arx')){
 /**
  * Spl class register
  *
- * If a class is not found it will trigger arx::autoload method defined in classes/app.php
+ * If a class is not found it will trigger arx::autoload method defined in Arx Class
  *
  */
 spl_autoload_register('Arx::autoload');
