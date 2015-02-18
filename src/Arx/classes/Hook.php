@@ -72,7 +72,7 @@ class Hook extends \ArrayObject
             self::log('add', $name, func_get_args());
         }
 
-        if($merge === null && !Arr::is_sequential($mValue)){
+        if($merge === null && !is_bool($mValue) && !Arr::is_sequential($mValue)){
             $merge = true;
         }
 

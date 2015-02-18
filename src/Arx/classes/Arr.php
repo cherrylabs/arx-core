@@ -237,7 +237,7 @@ class Arr
     public static function is_sequential($arr)
     {
         if (!is_array($arr)) {
-            throw new \InvalidArgumentException('The parameter must be an array.');
+            return false;
         }
 
         $counter = 0;
