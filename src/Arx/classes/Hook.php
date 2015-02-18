@@ -16,7 +16,7 @@ class Hook extends \ArrayObject
     public static $logs = array();
 
     public static $callback = array();
-    
+
     public static $debug = true;
 
     public function __get($name)
@@ -201,12 +201,12 @@ class Hook extends \ArrayObject
      */
     public static function output()
     {
-        
+
         $aArgs = func_get_args();
         $iArgs = func_num_args();
 
         $c = $aArgs[0];
-        
+
         if(isset($GLOBALS[self::$pref.$c])){
             switch (true) {
                 case ($c == 'js'):
@@ -268,7 +268,7 @@ class Hook extends \ArrayObject
      * @param $name
      * @param $default
      */
-    public static function getJson($name, $default){
+    public static function getJson($name, $default = array()){
         return json_encode(self::get($name, $default));
     }
 

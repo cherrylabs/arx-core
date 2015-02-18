@@ -1,5 +1,7 @@
 <?php namespace Arx\classes;
 
+use ReflectionMethod;
+
 /**
  * Arr
  *
@@ -1403,7 +1405,7 @@ class Arr
 
 
     /**
-     * Merge 2 Arr recursively.
+     * Merge 2 Arr recursively
      *
      * @throws \Exception
      * @return array
@@ -1434,6 +1436,38 @@ class Arr
         }
 
         return $array;
+    } // merge
+
+
+    /**
+     * Merge params value with default params
+     *
+     * @throws \Exception
+     * @return array
+     */
+    public static function mergeWithDefaultParams(&$params, $name = 'params')
+    {
+        $callers = debug_backtrace();
+
+        if(isset($callers[1]['class'])){
+            $method = new ReflectionMethod($callers[1]['class'], $callers[1]['function']);
+        } elseif(isset($callers[1]['function'])){
+            $method = new \ReflectionFunction($callers[1]['function']);
+        } else {
+            Throw new \Exception('Cannot resolve params merging');
+        }
+
+        $defParams = array();
+
+        foreach($method->getParameters() as $param){
+            if($param->name == $name){
+                $defParams = $param->getDefaultValue();
+            }
+        }
+
+        $params = array_merge($defParams, $params);
+
+        return $params;
     } // merge
 
 
