@@ -191,7 +191,9 @@ class Str
         $aCleaned = array();
 
         foreach ($aMatch as $key => $v) {
-            $aCleaned[$aDelimiter[0].$key.$aDelimiter[1]] = $v;
+            if(is_string($v)){
+                $aCleaned[$aDelimiter[0].$key.$aDelimiter[1]] = $v;
+            }
         }
 
         return strtr($haystack, $aCleaned);
