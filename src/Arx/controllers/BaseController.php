@@ -64,6 +64,9 @@ class BaseController extends Controller {
             $this->data = $data;
         }
 
+        # Put vars in javascript
+        \Hook::put('__app', $this->data);
+
         return $data;
     } // getCommonVars
 
