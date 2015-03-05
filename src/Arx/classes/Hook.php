@@ -113,9 +113,6 @@ class Hook extends \ArrayObject
         }
 
         if(isset($dots)){
-            if (is_string($mValue)) {
-                $mValue = array($mValue);
-            }
             Arr::set($GLOBALS[ARX_HOOK][$name], $dots, $mValue);
         } elseif ($merge) {
             if (is_string($mValue)) {
