@@ -98,10 +98,6 @@ class Hook extends \ArrayObject
      */
     public static function put($name, $mValue = array(), $merge = null){
 
-        /*if (is_string($mValue)) {
-            $mValue = array($mValue);
-        }*/
-
         if ($pos = strpos($name, '.')) {
             $dots = substr($name, $pos + 1);
             $name = substr($name, 0, $pos);
@@ -117,8 +113,14 @@ class Hook extends \ArrayObject
         }
 
         if(isset($dots)){
+            if (is_string($mValue)) {
+                $mValue = array($mValue);
+            }
             Arr::set($GLOBALS[ARX_HOOK][$name], $dots, $mValue);
         } elseif ($merge) {
+            if (is_string($mValue)) {
+                $mValue = array($mValue);
+            }
             $GLOBALS[ARX_HOOK][$name] =  Arr::merge($GLOBALS[ARX_HOOK][$name], $mValue);
         } elseif (is_array($mValue)) {
             foreach ($mValue as $v) {
