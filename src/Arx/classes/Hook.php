@@ -98,9 +98,9 @@ class Hook extends \ArrayObject
      */
     public static function put($name, $mValue = array(), $merge = null){
 
-        if (is_string($mValue)) {
+        /*if (is_string($mValue)) {
             $mValue = array($mValue);
-        }
+        }*/
 
         if ($pos = strpos($name, '.')) {
             $dots = substr($name, $pos + 1);
@@ -112,7 +112,7 @@ class Hook extends \ArrayObject
             self::log('add', $name, func_get_args());
         }
 
-        if($merge === null && !is_bool($mValue) && !Arr::is_sequential($mValue)){
+        if(!is_string($mValue) && $merge === null && !is_bool($mValue) && !Arr::is_sequential($mValue)){
             $merge = true;
         }
 
@@ -244,8 +244,7 @@ class Hook extends \ArrayObject
      *
      * @param $name
      * @param null $default
-     * @return bool
-     * @internal param array $param
+     * @return array
      */
     public static function get($name, $default = null){
 
@@ -269,7 +268,7 @@ class Hook extends \ArrayObject
             return $default;
         }
 
-        return false;
+        return [];
     }
 
     /**
