@@ -80,7 +80,7 @@ class BaseController extends Controller {
     public function viewMake($layout, $data = array())
     {
         $data = array_merge($data, array('body' => array(
-            'attributes' => array('class' => 'tpl-' . str_replace('::', '-', $layout))
+            'attributes' => array('class' => str_replace(array('::', '.'), '-', $layout))
         )));
 
         $data = $this->getCommonVars($data);
