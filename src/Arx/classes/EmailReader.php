@@ -81,9 +81,9 @@ class EmailReader
         for ($i = 1; $i <= $this->msg_cnt; $i++) {
             $in[] = array(
                 'index' => $i,
-                'header' => imap_headerinfo($this->conn, $i),
-                'body' => imap_body($this->conn, $i),
-                'structure' => imap_fetchstructure($this->conn, $i)
+                'header' => @imap_headerinfo($this->conn, $i),
+                'body' => @imap_body($this->conn, $i),
+                'structure' => @imap_fetchstructure($this->conn, $i)
             );
         }
 
@@ -94,10 +94,21 @@ class EmailReader
      * Fetch structure by index
      *
      * @param null $index
+     * @param array $params
      * @return bool
      */
-    public function fetch($index = null)
-    {
+    public function fetch($index = null, $params = array(
+        'index' => true,
+        'overview' => true,
+        'structure' => true,
+        'header' => true,
+        'body' => true,
+        'plain' => true,
+        'attachments' => true,
+    )){
+        $params = Arr::mergeWithDefaultParams($params);
+
+        $this->attachments = [];
 
         if (!$index) {
             $index = 1;
@@ -110,8 +121,38 @@ class EmailReader
         if (!$structure) {
             return false;
         } else {
-            $this->recurse($structure->parts);
-            return true;
+            $data = [];
+
+            if($params['index']){
+                $data['index'] = $index;
+            }
+
+            if($params['overview']){
+                $data['overview'] = @imap_fetch_overview($this->conn, $index);
+            }
+
+            if($params['structure']){
+                $data['structure'] = $structure;
+            }
+
+            if($params['header']){
+                $data['header'] = @imap_header($this->conn, $index);
+            }
+
+            if($params['body']){
+                $this->bodyHTML = $data['body'] = @imap_body($this->conn, $index);
+            }
+
+            if($params['plain']){
+                $data['plain'] = @imap_fetchbody($this->conn, $index, 1.2);
+            }
+
+            if($params['attachments']){
+                $this->recurse($structure->parts);
+                $data['attachments'] = $this->attachments;
+            }
+
+            return $data;
         }
 
     }
@@ -133,16 +174,32 @@ class EmailReader
         return false;
     }
 
+    /**
+     * Get Count of a folder
+     *
+     * @param null $folder
+     * @return int
+     */
     public function getCount($folder = null){
 
         if ($folder) {
-            $conn
+            $conn = $this->getFolder($folder);
         } else {
             $conn = $this->conn;
         }
 
-
         return imap_num_msg($conn);
+    }
+
+    /**
+     * Get folder conn
+     *
+     * @param $folder
+     * @return string
+     */
+    public function getFolder($folder = ''){
+        $conn = substr($this->server,0,strpos($this->server, '}') + 1).$folder;
+        return $conn;
     }
 
     /**

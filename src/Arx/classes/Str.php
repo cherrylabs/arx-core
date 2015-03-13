@@ -147,6 +147,33 @@ class Str
 
 
     /**
+     * Sanitize filename
+     * @param $str
+     * @return string
+     */
+    public static function sanitizeFilename($str)
+    {
+        $replace_chars = array(
+            'Š'=>'S', 'š'=>'s', 'Ð'=>'Dj','Ž'=>'Z', 'ž'=>'z', 'À'=>'A', 'Á'=>'A', 'Â'=>'A', 'Ã'=>'A', 'Ä'=>'A',
+            'Å'=>'A', 'Æ'=>'A', 'Ç'=>'C', 'È'=>'E', 'É'=>'E', 'Ê'=>'E', 'Ë'=>'E', 'Ì'=>'I', 'Í'=>'I', 'Î'=>'I',
+            'Ï'=>'I', 'Ñ'=>'N', 'Ò'=>'O', 'Ó'=>'O', 'Ô'=>'O', 'Õ'=>'O', 'Ö'=>'O', 'Ø'=>'O', 'Ù'=>'U', 'Ú'=>'U',
+            'Û'=>'U', 'Ü'=>'U', 'Ý'=>'Y', 'Þ'=>'B', 'ß'=>'Ss','à'=>'a', 'á'=>'a', 'â'=>'a', 'ã'=>'a', 'ä'=>'a',
+            'å'=>'a', 'æ'=>'a', 'ç'=>'c', 'è'=>'e', 'é'=>'e', 'ê'=>'e', 'ë'=>'e', 'ì'=>'i', 'í'=>'i', 'î'=>'i',
+            'ï'=>'i', 'ð'=>'o', 'ñ'=>'n', 'ò'=>'o', 'ó'=>'o', 'ô'=>'o', 'õ'=>'o', 'ö'=>'o', 'ø'=>'o', 'ù'=>'u',
+            'ú'=>'u', 'û'=>'u', 'ý'=>'y', 'ý'=>'y', 'þ'=>'b', 'ÿ'=>'y', 'ƒ'=>'f'
+        );
+        $str = strtr($str, $replace_chars);
+        $str = preg_replace(array('/[\&]/', '/[\@]/', '/[\#]/'), array('-and-', '-at-', '-number-'), $str);
+        $str = preg_replace('/[^(\x20-\x7F)]*/','', $str); // removes any special chars we missed
+        $str = str_replace(' ', '-', $str); // convert space to hyphen
+        $str = str_replace('\'', '', $str); // removes apostrophes
+        $str = preg_replace('/[^\w\-\.]+/', '', $str); // remove non-word chars (leaving hyphens and periods)
+        $str = preg_replace('/[\-]+/', '-', $str); // converts groups of hyphens into one
+
+        return strtolower($str);
+    }
+
+    /**
      * [slug Slugify a string]
      * @param  string  $phrase
      * @param  integer $maxLength
