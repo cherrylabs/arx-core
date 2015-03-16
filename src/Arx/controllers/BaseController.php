@@ -81,7 +81,7 @@ class BaseController extends Controller {
     public function viewMake($layout, $data = array())
     {
         $data = array_merge($data, array('body' => array(
-            'attributes' => array('class' => self::$tplPrefixClass.str_replace(array('::', '.'), '-', $layout))
+            'attributes' => array('class' => static::$tplPrefixClass.str_replace(array('::', '.'), '-', $layout))
         )));
 
         $data = $this->getCommonVars($data);
@@ -97,7 +97,7 @@ class BaseController extends Controller {
     public function viewContent($layout, $data = array())
     {
         $data = array_merge($data, array('body' => array(
-            'attributes' => array('class' => self::$tplPrefixClass.str_replace('::', '-', $layout))
+            'attributes' => array('class' => static::$tplPrefixClass.str_replace('::', '-', $layout))
         )));
 
         return $this->layout->content = View::make($layout, $this->getCommonVars($data));
