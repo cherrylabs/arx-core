@@ -219,7 +219,7 @@ class Utils
     public static function epre($v)
     {
         return Debug::dump($v);
-    } // epre
+    }
 
 #F
 
@@ -330,9 +330,56 @@ class Utils
 
     }
 
-
+    /**
+     * Get Video embed from Youtube, Vimeo or Dailymotion
+     *
+     * @param $url
+     * @param int $width
+     * @param int $height
+     * @return bool|string
+     */
     public static function getVideoEmbed($url, $width = 560, $height = 315)
     {
+        switch (true) {
+            case preg_match('/youtu/i', $url):
+
+                $id = self::getVideoId($url);
+
+                if (!$id) {
+                    return '<iframe width="' . $width . '" height="' . $height . '" src="//www.youtube.com/embed/' . $id . '?rel=0" frameborder="0" allowfullscreen></iframe>';
+                }
+
+                return false;
+
+            case preg_match('/vimeo/i', $url):
+
+                $id = self::getVideoId($url);
+
+                if (!$id) {
+                    return '<iframe src="//player.vimeo.com/video/' . $id . '?portrait=0" width="' . $width . '" height="' . $height . '" frameborder="0" webkitAllowFullScreen mozallowfullscreen allowFullScreen></iframe>';
+                }
+
+                return false;
+
+            case preg_match('/dailymotion/i', $url):
+
+                $id = self::getVideoId($url);
+
+                if (!$id) {
+                    return '<iframe frameborder="0" width="' . $width . '" height="' . $height . '" src="//www.dailymotion.com/embed/video/' . $id . '"></iframe>';
+                }
+
+                return false;
+        }
+    } // getVideoEmbed
+
+
+    /**
+     *
+     * @param $url
+     * @return bool|mixed
+     */
+    public static function getVideoId($url){
         switch (true) {
             case preg_match('/youtu/i', $url):
                 $url_string = parse_url($url, PHP_URL_QUERY);
@@ -340,17 +387,15 @@ class Utils
                 $id = isset($args['v']) ? $args['v'] : false;
 
                 if (!empty($id)) {
-                    return '<iframe width="' . $width . '" height="' . $height . '" src="//www.youtube.com/embed/' . $id . '?rel=0" frameborder="0" allowfullscreen></iframe>';
+                    return $id;
                 }
 
                 return false;
 
             case preg_match('/vimeo/i', $url):
-                // sscanf(parse_url($url, PHP_URL_PATH), '/%d', $id);
                 $id = filter_var($url, FILTER_SANITIZE_NUMBER_INT);
-
                 if (!empty($id)) {
-                    return '<iframe src="//player.vimeo.com/video/' . $id . '?portrait=0" width="' . $width . '" height="' . $height . '" frameborder="0" webkitAllowFullScreen mozallowfullscreen allowFullScreen></iframe>';
+                    return $id;
                 }
 
                 return false;
@@ -359,12 +404,48 @@ class Utils
                 $id = str_replace('/video/', '', parse_url($url, PHP_URL_PATH));
 
                 if (!empty($id)) {
-                    return '<iframe frameborder="0" width="' . $width . '" height="' . $height . '" src="//www.dailymotion.com/embed/video/' . $id . '"></iframe>';
+                    return $id;
                 }
 
                 return false;
         }
-    } // getVideoEmbed
+    }
+
+    public static function getVideoThumb($url, $params = [])
+    {
+        switch (true) {
+            case preg_match('/youtu/i', $url):
+
+                $id = self::getVideoId($url);
+
+                if (!$id) {
+                    return "//img.youtube.com/vi/" . $id . "/default.jpg";
+                }
+
+                return false;
+
+            case preg_match('/vimeo/i', $url):
+
+                $id = self::getVideoId($url);
+
+                if (!$id) {
+                    $hash = unserialize(file_get_contents("http://vimeo.com/api/v2/video/".$id.".php"));
+                    return $hash[0]['thumbnail_medium'];
+                }
+
+                return false;
+
+            case preg_match('/dailymotion/i', $url):
+
+                $id = self::getVideoId($url);
+
+                if (!$id) {
+                    return "//www.dailymotion.com/thumbnail/video/".$id;
+                }
+
+                return false;
+        }
+    } // epre
 
 
     public static function getWidth($image)
