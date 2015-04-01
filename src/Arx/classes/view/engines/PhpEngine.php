@@ -1,6 +1,7 @@
 <?php namespace Arx\classes\view\engines;
 
 use Arx\classes\Bag;
+use Arx\classes\Debug;
 use Illuminate\View\Engines;
 use Illuminate\View\Engines\EngineInterface;
 
@@ -21,12 +22,37 @@ class PhpEngine implements EngineInterface {
         return false;
     }
 
+    public function __set($name, $value)
+    {
+        $this->_data[$name] = $value;
+    }
+
+    public function __isset($name)
+    {
+        return isset($this->data[$name]) ? $this->data[$name] : false;
+    }
+
+    public function __unset($name)
+    {
+        if(isset($this->_data[$name])) {
+            unset($this->data[$name]);
+        }
+    }
+
     /**
      * Help debug method
      */
-    public function help()
+    public function help($level = null)
     {
-        ddd($this->_data->__var);
+        $vars = $this->_data->__var;
+
+        unset($vars['__env']);
+        unset($vars['app']);
+
+        if($level)
+            Debug::level($level);
+
+        ddd($vars);
     }
 
     /**

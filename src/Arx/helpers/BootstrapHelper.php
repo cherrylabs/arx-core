@@ -277,4 +277,27 @@ class BootstrapHelper extends Helper
 
         return $html;
     }
+
+    /**
+     * Add a bootstrap btn helper
+     *
+     * @param $href
+     * @param $content
+     * @param array $attr
+     * @param array $params
+     * @return string
+     * @throws \Exception
+     */
+    public static function btn($href, $content, $attr = ['class' => 'btn btn-default'], $params = array('tag' => 'a', 'attrHref' => 'href'))
+    {
+        $params = Arr::mergeWithDefaultParams($params);
+
+        if(preg_match('/^fa-/', $content)){
+            $content = "<i class=\"fa ".$content.'"></i>';
+        } elseif(preg_match('/^glyphicon-/', $content)){
+            $content = "<i class=\"glyphicon ".$content.'"></i>';
+        }
+
+        return '<'.$params['tag'].' '.$params['attrHref'].'="'.$href.'" '. Html::attributes($attr) .'>'.$content.'</'.$params['tag'].'>';
+    }
 }

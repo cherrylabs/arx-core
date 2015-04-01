@@ -1,5 +1,7 @@
 <?php namespace Arx\classes\debug;
 
+use ReflectionException;
+
 class Kint_Parsers_ClassMethods extends kintParser
 {
     private static $cache = array();
@@ -33,13 +35,13 @@ class Kint_Parsers_ClassMethods extends kintParser
                         $paramString .= 'array ';
                     } else {
                         try {
+
                             if (( $paramClassName = $param->getClass() )) {
                                 $paramString .= $paramClassName->name . ' ';
                             }
-                        } catch ( ReflectionException $e ) {
+                        } catch (ReflectionException $e) {
                             preg_match( '/\[\s\<\w+?>\s([\w]+)/s', $param->__toString(), $matches );
                             $paramClassName = isset( $matches[1] ) ? $matches[1] : '';
-
                             $paramString .= ' UNDEFINED CLASS (' . $paramClassName . ') ';
                         }
                     }
@@ -72,7 +74,7 @@ class Kint_Parsers_ClassMethods extends kintParser
                     $params[] = $paramString;
                 }
 
-                $output = new \Arx\classes\debug\kintVariableData();
+                $output = new kintVariableData();
 
                 // Simple DocBlock parser, look for @return
                 if(($docBlock = $method->getDocComment())) {

@@ -12,6 +12,7 @@ use Controller, View;
  */
 class BaseController extends Controller {
 
+    public static $tplPrefixClass = "tpl-";
 
     public $data = array();
 
@@ -64,6 +65,9 @@ class BaseController extends Controller {
             $this->data = $data;
         }
 
+        # Put vars in javascript
+        \Hook::put('__app', $this->data);
+
         return $data;
     } // getCommonVars
 
@@ -77,7 +81,7 @@ class BaseController extends Controller {
     public function viewMake($layout, $data = array())
     {
         $data = array_merge($data, array('body' => array(
-            'attributes' => array('class' => 'tpl-' . str_replace('::', '-', $layout))
+            'attributes' => array('class' => static::$tplPrefixClass.str_replace(array('::', '.'), '-', $layout))
         )));
 
         $data = $this->getCommonVars($data);
@@ -85,11 +89,15 @@ class BaseController extends Controller {
         return View::make($layout, $data);
     } // viewMake
 
-
+    /**
+     * @param $layout
+     * @param array $data
+     * @return \Illuminate\View\View
+     */
     public function viewContent($layout, $data = array())
     {
         $data = array_merge($data, array('body' => array(
-            'attributes' => array('class' => 'tpl-' . str_replace('::', '-', $layout))
+            'attributes' => array('class' => static::$tplPrefixClass.str_replace('::', '-', $layout))
         )));
 
         return $this->layout->content = View::make($layout, $this->getCommonVars($data));

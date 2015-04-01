@@ -12,7 +12,7 @@
                 array('parent@' => array('class' => 'nav nav-pills pull-right')));
             ?>
             @show
-            <h3 class="text-muted"><% $this->project['name'] ?: Lang::get('project.name') %></h3>
+            <h3 class="text-muted"><?= $this->project['name'] ?: Lang::get('project.name') ?></h3>
         </div>
 
         <div class="jumbotron">

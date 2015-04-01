@@ -13,19 +13,28 @@ use Illuminate\View\Compilers\BladeCompiler as ParentClass;
  */
 class TplCompiler extends ParentClass {
 
+
+
+    /**
+     * Array of opening and closing tags for raw echos.
+     *
+     * @var array
+     */
+    protected $rawTags = array('<%', '%>');
+
     /**
      * Array of opening and closing tags for echos.
      *
      * @var array
      */
-    protected $contentTags = array('<%', '%>');
+    protected $contentTags = array('<%=', '%>');
 
     /**
      * Array of opening and closing tags for escaped echos.
      *
      * @var array
      */
-    protected $escapedTags = array('<%=', '%>');
+    protected $escapedTags = array('<%', '%>');
 
     /**
      * Compile Tpl comments into valid PHP.

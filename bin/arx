@@ -33,7 +33,7 @@ require __DIR__ . '/vendor/autoload.php';
 |
 */
 
-$app = require_once Arx::path().'/../bootstrap/console.php';
+$app = require_once Arx::getPath().'/../bootstrap/console.php';
 
 /*
 |--------------------------------------------------------------------------

@@ -68,6 +68,18 @@ class Bag implements \ArrayAccess, \Iterator {
 	    $this->__var->{$key} = $value;
     }
 
+    public function __isset($key)
+    {
+        return isset($this->__var->{$key}) ? $this->__var->{$key} : false;
+    }
+
+    public function __unset($key)
+    {
+        if(isset($this->__var[$key])) {
+            unset($this->__var[$key]);
+        }
+    }
+
 	/**
 	 * Force the object/array to be returned as a string
 	 *

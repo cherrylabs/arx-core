@@ -16,7 +16,7 @@ class Hook extends \ArrayObject
     public static $logs = array();
 
     public static $callback = array();
-    
+
     public static $debug = true;
 
     public function __get($name)
@@ -26,7 +26,18 @@ class Hook extends \ArrayObject
 
     public function __set($name, $value)
     {
-        return self::add($name, $value);
+        return self::put($name, $value);
+    }
+
+
+    /**
+     * Check if Hook has key
+     * @param $key
+     * @return bool
+     */
+    public static function has($key)
+    {
+        return self::get($key) ? true : false;
     }
 
     public static function register($name, $callback = null){
@@ -52,15 +63,40 @@ class Hook extends \ArrayObject
 
     /**
      * @param $name
-     * @param $value
-     *
+     * @param $mValue
+     * @param null $merge
      * @return mixed
+     * @deprecated please use put instead
+     * @internal param $value
+     *
      */
     public static function add($name, $mValue, $merge = null)
     {
-        if (is_string($mValue)) {
-            $mValue = array($mValue);
-        }
+        return self::put($name, $mValue);
+    }
+
+    /**
+     * Set a new hook
+     *
+     * @deprecated will be removed
+     * @param $name
+     * @param array $mValue
+     * @return mixed
+     */
+    public static function set($name, $mValue = array(), $merge = null){
+        return self::put($name, $mValue, $merge);
+    }
+
+    /**
+     * Put data
+     *
+     * @param $name
+     * @param array $mValue
+     * @param null $merge
+     * @return mixed
+     * @throws \Exception
+     */
+    public static function put($name, $mValue = array(), $merge = null){
 
         if ($pos = strpos($name, '.')) {
             $dots = substr($name, $pos + 1);
@@ -72,13 +108,16 @@ class Hook extends \ArrayObject
             self::log('add', $name, func_get_args());
         }
 
-        if($merge === null && !Arr::is_sequential($mValue)){
+        if(!is_string($mValue) && $merge === null && !is_bool($mValue) && !Arr::is_sequential($mValue)){
             $merge = true;
         }
 
         if(isset($dots)){
             Arr::set($GLOBALS[ARX_HOOK][$name], $dots, $mValue);
         } elseif ($merge) {
+            if (is_string($mValue)) {
+                $mValue = array($mValue);
+            }
             $GLOBALS[ARX_HOOK][$name] =  Arr::merge($GLOBALS[ARX_HOOK][$name], $mValue);
         } elseif (is_array($mValue)) {
             foreach ($mValue as $v) {
@@ -95,30 +134,8 @@ class Hook extends \ArrayObject
         return $GLOBALS[ARX_HOOK][$name];
     }
 
-    /**
-     * Set a new hook
-     *
-     * @deprecated will be removed
-     * @param $name
-     * @param array $mValue
-     */
-    public static function set($name, $mValue = array()){
-        return self::add($name, $mValue);
-    }
-
-    /**
-     * Put data
-     *
-     * @param $name
-     * @param array $mValue
-     * @return mixed
-     */
-    public static function put($name, $mValue = array()){
-        return self::add($name, $mValue);
-    }
-
     public static function putJsVars($mValue = array(), $name = 'gVars'){
-        return self::add('gVars', $mValue);
+        return self::put('gVars', $mValue);
     }
 
     /**
@@ -143,15 +160,6 @@ class Hook extends \ArrayObject
     public static function css($name = 'css')
     {
         return Asset::css(Hook::get($name));
-    }
-
-    /**
-     * Output content as HTML
-     *
-     * @param string $name
-     */
-    public static function html($name = 'html'){
-
     }
 
     /**
@@ -201,12 +209,12 @@ class Hook extends \ArrayObject
      */
     public static function output()
     {
-        
+
         $aArgs = func_get_args();
         $iArgs = func_num_args();
 
         $c = $aArgs[0];
-        
+
         if(isset($GLOBALS[self::$pref.$c])){
             switch (true) {
                 case ($c == 'js'):
@@ -234,8 +242,8 @@ class Hook extends \ArrayObject
      * Get registered hook
      *
      * @param $name
-     * @param array $param
-     * @return bool
+     * @param null $default
+     * @return array
      */
     public static function get($name, $default = null){
 
@@ -259,7 +267,17 @@ class Hook extends \ArrayObject
             return $default;
         }
 
-        return false;
+        return [];
+    }
+
+    /**
+     * Little helper to output hook
+     *
+     * @param $name
+     * @param $default
+     */
+    public static function ddget($name, $default){
+        dd($name, $default);
     }
 
     /**
@@ -267,8 +285,9 @@ class Hook extends \ArrayObject
      *
      * @param $name
      * @param $default
+     * @return string
      */
-    public static function getJson($name, $default){
+    public static function getJson($name, $default = array()){
         return json_encode(self::get($name, $default));
     }
 

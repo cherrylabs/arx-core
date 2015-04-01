@@ -34,7 +34,7 @@
 <body>
 <div class="container">
     <div class="content">
-        <div class="title">Page not found...</div>
+        <div class="title">Be right back...</div>
     </div>
 </div>
 </body>

@@ -75,7 +75,7 @@ class FileViewFinder extends ParentClass
         if(preg_match('/arx/i', $name)){
             foreach ($this->getPossibleViewFiles($name) as $file)
             {
-                if ($this->files->exists($viewPath = str_replace('arx/', Arx::path('views').'/', $file)))
+                if ($this->files->exists($viewPath = str_replace('arx/', Arx::getPath('views').'/', $file)))
                 {
                     return $viewPath;
                 }

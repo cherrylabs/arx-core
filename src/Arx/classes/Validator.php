@@ -14,7 +14,7 @@ class Validator {
 	 */
 	public static function __callStatic($name, $args){
 		$filesystem = new \Illuminate\Filesystem\Filesystem();
-		$loader = new \Illuminate\Translation\FileLoader($filesystem, \Arx::path('../lang/'));
+		$loader = new \Illuminate\Translation\FileLoader($filesystem, \Arx::getPath('../lang/'));
 		$translator = new \Illuminate\Translation\Translator($loader, 'en');
 		$app = new \Illuminate\Validation\Factory($translator);
 		return call_user_func_array(array($app, $name), $args);
