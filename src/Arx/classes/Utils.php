@@ -411,6 +411,13 @@ class Utils
         }
     }
 
+    /**
+     * Get Video Thumb
+     *
+     * @param $url
+     * @param array $params
+     * @return bool|string
+     */
     public static function getVideoThumb($url, $params = [])
     {
         switch (true) {
@@ -418,8 +425,8 @@ class Utils
 
                 $id = self::getVideoId($url);
 
-                if (!$id) {
-                    return "//img.youtube.com/vi/" . $id . "/default.jpg";
+                if ($id) {
+                    return "//img.youtube.com/vi/" . $id . "/mqdefault.jpg";
                 }
 
                 return false;
@@ -428,9 +435,8 @@ class Utils
 
                 $id = self::getVideoId($url);
 
-                if (!$id) {
-                    $hash = unserialize(file_get_contents("http://vimeo.com/api/v2/video/".$id.".php"));
-                    return $hash[0]['thumbnail_medium'];
+                if ($id) {
+                    return "https://i.vimeocdn.com/video/".$id."_1280.webp";
                 }
 
                 return false;
@@ -439,7 +445,7 @@ class Utils
 
                 $id = self::getVideoId($url);
 
-                if (!$id) {
+                if ($id) {
                     return "//www.dailymotion.com/thumbnail/video/".$id;
                 }
 
