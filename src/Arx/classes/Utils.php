@@ -345,7 +345,7 @@ class Utils
 
                 $id = self::getVideoId($url);
 
-                if (!$id) {
+                if ($id) {
                     return '<iframe width="' . $width . '" height="' . $height . '" src="//www.youtube.com/embed/' . $id . '?rel=0" frameborder="0" allowfullscreen></iframe>';
                 }
 
@@ -355,7 +355,7 @@ class Utils
 
                 $id = self::getVideoId($url);
 
-                if (!$id) {
+                if ($id) {
                     return '<iframe src="//player.vimeo.com/video/' . $id . '?portrait=0" width="' . $width . '" height="' . $height . '" frameborder="0" webkitAllowFullScreen mozallowfullscreen allowFullScreen></iframe>';
                 }
 
@@ -365,7 +365,7 @@ class Utils
 
                 $id = self::getVideoId($url);
 
-                if (!$id) {
+                if ($id) {
                     return '<iframe frameborder="0" width="' . $width . '" height="' . $height . '" src="//www.dailymotion.com/embed/video/' . $id . '"></iframe>';
                 }
 
