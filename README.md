@@ -24,7 +24,7 @@ Install Composer on your project root put then :
 
 or add in your existing composer.json file
 
-    "arx-core" : "4.2.x"
+    "arx-core" : "5.x"
 
     php composer.phar install or update
 
