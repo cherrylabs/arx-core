@@ -435,8 +435,14 @@ class Utils
 
                 $id = self::getVideoId($url);
 
-                if ($id) {
-                    return "https://i.vimeocdn.com/video/".$id."_1280.webp";
+                try {
+                    $xml = @simplexml_load_file("http://vimeo.com/api/v2/video/".$id.".xml");
+
+                    if($xml && isset($xml->video, $xml->video->thumbnail_medium)){
+                        return (string) $xml->video->thumbnail_medium;
+                    }
+                } catch (Exception $e) {
+
                 }
 
                 return false;
