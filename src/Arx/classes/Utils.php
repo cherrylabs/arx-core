@@ -386,6 +386,11 @@ class Utils
                 parse_str($url_string, $args);
                 $id = isset($args['v']) ? $args['v'] : false;
 
+                // shared url (ex. https://youtu.be/bVoJF6vWzMc)
+                if (!$id) {
+                    $id = last(explode('/', $url));
+                }
+
                 if (!empty($id)) {
                     return $id;
                 }
