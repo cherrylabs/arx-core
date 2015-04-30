@@ -173,41 +173,41 @@ class BootstrapHelper extends Helper
      */
     public static function table($data, $params = array())
     {
-        $defParams = array(
+        $defParams = [
             'ajax' => false,
             'tfoot' => false,
-            'table@' => array('class' => 'table'),
-            'thead@' => array(),
-            'tbody@' => array(),
-            'tfoot@' => array()
-        );
+            'table@' => ['class' => 'table'],
+            'thead@' => [],
+            'tbody@' => [],
+            'tfoot@' => []
+        ];
 
-        $params = array_merge_recursive($defParams, $params);
-
+        $params = Arr::merge($defParams, $params);
 
         if (is_array($data)) {
-
             $html = '<table ' . Html::attributes($params['table@']) . '><thead ' . Html::attributes($params['thead@']) . '><tr>';
+
             foreach (reset($data) as $key => $name) {
                 $html .= '<th>' . $key . '</th>';
             }
+
             $html .= '</tr></thead><tbody>';
 
             if ($params['ajax'] != true) {
-
                 foreach ($data as $key => $row) {
-
                     $html .= '<tr>';
+
                     foreach ($row as $key => $col) {
                         $html .= '<td>' . $col . '</td>';
                     }
+
                     $html .= '</tr>';
                 }
             } else {
                 $html .= '<!--AJAXCALL-->';
             }
-            $html .= '</tbody>';
 
+            $html .= '</tbody>';
             $html .= '</table>';
 
             return $html;
