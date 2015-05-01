@@ -1,0 +1,18 @@
+'use strict';
+
+/**
+ * @ngdoc function
+ * @name <%= namespace %>.controller:<%= name %>
+ * @description
+ * # <%= name %>
+ * controller of the <%= namespace %>
+ */
+angular.module('<%= namespace %>')
+    .controller('<%= name %>', <%= name %>);
+
+/**
+ * @ngInject
+ */
+function <%= name %>($scope, $http) {
+    this.items = [];
+}

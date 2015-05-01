@@ -1,0 +1,22 @@
+'use strict';
+
+/**
+ * @ngdoc function
+ * @name <%= namespace %>.factory:<%= name %>
+ * @description
+ * # <%= name %>
+ * factory of the <%= namespace %>
+ */
+angular.module('<%= namespace %>')
+    .factory('<%= name %>', <%= name %>);
+
+/**
+ * @ngInject
+ */
+function <%= name %>($http) {
+    return {
+        call : function(name, options){
+            return $http.post('/api/v1/'+name, options)
+        }
+    }
+}

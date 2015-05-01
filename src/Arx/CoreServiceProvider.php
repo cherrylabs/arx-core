@@ -16,6 +16,10 @@ class CoreServiceProvider extends ServiceProvider {
      */
     protected $defer = false;
 
+    protected $commands = [
+        'angular'
+    ];
+
     /**
      * Bootstrap the application events.
      *
@@ -52,13 +56,12 @@ class CoreServiceProvider extends ServiceProvider {
     {
         $app = $this->app;
 
-        /*$this->app['command.arx.gen'] = $this->app->share(function()
+        $this->app['command.arx.angular'] = $this->app->share(function()
         {
-            return new GenCommand();
-        });*/
+            return new AngularCommand();
+        });
 
-        #$this->commands('command.arx.gen');
-
+        $this->commands('command.arx.angular');
 
         // add smarty extension (.tpl)
         $this->app['view']->addExtension('tpl.php',

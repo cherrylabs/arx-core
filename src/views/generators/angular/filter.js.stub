@@ -1,0 +1,18 @@
+'use strict';
+
+/**
+ * @ngdoc function
+ * @name <%= namespace %>.filter:<%= name %>
+ * @description
+ * # <%= name %>
+ * filter of the <%= namespace %>
+ */
+angular.module('<%= namespace %>')
+    .filter('<%= name %>', <%= name %>);
+
+/**
+ * @ngInject
+ */
+function <%= name %>($scope, $http) {
+    this.items = [];
+}

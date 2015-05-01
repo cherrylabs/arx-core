@@ -1,5 +1,4 @@
 <?php
-
 /**
  * PHP File - /core.php
  *
@@ -50,7 +49,7 @@ defined('DS') or define('DS', DIRECTORY_SEPARATOR);
 require_once __DIR__ . DS . 'classes' . DS . 'Singleton.php';
 require_once __DIR__ . DS . 'classes' . DS . 'Container.php';
 require_once __DIR__ . DS . 'classes' . DS . 'Arr.php';
-require_once __DIR__ . DS . 'classes' . DS . 'Strings.php';
+require_once __DIR__ . DS . 'classes' . DS . 'Str.php';
 require_once __DIR__ . DS . 'classes' . DS . 'Utils.php';
 
 

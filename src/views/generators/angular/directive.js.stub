@@ -1,0 +1,29 @@
+'use strict';
+
+/**
+ * @ngdoc function
+ * @name <%= namespace %>.directive:<%= name %>
+ * @description
+ * # <%= name %>
+ * directive of the <%= namespace %>
+ */
+angular.module('<%= namespace %>')
+    .directive('<%= namespace %>', <%= name %>);
+
+/**
+* @ngInject
+*/
+function <%= name %>() {
+    return  {
+        restrict: 'AE',
+        transclude: true,
+        template: '',
+        replace: true,
+        controller : function($scope){
+
+        },
+        compile: function (element, attr, transclude) {
+
+        }
+    };
+}

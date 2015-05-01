@@ -1,0 +1,25 @@
+'use strict';
+
+/**
+ * @ngdoc overview
+ * @name <%= name %>
+ * @description
+ * # <%= name %>
+ *
+ * Main module of the application.
+ */
+(function (factory) {
+    if (typeof define === 'function' && define.amd) {
+        define([
+            'angular'
+        ], factory);
+    } else {
+        factory(angular);
+    }
+}) (function (angular) {
+    'use strict';
+    angular
+        .module('<%= name %>', [<%= modules %>]);
+
+    //EX = require ./<%= name %>Controller.js
+});

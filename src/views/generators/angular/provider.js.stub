@@ -1,0 +1,18 @@
+'use strict';
+
+/**
+ * @ngdoc function
+ * @name <%= namespace %>.provider:<%= name %>
+ * @description
+ * # <%= name %>
+ * provider of the <%= namespace %>
+ */
+angular.module('<%= namespace %>')
+    .provider('<%= name %>', <%= name %>);
+
+/**
+ * @ngInject
+ */
+function <%= name %>(){
+
+}

@@ -1,0 +1,22 @@
+'use strict';
+
+/**
+ * @ngdoc function
+ * @name <%= namespace %>.service:<%= name %>
+ * @description
+ * # <%= name %>
+ * service of the <%= namespace %>
+ */
+angular.module('<%= namespace %>')
+    .service('<%= name %>', <%= name %>);
+
+/**
+ * @ngInject
+ */
+function <%= name %>($filter) {
+
+    this.launchedCount = 0;
+    this.launch = function() {
+        this.launchedCount++;
+    }
+}

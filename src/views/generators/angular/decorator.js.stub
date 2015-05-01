@@ -1,0 +1,16 @@
+'use strict';
+
+/**
+ * @ngdoc function
+ * @name <%= namespace %>.decorator:<%= name %>
+ * @description
+ * # <%= name %>
+ * Decorator of the <%= namespace %>
+ */
+angular.module('<%= namespace %>')
+    .config(function ($provide) {
+        $provide.decorator('<%= name %>', function ($delegate) {
+            // decorate the $delegate
+            return $delegate;
+        });
+    });
