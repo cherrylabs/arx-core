@@ -11,7 +11,7 @@
  * @license  http://opensource.org/licenses/MIT MIT License
  * @link     http://arx.xxx/doc/Valid
  */
-abstract class Valid
+class Valid
 {
 
     /**
