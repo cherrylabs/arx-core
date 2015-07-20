@@ -23,11 +23,10 @@ class BaseController extends Controller {
      */
     protected function setupLayout()
     {
-        if (!is_null($this->layout)) {
+        if (isset($this->layout) && !is_null($this->layout)) {
             $data = array();
 
             // Enter here data that have to be accessible everywhere
-
             $this->layout = View::make($this->layout, $data);
         }
     } // setupLayout
