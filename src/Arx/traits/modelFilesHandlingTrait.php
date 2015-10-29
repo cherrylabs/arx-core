@@ -6,24 +6,8 @@ use Arx\classes\Image;
 use Exception, File;
 use Input;
 
-/**
- * Class modelFilesHandlingTrait
- *
- * Simple files handlers trait to use in your model
- *
- * @example
- *
- * class User{
- *  use modelFilesHandlingTrait
- * }
- *
- * => $user->upload();
- *
- * Will automatically upload a file in public/files/users/id/directory
- *
- * @package Arx\traits
- */
-trait modelFilesHandlingTrait {
+trait modelFilesHandlingTrait
+{
 
 
     public static $filepath = null;
@@ -35,11 +19,11 @@ trait modelFilesHandlingTrait {
     {
 
         // if no filepath defined => autocreate path from table name
-        if(!static::$filepath){
-            static::$filepath = "files/".$this->getTable();
+        if (!static::$filepath) {
+            static::$filepath = "files/" . $this->getTable();
         }
 
-        static::$currentPath = public_path(static::$filepath.'/' . $this->id);
+        static::$currentPath = public_path(static::$filepath . '/' . $this->id);
 
         if (!is_dir(static::$currentPath)) {
             try {
@@ -74,7 +58,7 @@ trait modelFilesHandlingTrait {
         # Cleaning path
         $path = preg_replace('/^\//', '', $path);
 
-        return str_replace(public_path(), '', $this->getCurrentPath().'/'.$path);
+        return str_replace(public_path(), '', $this->getCurrentPath() . '/' . $path);
     }
 
     /**
@@ -86,7 +70,7 @@ trait modelFilesHandlingTrait {
      * @return array
      * @throws Exception
      */
-    public function upload($name = null, $file = null, $params = ['path' => '','afterUpload' => null, 'beforeUpload' => null, 'coords' => null, 'width' => null, 'height' => null, 'beforeUploadImage' => null]){
+    public function upload($name = null, $file = null, $params = ['path' => '','afterUpload' => null, 'beforeUpload' => null, 'coords' => null, 'width' => null, 'height' => null, 'beforeUploadImage' => null, 'preserveIfGif' => false]){
 
         Arr::mergeWithDefaultParams($params);
 
@@ -141,8 +125,9 @@ trait modelFilesHandlingTrait {
             }
         }
 
-
-        if($data['type'] == 'image'){
+        if($data['extension'] == "gif" && $params['preserveIfGif']){
+            $data['response'] = $data['file']->move(public_path($data['path'] .$params['path']), $data['name']);
+        } elseif($data['type'] == 'image'){
 
             $img = Image::load($data['file']->getRealPath());
 
@@ -167,8 +152,7 @@ trait modelFilesHandlingTrait {
             $data['response'] = $img->save(public_path($data['path'] .$params['path']. $data['name']));
 
         } else {
-
-            $data['response'] = File::move($data['file']->getRealPath(), $data['path'] .$params['path']. $data['name']);
+            $data['response'] = $data['file']->move(public_path($data['path'] .$params['path']), $data['name']);
         }
 
         if($params['afterUpload']){
@@ -190,18 +174,19 @@ trait modelFilesHandlingTrait {
      * @return mixed
      * @throws Exception
      */
-    public static function cleanPath($path, $params = ['checkDir' => false, 'checkFile' => false]){
+    public static function cleanPath($path, $params = ['checkDir' => false, 'checkFile' => false])
+    {
 
         $params = Arr::mergeWithDefaultParams($params);
 
-        if($params['checkDir']){
-            if(!is_dir($path)){
+        if ($params['checkDir']) {
+            if (!is_dir($path)) {
                 Throw new Exception('Path is not a dir');
             }
         }
 
-        if($params['checkFile']){
-            if(!is_file($path)){
+        if ($params['checkFile']) {
+            if (!is_file($path)) {
                 Throw new Exception('Path is not a file');
             }
         }
