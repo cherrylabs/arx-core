@@ -2,7 +2,8 @@
 
 /**
  * Valid
- * PHP File - /classes/Valid.php
+ *
+ * usefull validation pattern extension
  *
  * @category Utils
  * @package  Arx

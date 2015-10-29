@@ -3,16 +3,10 @@
 use Closure;
 
 /**
- * Config
+ * Class Config used in Arx
  *
- * @category Configuration
- * @package  Arx
- * @author   Daniel Sum <daniel@cherrypulp.com>
- * @author   Stéphan Zych <stephan@cherrypulp.com>
- * @license  http://opensource.org/licenses/MIT MIT License
- * @link     http://arx.xxx/doc/Config
+ * @package Arx\classes
  */
-
 class Config extends Container
 {
     // --- Protected members

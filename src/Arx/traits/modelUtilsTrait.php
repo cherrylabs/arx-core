@@ -1,7 +1,12 @@
 <?php namespace Arx\traits;
 
-use Input;
-
+/**
+ * Class modelUtilsTrait
+ *
+ * Some usefull modelUtilsTrait to use in your model
+ *
+ * @package Arx\traits
+ */
 trait modelUtilsTrait
 {
     private static $_aInstances = array();

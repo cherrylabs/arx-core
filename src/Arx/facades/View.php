@@ -1,5 +1,12 @@
 <?php namespace Arx\facades;
 
+/**
+ * Class View
+ *
+ * Override default View facade
+ *
+ * @package Arx\facades
+ */
 class View extends \Arx\classes\Facade {
     /**
      * Get the registered name of the component.

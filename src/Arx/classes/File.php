@@ -7,9 +7,10 @@ use Illuminate\Filesystem\Filesystem;
  *
  * extends Illuminate\Filesystem class => usable outside a Laravel Project
  *
- * @see http://laravel.com/api/4.1/Illuminate/Filesystem/Filesystem.html
+ * @compatiblity php_>_5.3
+ *
  * @package Arx\classes
  */
-class File extends Filesystem{
+class File extends Filesystem {
     
 }

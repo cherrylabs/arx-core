@@ -8,7 +8,7 @@ use Symfony\Component\HttpFoundation\File\File;
 /**
  * Class AssetsController
  *
- * Can resolve assets access when assets come from vendors or workbench or when you need to protect your assets
+ * Can resolve assets access when assets come from vendors or workbench or when you need to protect your assets from public
  *
  * @package Arx
  */
@@ -77,7 +77,6 @@ class AssetsController extends BaseController {
     /**
      * Check file from registered path
      *
-     * @todo better way to handle paths
      * @param null $file
      * @return string
      */

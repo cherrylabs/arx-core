@@ -1,4 +1,5 @@
 <?php namespace Arx;
+use Exception;
 
 /**
  * Class Api
@@ -83,6 +84,7 @@ class ApiResponseModel implements \ArrayAccess {
 
     /**
      * @param mixed $data
+     * @return $this
      */
     public function setData($data)
     {
@@ -106,7 +108,10 @@ class ApiResponseModel implements \ArrayAccess {
     }
 
     /**
+     *
      * @param mixed $msg
+     * @return $this
+     * @throws Exception
      */
     public function setMsg($msg)
     {
@@ -129,6 +134,7 @@ class ApiResponseModel implements \ArrayAccess {
 
     /**
      * @param mixed $status
+     * @return $this
      */
     public function setStatus($status)
     {

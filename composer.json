@@ -36,7 +36,8 @@
         "illuminate/html" : "5.x",
         "doctrine/dbal": "~2.3",
         "kriswallsmith/assetic" : "*",
-        "fzaninotto/faker" : "*"
+        "fzaninotto/faker" : "*",
+        "raveren/kint": "1.0.x-dev"
     },
     "require-dev": {
         "phpunit/phpunit": "~4.0",

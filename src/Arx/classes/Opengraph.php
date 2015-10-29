@@ -5,7 +5,7 @@ use Iterator, DOMXPath, DOMDocument;
 /**
  * Class Opengraph
  *
- * Usefull Opengraph class
+ * Usefull Opengraph reader class
  *
  * @author Scott MacVicar
  * @author Daniel Sum
@@ -14,8 +14,6 @@ use Iterator, DOMXPath, DOMDocument;
  */
 class Opengraph implements Iterator
 {
-
-
 	/**
 	 * Iterator code
 	 */
@@ -199,6 +197,7 @@ class Opengraph implements Iterator
      * Helper method to check an attribute exists
      *
      * @param $key
+     * @return bool
      */
     public function __isset($key) {
         return array_key_exists($key, $this->_values);

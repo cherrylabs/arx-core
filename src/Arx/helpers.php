@@ -1,9 +1,7 @@
 <?php
 /**
- * Helper loader for functions
- *
+ * Helper loader and debug functions
  */
-
 if ( ! function_exists('\dd'))
 {
     function dd(){

@@ -64,6 +64,7 @@ class Env {
     /**
      * Define level environment
      *
+     * Detect a env level
      * @return int
      */
     public static function level()

@@ -3,7 +3,7 @@
 /**
  * Class Detect
  *
- * Detect which environment information
+ * Detect device and other stuff helpers
  *
  * @package Arx\classes
  */
@@ -35,8 +35,18 @@ class Detect
             throw new Exception('Invalid Method');
         }
     }
+
+    /**
+     * Check if we are in the mobile mode
+     *
+     * @return bool
+     */
     public static function is_mobile()
     {
+        if (!isset($_SERVER['HTTP_ACCEPT'])) {
+            return false;
+        }
+
         $accept = $_SERVER['HTTP_ACCEPT'];
 
         if (isset($_SERVER['HTTP_X_WAP_PROFILE']) || isset($_SERVER['HTTP_PROFILE']))
@@ -57,6 +67,11 @@ class Detect
         return false;
     }
 
+    /**
+     * Return normalised name of a device
+     *
+     * @return mixed
+     */
     public static function get_device()
     {
         foreach (array_keys(self::$devices) as $device)
@@ -65,6 +80,16 @@ class Detect
         }
     }
 
+    /**
+     * Check if navigateur is a current devise
+     *
+     * @example
+     *
+     * Detect::is_device('android');
+     *
+     * @param $device
+     * @return bool
+     */
     protected static function is_device($device)
     {
         $ua = $_SERVER['HTTP_USER_AGENT'];

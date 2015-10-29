@@ -1,11 +1,16 @@
 <?php namespace Arx\classes;
 
-if(!defined('ARX_HOOK')) define('ARX_HOOK', 'ARX_HOOK');
-
 /**
  * Class Hook
  *
  * Little class to add easily a hook system to any kind of project
+ *
+ * @example
+ *
+ * Hook::put('var1.var2', ['data']);
+ * Hook::
+ *
+ * #output
  *
  * @package Arx\classes
  */
@@ -28,7 +33,6 @@ class Hook extends \ArrayObject
     {
         return self::put($name, $value);
     }
-
 
     /**
      * Check if Hook has key
@@ -76,15 +80,14 @@ class Hook extends \ArrayObject
     }
 
     /**
-     * Set a new hook
+     * Force to set hook value
      *
-     * @deprecated will be removed
      * @param $name
      * @param array $mValue
      * @return mixed
      */
-    public static function set($name, $mValue = array(), $merge = null){
-        return self::put($name, $mValue, $merge);
+    public static function set($name, $mValue = array()){
+        return $GLOBALS[ARX_HOOK][$name] = $mValue;
     }
 
     /**
@@ -329,8 +332,10 @@ class Hook extends \ArrayObject
 } // class::Hook
 
 /**
- * Init a global arx_hook element
+ * Register a global arx_hook element
  */
+if(!defined('ARX_HOOK')) define('ARX_HOOK', 'ARX_HOOK');
+
 if (!isset($GLOBALS[ARX_HOOK])) {
     $GLOBALS[ARX_HOOK] = new Hook();
 }

@@ -2,6 +2,7 @@
 
 /**
  * Class Image
+ *
  * @package Arx\classes
  * @author  Cory LaViska <http://www.abeautifulsite.net/>
  * @author  Daniel Sum <daniel@cherrypulp.net>

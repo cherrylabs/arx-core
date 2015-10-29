@@ -1,15 +1,13 @@
 <?php namespace Arx\controllers;
 
 use App, Request, Response;
-use Arx\classes\Utils;
 
 /**
  * Class Angular
  *
- * Angular controller template that you can extends in your Laravel App
+ * Angular controller template that you can extends in your Laravel App to protect some Angular script with a middleware
+ * and filters
  *
- * @status don't use it in prod
- * @todo more features
  * @package Arx\controllers
  */
 class Angular extends \Controller
@@ -29,7 +27,7 @@ class Angular extends \Controller
             return $response;
         }
 
-        return App::abort(404, 'Not found');
+        App::abort(404, 'Not found');
     }
 
 }
@@ -38,7 +36,10 @@ namespace Arx;
 
 use Arx\controllers\Angular;
 
-class AngularController extends Angular
-{
-
-}
+/**
+ * Class AngularController
+ *
+ * @deprecated please use PSR-4 instead
+ * @package Arx
+ */
+class AngularController extends Angular{}

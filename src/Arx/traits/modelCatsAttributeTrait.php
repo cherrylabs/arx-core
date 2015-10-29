@@ -1,5 +1,12 @@
 <?php namespace Arx\traits;
 
+/**
+ * Class modelCatsAttributeTrait
+ *
+ * Handle cats attributes for a non-relationnel db
+ *
+ * @package Arx\traits
+ */
 trait modelCatsAttributeTrait {
     /**
      * Get Meta
@@ -20,15 +27,5 @@ trait modelCatsAttributeTrait {
             return array();
         else
             return $return;
-    }
-
-    public function scopeByCats($query){
-
-    }
-
-    public function searchByCats($mCats){
-        if (is_int($mCats)) {
-            $mCats = [$mCats];
-        }
     }
 }

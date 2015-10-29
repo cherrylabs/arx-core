@@ -3,18 +3,34 @@
 /**
  * Class Dummy
  *
- * A dummy text, image, video, title class
+ * Very simple dummy text, image, video, title generator
  *
  * @package Arx\classes
  */
 class Dummy
 {
 
+    /**
+     * Generate a dummy image link
+     *
+     * @param string $mixSize
+     * @param string $background
+     * @param string $foregroundColor
+     * @param null $text
+     * @param string $format
+     * @return string
+     */
     public static function image($mixSize = '400x350', $background = '000', $foregroundColor = 'fff', $text = null, $format = 'jpg')
     {
         return "//dummyimage.com/$mixSize/$background/$foregroundColor" . (!$text ? : '&text=' . urlencode($text));
     }
 
+    /**
+     * Generate a dummy text
+     *
+     * @param array $param
+     * @return string
+     */
     public static function text($param = array())
     {
 
@@ -43,6 +59,12 @@ class Dummy
 
     }
 
+    /**
+     * Generate a dummy title
+     *
+     * @param null $param
+     * @return string
+     */
     public static function title($param = null)
     {
 
@@ -75,6 +97,13 @@ class Dummy
 
     }
 
+    /**
+     * Generate a Youtube video iframe
+     *
+     * @param null $mixWidth
+     * @param null $height
+     * @return string
+     */
     public static function video($mixWidth = null, $height = null)
     {
 

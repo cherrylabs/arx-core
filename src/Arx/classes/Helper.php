@@ -4,13 +4,19 @@
  * Helper.php.
  *
  * @project : arx
- * @todo make helper logic
  * @author : Daniel Sum <daniel@cherrypulp.com>
  */
-class Helper extends Container {
+abstract class Helper extends Container {
 
-	public static function info( ){
+	public $data = [];
 
+	/**
+	 * @param array $data
+	 */
+	public function __construct($data = array())
+	{
+		$this->data = array_merge($this->data, get_defined_vars());
+
+		return $this->data;
 	}
-
 }

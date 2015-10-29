@@ -8,7 +8,7 @@ use Exception;
 /**
  * Class App Override Laravel App class
  *
- * App extends the Laravel Application and add some extra functions that lacks in Laravel
+ * App is used mainly for some autocompletion task needed by core.php
  *
  * @category Core
  * @package  Arx
@@ -19,10 +19,8 @@ use Exception;
  */
 class App extends ParentClass
 {
-
     // --- Constants
-
-    const VERSION = '4.2';
+    const VERSION = '5.1.0';
 
     const CODENAME = 'Lupa';
 
@@ -90,10 +88,10 @@ class App extends ParentClass
      * @see ../bootstraps/default.php
      * @see ../config/
      *
-     * @param string $config
      * @param string $file
      *
-     * @throws \Whoops\Example\Exception
+     * @param string $config
+     * @throws Exception
      */
     public function bootstrap($file = 'start.php', $config = null){
 

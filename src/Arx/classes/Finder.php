@@ -9,7 +9,15 @@ use Symfony\Component\Finder\Adapter\PhpAdapter;
 use Symfony\Component\Finder\Exception\ExceptionInterface;
 
 /**
- * Finder
+ * Finder Class
+ *
+ * Usefull file explorer class to navigate easily inside folder
+ *
+ * @example
+ *
+ * $finder = new Finder('path');
+ *
+ * $finder->workbench->scan(); # where folder is a folder
  *
  * @category Utils
  * @package  Arx
@@ -273,7 +281,7 @@ class Finder extends ParentClass
     } // getExtension
 
     /**
-     * Sort an arry based on the strings length
+     * Sort an array based on the strings length
      *
      * @access private
      *
@@ -282,7 +290,7 @@ class Finder extends ParentClass
      *
      * @return int
      */
-    private function lengthSort($val_1, $val_2)
+    public static function lengthSort($val_1, $val_2)
     {
         // initialize the return value to zero
         $retVal = 0;

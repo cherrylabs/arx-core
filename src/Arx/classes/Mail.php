@@ -10,6 +10,8 @@ use Swift_Message;
 /**
  * Class Mail
  *
+ * Mail class usable outside Laravel
+ *
  * @package Arx\classes
  */
 class Mail extends Singleton {

@@ -29,22 +29,12 @@ class CoreServiceProvider extends ServiceProvider {
     {
         Arx::ignite();
 
-        #$this->package('arx/core');
-
-        // Add namespace package so you can access to views, lang and config with arx::
-        #\View::addNamespace('arx', __DIR__.'/../views');
-        #\Lang::addNamespace('arx', __DIR__.'/../lang');
-        #\Config::addNamespace('arx', __DIR__.'/../config');
-
-
         $this->loadViewsFrom(__DIR__.'/../views', 'arx');
         $this->loadTranslationsFrom(__DIR__.'/../lang', 'arx');
 
         require_once __DIR__.'/start/artisan.php';
         require_once __DIR__.'/start/global.php';
         require_once __DIR__.'/helpers.php';
-        require_once __DIR__.'/filters.php';
-        require_once __DIR__.'/routes.php';
     }
 
     /**
@@ -63,7 +53,12 @@ class CoreServiceProvider extends ServiceProvider {
 
         $this->commands('command.arx.angular');
 
-        // add smarty extension (.tpl)
+        $this->app['command.arx.sass'] = $this->app->share(function()
+        {
+            return new SassCommand();
+        });
+
+        // add Tpl extension (.tpl)
         $this->app['view']->addExtension('tpl.php',
             'tpl',
             function() use ($app) {

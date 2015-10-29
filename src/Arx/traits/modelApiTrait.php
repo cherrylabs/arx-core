@@ -1,12 +1,20 @@
 <?php namespace Arx\traits;
 
 use Arr;
+use Arx\classes\Convert;
 use Illuminate\Http\JsonResponse;
 use Input;
 use Log;
 use Request;
 use Response;
 
+/**
+ * Class modelApiTrait
+ *
+ * Usefull model api trait usable for your business logic
+ *
+ * @package Arx\traits
+ */
 trait modelApiTrait {
 
     /**
@@ -260,7 +268,7 @@ trait modelApiTrait {
         $countries = array();
         $frequently = array();
 
-        foreach (\Arx\classes\Convert::$aCountries as $k => $country) {
+        foreach (Convert::$aCountries as $k => $country) {
             //echo strtolower($k) . '<br />';
             if (in_array(strtolower($k), ['be', 'fr', 'gb'])) {
                 $frequently[strtolower($k)] = $country;

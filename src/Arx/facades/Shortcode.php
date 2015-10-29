@@ -2,6 +2,13 @@
 
 use Arx\classes\Facade;
 
+/**
+ * Class Shortcode
+ *
+ * Add a usefull shortcode facade
+ *
+ * @package Arx\facades
+ */
 class Shortcode extends Facade {
 
     /**

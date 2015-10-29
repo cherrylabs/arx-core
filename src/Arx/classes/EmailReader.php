@@ -5,6 +5,7 @@
  *
  * Email retriever and parser (needs imap)
  *
+ * @compatibility php_>_5.4,mod_imap
  * @package Arx\classes
  */
 class EmailReader
