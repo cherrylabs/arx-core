@@ -1,5 +1,12 @@
 <?php namespace Arx\traits;
 
+/**
+ * Class modelMetaAttributeTrait
+ *
+ * Usefull meta handlers trait for json encoded data
+ *
+ * @package Arx\traits
+ */
 trait modelMetaAttributeTrait {
     /**
      * Get Meta

@@ -4,6 +4,7 @@
  *
  * Helps to resolve and find Composer paths
  *
+ * @compatibility php
  * @package Arx\classes
  */
 class Composer extends Container

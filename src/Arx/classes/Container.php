@@ -6,8 +6,9 @@ use ArrayAccess;
 /**
  * Class Container
  *
- * extends Illuminate\Container\Container class add possibility to getInstance (Singleton pattern)
+ * extends Illuminate\Container\Container class and add possibility to getInstance (Singleton pattern)
  *
+ * @compatibility >php_5.3
  * @package Arx\classes
  */
 class Container extends ParentClass implements ArrayAccess {

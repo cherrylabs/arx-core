@@ -1,6 +1,11 @@
 <?php namespace Arx;
 
-class ApiModel extends \Arx\classes\Singleton implements ApiInterface {
+/**
+ * Class ApiModel Skeleton
+ *
+ * @package Arx
+ */
+class ApiModel extends classes\Singleton implements ApiInterface {
 
     private static $API_KEY = "";
     private static $API_SECRET = "";

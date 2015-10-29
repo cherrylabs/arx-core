@@ -3,7 +3,7 @@
 /**
  * Singleton
  *
- * PHP File - /classes/Singleton.php
+ * Simple Singleton class design pattern
  *
  * @category Utils
  * @package  Arx

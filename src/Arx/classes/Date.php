@@ -1,9 +1,9 @@
 <?php namespace Arx\classes;
 
 /**
- * Date
- * PHP File - /classes/Date.php
+ * Date Helpers
  *
+ * @compatibilty php_>_5.3
  * @category Utils
  * @package  Arx
  * @author   Daniel Sum <daniel@cherrypulp.com>
@@ -11,7 +11,7 @@
  * @license  http://opensource.org/licenses/MIT MIT License
  * @link     http://arx.xxx/doc/Date
  */
-abstract class Date
+class Date
 {
      /**
      * Differences in days between to date

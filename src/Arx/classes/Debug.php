@@ -2,10 +2,10 @@
 
 use DebugBar\StandardDebugBar;
 use App;
-use Arx\classes\debug\Kint;
+use Kint;
 
 /**
- * Class Debug handler
+ * Class Debug handler using Kint
  *
  * extends the DebugBar\StandardDebugBar class
  *

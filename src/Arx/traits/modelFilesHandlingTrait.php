@@ -6,6 +6,23 @@ use Arx\classes\Image;
 use Exception, File;
 use Input;
 
+/**
+ * Class modelFilesHandlingTrait
+ *
+ * Simple files handlers trait to use in your model
+ *
+ * @example
+ *
+ * class User{
+ *  use modelFilesHandlingTrait
+ * }
+ *
+ * => $user->upload();
+ *
+ * Will automatically upload a file in public/files/users/id/directory
+ *
+ * @package Arx\traits
+ */
 trait modelFilesHandlingTrait {
 
 

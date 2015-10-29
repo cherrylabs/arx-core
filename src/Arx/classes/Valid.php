@@ -2,7 +2,8 @@
 
 /**
  * Valid
- * PHP File - /classes/Valid.php
+ *
+ * usefull validation pattern extension
  *
  * @category Utils
  * @package  Arx
@@ -11,7 +12,7 @@
  * @license  http://opensource.org/licenses/MIT MIT License
  * @link     http://arx.xxx/doc/Valid
  */
-abstract class Valid
+class Valid
 {
 
     /**

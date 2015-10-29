@@ -9,14 +9,14 @@ use Symfony\Component\Console\Input\InputArgument;
 use Arx\classes\Composer;
 use Arx\classes\Str;
 
-class AngularCommand extends Command {
+class SassCommand extends Command {
 
     /**
      * The console command name.
      *
      * @var string
      */
-    protected $name = 'make:angular';
+    protected $name = 'make:sass';
 
     /**
      * The console command description.
@@ -48,7 +48,7 @@ class AngularCommand extends Command {
 
         $type = $args['type'] ?: 'app';
 
-        $file = file_get_contents(__DIR__.'/../../views/generators/angular/'.$type.'.js.stub');
+        $file = file_get_contents(__DIR__.'/../../views/generators/sass/'.$type.'.sass.stub');
 
         if ($type == 'app') {
             $name = $args['name'];
@@ -71,7 +71,7 @@ class AngularCommand extends Command {
         $path = $opts['path'].'/'.$args['folder'].'/'.$args['name'].'/';
 
         if (isset($opts['bench'])) {
-            $path = ('workench/'.$opts['bench'].'/public/src/js/');
+            $path = ('workench/'.$opts['bench'].'/public/src/scss/');
         }
 
         if (!is_dir($path)) {

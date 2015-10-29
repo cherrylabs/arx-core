@@ -5,7 +5,7 @@
  *
  * Override the default array undefined behavior by returning smartly a false when a variable is not defined.
  *
- * It handle only 1 level
+ * /!\ It handle only 1 level for now
  *
  * @example :
  *
@@ -19,7 +19,7 @@ class Bag implements \ArrayAccess, \Iterator {
 
 	# Variables container
 
-    public $__var;
+    public $data;
 
 	# Define if the bag is recursive or not
 
@@ -37,7 +37,7 @@ class Bag implements \ArrayAccess, \Iterator {
 		    $this->recursive = true;
 	    }
 
-        $this->__var = $data;
+        $this->data = $data;
 
         return $data;
     }
@@ -51,8 +51,8 @@ class Bag implements \ArrayAccess, \Iterator {
 	 */
     public function __get($key){
 
-        if(is_object($this->__var) && isset($this->__var->{$key})){
-            return $this->recursive ? new self($this->__var->{$key}, true) : $this->__var->{$key};
+        if(is_object($this->data) && isset($this->data->{$key})){
+            return $this->recursive ? new self($this->data->{$key}, true) : $this->data->{$key};
         }
 
         return false;
@@ -65,18 +65,18 @@ class Bag implements \ArrayAccess, \Iterator {
 	 * @param $value
 	 */
     public function __set($key, $value){
-	    $this->__var->{$key} = $value;
+	    $this->data->{$key} = $value;
     }
 
     public function __isset($key)
     {
-        return isset($this->__var->{$key}) ? $this->__var->{$key} : false;
+        return isset($this->data->{$key}) ? $this->data->{$key} : false;
     }
 
     public function __unset($key)
     {
-        if(isset($this->__var[$key])) {
-            unset($this->__var[$key]);
+        if(isset($this->data[$key])) {
+            unset($this->data[$key]);
         }
     }
 
@@ -87,7 +87,32 @@ class Bag implements \ArrayAccess, \Iterator {
 	 */
     public function __toString()
     {
-        return (string) $this->__var;
+        return (string) $this->data;
+    }
+
+    /**
+     * Add a Get method (similar to Input::get)
+     *
+     * @example $bag->get('dada.dada');
+     * @param $needle
+     * @param null $default
+     * @return mixed
+     */
+    public function get($needle, $default = null){
+        return Arr::get($this->data, $needle, $default);
+    }
+
+    /**
+     * Add a has method (similar to Input::has)
+     *
+     *
+     * @example $bag->has('dada.dada');
+     * @param $needle
+     * @param null $default
+     * @return bool
+     */
+    public function has($needle, $default = null){
+        return Arr::get($this->data, $needle, $default) ? true : false;
     }
 
 	/**
@@ -95,7 +120,7 @@ class Bag implements \ArrayAccess, \Iterator {
 	 */
     public function rewind()
     {
-        reset($this->__var);
+        reset($this->data);
     }
 
 	/**
@@ -105,7 +130,7 @@ class Bag implements \ArrayAccess, \Iterator {
 	 */
     public function current()
     {
-        $var = current($this->__var);
+        $var = current($this->data);
         return $var;
     }
 
@@ -116,7 +141,7 @@ class Bag implements \ArrayAccess, \Iterator {
 	 */
     public function key()
     {
-        $var = key($this->__var);
+        $var = key($this->data);
         return $var;
     }
 
@@ -127,7 +152,7 @@ class Bag implements \ArrayAccess, \Iterator {
 	 */
     public function next()
     {
-        $var = next($this->__var);
+        $var = next($this->data);
         return $var;
     }
 
@@ -138,21 +163,23 @@ class Bag implements \ArrayAccess, \Iterator {
 	 */
     public function valid()
     {
-        $key = key($this->__var);
+        $key = key($this->data);
         $var = ($key !== NULL && $key !== FALSE);
         return $var;
     }
 
     /**
-     * Determine if a given offset exists.
+     * Determine if a given offset exists
+     *
+     * /!\ different from has method
      *
      * @param  string  $key
      * @return bool
      */
     public function offsetExists($key)
     {
-        if(isset($this->__var[$key])){
-            return new self($this->__var[$key]);
+        if(isset($this->data[$key])){
+            return new self($this->data[$key]);
         }
 
         return false;
@@ -167,8 +194,8 @@ class Bag implements \ArrayAccess, \Iterator {
     public function offsetGet($key)
     {
 
-        if(is_array($this->__var) && isset($this->__var[$key])){
-	        return $this->recursive ? new self($this->__var[$key], true) : $this->__var[$key];
+        if(is_array($this->data) && isset($this->data[$key])){
+	        return $this->recursive ? new self($this->data[$key], true) : $this->data[$key];
         }
 
         return false;
@@ -183,7 +210,7 @@ class Bag implements \ArrayAccess, \Iterator {
      */
     public function offsetSet($key, $value)
     {
-        $this->__var[$key] = $value;
+        $this->data[$key] = $value;
     }
 
     /**
@@ -194,6 +221,6 @@ class Bag implements \ArrayAccess, \Iterator {
      */
     public function offsetUnset($key)
     {
-        unset($this->__var[$key]);
+        unset($this->data[$key]);
     }
 }

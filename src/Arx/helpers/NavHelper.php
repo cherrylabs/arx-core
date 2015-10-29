@@ -16,7 +16,7 @@ class NavHelper extends Helper {
 
     }
 
-    public function addItem($data, $postion = 'last')
+    public function addItem($data)
     {
         $this->data[] = $data;
 

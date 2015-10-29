@@ -5,7 +5,7 @@ use Countable;
 /**
  * Class Shortcode
  *
- * Shortcode class
+ * Shortcode class like in wordpress, very useful !
  *
  * @package Arx\classes
  */

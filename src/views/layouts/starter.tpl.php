@@ -1,5 +1,11 @@
 @extends('arx::layouts.bootstrap')
-
+<?php
+/**
+ * This is a starter template for Demo Purpose
+ *
+ * You should never use this in production
+ */
+?>
 @section('css')
     @parent
     <style>

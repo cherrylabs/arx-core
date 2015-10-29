@@ -3,7 +3,7 @@
 /**
  * Convert
  *
- * Convert helpers to handle Country, fileExtType etc.
+ * Convert helpers to handle Country, fileExtType, money etc.
  *
  * @category Utils
  * @package  Arx
@@ -14,7 +14,6 @@
  */
 class Convert
 {
-
     public static $aCountries = array(
         "AF" => "Afghanistan",
         "AL" => "Albania",

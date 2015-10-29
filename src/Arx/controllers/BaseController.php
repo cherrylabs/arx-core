@@ -6,7 +6,8 @@ use Controller, View;
 /**
  * Class BaseController
  *
- * Better BaseController inspired by CodeIgniter Data flow (merge data value)
+ * Better BaseController inspired by CodeIgniter Data flow (merge data value) and add a usefull tpl-class in the view
+ * for the body
  *
  * @package Arx
  */
@@ -15,6 +16,18 @@ class BaseController extends Controller {
     public static $tplPrefixClass = "tpl-";
 
     public $data = array();
+
+    /**
+     * Constructor method
+     */
+    public function __construct(){
+
+        # check if a parent::__construct exist
+        if (is_callable('parent::__construct')) {
+            parent::__construct();
+        }
+
+    }
 
     /**
      * Setup the layout used by the controller.
@@ -27,7 +40,6 @@ class BaseController extends Controller {
             $data = array();
 
             // Enter here data that have to be accessible everywhere
-
             $this->layout = View::make($this->layout, $data);
         }
     } // setupLayout
@@ -90,6 +102,8 @@ class BaseController extends Controller {
     } // viewMake
 
     /**
+     * Apply a view make on layout->content => useful if you need only to write a content not a layout
+     *
      * @param $layout
      * @param array $data
      * @return \Illuminate\View\View

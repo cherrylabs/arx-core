@@ -10,7 +10,7 @@ use Arx\classes\view\engines\tpl\TplCompiler;
 /**
  * Class View
  *
- * @todo make it usable outside a Laravel Project
+ * Add the tpl.php extension handler
  *
  * @package Arx\classes
  */

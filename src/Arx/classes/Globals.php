@@ -2,7 +2,8 @@
 
 /**
  * Globals
- * PHP File - /classes/Globals.php
+ *
+ * Get Globals variables and informations
  *
  * @category Utils
  * @package  Arx

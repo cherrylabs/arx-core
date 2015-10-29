@@ -5,6 +5,7 @@
  *
  * usable outside Laravel
  *
+ * @deprecated please remove any dependencies
  * @package Arx\classes
  */
 class Model extends \Eloquent {
@@ -76,7 +77,7 @@ class Model extends \Eloquent {
     /**
      * Display a listing of the resource.
      *
-     * @return Response
+     * @return \Response
      */
     public static function loginPassword($password)
     {

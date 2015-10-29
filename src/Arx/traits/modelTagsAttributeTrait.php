@@ -1,5 +1,12 @@
 <?php namespace Arx\traits;
 
+/**
+ * Class modelTagsAttributeTrait
+ *
+ * Get tags attributes for non-relationnal db structure
+ *
+ * @package Arx\traits
+ */
 trait modelTagsAttributeTrait {
     /**
      * Get Tags

@@ -1,7 +1,7 @@
 <?php namespace Arx\classes;
 
 /**
- * Exception Handler
+ * Arx Exception Handler
  *
  * @package Arx\classes
  */

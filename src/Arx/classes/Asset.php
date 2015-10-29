@@ -5,27 +5,42 @@ use Arx;
 /**
  * Class Assets
  *
- * Smarter assets handler => if production js and css will be compiled on the fly
+ * Smarter assets handler
  *
- * @todo choose compilation flow
+ * @example
+ *
+ * Asset::js(['file1.js', 'file2.js]);
+ *
+ * #output
+ *
+ * <script type="text/javascript" src="file1.js"></script>
+ * <script type="text/javascript" src="file2.js"></script>
  *
  * @package Arx\classes
+ *
  */
-class Asset extends singleton {
+class Asset extends singleton
+{
 
     protected $_aInstances = array();
 
-    public static function js($data = array(), $param = array(
-            'compiled' => false
-        )){
+    public static function js($data = array(), $params = array(
+        'compiled' => false,
+        'attributes' => [],
+        'secure' => false,
+    ))
+    {
 
-        return Load::js($data);
+        return Load::js($data, $params);
     }
 
-    public static function css($data = array(), $param = array(
-            'compiled' => false
-        )){
-
-        return Load::css($data);
+    public static function css($data = array(), $params = array(
+        'compiled' => false,
+        'attributes' => [],
+        'secure' => false,
+    ))
+    {
+        return Load::css($data, $params);
     }
+
 } 

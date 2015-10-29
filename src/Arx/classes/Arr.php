@@ -3,9 +3,9 @@
 use ReflectionMethod;
 
 /**
- * Arr
+ * Array Class with more features
  *
- * Array Class Helper, you can use it as stand-alone
+ * You can use it as stand-alone in any Php Project
  *
  * @category Utils
  * @package  Arx
@@ -18,8 +18,6 @@ class Arr
 {
 
 #A
-
-
     /**
      * Array_assign_key assign the key
      *
@@ -262,7 +260,7 @@ class Arr
      * @param  mixed $value
      * @return array
      */
-    function array_set(&$array, $key, $value)
+    public static function array_set(&$array, $key, $value)
     {
         if (is_null($key)) return $array = $value;
 
@@ -1521,21 +1519,20 @@ class Arr
         return $key === false ? $default : $key;
     }
 
+
     /**
      * Sorts a multi-dimensional array by it's values.
      *
-     * @access    public
-     * @param The $array
-     * @param    array    The array to fetch from
+     * @param $array
+     * @param $key
      * @param string $order
      * @param int $sort_flags
-     * @throws \InvalidArgumentException
-     * @internal param \Arx\classes\The $string key to sort by
-     * @internal param \Arx\classes\The $string order (asc or desc)
-     * @return    array
+     * @return array
      */
     public static function sort($array, $key, $order = 'asc', $sort_flags = SORT_REGULAR)
     {
+        $c = [];
+
         if (!is_array($array)) {
             throw new \InvalidArgumentException('Arr::sort() - $array must be an array.');
         }

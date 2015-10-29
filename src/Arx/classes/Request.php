@@ -2,6 +2,13 @@
 
 use Arx;
 
+/**
+ * Class Request
+ *
+ * Request mockup for testing
+ *
+ * @package Arx\classes
+ */
 class Request {
 	public static function __callStatic($name, $args){
 		$app = Arx::getInstance()['request'];

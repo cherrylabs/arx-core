@@ -1,5 +1,12 @@
 <?php namespace Arx\traits;
 
+/**
+ * Class modelUserTrait
+ *
+ * Usefull moduleUser extender trait for your model
+ *
+ * @package Arx\traits
+ */
 trait modelUserTrait {
     /**
      * Get Meta

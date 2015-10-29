@@ -96,7 +96,10 @@ class BootstrapHelper extends Helper
         );
 
         if (!is_array($data)) {
-            return;
+
+            Throw new \Exception('$data must be the type of array');
+
+            return false;
         }
 
         $params = array_merge_recursive($defaults, $params);

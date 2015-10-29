@@ -6,7 +6,8 @@ use Illuminate\Support\Facades\Facade as ParentClass;
 /**
  * Class Facade
  *
- * Extends the Laravel Facade class and adding a smart resolve method, so you can modify params before sending to the parent method
+ * Extends the Laravel Facade class and adding a smart resolve method,
+ * so you can modify params before sending to the parent method and get CodeIntelligence
  *
  * @example
  *
@@ -18,7 +19,6 @@ use Illuminate\Support\Facades\Facade as ParentClass;
  * }
  *
  * }
- *
  *
  * @package Arx\classes
  */
