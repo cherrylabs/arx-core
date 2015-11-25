@@ -16,8 +16,13 @@ class CoreServiceProvider extends ServiceProvider {
      */
     protected $defer = false;
 
+    /**
+     * Define the commands to load from commands folder
+     * @var array
+     */
     protected $commands = [
-        'angular'
+        'angular',
+        'js'
     ];
 
     /**
@@ -46,19 +51,22 @@ class CoreServiceProvider extends ServiceProvider {
     {
         $app = $this->app;
 
-        $this->app['command.arx.angular'] = $this->app->share(function()
-        {
-            return new AngularCommand();
-        });
 
-        $this->commands('command.arx.angular');
+        /**
+         * Autoload commands
+         */
+        foreach($this->commands as $command){
 
-        $this->app['command.arx.sass'] = $this->app->share(function()
-        {
-            return new SassCommand();
-        });
+            $this->app['command.arx.'.$command] = $this->app->share(function() use ($command)
+            {
+                $commandClassName = 'Arx\\'.ucfirst($command) . 'Command';
+                return new $commandClassName();
+            });
 
-        // add Tpl extension (.tpl)
+            $this->commands('command.arx.'.$command);
+        }
+
+        // Add Custom Tpl extension (.tpl)
         $this->app['view']->addExtension('tpl.php',
             'tpl',
             function() use ($app) {
@@ -70,6 +78,7 @@ class CoreServiceProvider extends ServiceProvider {
             }
         );
 
+        // Add Shortcode handler
         $this->app['shortcode'] = $this->app->share(function($app)
         {
             return new Arx\classes\Shortcode();

@@ -3,8 +3,7 @@
 /**
  * <?=$classname?>
  */
-
-class <?=$classname?> extends <?=$classname?> {
+class <?=$classname?> {
 
 #A
 

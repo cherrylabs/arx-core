@@ -1,0 +1,14 @@
+'use strict';
+
+/**
+ * <%= name %>
+ */
+export default class <%= name %> {
+
+    /**
+     * @ngInject
+     */
+    constructor() {
+
+    }
+}
