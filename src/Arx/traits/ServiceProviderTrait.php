@@ -15,19 +15,18 @@ trait ServiceProviderTrait {
      *
      * @var array
      */
-    protected $providers = [
+    /*protected $providers = [
 
-    ];
+    ];*/
 
     /**
      * The facades that will be autoloaded
      *
      * @var array
      */
-    protected $facades = [
+    /*protected $facades = [
 
-    ];
-
+    ];*/
 
     /**
      * Register the providers.
