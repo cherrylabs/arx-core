@@ -8,7 +8,6 @@ use DB, Eloquent;
  *
  * Extends the EloquentModel by adding a Json value handler
  *
- * @deprecated please use eloquent model JsonMutator
  * @package Arx
  */
 class EloquentModel extends Eloquent {
