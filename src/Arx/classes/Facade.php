@@ -1,13 +1,12 @@
 <?php namespace Arx\classes;
 
-use Mockery\MockInterface;
 use Illuminate\Support\Facades\Facade as ParentClass;
 
 /**
  * Class Facade
  *
  * Extends the Laravel Facade class and adding a smart resolve method,
- * so you can modify params before sending to the parent method and get CodeIntelligence
+ * so you can modify params before sending to the parent method and get CodeIntelligence in your IDE
  *
  * @example
  *
@@ -26,7 +25,6 @@ class Facade extends ParentClass
 {
     /**
      * Auto-resolve function
-     *
      */
     public static function resolve(){
 
