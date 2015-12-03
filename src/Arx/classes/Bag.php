@@ -13,6 +13,9 @@
  *
  * print $bag['falsevar'] ?: 'title by default';
  *
+ * print $bag->has('title');
+ *
+ * print $bag->get('title', 'default');
  */
 
 class Bag implements \ArrayAccess, \Iterator {
