@@ -47,8 +47,6 @@ class CompilerEngine extends PhpEngine {
 
         if (is_array($attr)) {
             foreach ($attr as $k => $value) {
-
-
                 $body['attributes'][$k] = $value;
             }
         } else {
@@ -112,4 +110,13 @@ class CompilerEngine extends PhpEngine {
         return $this->_data->__var;
     }
 
+    public function toArray()
+    {
+        $toArray = json_decode(json_encode($this->_data->data), true);
+
+        unset($toArray['__env']);
+        unset($toArray['app']);
+
+        return $toArray;
+    }
 }
