@@ -92,7 +92,7 @@ class BaseController extends Controller {
      */
     public function viewMake($layout, $data = array())
     {
-        $data = array_merge($data, array('body' => array(
+        $data = Arr::merge($data, array('body' => array(
             'attributes' => array('class' => static::$tplPrefixClass.str_replace(array('::', '.'), '-', $layout))
         )));
 
