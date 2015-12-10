@@ -11,6 +11,7 @@ trait modelFilesHandlingTrait
 
 
     public static $filepath = null;
+    public static $currentPath = null;
 
     /**
      * Check if folders exists
