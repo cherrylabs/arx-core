@@ -2,7 +2,6 @@
 
 @section('head')
     @parent
-
     @section('css')
     <link href="//netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.css" rel="stylesheet">
     <link rel="stylesheet" href="<?php echo url('/packages/arx/core/dist/css/arx-combined.css') ?>" />

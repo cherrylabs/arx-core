@@ -37,6 +37,7 @@ trait ServiceProviderTrait {
             $this->app->register($provider);
         }
     }
+
     /**
      * Register the facades.
      */

@@ -132,12 +132,55 @@ class Str
         return $excerpt[0];
     } // limit_text_words
 
+    /**
+     * Check that a string begin with a specified characters
+     * @param $character
+     * @param $string
+     * @return string
+     */
+    public static function mustBeginWith($character = '/', $string = ''){
+        if (strlen($string) > 0) {
+            if (substr($string, 0, 1) != $character) {
+                return $character.$string;
+            } else {
+                return $string;
+            }
+        } else {
+            return $character;
+        }
+    }
 
+    /**
+     * Check that a string begin with a specified characters
+     * @param $character
+     * @param $string
+     * @return string
+     */
+    public static function mustEndWith($character = '/', $string = ''){
+        if (strlen($string) > 0) {
+            if (substr($string, strlen($string) -1, 1) != $character) {
+                return $string . $character;
+            } else {
+                return $string;
+            }
+        } else {
+            return $character;
+        }
+    }
+
+
+    /**
+     * Remove accents
+     *
+     * @param $str
+     * @param string $charset
+     * @return mixed|string
+     */
     public static function removeAccents($str, $charset = 'utf-8') {
         $str = htmlentities($str, ENT_NOQUOTES, $charset);
         $str = preg_replace('#\&([A-za-z])(?:acute|cedil|circ|grave|ring|tilde|uml|uro)\;#', '\1', $str);
-        $str = preg_replace('#\&([A-za-z]{2})(?:lig)\;#', '\1', $str); // pour les ligatures e.g. '&oelig;'
-        $str = preg_replace('#\&[^;]+\;#', '', $str); // supprime les autres caractères
+        $str = preg_replace('#\&([A-za-z]{2})(?:lig)\;#', '\1', $str);
+        $str = preg_replace('#\&[^;]+\;#', '', $str);
 
         return $str;
     } // removeAccents

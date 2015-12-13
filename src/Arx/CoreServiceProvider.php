@@ -9,6 +9,8 @@ use Illuminate\Support\ServiceProvider;
 
 class CoreServiceProvider extends ServiceProvider {
 
+    use ServiceProviderTrait;
+
     /**
      * Indicates if loading of the provider is deferred.
      *

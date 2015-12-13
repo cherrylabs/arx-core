@@ -1,13 +1,22 @@
 <?php namespace Arx;
 
 use Arx\classes\view\engines\PhpEngine;
+use Arx\classes\view\engines\tpl\TplCompiler;
 use Illuminate\Support\ServiceProvider;
 use Arx\classes\view\engines\CompilerEngine;
+use Illuminate\Support\ViewErrorBag;
 use Illuminate\View\Engines\EngineResolver;
 use Illuminate\View\Compilers\BladeCompiler;
 use Arx\classes\view\FileViewFinder;
 use Illuminate\View\Factory;
 
+/**
+ * Class ViewServiceProvider
+ *
+ * Custom view service provider to enable Tpl Engine
+ *
+ * @package Arx
+ */
 class ViewServiceProvider extends ServiceProvider {
 
     /**

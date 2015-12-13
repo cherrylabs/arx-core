@@ -1,5 +1,12 @@
 <?php namespace Arx;
 
+/**
+ * Contract for an ApiService adapter
+ *
+ * Describing what method should have an Api Service at least
+ *
+ * @package Arx
+ */
 interface ApiInterface {
 
     /**
