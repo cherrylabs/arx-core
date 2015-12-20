@@ -2,12 +2,6 @@
 /**
  * Helper loader and debug functions
  */
-if ( ! function_exists('\dd'))
-{
-    function dd(){
-        return call_user_func_array('Arx\classes\Utils::predie', func_get_args());
-    }
-}
 
 if ( ! function_exists('\ddd'))
 {
@@ -27,21 +21,6 @@ if ( ! function_exists('\de'))
 {
     function de(){
         return call_user_func_array('Arx\classes\Utils::predie', func_get_args());
-    }
-}
-
-
-if ( ! function_exists('\deb'))
-{
-    function deb(){
-        return call_user_func_array('Arx\classes\Utils::debug', func_get_args());
-    }
-}
-
-if ( ! function_exists('\pre'))
-{
-    function pre(){
-        return call_user_func_array('Arx\classes\Utils::pre', func_get_args());
     }
 }
 

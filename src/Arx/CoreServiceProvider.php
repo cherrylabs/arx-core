@@ -1,9 +1,10 @@
 <?php namespace Arx;
 
 require_once __DIR__ . '/core.php';
+require_once __DIR__ . '/traits/ServiceProviderTrait.php';
 
 use Arx\classes\view\engines\CompilerEngine;
-use View,Config,Lang,Arx;
+use Arx;
 
 use Illuminate\Support\ServiceProvider;
 
@@ -12,20 +13,45 @@ class CoreServiceProvider extends ServiceProvider {
     use ServiceProviderTrait;
 
     /**
+     * The providers autoloaded by this module
+     *
+     * @var array
+     */
+    public $providers = [
+        'Collective\Html\HtmlServiceProvider',
+        'Barryvdh\LaravelIdeHelper\IdeHelperServiceProvider'
+    ];
+
+    /**
+     * The facades that will be autoloaded
+     *
+     * @var array
+     */
+    public $facades = [
+        # Missing Facades helpers
+        'Controller' => 'Illuminate\Routing\Controller',
+        'HTML' => 'Collective\Html\HtmlFacade',
+        'Form' => 'Collective\Html\FormFacade',
+        # Arx
+        'Asset' => 'Arx\classes\Asset',
+        'Shortcode' => 'Arx\facades\Shortcode',
+        'Arr' => 'Arx\classes\Arr',
+        'Hook' => 'Arx\classes\Hook',
+        'Dummy' => 'Arx\classes\Dummy',
+        'Utils' => 'Arx\classes\Utils',
+    ];
+
+    public $commands = [
+        'make:js' => 'Arx\\JsCommand',
+        'make:angular' => 'Arx\\AngularCommand',
+    ];
+
+    /**
      * Indicates if loading of the provider is deferred.
      *
      * @var bool
      */
     protected $defer = false;
-
-    /**
-     * Define the commands to load from commands folder
-     * @var array
-     */
-    protected $commands = [
-        'angular',
-        'js'
-    ];
 
     /**
      * Bootstrap the application events.
@@ -38,9 +64,6 @@ class CoreServiceProvider extends ServiceProvider {
 
         $this->loadViewsFrom(__DIR__.'/../views', 'arx');
         $this->loadTranslationsFrom(__DIR__.'/../lang', 'arx');
-
-        require_once __DIR__.'/start/artisan.php';
-        require_once __DIR__.'/start/global.php';
         require_once __DIR__.'/helpers.php';
     }
 
@@ -52,21 +75,6 @@ class CoreServiceProvider extends ServiceProvider {
     public function register()
     {
         $app = $this->app;
-
-
-        /**
-         * Autoload commands
-         */
-        foreach($this->commands as $command){
-
-            $this->app['command.arx.'.$command] = $this->app->share(function() use ($command)
-            {
-                $commandClassName = 'Arx\\'.ucfirst($command) . 'Command';
-                return new $commandClassName();
-            });
-
-            $this->commands('command.arx.'.$command);
-        }
 
         // Add Custom Tpl extension (.tpl)
         $this->app['view']->addExtension('tpl.php',
@@ -85,6 +93,10 @@ class CoreServiceProvider extends ServiceProvider {
         {
             return new Arx\classes\Shortcode();
         });
+
+        $this->registerFacades();
+        $this->registerProviders();
+        $this->registerCommands();
     }
 
     /**

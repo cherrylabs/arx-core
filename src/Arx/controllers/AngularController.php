@@ -10,7 +10,7 @@ use App, Request, Response;
  *
  * @package Arx\controllers
  */
-class Angular extends \Controller
+class AngularController extends \Controller
 {
     /**
      * @param array $parameters
@@ -31,15 +31,3 @@ class Angular extends \Controller
     }
 
 }
-
-namespace Arx;
-
-use Arx\controllers\Angular;
-
-/**
- * Class AngularController
- *
- * @deprecated please use PSR-4 instead
- * @package Arx
- */
-class AngularController extends Angular{}

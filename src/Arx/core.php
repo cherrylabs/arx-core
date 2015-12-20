@@ -266,7 +266,7 @@ if(!class_exists('Arx')){
                     include end($aNamespaces[$composerName]) . DS. 'models' . DS . $className . '.php';
                 }
             } catch (Exception $e) {
-                #trigger_error($e);
+
             }
         }
     }

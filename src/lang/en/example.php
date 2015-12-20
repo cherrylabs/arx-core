@@ -1,4 +1,4 @@
-<?php //
+<?php
 
 return array(
     'project' => array(
@@ -9,8 +9,5 @@ return array(
             'name' => 'Home',
             'link' => '#home'
         )
-    ),
-    'carousel' => array(
-
     )
 );

@@ -1,4 +1,4 @@
-<?php namespace Arx;
+<?php namespace Arx\controllers;
 
 use Arx\classes\Convert;
 use Assetic\Asset\FileAsset, Assetic\Asset\AssetCollection;
@@ -107,5 +107,11 @@ class AssetsController extends BaseController {
 
         return false;
     }
+
+}
+
+namespace Arx;
+
+class AssetsController extends controllers\AssetsController{
 
 }

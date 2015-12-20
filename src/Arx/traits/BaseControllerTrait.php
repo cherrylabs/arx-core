@@ -1,22 +1,13 @@
 <?php namespace Arx;
 
 use Arx\classes\Arr;
-use Controller, View, Hook;
+use Arx\classes\Hook;
+use View;
 
-/**
- * Class BaseController
- *
- * Better BaseController inspired by CodeIgniter Data flow (merge data value) and add a usefull tpl-class in the view
- * for the body
- *
- * @deprecated Please use BaseControllerTrait instead since Laravel 5.1
- * @package Arx
- */
-class BaseController extends Controller {
-
-    public static $tplPrefixClass = "tpl-";
-
+trait BaseControllerTrait
+{
     public $data = array();
+    public static $tplPrefixClass = "tpl-";
 
     /**
      * Setup the layout used by the controller.
@@ -67,7 +58,7 @@ class BaseController extends Controller {
         }
 
         # Put vars in javascript
-        \Hook::put('__app', $this->data);
+        Hook::put('__app', $this->data);
 
         return $data;
     } // getCommonVars
@@ -106,7 +97,3 @@ class BaseController extends Controller {
         return $this->layout->content = View::make($layout, $this->getCommonVars($data));
     } // viewContent
 }
-
-namespace Arx\controllers;
-
-class BaseController extends \Arx\BaseController{}

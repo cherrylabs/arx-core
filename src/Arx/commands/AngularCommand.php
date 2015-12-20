@@ -1,12 +1,10 @@
 <?php namespace Arx;
 
 use Arx;
-use Arr;
 use Illuminate\Console\Command;
 use Symfony\Component\Console\Input\InputOption;
 use Symfony\Component\Console\Input\InputArgument;
 
-use Arx\classes\Composer;
 use Arx\classes\Str;
 
 class AngularCommand extends Command {

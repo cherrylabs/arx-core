@@ -1,7 +1,7 @@
 {
     "name": "arx/core",
     "type" : "library",
-    "description": "Arx core is a boosted web development kit for PHP project including usefull classes, starter template, starter assets etc.",
+    "description": "Arx core is a boosted web development kit for PHP/Laravel project including usefull classes, traits, starter template,etc.",
     "homepage": "http://www.arx.io",
     "license": "MIT",
     "authors": [
@@ -12,16 +12,16 @@
             "role": "Back-end developer"
         },
         {
-            "name": "Joachim Corbay",
-            "email": "joachim@cherrypulp.com",
-            "homepage": "http://www.cherrypulp.com",
-            "role": "Back-end developer"
-        },
-        {
             "name": "Stephan Zych",
             "email": "stephan@cherrypulp.com",
             "homepage": "http://www.cherrypulp.com",
             "role": "Front-end developer"
+        },
+        {
+            "name": "Joachim Corbay",
+            "email": "joachim@cherrypulp.com",
+            "homepage": "http://www.cherrypulp.com",
+            "role": "Back-end developer"
         },
         {
             "name": "Simon Vreux",
@@ -33,11 +33,11 @@
     "require": {
         "php": ">=5.4",
         "laravel/framework": "5.x",
-        "illuminate/html" : "5.x",
+        "laravelcollective/html": "5.*",
         "doctrine/dbal": "~2.3",
         "kriswallsmith/assetic" : "*",
-        "fzaninotto/faker" : "*",
-        "raveren/kint": "1.0.x-dev"
+        "raveren/kint": "*",
+        "filp/whoops" : "*"
     },
     "require-dev": {
         "phpunit/phpunit": "~4.0",
@@ -45,18 +45,23 @@
     },
     "autoload": {
         "classmap": [
+            "src/Arx/classes",
             "src/Arx/commands",
             "src/Arx/controllers",
             "src/Arx/facades",
             "src/Arx/helpers",
             "src/Arx/interfaces",
+            "src/Arx/middlewares",
             "src/Arx/models",
-            "src/Arx/providers"
+            "src/Arx/providers",
+            "src/Arx/traits"
         ],
-        "psr-0": {
-            "Arx": "src"
+        "psr-4": {
+            "Arx\\": "src/Arx/"
         },
-        "files" : ["src/Arx/core.php"]
+        "files" : [
+            "src/Arx/core.php"
+        ]
     },
     "config": {
         "preferred-install": "dist"

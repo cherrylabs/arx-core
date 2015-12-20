@@ -1,231 +1,81 @@
-# Arx Core v. 5.0.0
+# Arx Core v. 5.1
 
 [![Latest Stable Version](https://poser.pugx.org/arx/core/v/stable.svg)](https://packagist.org/packages/arx/core) [![Total Downloads](https://poser.pugx.org/arx/core/downloads.svg)](https://packagist.org/packages/arx/core) [![Latest Unstable Version](https://poser.pugx.org/arx/core/v/unstable.svg)](https://packagist.org/packages/arx/core) [![License](https://poser.pugx.org/arx/core/license.svg)](https://packagist.org/packages/arx/core)
 
-Arx core is the base of the [Arx project](http://www.arx.io). It gives some usefull classes, templates, assets for Laravel but some classes are usable in every kind of project like Wordpress, Drupal, Prestashop or even your custom PHP project !
+Arx Core is a library tools for PHP and Laravel giving some usefull classes, traits, and resources to help you build awesome PHP Projects.
 
 It is highly maintened by a [dedicated agency](http://www.cherrypulp.com), so don't hesitate to make your comments or bug fixes.
 
-** This is a package for Laravel 5.x project **
+# 1. Getting Started
 
-# Getting Started
-
-## 1. Install Composer (skip this if you know how)
-
-Arx uses Composer to manage its dependencies. First, download a copy of the composer.phar. Once you have the PHAR archive, you can either keep it in your local project directory or move to usr/local/bin to use it globally on your system. On Windows, you can use the Composer Windows installer.
+## 1.1 Install via Composer
 
 For more information about Composer [http://www.getcomposer.org](http://www.getcomposer.org)
 
-# Install Arx-core only
-
 Install Composer on your project root put then :
 
-    php composer.phar require arx/core
+````bash
+    composer require arx/core=5.1.x
+````
 
-or add in your existing composer.json file
+or add in your existing composer.json file add this in the require
 
-    "arx-core" : "4.2.x"
+````json
+    "require": {
+        "[...]",
+        "arx/core":"5.1.x"
+    },
+````
 
-    php composer.phar install or update
+Then you can access to the Arx kit in your PHP project (if you require_once /vendor/autoload.php).
 
-# Install only one file class
+## 1.2 Install in Laravel
+
+In your Laravel project, just add this in your config/app.php
+
+````php
+    'providers' => [
+        [...],
+        \Arx\CoreServiceProvider::class
+    ]
+````
+It will autoload, some usefull Facades, and providers for Laravel behind the scenes. See the CoreServiceProvider class for a listing.
+
+## 1.3 Install only one file class (only what you need)
 
 You can by the way only download what you need. We try to do our best to make every class usable as stand-alone.
 
 Example : 
 
-curl -O https://raw.githubusercontent.com/cherrylabs/arx-core/master/src/Arx/classes/Utils.php
+````bash
+curl -O https://raw.githubusercontent.com/cherrylabs/arx-core/master/src/Arx/classes/Str.php
+````
 
-curl -O https://raw.githubusercontent.com/cherrylabs/arx-core/master/src/Arx/classes/Image.php
+[More info here](https://github.com/cherrylabs/arx-core/wiki/Stand-alone-script)
 
-curl -O https://raw.githubusercontent.com/cherrylabs/arx-core/master/src/Arx/classes/Arr.php
+## 3. Structure and philosophy
 
-Unfortunately some classes need some dependencies that you have to include in your Composer.
+The structure and the philosophy behind Arx are "Keep It Simple Stupid" and "Don't Reinvent the Wheel".
 
-# How to use it ?
+There are some classes and flows that you might uses in any kind of Php project - so why reinvent the wheel ?
 
-In your php file, add : 
+### Arx/classes (for any kind of Php Project)
 
-    require '{your_project_path}/vendors/autoload.php';
+This folder contains some usefull classes that you might use in your PHP project. Example : an Image Class, a Dummy generator, some String Helpers, a Markdown reader etc.
 
-Now you can access to the Arx namespace referring to '/vendor/arx/core/src/Arx', that's it !
+### Arx/commands (for Laravel)
 
-## 1. Enabling debug helpers functions
+This will add some command in your Laravel Project like an ES6 Js Generator.
 
-If you want you can enable debug helpers functions with
+### Arx/controllers (for Laravel)
 
-    Arx::ignite();
+This is some usefull Laravel Controller for handling routing protection, or improve your default BaseController.
 
-This will give you a better debug view than classic var_dump adding function (only if they doesn't exist) : 
-
-    d($XXX); function make a better var_dump with the time and the line of code where it's called
-    de($XXX); do the same with a die at the end
-    k(); => will output a die with execution time info and the line of code where it's called
-
-## 2. How to use Arx classes ?
-
-To use an arx class, simply refer to the files starting with the Arx namespace.
-
-Example : 
-
-    Arx\classes\Utils => refers to /vendor/arx/core/src/Arx/classes/Utils.php
-    Arx\classes\Dummy => refers to /vendor/arx/core/src/Arx/classes/Dummy.php
-    Arx\classes\Image => refers to /vendor/arx/core/src/Arx/classes/Image.php
-    Arx\helpers\Bootstrap => refers to /vendor/arx/core/src/Arx/helpers/Bootstrap.php etc...
-
-You can also make a reference in your php file like this : 
-
-    <?php
-    
-    require '{your_project_path}/vendor/autoload.php';
-    
-    use Arx\classes\Dummy; // this will create a class alias Dummy refering to Arx\classes\Dummy
-    use Arx\classes\Utils as u; // this will create a class alias u refering to Arx\classes\Utils
-    use Arx\classes\Arr; // You can add as much class as your want !
-    
-    $test = array(
-            'content' =>  Dummy::text(256), // => generate a dummy text of 256 character
-            'image' =>  Dummy::image('400x300'), // => generate a dummy image link of 400x300
-            'email' =>  u::randEmail(), // => generate a random email
-            );
-    
-    u::jsonDie($test); // refers to Arx\classes\Utils.php @ method jsonDie will output a json with the array
-
-
-For a complete list of available classes in Arx go to : 
-[Github link](https://github.com/cherrylabs/arx-core/tree/master/src/Arx/classes)
-
-## 2.1 How to use Config class like in Laravel ?
-
-The Config class works like in Laravel except that you need to load a folder to have the config example :
-
-    <?php
-
-        require_once __DIR__.'/vendor/autoload.php';
-        
-        use Arx\classes\Config;
-
-        Arx::ignite();
-
-        Config::load('{your config folder or file}');
-
-        Config::get('yourarrayorfile.keyofarray');
-
-
-
-## 2.2 How to use Laravel ORM class and Eloquent Model ?
-
-The Db class wrap the beautiful Db and Eloquent Laravel class. To use it outside a Laravel project simply config the class with Arx\classes\Db::config({CONFIG LIKE IN LARAVEL}) :
-
-    <?php
-
-    require_once __DIR__.'/vendor/autoload.php';
-
-    Arx::ignite();
-
-    // Using Database
-
-    use Arx\classes\Db;
-
-    Db::config(
-        array(
-          'driver'    => 'mysql',
-          'host'      => 'localhost',
-          'database'  => 'database',
-          'username'  => 'root',
-          'password'  => '',
-          'charset'   => 'utf8',
-          'collation' => 'utf8_unicode_ci',
-          'prefix'    => '',
-        )
-    );
-
-    // Example of Table Schema creation
-    if(!Db::schema()->hasTable('users')){
-        Db::schema()->create('users', function($table){
-            $table->increments('id');
-            $table->string('email')->unique();
-            $table->timestamps();
-        });
-    }
-
-    // Example of EloquentModel
-    class User extends Arx\EloquentModel {
-
-    }
-
-    $user = new User;
-
-    // Generate a random email for demo
-    $user->email = \Arx\classes\Utils::randEmail();
-
-    $user->save();
-
-    de(Db::table('users')->get());
-
-## 2.3 How to use Mail class ?
-
-The mail class works almost like in Laravel, you need to config the class before to use it :
-
-    <?php
-
-    require_once __DIR__.'/vendor/autoload.php';
-    
-    use Arx\classes\Mail;
-    
-    #1. Config the Mail class
-    Mail::config(array(
-
-        'driver' => 'smtp',
-
-        'host' => 'in.mailjet.com',
-
-        'port' => 587,
-
-        'from' => array('address' => '{your_adress}', 'name' => '{your_name}'),
-
-        'encryption' => 'tls',
-
-        'username' => '{yourusername}',
-
-        'password' => '{yourpassword}',
-
-        'sendmail' => '/usr/sbin/sendmail -bs',
-
-        'pretend' => false,
-
-    ));
-    
-    # Send and email
-    Mail::send(
-        // Send message like the SwiftMessage : http://swiftmailer.org/docs/messages.html
-        Mail::message()
-        ->setFrom('test@{your url}.com', 'TEST')
-        ->setTo(array('{your_EMAIL}'))
-        ->setBody('TEST')
-    );
-
-## 3. How to use other folders ?
-
-**/!\** The rest are for now **only available for a Laravel Project** but we are working hard to make it most 
-compatible with other popular project like Wordpress, Drupal, Prestashop with their respective adapter package.
-If you are starting a **new project**, you may want to **use our complete and ready to start package** including Laravel, Arx Core, Bootstrap, Font-Awesome, Bower and Grunt config and AngularJS.
-    
-=> **Go to our [Arx complete starter project](https://github.com/cherrylabs/arx)**
-
-### 3.1 Arx/config
-
-This folder contains some default and usually used config for Arx and Laravel project (example ide-helper generator, way generator, debugbar etc.). In your new project you can copy paste any configuration suggestion if you want or make a array_merge with config and your config.
-
-### 3.2 Arx/controllers
-
-This folder contains some usefull default controller for your project example : default asset controller, user controller etc. => /!\ it still in work in progress => don't hesitate to suggest your default controller or needs [here](https://github.com/cherrylabs/arx/issues).
-
-### 3.3 Arx/facades
+### Arx/facades (for Laravel)
 
 This folder contains Facade design pattern class, typically they're the class that can be called statically but refers to an instanciated class inside the App constructor classes (like in Laravel Route class, Auth, Mail etc...).
 
-We've added a little resolver helper method so you can manipulate data before sending to the facadeAccessor or simply give the ability to have information to the method with CodeIntel.
+We've added a little resolver helper method so you can manipulate data before sending to the facadeAccessor or simply give the ability to have information to the method with Code Intelligence.
 
 Example : 
 
@@ -257,13 +107,26 @@ Example :
     protected static function getFacadeAccessor() { return 'config'; }
     }
 
-### 3.4 Arx/helpers
+### Arx/helpers (PHP and Laravel)
 
 Contains some class Helpers for HTML construct (like Bootstrap structure helper) => W.I.P.
 
+
+### Arx/interfaces (PHP)
+
+Contains some Interface that you might use in your project to ensure that is standard.
+
+### Arx/middlewares (Laravel)
+
+Middlewares that you might use in your Laravel project.
+
+### Arx/models (PHP/Laravel)
+
+Some model that you might reuse in your Php Project.
+
 ### 3.5 Arx/providers
 
-Define providers class according to Laravel and Symfony standards.
+Define Service providers class, provided by Arx/core
 
 ### 3.6 Arx/traits
 

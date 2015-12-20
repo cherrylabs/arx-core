@@ -15,21 +15,38 @@ trait ServiceProviderTrait {
      *
      * @var array
      */
-    /*protected $providers = [
+    /*public $providers = [
+
+    ];
+
+    public $facades = [
+
+    ];
+
+    public $commands = [
 
     ];*/
 
     /**
-     * The facades that will be autoloaded
-     *
-     * @var array
+     * Register commands helper
      */
-    /*protected $facades = [
+    public function registerCommands(){
+        foreach($this->commands as $name => $class){
 
-    ];*/
+            $dotName = str_replace(':', '.', $name);
+
+            $this->app['command.'.$dotName] = $this->app->share(function() use ($class)
+            {
+                $commandClassName = $class;
+                return new $commandClassName();
+            });
+
+            $this->commands('command.'.$dotName);
+        }
+    }
 
     /**
-     * Register the providers.
+     * Register providers helpers
      */
     public function registerProviders()
     {
@@ -39,7 +56,7 @@ trait ServiceProviderTrait {
     }
 
     /**
-     * Register the facades.
+     * Register facades helpers
      */
     public function registerFacades()
     {
