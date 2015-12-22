@@ -86,7 +86,7 @@ $_kintSettings['charEncodings'] = array();
 
 
 /** @var int max array/object levels to go deep, if zero no limits are applied */
-$_kintSettings['maxLevels'] = 8;
+$_kintSettings['maxLevels'] = 5;
 
 
 /** @var bool whether dumped indexed arrays that are in ideal sequence are displayed */
@@ -95,7 +95,6 @@ $_kintSettings['hideSequentialKeys'] = true;
 
 /** @var string name of theme for rich view */
 $_kintSettings['theme'] = 'original';
-
 
 /**
  * @var callback filters array/object keys before outputting; return false if you do not wish to see it in the output

@@ -1,8 +1,8 @@
 <?php namespace Arx\classes;
 
+use Arx\classes\debug\Kint;
 use DebugBar\StandardDebugBar;
 use App;
-use Kint;
 
 /**
  * Class Debug handler using Kint
