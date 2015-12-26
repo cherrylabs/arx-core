@@ -18,8 +18,7 @@ class CoreServiceProvider extends ServiceProvider {
      * @var array
      */
     public $providers = [
-        'Collective\Html\HtmlServiceProvider',
-        'Barryvdh\LaravelIdeHelper\IdeHelperServiceProvider'
+        'Collective\Html\HtmlServiceProvider'
     ];
 
     /**

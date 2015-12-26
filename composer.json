@@ -36,7 +36,6 @@
         "laravelcollective/html": "5.*",
         "doctrine/dbal": "~2.3",
         "kriswallsmith/assetic" : "*",
-        "raveren/kint": "*",
         "filp/whoops" : "*"
     },
     "require-dev": {
