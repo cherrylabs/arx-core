@@ -1,4 +1,4 @@
-# Arx Core v. 5.1
+# Arx Core v. 5.2
 
 [![Latest Stable Version](https://poser.pugx.org/arx/core/v/stable.svg)](https://packagist.org/packages/arx/core) [![Total Downloads](https://poser.pugx.org/arx/core/downloads.svg)](https://packagist.org/packages/arx/core) [![Latest Unstable Version](https://poser.pugx.org/arx/core/v/unstable.svg)](https://packagist.org/packages/arx/core) [![License](https://poser.pugx.org/arx/core/license.svg)](https://packagist.org/packages/arx/core)
 
@@ -15,7 +15,7 @@ For more information about Composer [http://www.getcomposer.org](http://www.getc
 Install Composer on your project root put then :
 
 ````bash
-    composer require arx/core=5.1.x
+    composer require arx/core=5.2.x
 ````
 
 or add in your existing composer.json file add this in the require
@@ -23,7 +23,7 @@ or add in your existing composer.json file add this in the require
 ````json
     "require": {
         "[...]",
-        "arx/core":"5.1.x"
+        "arx/core":"5.2.x"
     },
 ````
 
