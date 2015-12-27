@@ -1,6 +1,6 @@
 <?php namespace Arx\classes;
 
-use \Illuminate\Html\FormFacade;
+use Collective\Html\FormFacade;
 
 /**
  * Class Form
@@ -9,6 +9,6 @@ use \Illuminate\Html\FormFacade;
  *
  * @package Arx\classes
  */
-class Form extends \Illuminate\Html\FormFacade {
+class Form extends FormFacade {
 
 }
