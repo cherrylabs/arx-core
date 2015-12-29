@@ -30,3 +30,30 @@ if ( ! function_exists('\k'))
         return call_user_func_array('Arx\classes\Utils::k', func_get_args());
     }
 }
+
+if ( ! function_exists('\notify'))
+{
+    /**
+     * @param null $message
+     * @param string $type
+     *
+     * @return Arx\classes\Notify
+     */
+    function notify($message = null, $type = 'info'){
+        $notify = app('notify');
+
+        if (is_string($message)) {
+            return $notify->{$type}($message);
+        } elseif (is_array($message)) {
+
+            if (!is_array($type)) {
+                $type = [
+                    'type' => $type
+                ];
+            }
+
+            return $notify->set($message, $type);
+        }
+        return $notify;
+    }
+}
