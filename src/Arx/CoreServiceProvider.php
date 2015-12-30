@@ -31,6 +31,7 @@ class CoreServiceProvider extends ServiceProvider {
         'Controller' => 'Illuminate\Routing\Controller',
         'HTML' => 'Collective\Html\HtmlFacade',
         'Form' => 'Collective\Html\FormFacade',
+        'Input' => '\Illuminate\Support\Facades\Input',
         # Arx
         'Asset' => 'Arx\classes\Asset',
         'Shortcode' => 'Arx\facades\Shortcode',
