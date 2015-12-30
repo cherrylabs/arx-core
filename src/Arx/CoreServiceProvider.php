@@ -94,6 +94,10 @@ class CoreServiceProvider extends ServiceProvider {
             return new Arx\classes\Shortcode();
         });
 
+        $this->app->singleton('notify', function () {
+            return $this->app->make('Arx\classes\Notify');
+        });
+
         $this->registerFacades();
         $this->registerProviders();
         $this->registerCommands();
@@ -107,7 +111,8 @@ class CoreServiceProvider extends ServiceProvider {
     public function provides()
     {
         return array(
-            'shortcode'
+            'shortcode',
+            'notify'
         );
     }
 
