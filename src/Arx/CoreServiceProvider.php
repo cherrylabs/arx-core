@@ -44,6 +44,7 @@ class CoreServiceProvider extends ServiceProvider {
     public $commands = [
         'make:js' => 'Arx\\JsCommand',
         'make:angular' => 'Arx\\AngularCommand',
+        'arx:publish-assets' => 'Arx\\PublishCommand',
     ];
 
     /**
