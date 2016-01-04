@@ -70,7 +70,7 @@ gulp.task('css', 'Handle CSS', function () {
             .pipe($.sourcemaps.init())
             .pipe($.sass({errLogToConsole: true}))
             .pipe($.autoprefixer(config.autoprefixer))
-            .pipe($.csso())
+            .pipe($.csso({ disableStructureMinimization: false }))
             .pipe($.rename({ extname: '.min.css' }))
             .pipe($.sourcemaps.write('./', { includeContent: true }))
             .pipe(gulp.dest(config.dir.dist + '/css'));
