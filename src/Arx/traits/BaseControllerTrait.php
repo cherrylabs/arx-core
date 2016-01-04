@@ -14,13 +14,12 @@ trait BaseControllerTrait
      *
      * @return void
      */
-    protected function setupLayout()
+    public function setupLayout()
     {
         if (isset($this->layout) && !is_null($this->layout)) {
             $data = array();
-
             // Enter here data that have to be accessible everywhere
-            $this->layout = View::make($this->layout, $data);
+            $this->layout = view($this->layout, $data);
         }
     } // setupLayout
 
@@ -72,13 +71,9 @@ trait BaseControllerTrait
      */
     public function viewMake($layout, $data = array())
     {
-        $data = Arr::merge($data, array('body' => array(
-            'attributes' => array('class' => static::$tplPrefixClass.str_replace(array('::', '.'), '-', $layout))
-        )));
+        $data = $this->setBodyAttributes($layout, $data);
 
-        $data = $this->getCommonVars($data);
-
-        return View::make($layout, $data);
+        return view($layout, $data);
     } // viewMake
 
     /**
@@ -90,10 +85,24 @@ trait BaseControllerTrait
      */
     public function viewContent($layout, $data = array())
     {
-        $data = array_merge($data, array('body' => array(
-            'attributes' => array('class' => static::$tplPrefixClass.str_replace('::', '-', $layout))
+        $data = $this->setBodyAttributes($layout, $data);
+
+        return $this->layout->content = view($layout, $data);
+    } // viewContent
+
+    /**
+     * Set body attributes
+     */
+    public function setBodyAttributes($layout, $data = array()){
+
+        $data = Arr::merge($data, array('body' => array(
+            'attributes' => array('class' => static::$tplPrefixClass.str_replace(array('::', '.'), '-', $layout))
         )));
 
-        return $this->layout->content = View::make($layout, $this->getCommonVars($data));
-    } // viewContent
+        $data = $this->getCommonVars($data);
+
+        view()->share('body', $data['body']);
+
+        return $data;
+    }
 }
