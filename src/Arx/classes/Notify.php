@@ -31,7 +31,7 @@ class Notify
      */
     function __construct(Request $request)
     {
-        $this->session = $request->session();
+        $this->session = app('request')->session();
         $this->hook = new Hook();
     }
 
