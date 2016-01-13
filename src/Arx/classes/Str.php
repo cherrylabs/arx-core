@@ -168,6 +168,38 @@ class Str
         }
     }
 
+    /**
+     * Remove character if begin with particular character
+     *
+     * @param string $character
+     * @param string $string
+     * @return string
+     */
+    public static function mustNotBeginWith($character = '/', $string = '')
+    {
+        if (preg_match("/" . preg_quote($character, '/') . "/i", $string)) {
+            return substr($string, count($character));
+        }
+
+        return $string;
+    }
+
+    /**
+     * Remove character if begin with particular character
+     *
+     * @param string $character
+     * @param string $string
+     * @return string
+     */
+    public static function mustNotEndWith($character = '/', $string = '')
+    {
+        if (preg_match('/' . preg_quote($character, '/') . '$/i', $string)) {
+            return substr($string, 0, 0 - count($character));
+        }
+
+        return $string;
+    }
+
 
     /**
      * Remove accents
@@ -340,6 +372,6 @@ class Str
         $str = str_replace(array(' ', 'é', 'è', 'ó', 'à', 'â', ',', '?', "'"), array('+', '%E9', '%E8', 'o', '%E0', '%E2', '%82', '%3F', "%27"), $str);
 
         return $str;
-    } // toSMS
+    }
 
 } // class::Strings

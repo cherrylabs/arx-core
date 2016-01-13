@@ -14,30 +14,21 @@
 class Date
 {
      /**
-     * Differences in days between to date
-     *
-     * Takes a month/year as input and returns the number of days
-     * for the given month/year. Takes leap years into consideration.
-     *
-     * Credit: http://codeigniter.com/user_guide/helpers/date_helper.html
-     * License: http://codeigniter.com/user_guide/license.html
-     *
-     * @param int $month Month
-     * @param int $year  Year
+     * Differences in days between 2 date
      *
      * @return int
      */
-    public static function daysDifference($start, $end = null) {
-        $start = strtotime($start);
+    public static function daysDifference($start, $end = null, $abs = true) {
+        $start = new \DateTime($start);
         
         if(!$end){
-            $end = strtotime('today');
+            $end = new \DateTime('today');
         } else {
-            $end = strtotime($end);
+            $end = new \DateTime($end);
         }
-        
-        $diff = $end - $start;
-        return round($diff / 86400);
+        $interval = $start->diff($end);
+
+        return $abs ? abs($interval->format('%R%a')) : $interval->format('%R%a');
     }
 
     /**
