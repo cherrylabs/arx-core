@@ -16,8 +16,8 @@ trait modelUserTrait {
      */
     public function getNameAttribute($value)
     {
-        if(!empty($this->name)){
-            return $this->name;
+        if($value){
+            return $value;
         } elseif(!empty($this->first_name) && !empty($this->last_name)){
             return $this->first_name.' '.$this->last_name;
         } elseif(!empty($this->first_name) && empty($this->last_name)){
