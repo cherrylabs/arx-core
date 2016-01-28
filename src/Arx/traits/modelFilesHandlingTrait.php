@@ -9,9 +9,6 @@ use Input;
 trait modelFilesHandlingTrait
 {
 
-
-    public static $filepath = null;
-
     /**
      * Check if folders exists
      */
