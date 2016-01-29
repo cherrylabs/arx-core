@@ -290,7 +290,7 @@ class Str
         $aCleaned = array();
 
         foreach ($aMatch as $key => $v) {
-            if(is_string($v)){
+            if(!is_array($v) || !is_object($v)){
                 $aCleaned[$aDelimiter[0].$key.$aDelimiter[1]] = $v;
             }
         }
