@@ -11,26 +11,10 @@ use Illuminate\Foundation\AliasLoader;
 trait ServiceProviderTrait {
 
     /**
-     * The providers autoloaded by this module
-     *
-     * @var array
-     */
-    /*public $providers = [
-
-    ];
-
-    public $facades = [
-
-    ];
-
-    public $commands = [
-
-    ];*/
-
-    /**
      * Register commands helper
      */
     public function registerCommands(){
+
         foreach($this->commands as $name => $class){
 
             $dotName = str_replace(':', '.', $name);
