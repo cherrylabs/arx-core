@@ -27,7 +27,7 @@ class Asset extends singleton
     public static function js($data = array(), $params = array(
         'compiled' => false,
         'attributes' => [],
-        'secure' => false,
+        'secure' => null,
     ))
     {
 
@@ -37,7 +37,7 @@ class Asset extends singleton
     public static function css($data = array(), $params = array(
         'compiled' => false,
         'attributes' => [],
-        'secure' => false,
+        'secure' => null,
     ))
     {
         return Load::css($data, $params);

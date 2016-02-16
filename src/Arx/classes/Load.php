@@ -1,4 +1,5 @@
 <?php namespace Arx\classes;
+use Illuminate\Http\Request;
 
 /**
  * Class Load
@@ -23,6 +24,14 @@ class Load {
 	    ))
     {
         Arr::mergeWithDefaultParams($params);
+
+        if (!$params['secure']) {
+            try {
+                $params['secure'] = (new Request())->isSecure();
+            } catch (Exception $e) {
+
+            }
+        }
 
         $out = "\n";
 
@@ -52,6 +61,14 @@ class Load {
     ))
     {
         Arr::mergeWithDefaultParams($params);
+
+        if (!$params['secure']) {
+            try {
+                $params['secure'] = (new Request())->isSecure();
+            } catch (Exception $e) {
+
+            }
+        }
 
         $out = "\n";
 
