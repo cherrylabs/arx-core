@@ -103,7 +103,6 @@ if(!class_exists('Arx')){
             return __DIR__.($value ? DS. $value : '');
         }
 
-
         /**
          * Auto-detect environment
          *
@@ -131,7 +130,7 @@ if(!class_exists('Arx')){
         }
 
         /**
-         * Check if a class exist
+         * Check if a class exist before doing anything
          *
          * @param $class
          * @throws Exception
@@ -222,7 +221,7 @@ if(!class_exists('Arx')){
 
                 foreach($paths as $path){
                     if(is_file($fileName = $path.'/'.$fileName)){
-                        include $fileName;
+                        include_once $fileName;
                     }
                 }
             }
@@ -257,13 +256,13 @@ if(!class_exists('Arx')){
 
             try {
                 if(is_file($fileName = $pathsWorkbench . DS . strtolower($composerName) .DS. 'src' . DS . $fileName)){
-                    include $fileName;
+                    include_once $fileName;
                 } elseif(is_file($fileName = $pathsWorkbench . DS . $fileName)){
-                    include $fileName;
+                    include_once $fileName;
                 } elseif(is_file($supposedPath) ) {
-                    include $supposedPath;
+                    include_once $supposedPath;
                 } elseif(isset($aNamespaces[$composerName]) && is_file(end($aNamespaces[$composerName]) . DS. 'models' . DS . $className . '.php')){
-                    include end($aNamespaces[$composerName]) . DS. 'models' . DS . $className . '.php';
+                    include_once end($aNamespaces[$composerName]) . DS. 'models' . DS . $className . '.php';
                 }
             } catch (Exception $e) {
 

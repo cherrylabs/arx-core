@@ -1,7 +1,6 @@
 <?php namespace Arx\classes;
 
 use \Illuminate\Foundation\Application as ParentClass;
-use Symfony\Component\HttpFoundation\RedirectResponse as SymfonyRedirect;
 use Exception;
 
 

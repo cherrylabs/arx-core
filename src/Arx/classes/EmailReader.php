@@ -3,7 +3,7 @@
 /**
  * Class EmailReader
  *
- * Email retriever and parser (needs imap)
+ * Email retriever and parser (needs imap extension and Open Ssl)
  *
  * @compatibility php_>_5.4,mod_imap
  * @package Arx\classes
