@@ -19,15 +19,15 @@ class Load {
      * @throws \Exception
      */
     public static function js(array $array, $params = array(
-		    'attributes' => array(),
-		    'secure' => null
-	    ))
+        'attributes' => array(),
+        'secure' => null
+    ))
     {
         Arr::mergeWithDefaultParams($params);
 
         if (!$params['secure']) {
             try {
-                $params['secure'] = (new Request())->isSecure();
+                $params['secure'] = Utils::isHTTPS();
             } catch (Exception $e) {
 
             }
@@ -64,7 +64,7 @@ class Load {
 
         if (!$params['secure']) {
             try {
-                $params['secure'] = (new Request())->isSecure();
+                $params['secure'] = Utils::isHTTPS();
             } catch (Exception $e) {
 
             }
