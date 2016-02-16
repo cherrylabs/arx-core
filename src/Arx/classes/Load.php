@@ -39,7 +39,7 @@ class Load {
             if(is_array($item)){
                 $out .= Html::script($item[0], $item[1], $item[2])."\n";
             } else {
-                $out .= Html::script($item, @$params['attributes'] ?: [], @$params['secure'])."\n";
+                $out .= Html::script($item, $params['attributes'] ?: [], $params['secure'])."\n";
             }
         }
 
