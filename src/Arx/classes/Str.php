@@ -2,14 +2,11 @@
 
 /**
  * Strings
- * PHP File - /classes/Strings.php
+ *
+ * Very usefull string methods
  *
  * @category Utils
  * @package  Arx
- * @author   Daniel Sum <daniel@cherrypulp.com>
- * @author   Stéphan Zych <stephan@cherrypulp.com>
- * @license  http://opensource.org/licenses/MIT MIT License
- * @link     http://arx.xxx/doc/Strings
  *
  */
 class Str
@@ -94,7 +91,7 @@ class Str
 
     public static function is_json($str)
     {
-       return json_decode($str) != null;
+        return json_decode($str) != null;
     } // is_json
 
 
@@ -135,12 +132,87 @@ class Str
         return $excerpt[0];
     } // limit_text_words
 
+    /**
+     * Check that a string begin with a specified characters
+     * @param $character
+     * @param $string
+     * @return string
+     */
+    public static function mustBeginWith($character = '/', $string = ''){
+        if (strlen($string) > 0) {
+            if (substr($string, 0, 1) != $character) {
+                return $character.$string;
+            } else {
+                return $string;
+            }
+        } else {
+            return $character;
+        }
+    }
 
+    /**
+     * Check that a string begin with a specified characters
+     * @param $character
+     * @param $string
+     * @return string
+     */
+    public static function mustEndWith($character = '/', $string = ''){
+        if (strlen($string) > 0) {
+            if (substr($string, strlen($string) -1, 1) != $character) {
+                return $string . $character;
+            } else {
+                return $string;
+            }
+        } else {
+            return $character;
+        }
+    }
+
+    /**
+     * Remove character if begin with particular character
+     *
+     * @param string $character
+     * @param string $string
+     * @return string
+     */
+    public static function mustNotBeginWith($character = '/', $string = '')
+    {
+        if (preg_match("/" . preg_quote($character, '/') . "/i", $string)) {
+            return substr($string, count($character));
+        }
+
+        return $string;
+    }
+
+    /**
+     * Remove character if begin with particular character
+     *
+     * @param string $character
+     * @param string $string
+     * @return string
+     */
+    public static function mustNotEndWith($character = '/', $string = '')
+    {
+        if (preg_match('/' . preg_quote($character, '/') . '$/i', $string)) {
+            return substr($string, 0, 0 - count($character));
+        }
+
+        return $string;
+    }
+
+
+    /**
+     * Remove accents
+     *
+     * @param $str
+     * @param string $charset
+     * @return mixed|string
+     */
     public static function removeAccents($str, $charset = 'utf-8') {
         $str = htmlentities($str, ENT_NOQUOTES, $charset);
         $str = preg_replace('#\&([A-za-z])(?:acute|cedil|circ|grave|ring|tilde|uml|uro)\;#', '\1', $str);
-        $str = preg_replace('#\&([A-za-z]{2})(?:lig)\;#', '\1', $str); // pour les ligatures e.g. '&oelig;'
-        $str = preg_replace('#\&[^;]+\;#', '', $str); // supprime les autres caractères
+        $str = preg_replace('#\&([A-za-z]{2})(?:lig)\;#', '\1', $str);
+        $str = preg_replace('#\&[^;]+\;#', '', $str);
 
         return $str;
     } // removeAccents
@@ -218,9 +290,7 @@ class Str
         $aCleaned = array();
 
         foreach ($aMatch as $key => $v) {
-            if(is_string($v)){
-                $aCleaned[$aDelimiter[0].$key.$aDelimiter[1]] = $v;
-            }
+            $aCleaned[$aDelimiter[0].$key.$aDelimiter[1]] = (string) $v;
         }
 
         return strtr($haystack, $aCleaned);
@@ -300,6 +370,6 @@ class Str
         $str = str_replace(array(' ', 'é', 'è', 'ó', 'à', 'â', ',', '?', "'"), array('+', '%E9', '%E8', 'o', '%E0', '%E2', '%82', '%3F', "%27"), $str);
 
         return $str;
-    } // toSMS
+    }
 
 } // class::Strings
