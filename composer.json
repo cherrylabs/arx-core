@@ -1,7 +1,7 @@
 {
     "name": "arx/core",
     "type" : "library",
-    "description": "Arx core is a boosted web development kit for PHP/Laravel project including usefull classes, traits, starter template,etc.",
+    "description": "Arx core is a boosted web development kit for Laravel project including usefull classes, traits, starter template,etc. for your Saas project",
     "homepage": "http://www.arx.io",
     "license": "MIT",
     "authors": [
@@ -33,14 +33,15 @@
     "require": {
         "php": ">=5.5",
         "laravel/framework": "5.x",
-        "laravelcollective/html": "5.*",
+        "laravelcollective/html": "5.x",
         "doctrine/dbal": "~2.3",
-        "kriswallsmith/assetic" : "*",
-        "filp/whoops" : "*"
+        "kriswallsmith/assetic" : "*"
     },
     "require-dev": {
         "phpunit/phpunit": "~4.0",
-        "mockery/mockery": "~0.9"
+        "mockery/mockery": "~0.9",
+        "graham-campbell/exceptions": "^8.0",
+        "filp/whoops" : "*"
     },
     "autoload": {
         "classmap": [
@@ -64,6 +65,10 @@
     },
     "config": {
         "preferred-install": "dist"
+    },
+    "suggest": {
+        "graham-campbell/exceptions": "Excellent Laravel Exceptions Handler",
+        "filp/whoop": "Exceptions handlers for dev"
     },
     "minimum-stability": "dev"
 }
