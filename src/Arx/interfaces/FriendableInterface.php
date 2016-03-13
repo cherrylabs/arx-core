@@ -4,10 +4,6 @@ use Illuminate\Database\Eloquent\Model;
 
 interface FriendableInterface
 {
-    const STATUS_FRIENDABLE_PENDING = 0;
-    const STATUS_FRIENDABLE_ACCEPTED = 1;
-    const STATUS_FRIENDABLE_DENIED = 2;
-    const STATUS_FRIENDABLE_BLOCKED = 3;
 
     public function friends();
 

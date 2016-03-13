@@ -12,6 +12,7 @@ use Illuminate\Database\Eloquent\Model;
  */
 trait modelFriendableTrait
 {
+
     public function getFriendModel(){
 
         if (property_exists($this, 'friendship_table')) {
@@ -37,7 +38,7 @@ trait modelFriendableTrait
         $friendship = (new $model)->fill([
             'recipient_id' => $recipient->id,
             'recipient_type' => get_class($recipient),
-            'status' => self::STATUS_FRIENDABLE_PENDING,
+            'status' => static::STATUS_FRIENDABLE_PENDING,
         ]);
 
         $this->friends()->save($friendship);
