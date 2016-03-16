@@ -73,7 +73,7 @@ trait modelFriendableTrait
         }
 
         return $this->findFriendship($recipient)->update([
-            'status' => STATUS_FRIENDABLE_ACCEPTED,
+            'status' => static::STATUS_FRIENDABLE_ACCEPTED,
         ]);
     }
 
