@@ -75,28 +75,25 @@ trait modelApiTrait {
      */
     public static function response($mdata = array(), $status = null, $msg = '')
     {
-        $data = [];
-
-        if (is_array($mdata) && !isset($mdata['data'])) {
-            $data = $mdata;
-            $mdata = [];
-        } elseif(is_array($mdata) && isset($mdata['data'])) {
-            $data = $mdata['data'];
+        if (is_array($mdata) && isset($mdata['msg']) && isset($mdata['data']) && isset($mdata['status']) && !$status) {
+            $status = $mdata['status'];
+            $msg = $mdata['msg'];
+            $mdata = $mdata['data'];
         }
 
-        if (!$status && !isset($mdata['status'])) {
+
+        if (!$status && count($mdata)) {
             $status = 200;
+        } elseif (!$status) {
+            $status = 400;
         }
 
-        if (!$msg && !isset($mdata['msg'])) {
-            $msg = "";
-        }
 
-        $response = array_merge($mdata, array(
+        $response = array(
             'status' => $status,
             'msg' => $msg,
-            'data' => $data
-        ));
+            'data' => $mdata
+        );
 
         return $response;
     } // response
