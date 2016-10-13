@@ -150,6 +150,10 @@ class Str
         }
     }
 
+    public static function mustBeginAndEndWith($character = '/', $string = ''){
+        return self::mustBeginWith($character, self::mustEndWith($character, $string));
+    }
+
     /**
      * Check that a string begin with a specified characters
      * @param $character
@@ -182,6 +186,17 @@ class Str
         }
 
         return $string;
+    }
+
+    /**
+     * Check if a string doesn't end or begin with a special character
+     *
+     * @param string $character
+     * @param string $string
+     * @return string
+     */
+    public static function mustNotBeginAndEndWith($character = '/', $string = ''){
+        return self::mustNotBeginWith($character, self::mustNotEndWith($character, $string));
     }
 
     /**
