@@ -34,7 +34,6 @@
         "php": ">=5.5",
         "laravel/framework": "5.x",
         "laravelcollective/html": "5.x",
-        "doctrine/dbal": "~2.3",
         "kriswallsmith/assetic" : "*"
     },
     "require-dev": {
@@ -68,7 +67,8 @@
     },
     "suggest": {
         "graham-campbell/exceptions": "Excellent Laravel Exceptions Handler",
-        "filp/whoop": "Exceptions handlers for dev"
+        "filp/whoop": "Exceptions handlers for dev",
+        "doctrine/dbal": "Used to decrypt a database scheme"
     },
     "minimum-stability": "dev"
 }
