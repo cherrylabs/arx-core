@@ -69,7 +69,7 @@ class Arr
      */
     public static function array_divide($array, $nb = 2, $preserve_key = true)
     {
-        $iMiddle = round(count($array) / $nb, 0, PHP_ROUND_HALF_UP);
+        $iMiddle = ceil(count($array) / $nb);
         return array_chunk($array, $iMiddle, $preserve_key);
     }
 
