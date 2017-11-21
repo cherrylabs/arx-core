@@ -119,34 +119,34 @@ class Shortcode implements Countable {
         $shortcode = join('|', array_map('preg_quote', $names));
 
         return
-            '\\['
-            . '(\\[?)'
-            . "($shortcode)"
-            . '(?![\\w-])'
-            . '('
-            .     '[^\\]\\/]*'
+            '\\['                              // Opening bracket
+            . '(\\[?)'                           // 1: Optional second opening bracket for escaping shortcodes: [[tag]]
+            . "($shortcode)"                     // 2: Shortcode name
+            . '(?![\\w-])'                       // Not followed by word character or hyphen
+            . '('                                // 3: Unroll the loop: Inside the opening shortcode tag
+            .     '[^\\]\\/]*'                   // Not a closing bracket or forward slash
             .     '(?:'
-            .         '\\/(?!\\])'
-            .         '[^\\]\\/]*'
+            .         '\\/(?!\\])'               // A forward slash not followed by a closing bracket
+            .         '[^\\]\\/]*'               // Not a closing bracket or forward slash
             .     ')*?'
             . ')'
             . '(?:'
-            .     '(\\/)'
-            .     '\\]'
+            .     '(\\/)'                        // 4: Self closing tag ...
+            .     '\\]'                          // ... and closing bracket
             . '|'
-            .     '\\]'
+            .     '\\]'                          // Closing bracket
             .     '(?:'
-            .         '('
-            .             '[^\\[]*+'
+            .         '('                        // 5: Unroll the loop: Optionally, anything between the opening and closing shortcode tags
+            .             '[^\\[]*+'             // Not an opening bracket
             .             '(?:'
-            .                 '\\[(?!\\/\\2\\])'
-            .                 '[^\\[]*+'
+            .                 '\\[(?!\\/\\2\\])' // An opening bracket not followed by the closing shortcode tag
+            .                 '[^\\[]*+'         // Not an opening bracket
             .             ')*+'
             .         ')'
-            .         '\\[\\/\\2\\]'
+            .         '\\[\\/\\2\\]'             // Closing shortcode tag
             .     ')?'
             . ')'
-            . '(\\]?)';
+            . '(\\]?)';                          // 6: Optional second closing brocket for escaping shortcodes: [[tag]]
     }
 
     /**
@@ -254,6 +254,62 @@ class Shortcode implements Countable {
         }
 
         return false;
+    }
+    
+    /**
+     * Return an array of shortcodes associative array
+     * @param string $content
+     * @return array
+     */
+    public function extract($content)
+    {
+        $pattern = $this->getRegex();
+
+        preg_match_all("/$pattern/s", $content, $matches);
+
+        $objects = [];
+
+        foreach ($matches as $key => $match) {
+            $name = null;
+
+            if ($key == 0) {
+                $name = 'original';
+            } elseif ($key == 2) {
+                $name = 'name';
+            } elseif ($key == 3) {
+                $name = 'attributes';
+            } elseif ($key == 5) {
+                $name = 'content';
+            }
+
+            if (!is_null($name)) {
+                foreach ($match as $k => $v) {
+                    if (!isset($objects[$k])) {
+                        $objects[$k] = [];
+                    }
+
+                    if ($name == 'attributes') {
+                        $attributes = $this->parseAttr($v);
+
+                        if (!is_array($attributes)) {
+                            $attributes = [];
+                        }
+
+                        $objects[$k][$name] = $attributes;
+                    } elseif ($name == 'content') {
+                        if ($this->hasShortcode($v)) {
+                            $objects[$k][$name] = $this->extract($v);
+                        } else {
+                            $objects[$k][$name] = $v;
+                        }
+                    } else {
+                        $objects[$k][$name] = $v;
+                    }
+                }
+            }
+        }
+
+        return $objects;
     }
 
     /**
