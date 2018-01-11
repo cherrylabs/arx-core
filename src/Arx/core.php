@@ -92,7 +92,7 @@ if(!class_exists('Arx')){
 	 * Needs to be loaded at very first level to make things happen
 	 *
 	 */
-    class Arx extends \Arx\classes\App {
+    class Arx {
 
         /**
          * Get path from Arx
@@ -249,10 +249,6 @@ if(!class_exists('Arx')){
             }
 
             $pathsWorkbench = Composer::getRootPath('workbench');
-
-            if (class_exists('Config', false)) {
-                $pathsWorkbench = Config::get('paths.workbench');
-            }
 
             try {
                 if(is_file($fileName = $pathsWorkbench . DS . strtolower($composerName) .DS. 'src' . DS . $fileName)){

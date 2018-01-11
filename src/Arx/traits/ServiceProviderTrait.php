@@ -19,7 +19,7 @@ trait ServiceProviderTrait {
 
             $dotName = str_replace(':', '.', $name);
 
-            $this->app['command.'.$dotName] = $this->app->share(function() use ($class)
+            $this->app->singleton('command.'.$dotName,function() use ($class)
             {
                 $commandClassName = $class;
                 return new $commandClassName();

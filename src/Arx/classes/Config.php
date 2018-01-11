@@ -97,7 +97,7 @@ class Config extends Container
      * @example
      * Config::instance()->get('something.other');
      */
-    public static function get($sNeedle = null, $mDefault = null)
+    public function get($sNeedle = null, $mDefault = null)
     {
         if (is_null($sNeedle) && is_null($mDefault)) {
             return static::$aSettings;
